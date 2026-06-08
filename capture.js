@@ -123,7 +123,8 @@ async function run() {
     try {
       browser = await puppeteer.launch({
         headless: 'new',
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        ignoreHTTPSErrors: true
       });
     } catch (err) {
       console.log(`Failed to launch local Chrome browser: ${err.message}. Falling back to API...`);
@@ -133,6 +134,7 @@ async function run() {
 
   for (let i = 0; i < projects.length; i++) {
     const project = projects[i];
+    if (project.id !== 1) continue;
     console.log(`\n--------------------------------------------`);
     console.log(`Processing Project ${project.id}: ${project.name}`);
     console.log(`--------------------------------------------`);

@@ -5,7 +5,7 @@
     "category": "Web Applications",
     "client": "Department of Science & Technology (DST)",
     "industry": "Government & Research",
-    "domain": "https://www.estic.dst.gov.in/",
+    "domain": "https://estic.dst.gov.in/",
     "description": "A unified national scientific database and portal that aggregates, catalogs, and indexes research publications, patents, and S&T metrics across Indian institutions.",
     "challenge": "Researchers and government bodies faced highly fragmented publication directories, slow cross-domain queries, and manual patent compilation processes.",
     "solution": "Built a high-performance portal linking major national research databases, integrating Elasticsearch query nodes, and implementing automated PDF cataloging.",
@@ -31,7 +31,7 @@
       "outcome": "National research search times reduced by 60%"
     },
     "launchDate": "2024-03-15",
-    "iframeAllowed": false,
+    "iframeAllowed": true,
     "researchText": "We mapped user journeys for over 15,000 national researchers. Analysis revealed that critical science directories were silos with incompatible data models. To resolve this, we formulated a unified metadata schema linking journals, patents, and grants, enabling fast, cross-institution indexing.",
     "designText": "Designed a high-density, accessible layout using slate-gray editorial spacing and clear typographic hierarchies. Custom search suggestion drawers and dynamic filter tags were optimized to meet national accessibility standards (WCAG 2.1 AA).",
     "developmentText": "Built a cluster of Elasticsearch nodes to index millions of records synchronously. Integrated Django REST APIs with PostgreSQL database partitioning to ensure search query responses remain under 200ms across massive datasets.",
@@ -42,15 +42,40 @@
       "seo": 100
     },
     "timeline": [
-      { "phase": "Discovery", "duration": "Week 1" },
-      { "phase": "UX Architecture", "duration": "Week 2-3" },
-      { "phase": "Elastic Engine", "duration": "Week 4-6" },
-      { "phase": "Portal Dev", "duration": "Week 7-9" },
-      { "phase": "Security Audit", "duration": "Week 10" }
+      {
+        "phase": "Discovery",
+        "duration": "Week 1"
+      },
+      {
+        "phase": "UX Architecture",
+        "duration": "Week 2-3"
+      },
+      {
+        "phase": "Elastic Engine",
+        "duration": "Week 4-6"
+      },
+      {
+        "phase": "Portal Dev",
+        "duration": "Week 7-9"
+      },
+      {
+        "phase": "Security Audit",
+        "duration": "Week 10"
+      }
     ],
     "growthData": {
-      "months": ["Jan", "Feb", "Mar", "Apr"],
-      "values": [100, 155, 230, 320]
+      "months": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr"
+      ],
+      "values": [
+        100,
+        155,
+        230,
+        320
+      ]
     },
     "healthBadge": {
       "status": "Online",
@@ -58,7 +83,10 @@
       "ssl": true,
       "lastChecked": "2 minutes ago"
     },
-    "relatedProjects": [3, 5],
+    "relatedProjects": [
+      3,
+      5
+    ],
     "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-data-processing-screen-of-a-computer-close-up-33434-large.mp4"
   },
   {
@@ -105,15 +133,40 @@
       "seo": 100
     },
     "timeline": [
-      { "phase": "Audit & Strategy", "duration": "Week 1" },
-      { "phase": "UI Prototyping", "duration": "Week 2" },
-      { "phase": "Payment Flow", "duration": "Week 3" },
-      { "phase": "Abstract Engine", "duration": "Week 4-5" },
-      { "phase": "Deployment", "duration": "Week 6" }
+      {
+        "phase": "Audit & Strategy",
+        "duration": "Week 1"
+      },
+      {
+        "phase": "UI Prototyping",
+        "duration": "Week 2"
+      },
+      {
+        "phase": "Payment Flow",
+        "duration": "Week 3"
+      },
+      {
+        "phase": "Abstract Engine",
+        "duration": "Week 4-5"
+      },
+      {
+        "phase": "Deployment",
+        "duration": "Week 6"
+      }
     ],
     "growthData": {
-      "months": ["Jan", "Feb", "Mar", "Apr"],
-      "values": [50, 110, 175, 210]
+      "months": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr"
+      ],
+      "values": [
+        50,
+        110,
+        175,
+        210
+      ]
     },
     "healthBadge": {
       "status": "Online",
@@ -121,7 +174,10 @@
       "ssl": true,
       "lastChecked": "4 minutes ago"
     },
-    "relatedProjects": [1, 3],
+    "relatedProjects": [
+      1,
+      3
+    ],
     "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screens-39904-large.mp4"
   },
   {
@@ -168,15 +224,40 @@
       "seo": 100
     },
     "timeline": [
-      { "phase": "UX Audit", "duration": "Week 1" },
-      { "phase": "Database Schema", "duration": "Week 2-3" },
-      { "phase": "Frontend Dev", "duration": "Week 4-6" },
-      { "phase": "Content Load", "duration": "Week 7" },
-      { "phase": "Audit & Review", "duration": "Week 8" }
+      {
+        "phase": "UX Audit",
+        "duration": "Week 1"
+      },
+      {
+        "phase": "Database Schema",
+        "duration": "Week 2-3"
+      },
+      {
+        "phase": "Frontend Dev",
+        "duration": "Week 4-6"
+      },
+      {
+        "phase": "Content Load",
+        "duration": "Week 7"
+      },
+      {
+        "phase": "Audit & Review",
+        "duration": "Week 8"
+      }
     ],
     "growthData": {
-      "months": ["Jan", "Feb", "Mar", "Apr"],
-      "values": [80, 120, 150, 180]
+      "months": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr"
+      ],
+      "values": [
+        80,
+        120,
+        150,
+        180
+      ]
     },
     "healthBadge": {
       "status": "Online",
@@ -184,7 +265,10 @@
       "ssl": true,
       "lastChecked": "5 minutes ago"
     },
-    "relatedProjects": [1, 4],
+    "relatedProjects": [
+      1,
+      4
+    ],
     "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-server-room-rack-with-flashing-blue-lights-32867-large.mp4"
   },
   {
@@ -230,16 +314,44 @@
       "seo": 100
     },
     "timeline": [
-      { "phase": "Scope & Tech", "duration": "Week 1" },
-      { "phase": "UX & Wireframes", "duration": "Week 2-3" },
-      { "phase": "DB Architecture", "duration": "Week 4" },
-      { "phase": "React Catalogue", "duration": "Week 5-7" },
-      { "phase": "API Integration", "duration": "Week 8" },
-      { "phase": "Launch", "duration": "Week 9" }
+      {
+        "phase": "Scope & Tech",
+        "duration": "Week 1"
+      },
+      {
+        "phase": "UX & Wireframes",
+        "duration": "Week 2-3"
+      },
+      {
+        "phase": "DB Architecture",
+        "duration": "Week 4"
+      },
+      {
+        "phase": "React Catalogue",
+        "duration": "Week 5-7"
+      },
+      {
+        "phase": "API Integration",
+        "duration": "Week 8"
+      },
+      {
+        "phase": "Launch",
+        "duration": "Week 9"
+      }
     ],
     "growthData": {
-      "months": ["Jan", "Feb", "Mar", "Apr"],
-      "values": [40, 105, 170, 240]
+      "months": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr"
+      ],
+      "values": [
+        40,
+        105,
+        170,
+        240
+      ]
     },
     "healthBadge": {
       "status": "Online",
@@ -247,7 +359,10 @@
       "ssl": true,
       "lastChecked": "1 minute ago"
     },
-    "relatedProjects": [3, 2],
+    "relatedProjects": [
+      3,
+      2
+    ],
     "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-hands-of-developer-typing-on-keyboard-with-backlight-40142-large.mp4"
   },
   {
@@ -294,15 +409,40 @@
       "seo": 100
     },
     "timeline": [
-      { "phase": "Requirements", "duration": "Week 1" },
-      { "phase": "Information Arch", "duration": "Week 2" },
-      { "phase": "MySQL/PHP Dev", "duration": "Week 3-4" },
-      { "phase": "Live Maps JS", "duration": "Week 5" },
-      { "phase": "Compliance Audit", "duration": "Week 6" }
+      {
+        "phase": "Requirements",
+        "duration": "Week 1"
+      },
+      {
+        "phase": "Information Arch",
+        "duration": "Week 2"
+      },
+      {
+        "phase": "MySQL/PHP Dev",
+        "duration": "Week 3-4"
+      },
+      {
+        "phase": "Live Maps JS",
+        "duration": "Week 5"
+      },
+      {
+        "phase": "Compliance Audit",
+        "duration": "Week 6"
+      }
     ],
     "growthData": {
-      "months": ["Jan", "Feb", "Mar", "Apr"],
-      "values": [70, 115, 160, 200]
+      "months": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr"
+      ],
+      "values": [
+        70,
+        115,
+        160,
+        200
+      ]
     },
     "healthBadge": {
       "status": "Online",
@@ -310,7 +450,10 @@
       "ssl": true,
       "lastChecked": "2 minutes ago"
     },
-    "relatedProjects": [1, 4],
+    "relatedProjects": [
+      1,
+      4
+    ],
     "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-typing-on-a-glowing-neon-keyboard-40626-large.mp4"
   }
 ]
