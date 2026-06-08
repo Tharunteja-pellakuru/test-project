@@ -360,7 +360,7 @@ body::before {
 .tech-ecosystem {
   position: relative;
   width: 100%;
-  height: 520px;
+  height: 600px;
   background: transparent;
   display: flex;
   align-items: center;
@@ -369,12 +369,12 @@ body::before {
 }
 @media (max-width: 960px) {
   .tech-ecosystem {
-    height: 440px;
+    height: 500px;
   }
 }
 @media (max-width: 480px) {
   .tech-ecosystem {
-    height: 360px;
+    height: 420px;
   }
 }
 
@@ -390,19 +390,18 @@ body::before {
 .eco-node {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   border: 1.5px solid rgba(34, 197, 94, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ink-2);
-  box-shadow: 0 8px 30px rgba(8, 14, 10, 0.03);
+  box-shadow: 0 8px 30px rgba(8, 14, 10, 0.06);
   cursor: pointer;
-  z-index: 2;
+  z-index: 8;
   transform: translate(-50%, -50%);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s, box-shadow 0.3s, color 0.3s, opacity 0.3s, filter 0.3s;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s, box-shadow 0.3s, opacity 0.3s, filter 0.3s;
 }
 
 .eco-node svg {
@@ -413,64 +412,41 @@ body::before {
 
 .eco-node:hover {
   border-color: var(--g);
-  color: var(--g-dark);
   box-shadow: 0 12px 36px rgba(34, 197, 94, 0.22), 0 0 20px rgba(34, 197, 94, 0.2);
   transform: translate(-50%, -50%) scale(1.18);
-  z-index: 10;
+  z-index: 20;
 }
 
 .eco-node:hover svg {
   transform: scale(1.08);
 }
 
-/* Size Hierarchies */
-.eco-node.size-large {
-  width: 66px;
-  height: 66px;
-  padding: 13.5px;
-}
-@media (max-width: 480px) {
-  .eco-node.size-large {
-    width: 54px;
-    height: 54px;
-    padding: 11px;
-  }
-}
-
-.eco-node.size-medium {
-  width: 52px;
-  height: 52px;
-  padding: 11.5px;
-}
-@media (max-width: 480px) {
-  .eco-node.size-medium {
-    width: 44px;
-    height: 44px;
-    padding: 9.5px;
-  }
-}
-
+/* Size Hierarchies — All nodes equal size */
+.eco-node.size-large,
+.eco-node.size-medium,
 .eco-node.size-small {
-  width: 38px;
-  height: 38px;
-  padding: 8px;
+  width: 62px;
+  height: 62px;
+  padding: 13px;
 }
 @media (max-width: 480px) {
+  .eco-node.size-large,
+  .eco-node.size-medium,
   .eco-node.size-small {
-    width: 32px;
-    height: 32px;
-    padding: 6.5px;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
   }
 }
 
 /* Center Hub */
 .eco-node.node-center {
-  width: 154px;
-  height: 154px;
+  width: 164px;
+  height: 164px;
   background: radial-gradient(circle at center, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 248, 0.92) 100%);
   border: 2px solid rgba(34, 197, 94, 0.28);
   box-shadow: 0 16px 48px rgba(34, 197, 94, 0.14), inset 0 0 12px rgba(255, 255, 255, 0.8);
-  z-index: 5;
+  z-index: 4;
   cursor: default;
   text-align: center;
   display: flex;
@@ -480,8 +456,8 @@ body::before {
 }
 @media (max-width: 480px) {
   .eco-node.node-center {
-    width: 124px;
-    height: 124px;
+    width: 130px;
+    height: 130px;
   }
 }
 
@@ -489,6 +465,7 @@ body::before {
   transform: translate(-50%, -50%);
   border-color: var(--g);
   box-shadow: 0 20px 60px rgba(34, 197, 94, 0.24);
+  z-index: 4;
 }
 
 .eco-center-inner {
@@ -2132,31 +2109,31 @@ function switchTab(panel, btn) {
 ════════════════════════════════ */
 const techNodesData = [
   // Large Nodes (4)
-  { id: 'react', name: 'React', size: 'large', x: -0.55, y: -0.32, depth: 1.0, logo: `<svg viewBox="-120 -120 240 240"><circle cx="0" cy="0" r="18" fill="currentColor"/><ellipse rx="100" ry="38" stroke="currentColor" stroke-width="9" fill="none"/><ellipse rx="100" ry="38" stroke="currentColor" stroke-width="9" fill="none" transform="rotate(60)"/><ellipse rx="100" ry="38" stroke="currentColor" stroke-width="9" fill="none" transform="rotate(120)"/></svg>` },
-  { id: 'nodejs', name: 'Node.js', size: 'large', x: 0.55, y: -0.32, depth: 1.0, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3.5 7v10L12 22l8.5-5V7L12 2z"/><path d="M12 22V12"/><path d="M3.5 7L12 12l8.5-5"/></svg>` },
-  { id: 'python', name: 'Python', size: 'large', x: 0.58, y: 0.35, depth: 0.9, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-2.5 0-2.5 1.2-2.5 1.2h2.5v1.2H7c-1.3 0-2.5 1.2-2.5 2.5v2.5h1.2V7c0-1 1-1.3 1.3-1.3h5c1.3 0 2.5-1.2 2.5-2.5S13.3 2 12 2z"/><path d="M12 22c2.5 0 2.5-1.2 2.5-1.2h-2.5v-1.2H17c1.3 0 2.5-1.2 2.5-2.5v-2.5h-1.2V17c0 1-1 1.3-1.3 1.3h-5c-1.3 0-2.5 1.2-2.5 2.5s1.2 1.2 2.5 1.2z"/><circle cx="9" cy="4.5" r="0.7" fill="currentColor"/><circle cx="15" cy="19.5" r="0.7" fill="currentColor"/></svg>` },
-  { id: 'wordpress', name: 'WordPress', size: 'large', x: -0.5, y: 0.45, depth: 0.9, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 24c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM19.7 7.7c.6 1.3.9 2.8.9 4.3 0 1.9-.4 3.7-1.3 5.2L14 7.7h5.8zM8.3 7.7H9l3 8.7 3-8.7h.6l3.4 9.8c-1.5 2.4-4.2 4-7.2 4-2.1 0-4-.7-5.6-1.9L8.3 7.7zM2.2 12.1c0-1.8.5-3.5 1.3-5L8 18.5c-3.4-1.2-5.8-4.3-5.8-6.4z"/></svg>` },
+  { id: 'react', name: 'React', size: 'large', x: -0.55, y: -0.32, depth: 1.0, logo: `<svg viewBox="-120 -120 240 240"><circle cx="0" cy="0" r="18" fill="#61DAFB"/><ellipse rx="100" ry="38" stroke="#61DAFB" stroke-width="9" fill="none"/><ellipse rx="100" ry="38" stroke="#61DAFB" stroke-width="9" fill="none" transform="rotate(60)"/><ellipse rx="100" ry="38" stroke="#61DAFB" stroke-width="9" fill="none" transform="rotate(120)"/></svg>` },
+  { id: 'nodejs', name: 'Node.js', size: 'large', x: 0.55, y: -0.32, depth: 1.0, logo: `<svg viewBox="0 0 24 24"><path fill="#339933" d="M12 2L3.5 7v10L12 22l8.5-5V7L12 2zm6.2 13.9l-6.2 3.6-6.2-3.6V8.1l6.2-3.6 6.2 3.6v7.8z"/><path fill="#66cc33" d="M12 5.5l5 2.9v5.8l-5 2.9-5-2.9v-5.8z"/></svg>` },
+  { id: 'python', name: 'Python', size: 'large', x: 0.58, y: 0.35, depth: 0.9, logo: `<svg viewBox="0 0 24 24"><path fill="#3776AB" d="M11.9 2c-2.7 0-2.5 1.2-2.5 1.2h2.5v1.2H7c-1.3 0-2.5 1.2-2.5 2.5v2.5h1.2V7c0-1 1-1.3 1.3-1.3h5c1.3 0 2.5-1.2 2.5-2.5S13.2 2 11.9 2z"/><path fill="#FFD343" d="M12.1 22c2.7 0 2.5-1.2 2.5-1.2h-2.5v-1.2H17c1.3 0 2.5-1.2 2.5-2.5v-2.5h-1.2V17c0 1-1 1.3-1.3 1.3h-5c-1.3 0-2.5 1.2-2.5 2.5s1.2 1.2 2.5 1.2z"/><circle cx="9" cy="4.5" r="0.8" fill="#fff"/><circle cx="15" cy="19.5" r="0.8" fill="#fff"/></svg>` },
+  { id: 'wordpress', name: 'WordPress', size: 'large', x: -0.5, y: 0.45, depth: 0.9, logo: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#21759B"/><path fill="#fff" d="M12.1 2C6.5 2 2 6.5 2 12.1s4.5 10 10.1 10 10.1-4.5 10.1-10S17.6 2 12.1 2zm7.7 7.7c.6 1.3.9 2.8.9 4.3 0 1.9-.4 3.7-1.3 5.2L14 9.7h5.8zm-11.4 0H9l3 8.7 3-8.7h.6l3.4 9.8c-1.5 2.4-4.2 4-7.2 4-2.1 0-4-.7-5.6-1.9L8.4 9.7zM4.2 14.1c0-1.8.5-3.5 1.3-5L10 20.5c-3.4-1.2-5.8-4.3-5.8-6.4z"/></svg>` },
 
   // Medium Nodes (8)
-  { id: 'django', name: 'Django', size: 'medium', x: 0.35, y: 0.65, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h5M4 12h5M4 16h5M13 8h5M13 12h5M13 16h5M4 4h14v16H4V4z"/></svg>` },
-  { id: 'mongodb', name: 'MongoDB', size: 'medium', x: 0.75, y: -0.05, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3.5 3.5-3.5 7-3.5 10s2 7.5 3.5 9.5c1.5-2 3.5-6.5 3.5-9.5s0-6.5-3.5-10z"/></svg>` },
-  { id: 'mysql', name: 'MySQL', size: 'medium', x: 0.22, y: -0.72, depth: 0.7, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm2.2 13.5c-.8.8-2 1.3-3.2 1.3-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5c1.2 0 2.4.5 3.2 1.3l-1.1 1.1c-.5-.5-1.2-.8-2.1-.8-1.7 0-3 1.3-3 3s1.3 3 3 3c.9 0 1.6-.3 2.1-.8l1.1 1.1z"/></svg>` },
-  { id: 'shopify', name: 'Shopify', size: 'medium', x: -0.15, y: 0.72, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>` },
-  { id: 'nextjs', name: 'Next.js', size: 'medium', x: -0.22, y: -0.7, depth: 0.7, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 18V6l6 8V6"/></svg>` },
-  { id: 'php', name: 'PHP', size: 'medium', x: -0.74, y: 0.05, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><text x="6" y="15" font-family="sans-serif" font-weight="bold" font-size="9" fill="currentColor">PHP</text></svg>` },
-  { id: 'postgresql', name: 'PostgreSQL', size: 'medium', x: 0.76, y: 0.22, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2s-6 3-8 7l8 3v10z"/></svg>` },
-  { id: 'aws', name: 'AWS', size: 'medium', x: 0.1, y: 0.74, depth: 0.7, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a7 7 0 0 1 14 0v4H5v-4z"/><path d="M7 17v2M17 17v2"/></svg>` },
+  { id: 'django', name: 'Django', size: 'medium', x: 0.35, y: 0.65, depth: 0.8, logo: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4" fill="#092E20"/><text x="5" y="15" fill="#fff" font-family="monospace" font-weight="bold" font-size="11">dj</text></svg>` },
+  { id: 'mongodb', name: 'MongoDB', size: 'medium', x: 0.75, y: -0.05, depth: 0.8, logo: `<svg viewBox="0 0 24 24"><path fill="#47A248" d="M12 1.5C10.5 4.5 8 7 8 11.5c0 4 2.5 6.5 4 9.5 1.5-3 4-5.5 4-9.5 0-4.5-2.5-7-4-10z"/><path fill="#13AA52" d="M12 4.5c1 2 2.5 3.8 2.5 6.8 0 2-1.1 4.2-2.5 6V4.5z"/></svg>` },
+  { id: 'mysql', name: 'MySQL', size: 'medium', x: 0.22, y: -0.72, depth: 0.7, logo: `<svg viewBox="0 0 24 24"><path fill="#00758F" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm2.2 13.5c-.8.8-2 1.3-3.2 1.3-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5c1.2 0 2.4.5 3.2 1.3l-1.1 1.1c-.5-.5-1.2-.8-2.1-.8-1.7 0-3 1.3-3 3s1.3 3 3 3c.9 0 1.6-.3 2.1-.8l1.1 1.1z"/><path fill="#F29111" d="M18.5 9.5c-.5-.8-1.2-1.2-2-1.2-.5 0-.9.2-1.2.5s-.5.8-.5 1.2.2.9.5 1.2 1.3.5 2 .5c.6 0 1-.2 1.2-.5s.5-.8.5-1.2-.2-.9-.5-1.2z"/></svg>` },
+  { id: 'shopify', name: 'Shopify', size: 'medium', x: -0.15, y: 0.72, depth: 0.8, logo: `<svg viewBox="0 0 24 24"><path fill="#96BF48" d="M19 6h-2c0-2.8-2.2-5-5-5S7 3.2 7 6H5c-1.1 0-2 .9-2 2v11c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V8c0-1.1-.9-2-2-2z"/><path fill="#7AB55C" d="M12 3c1.7 0 3 1.3 3 3H9c0-1.7 1.3-3 3-3zm1 8.5c1 0 1.5-.5 1.5-1.5S14 8.5 13 8.5h-2v3h2z"/></svg>` },
+  { id: 'nextjs', name: 'Next.js', size: 'medium', x: -0.22, y: -0.7, depth: 0.7, logo: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#000"/><path fill="#fff" d="M16 16.5l-5.6-7.2V15H9V8.5h1.5l5.5 7.1V8.5h1.5v8H16z"/></svg>` },
+  { id: 'php', name: 'PHP', size: 'medium', x: -0.74, y: 0.05, depth: 0.8, logo: `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="11" ry="7" fill="#777BB4"/><text x="4" y="15" font-family="sans-serif" font-weight="bold" font-size="9" fill="#fff">PHP</text></svg>` },
+  { id: 'postgresql', name: 'PostgreSQL', size: 'medium', x: 0.76, y: 0.22, depth: 0.8, logo: `<svg viewBox="0 0 24 24"><path fill="#336791" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.5 11c-.5.8-1.5 1.5-2.5 1.5H12v2.5H10.5V13c0-1.5 1-2.5 2.5-2.5h1c.8 0 1.5.4 1.5 1.2 0 .5-.2.9-.5 1.3zM10.5 7.5c0-.6.4-1 1-1h1c1.5 0 2.5 1 2.5 2.5s-1 2.5-2.5 2.5h-1c-.6 0-1-.4-1-1V7.5z"/></svg>` },
+  { id: 'aws', name: 'AWS', size: 'medium', x: 0.1, y: 0.74, depth: 0.7, logo: `<svg viewBox="0 0 24 24"><path fill="#232F3E" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1.2 13H10l-.8 1.8H7.7l2.8-6h1.8l2.8 6h-1.5l-.8-1.8zm-2.8-1.2h2.2L11 9.6l-1 2.2z"/><path fill="#FF9900" d="M7 17.5c2 2 5 2.5 8 1.5l1 1c-4 2-8 1-10-1.5l1-1z"/></svg>` },
 
   // Small Nodes (8)
-  { id: 'html', name: 'HTML5', size: 'small', x: -0.78, y: -0.24, depth: 0.6, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3.5 4.5l1.5 13.5 7 4 7-4 1.5-13.5L12 2z"/><path d="M12 6H8.5l.5 5.5h6l-.5 5.5-2.5 1.5-2.5-1.5-.2-2"/></svg>` },
-  { id: 'css', name: 'CSS3', size: 'small', x: -0.72, y: -0.5, depth: 0.6, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3.5 4.5l1.5 13.5 7 4 7-4 1.5-13.5L12 2z"/><path d="M12 6H8.5l.5 5.5h6l-.5 5.5-2.5 1.5-2.5-1.5-.2-2"/></svg>` },
-  { id: 'javascript', name: 'JavaScript', size: 'small', x: -0.38, y: -0.3, depth: 0.5, logo: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><text x="12" y="16" fill="currentColor" font-family="sans-serif" font-weight="900" font-size="8">JS</text></svg>` },
-  { id: 'typescript', name: 'TypeScript', size: 'small', x: -0.1, y: -0.42, depth: 0.5, logo: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><text x="12" y="16" fill="currentColor" font-family="sans-serif" font-weight="900" font-size="8">TS</text></svg>` },
-  { id: 'express', name: 'Express', size: 'small', x: 0.35, y: -0.38, depth: 0.6, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8l4 4-4 4"/></svg>` },
-  { id: 'github', name: 'GitHub', size: 'small', x: 0.35, y: 0.35, depth: 0.5, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>` },
-  { id: 'docker', name: 'Docker', size: 'small', x: 0.1, y: -0.55, depth: 0.6, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 16h20M2 8h20M12 2v6M7 2v6M17 2v6"/></svg>` },
-  { id: 'laravel', name: 'Laravel', size: 'small', x: -0.32, y: 0.38, depth: 0.5, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>` }
-];
+  { id: 'html', name: 'HTML5', size: 'small', x: -0.78, y: -0.24, depth: 0.6, logo: `<svg viewBox="0 0 24 24"><path fill="#E34F26" d="M12 2L3.5 4.5l1.5 13.5 7 4 7-4 1.5-13.5L12 2z"/><path fill="#EF652A" d="M12 22l7-4 1.5-13.5L12 4.5V22z"/><path fill="#FFF" d="M12 6H8.5l.5 5.5h6l-.5 5.5-2.5 1.5-2.5-1.5-.2-2H17V8z"/></svg>` },
+  { id: 'css', name: 'CSS3', size: 'small', x: -0.72, y: -0.5, depth: 0.6, logo: `<svg viewBox="0 0 24 24"><path fill="#1572B6" d="M12 2L3.5 4.5l1.5 13.5 7 4 7-4 1.5-13.5L12 2z"/><path fill="#33A9DC" d="M12 22l7-4 1.5-13.5L12 4.5V22z"/><path fill="#FFF" d="M12 6H8.5l.5 5.5h4.6l-.3 3.2-4 2.2-4-2.2-.2-2.5H17V8z"/></svg>` },
+  { id: 'javascript', name: 'JavaScript', size: 'small', x: -0.38, y: -0.3, depth: 0.5, logo: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3" fill="#F7DF1E"/><text x="13" y="19" fill="#323330" font-family="sans-serif" font-weight="900" font-size="9.5">JS</text></svg>` },
+  { id: 'typescript', name: 'TypeScript', size: 'small', x: -0.1, y: -0.42, depth: 0.5, logo: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3" fill="#3178C6"/><text x="13" y="19" fill="#FFFFFF" font-family="sans-serif" font-weight="900" font-size="9.5">TS</text></svg>` },
+  { id: 'express', name: 'Express', size: 'small', x: 0.35, y: -0.38, depth: 0.6, logo: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3" fill="#353535"/><text x="3.5" y="14" fill="#fff" font-family="sans-serif" font-weight="bold" font-size="6">Express</text></svg>` },
+  { id: 'github', name: 'GitHub', size: 'small', x: 0.35, y: 0.35, depth: 0.5, logo: `<svg viewBox="0 0 24 24"><path fill="#181717" d="M12 2C6.4 2 2 6.4 2 12c0 4.5 2.9 8.3 7 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1 .6-1.3-2.2-.2-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1 .8-.2 1.7-.3 2.5-.3.9 0 1.8.1 2.5.3 2-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0022 12c0-5.6-4.4-10-10-10z"/></svg>` },
+  { id: 'docker', name: 'Docker', size: 'small', x: 0.1, y: -0.55, depth: 0.6, logo: `<svg viewBox="0 0 24 24"><path fill="#2496ED" d="M13.9 8.2h2.2V6h-2.2v2.2zM11 8.2h2.2V6H11v2.2zM8.2 8.2H10.4V6H8.2v2.2zM5.3 8.2h2.2V6H5.3v2.2zM8.2 11h2.2V8.8H8.2V11zm2.8 0h2.2V8.8H11V11zm2.8 0h2.2V8.8h-2.2V11zm-8.4 0h2.2V8.8H5.4V11zm2.8 2.8h2.2v-2.2H8.2v2.2zm2.8 0h2.2v-2.2H11v2.2zm-5.6 0h2.2v-2.2H5.4v2.2zm11.2 5.6h5.3c1.5 0 2.7-1.2 2.7-2.7v-2.8H1V14c0 2.2 1.8 4 4 4h11.9z"/></svg>` },
+  { id: 'laravel', name: 'Laravel', size: 'small', x: -0.32, y: 0.38, depth: 0.5, logo: `<svg viewBox="0 0 24 24"><path fill="#FF2D20" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 14h-2v-4H9v-2h6v2h-2v4z"/></svg>` }
+];;
 
 const techConnectionsData = [
   // Center to Core Large
@@ -2388,66 +2365,57 @@ function tickTechEcosystem(timestamp) {
   mouseParallax.currentX += (mouseParallax.targetX - mouseParallax.currentX) * 0.08;
   mouseParallax.currentY += (mouseParallax.targetY - mouseParallax.currentY) * 0.08;
 
-  // 2. Position Nodes
-  ecoNodes.forEach(node => {
-    // Hide small nodes on tablet mode
-    if (isTablet && node.size === 'small') {
-      node.el.style.display = 'none';
-      node.el.style.opacity = '0';
-      node.x = centerX;
-      node.y = centerY;
-      return;
-    } else {
-      node.el.style.display = '';
-      node.el.style.opacity = '';
-    }
 
-    if (node.id === 'center') {
-      // Center node stays exactly in center
-      node.x = centerX;
-      node.y = centerY;
-    } else if (isMobile) {
-      // Mobile: Orbiting carousel ring layout
-      const index = techNodesData.findIndex(n => n.id === node.id);
-      // Orbit only large & medium nodes to avoid cramming
-      if (node.size === 'small') {
-        node.el.style.display = 'none';
-        node.el.style.opacity = '0';
-        return;
-      }
-      
-      const activeCount = techNodesData.filter(n => n.size !== 'small').length;
-      const activeIndex = techNodesData.filter(n => n.size !== 'small').findIndex(n => n.id === node.id);
-      
-      const orbitSpeed = 0.15;
-      const angle = (activeIndex * (2 * Math.PI / activeCount)) + time * orbitSpeed;
-      const orbitRadiusX = w * 0.38;
-      const orbitRadiusY = h * 0.38;
+  // ── Single-ring patterned layout ─────────────────────────────────────
+  // Show only large+medium nodes (12 total) in one perfect circle.
+  // Small nodes are hidden on all screen sizes to keep it clean.
 
-      node.x = centerX + Math.cos(angle) * orbitRadiusX;
-      node.y = centerY + Math.sin(angle) * orbitRadiusY;
-    } else {
-      // Desktop / Tablet Constellation Layout: Base Position + Float + Mouse Parallax
-      const scaleX = w * 0.42;
-      const scaleY = h * 0.42;
+  // Separate visible ring nodes from hidden ones
+  const ringNodes = ecoNodes.filter(n => n.id !== 'center' && n.size !== 'small');
+  const hiddenNodes = ecoNodes.filter(n => n.id !== 'center' && n.size === 'small');
 
-      // Float drift offset calculation
-      const floatX = Math.sin(time * node.floatSpeed + node.floatOffset) * node.floatAmplitude * (isTablet ? 0.6 : 1);
-      const floatY = Math.cos(time * node.floatSpeed * 0.8 + node.floatOffset * 1.5) * node.floatAmplitude * (isTablet ? 0.6 : 1);
+  // Hide small nodes on ALL sizes
+  hiddenNodes.forEach(n => {
+    n.el.style.display = 'none';
+    n.x = centerX;
+    n.y = centerY;
+  });
 
-      // Mouse Parallax offset calculation
-      const parallaxMultiplier = node.depth * (isTablet ? 12 : 24);
-      const px = mouseParallax.currentX * parallaxMultiplier;
-      const py = mouseParallax.currentY * parallaxMultiplier;
+  // 2. Position center hub
+  const centerNode = ecoNodes.find(n => n.id === 'center');
+  if (centerNode) {
+    centerNode.x = centerX;
+    centerNode.y = centerY;
+    centerNode.el.style.left = `${centerX}px`;
+    centerNode.el.style.top = `${centerY}px`;
+  }
 
-      node.x = centerX + (node.baseX * scaleX) + floatX + px;
-      node.y = centerY + (node.baseY * scaleY) + floatY + py;
-    }
+  // 3. Position ring nodes — evenly spaced in a circle
+  const ringCount = ringNodes.length; // 12 nodes
+  const ringRadius = Math.min(w, h) * 0.40; // responsive: scales with container
+  const slowRotation = time * 0.04;          // very slow clockwise rotation
 
-    // Apply 2D transform positions
+  ringNodes.forEach((node, idx) => {
+    // Equal angular spacing, starting from top (-90°)
+    const baseAngle = -Math.PI / 2 + (idx / ringCount) * Math.PI * 2;
+    const angle = baseAngle + slowRotation;
+
+    // Gentle individual float (small, won't break ring pattern)
+    const floatX = Math.sin(time * node.floatSpeed + node.floatOffset) * 5;
+    const floatY = Math.cos(time * node.floatSpeed * 0.8 + node.floatOffset) * 5;
+
+    // Subtle mouse parallax
+    const px = mouseParallax.currentX * node.depth * 10;
+    const py = mouseParallax.currentY * node.depth * 10;
+
+    node.x = centerX + Math.cos(angle) * ringRadius + floatX + px;
+    node.y = centerY + Math.sin(angle) * ringRadius + floatY + py;
+
+    node.el.style.display = '';
     node.el.style.left = `${node.x}px`;
     node.el.style.top = `${node.y}px`;
   });
+
 
   // 3. Render connection lines
   ecoLines.forEach(line => {
