@@ -1694,17 +1694,23 @@
   <!-- FULLSCREEN WEB EXPERIENCES PREVIEW MODAL -->
   <div class="preview-modal" id="livePreviewModal">
     <div class="modal-browser-container">
-      <!-- Fake Browser Bar (Cancel button removed, controls on right, Red workable as close, Yellow/Green disabled, real-time view text replaced with green pulse dot) -->
+      <!-- Fake Browser Bar (Address bar clickable, Open Website button on right, window controls disabled, Red workable to close) -->
       <div class="browser-chrome" style="display: flex; align-items: center; justify-content: space-between;">
-        <div class="chrome-address-bar" style="max-width: 80%; margin-right: auto; flex: 1;">
+        <div class="chrome-address-bar" id="modalAddressBarWrapper" style="max-width: 70%; margin-right: auto; flex: 1; cursor: pointer; transition: all 0.2s; display: flex; align-items: center;" title="Click to open website in a new tab" onclick="window.open(document.getElementById('modalAddressBar').textContent, '_blank')">
           <span class="lock">🔒</span>
-          <span id="modalAddressBar">loading...</span>
+          <span id="modalAddressBar" style="text-decoration: underline; color: var(--ink-2); font-weight: 500;">loading...</span>
+          <span style="font-size: 11px; margin-left: 6px; color: var(--ink-4); opacity: 0.8;">↗</span>
           <span class="browser-pulse-dot" style="margin-left: auto; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse-dot 2s ease-in-out infinite;" title="Real-time View Active"></span>
         </div>
-        <div class="chrome-buttons" style="display: flex; gap: 6px; margin-left: 16px;">
-          <div class="chrome-btn" style="background:#28c840; opacity: 0.8; cursor: not-allowed;" title="Zoom (Disabled)"><span>+</span></div>
-          <div class="chrome-btn" style="background:#febc2e; opacity: 0.8; cursor: not-allowed;" title="Minimize (Disabled)"><span>−</span></div>
-          <div class="chrome-btn" onclick="closeLivePreview()" style="background:#ff5f57; cursor: pointer; transition: transform 0.2s;" title="Close Preview"><span>✕</span></div>
+        <div style="display: flex; align-items: center; gap: 12px; margin-left: 16px;">
+          <a id="modalExternalLink" href="#" target="_blank" style="font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 500; color: var(--ink); background: rgba(0,0,0,0.05); padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.1)'" onmouseout="this.style.background='rgba(0,0,0,0.05)'">
+            Open Website <span style="font-size: 11px; transition: transform 0.2s;">↗</span>
+          </a>
+          <div class="chrome-buttons" style="display: flex; gap: 6px;">
+            <div class="chrome-btn" style="background:#28c840; opacity: 0.8; cursor: not-allowed;" title="Zoom (Disabled)"><span>+</span></div>
+            <div class="chrome-btn" style="background:#febc2e; opacity: 0.8; cursor: not-allowed;" title="Minimize (Disabled)"><span>−</span></div>
+            <div class="chrome-btn" onclick="closeLivePreview()" style="background:#ff5f57; cursor: pointer; transition: transform 0.2s;" title="Close Preview"><span>✕</span></div>
+          </div>
         </div>
       </div>
       
@@ -2766,8 +2772,12 @@
       const modal = document.getElementById('livePreviewModal');
       const addressBar = document.getElementById('modalAddressBar');
       const container = document.getElementById('modalIframeContainer');
+      const link = document.getElementById('modalExternalLink');
 
       addressBar.textContent = proj.domain;
+      if (link) {
+        link.href = proj.domain;
+      }
       
       if (proj.iframeAllowed) {
         container.innerHTML = `
@@ -2776,8 +2786,23 @@
             <div class="shimmer-bar w-100"></div>
             <div class="shimmer-block"></div>
           </div>
-          <iframe src="${proj.domain}" onload="this.closest('.modal-iframe-wrap').querySelector('.loading-shimmer').style.display='none'"></iframe>
+          <iframe id="modalLiveIframe" src="${proj.domain}" onload="this.closest('.modal-iframe-wrap').querySelector('.loading-shimmer').style.display='none'; this.classList.add('loaded')"></iframe>
         `;
+
+        // Watchdog for Live Preview Modal to detect framing/SSL block issues
+        setTimeout(() => {
+          const iframe = document.getElementById('modalLiveIframe');
+          if (iframe && !iframe.classList.contains('loaded')) {
+            console.log(`[Modal Watchdog Triggered] Fallback to cached screenshot.`);
+            container.innerHTML = `
+              <div style="background:#fef2f2; border-bottom:1px solid #fee2e2; padding:14px 24px; text-align:center; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; font-family:'DM Sans', sans-serif;">
+                <span style="font-size:13.5px; font-weight:500; color:#b91c1c;">⚠️ Live site is taking too long to load (likely due to SSL verification or framing restrictions).</span>
+                <a href="${proj.domain}" target="_blank" style="font-size:13.5px; font-weight:700; color:#b91c1c; text-decoration:underline; display:inline-flex; align-items:center; gap:3px;">Open Site in New Tab ↗</a>
+              </div>
+              <img src="${proj.desktopScreenshot}" style="width:100%; height:auto; display:block;" alt="Interactive Fallback Desktop Frame" />
+            `;
+          }
+        }, 4000);
       } else {
         // Fallback layout displaying the captured screenshot vertically scrollable
         container.innerHTML = `

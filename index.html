@@ -349,78 +349,243 @@ body::before {
 .proof-text { font-size: 13px; color: var(--ink-3); line-height: 1.45; letter-spacing: -0.01em; }
 .proof-text strong { color: var(--ink); font-weight: 600; display: block; }
 
-/* Hero Visual */
+/* Hero Visual - Premium Technology Ecosystem */
 .hero-visual {
   position: relative; z-index: 1;
   opacity: 0; animation: scale-in 1s var(--transition) 0.35s forwards;
+  width: 100%;
 }
 @keyframes scale-in { from { opacity: 0; transform: scale(0.94) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-.hero-mockup {
-  background: var(--card);
-  border: 1px solid var(--border-dark);
-  border-radius: 24px;
-  padding: 22px;
-  box-shadow: 0 32px 80px rgba(8,14,10,0.12), 0 0 0 1px var(--border);
-  animation: float-y 6s ease-in-out infinite;
+.tech-ecosystem {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 }
-@keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@media (max-width: 960px) {
+  .tech-ecosystem {
+    height: 440px;
+  }
+}
+@media (max-width: 480px) {
+  .tech-ecosystem {
+    height: 360px;
+  }
+}
 
-.mockup-chrome {
-  display: flex; align-items: center; gap: 6px; margin-bottom: 16px;
-}
-.chrome-dot { width: 10px; height: 10px; border-radius: 50%; }
-.chrome-url {
-  flex: 1; height: 28px; background: var(--off);
-  border-radius: 7px; margin-left: 8px; display: flex; align-items: center;
-  padding: 0 12px; gap: 6px; overflow: hidden;
-}
-.url-lock { font-size: 10px; color: var(--g-dark); }
-.url-text { font-size: 11px; color: var(--ink-4); font-family: monospace; letter-spacing: 0; }
-.mockup-hero-section {
-  background: linear-gradient(135deg, var(--ink) 0%, #1a3a24 100%);
-  border-radius: 14px; padding: 20px; margin-bottom: 12px; position: relative; overflow: hidden;
-}
-.mockup-hero-section::before {
-  content: ''; position: absolute; top: -30px; right: -30px;
-  width: 120px; height: 120px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(34,197,94,0.3), transparent 70%);
-}
-.mock-headline { width: 70%; height: 11px; background: rgba(255,255,255,0.9); border-radius: 4px; margin-bottom: 7px; }
-.mock-headline.sm { width: 50%; height: 9px; opacity: 0.6; margin-bottom: 14px; }
-.mock-btn-row { display: flex; gap: 8px; }
-.mock-btn { height: 24px; border-radius: 100px; }
-.mock-btn.primary { width: 100px; background: var(--g-grad); }
-.mock-btn.secondary { width: 80px; background: rgba(255,255,255,0.15); }
-.mockup-cards-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.mock-card {
-  background: var(--off); border-radius: 10px; padding: 12px 10px;
-  border: 1px solid var(--border);
-}
-.mock-card-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--g-soft); margin-bottom: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-.mock-card-num { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 18px; color: var(--ink); margin-bottom: 3px; }
-.mock-card-label { font-size: 10px; color: var(--ink-4); }
-
-.badge-float {
+.ecosystem-canvas {
   position: absolute;
-  background: var(--card); border-radius: 14px; padding: 12px 16px;
-  box-shadow: 0 8px 40px rgba(8,14,10,0.12);
-  display: flex; align-items: center; gap: 10px;
-  border: 1px solid var(--border-dark);
-  white-space: nowrap;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
-.badge-float-1 { top: -18px; right: -18px; animation: float-y 5s ease-in-out 0.8s infinite; }
-.badge-float-2 {
-  bottom: -18px; left: -22px;
-  animation: float-y 5.5s ease-in-out 0.3s infinite;
-  background: var(--ink); border-color: transparent;
+
+.eco-node {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(34, 197, 94, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-2);
+  box-shadow: 0 8px 30px rgba(8, 14, 10, 0.03);
+  cursor: pointer;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s, box-shadow 0.3s, color 0.3s, opacity 0.3s, filter 0.3s;
 }
-.bf-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--g-soft); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-.bf-icon-dark { background: rgba(34,197,94,0.15); }
-.bf-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 13px; color: var(--ink); display: block; }
-.bf-sub { font-size: 11px; color: var(--ink-4); }
-.bf-title-dark { color: #fff; }
-.bf-sub-dark { color: rgba(255,255,255,0.5); }
+
+.eco-node svg {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
+}
+
+.eco-node:hover {
+  border-color: var(--g);
+  color: var(--g-dark);
+  box-shadow: 0 12px 36px rgba(34, 197, 94, 0.22), 0 0 20px rgba(34, 197, 94, 0.2);
+  transform: translate(-50%, -50%) scale(1.18);
+  z-index: 10;
+}
+
+.eco-node:hover svg {
+  transform: scale(1.08);
+}
+
+/* Size Hierarchies */
+.eco-node.size-large {
+  width: 66px;
+  height: 66px;
+  padding: 13.5px;
+}
+@media (max-width: 480px) {
+  .eco-node.size-large {
+    width: 54px;
+    height: 54px;
+    padding: 11px;
+  }
+}
+
+.eco-node.size-medium {
+  width: 52px;
+  height: 52px;
+  padding: 11.5px;
+}
+@media (max-width: 480px) {
+  .eco-node.size-medium {
+    width: 44px;
+    height: 44px;
+    padding: 9.5px;
+  }
+}
+
+.eco-node.size-small {
+  width: 38px;
+  height: 38px;
+  padding: 8px;
+}
+@media (max-width: 480px) {
+  .eco-node.size-small {
+    width: 32px;
+    height: 32px;
+    padding: 6.5px;
+  }
+}
+
+/* Center Hub */
+.eco-node.node-center {
+  width: 154px;
+  height: 154px;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 248, 0.92) 100%);
+  border: 2px solid rgba(34, 197, 94, 0.28);
+  box-shadow: 0 16px 48px rgba(34, 197, 94, 0.14), inset 0 0 12px rgba(255, 255, 255, 0.8);
+  z-index: 5;
+  cursor: default;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 480px) {
+  .eco-node.node-center {
+    width: 124px;
+    height: 124px;
+  }
+}
+
+.eco-node.node-center:hover {
+  transform: translate(-50%, -50%);
+  border-color: var(--g);
+  box-shadow: 0 20px 60px rgba(34, 197, 94, 0.24);
+}
+
+.eco-center-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.hub-logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 480px) {
+  .hub-logo {
+    font-size: 13.5px;
+  }
+}
+
+.hub-logo span.g-logo {
+  color: var(--g-dark);
+}
+
+.hub-nav-logo-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--g);
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.hub-tagline {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--g-dark);
+  letter-spacing: 0.05em;
+  margin-top: 5px;
+}
+@media (max-width: 480px) {
+  .hub-tagline {
+    font-size: 8px;
+    margin-top: 3px;
+  }
+}
+
+.hub-since {
+  font-size: 8.5px;
+  color: var(--ink-4);
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+/* Constellation Canvas & Highlights */
+.connection-line {
+  stroke: rgba(34, 197, 94, 0.08);
+  stroke-width: 1.5;
+  fill: none;
+  transition: stroke 0.3s, stroke-width 0.3s;
+}
+
+.connection-line.highlighted {
+  stroke: rgba(34, 197, 94, 0.45);
+  stroke-width: 2.2;
+}
+
+.connection-line.dimmed {
+  stroke: rgba(34, 197, 94, 0.02);
+}
+
+/* Node Interactions */
+.eco-node.dimmed {
+  opacity: 0.35;
+  filter: grayscale(60%) blur(0.5px);
+}
+
+.eco-node.highlighted {
+  border-color: var(--g-accent);
+  box-shadow: 0 8px 26px rgba(34, 197, 94, 0.12);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+/* Data Flow Particles */
+.eco-particle {
+  fill: var(--g-accent);
+  filter: drop-shadow(0 0 3px var(--g));
+  opacity: 0.85;
+}
 
 /* ════════════════════════════════
    TICKER / MARQUEE
@@ -1093,8 +1258,8 @@ footer {
 }
 
 @media (max-width: 960px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { display: none; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-visual { display: block; width: 100%; max-width: 500px; margin: 0 auto; }
   .services-grid { grid-template-columns: 1fr 1fr; }
   .stats-inner { grid-template-columns: 1fr; gap: 60px; }
   .process-grid { grid-template-columns: 1fr 1fr; }
@@ -1215,54 +1380,14 @@ footer {
     </div>
 
     <div class="hero-visual">
-      <div class="badge-float badge-float-1">
-        <div class="bf-icon">🚀</div>
-        <div>
-          <span class="bf-title">Project Delivered</span>
-          <span class="bf-sub">3 days ahead of schedule</span>
-        </div>
-      </div>
-      <div class="hero-mockup">
-        <div class="mockup-chrome">
-          <div class="chrome-dot" style="background:#ff5f57"></div>
-          <div class="chrome-dot" style="background:#febc2e"></div>
-          <div class="chrome-dot" style="background:#28c840"></div>
-          <div class="chrome-url">
-            <span class="url-lock">🔒</span>
-            <span class="url-text">eparivartan.com/your-project</span>
+      <div id="techEcosystem" class="tech-ecosystem">
+        <svg id="ecosystemCanvas" class="ecosystem-canvas"></svg>
+        <div class="eco-node node-center" id="node-center">
+          <div class="eco-center-inner">
+            <div class="hub-logo"><span class="hub-logo-dot">e</span>Parivartan<span class="hub-nav-logo-dot"></span></div>
+            <div class="hub-tagline">Digital Engineering</div>
+            <div class="hub-since">Since 2000</div>
           </div>
-        </div>
-        <div class="mockup-hero-section">
-          <div class="mock-headline"></div>
-          <div class="mock-headline sm"></div>
-          <div class="mock-btn-row">
-            <div class="mock-btn primary"></div>
-            <div class="mock-btn secondary"></div>
-          </div>
-        </div>
-        <div class="mockup-cards-row">
-          <div class="mock-card">
-            <div class="mock-card-icon">🌐</div>
-            <div class="mock-card-num">5k<span style="color:var(--g);">+</span></div>
-            <div class="mock-card-label">Projects Done</div>
-          </div>
-          <div class="mock-card">
-            <div class="mock-card-icon">⭐</div>
-            <div class="mock-card-num">4.8<span style="color:var(--g-mid);font-size:12px;">★</span></div>
-            <div class="mock-card-label">Avg Rating</div>
-          </div>
-          <div class="mock-card">
-            <div class="mock-card-icon">📅</div>
-            <div class="mock-card-num">24<span style="color:var(--g);">+</span></div>
-            <div class="mock-card-label">Years Active</div>
-          </div>
-        </div>
-      </div>
-      <div class="badge-float badge-float-2">
-        <div class="bf-icon bf-icon-dark">💡</div>
-        <div>
-          <span class="bf-title bf-title-dark">SEO Optimised</span>
-          <span class="bf-sub bf-sub-dark">Rank higher, get more leads</span>
         </div>
       </div>
     </div>
@@ -2001,6 +2126,405 @@ function switchTab(panel, btn) {
   btn.classList.add('active');
   document.getElementById('panel-' + panel).classList.add('active');
 }
+
+/* ════════════════════════════════
+   INTERACTIVE TECHNOLOGY ECOSYSTEM
+════════════════════════════════ */
+const techNodesData = [
+  // Large Nodes (4)
+  { id: 'react', name: 'React', size: 'large', x: -0.55, y: -0.32, depth: 1.0, logo: `<svg viewBox="-120 -120 240 240"><circle cx="0" cy="0" r="18" fill="currentColor"/><ellipse rx="100" ry="38" stroke="currentColor" stroke-width="9" fill="none"/><ellipse rx="100" ry="38" stroke="currentColor" stroke-width="9" fill="none" transform="rotate(60)"/><ellipse rx="100" ry="38" stroke="currentColor" stroke-width="9" fill="none" transform="rotate(120)"/></svg>` },
+  { id: 'nodejs', name: 'Node.js', size: 'large', x: 0.55, y: -0.32, depth: 1.0, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3.5 7v10L12 22l8.5-5V7L12 2z"/><path d="M12 22V12"/><path d="M3.5 7L12 12l8.5-5"/></svg>` },
+  { id: 'python', name: 'Python', size: 'large', x: 0.58, y: 0.35, depth: 0.9, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-2.5 0-2.5 1.2-2.5 1.2h2.5v1.2H7c-1.3 0-2.5 1.2-2.5 2.5v2.5h1.2V7c0-1 1-1.3 1.3-1.3h5c1.3 0 2.5-1.2 2.5-2.5S13.3 2 12 2z"/><path d="M12 22c2.5 0 2.5-1.2 2.5-1.2h-2.5v-1.2H17c1.3 0 2.5-1.2 2.5-2.5v-2.5h-1.2V17c0 1-1 1.3-1.3 1.3h-5c-1.3 0-2.5 1.2-2.5 2.5s1.2 1.2 2.5 1.2z"/><circle cx="9" cy="4.5" r="0.7" fill="currentColor"/><circle cx="15" cy="19.5" r="0.7" fill="currentColor"/></svg>` },
+  { id: 'wordpress', name: 'WordPress', size: 'large', x: -0.5, y: 0.45, depth: 0.9, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 24c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM19.7 7.7c.6 1.3.9 2.8.9 4.3 0 1.9-.4 3.7-1.3 5.2L14 7.7h5.8zM8.3 7.7H9l3 8.7 3-8.7h.6l3.4 9.8c-1.5 2.4-4.2 4-7.2 4-2.1 0-4-.7-5.6-1.9L8.3 7.7zM2.2 12.1c0-1.8.5-3.5 1.3-5L8 18.5c-3.4-1.2-5.8-4.3-5.8-6.4z"/></svg>` },
+
+  // Medium Nodes (8)
+  { id: 'django', name: 'Django', size: 'medium', x: 0.35, y: 0.65, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h5M4 12h5M4 16h5M13 8h5M13 12h5M13 16h5M4 4h14v16H4V4z"/></svg>` },
+  { id: 'mongodb', name: 'MongoDB', size: 'medium', x: 0.75, y: -0.05, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3.5 3.5-3.5 7-3.5 10s2 7.5 3.5 9.5c1.5-2 3.5-6.5 3.5-9.5s0-6.5-3.5-10z"/></svg>` },
+  { id: 'mysql', name: 'MySQL', size: 'medium', x: 0.22, y: -0.72, depth: 0.7, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm2.2 13.5c-.8.8-2 1.3-3.2 1.3-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5c1.2 0 2.4.5 3.2 1.3l-1.1 1.1c-.5-.5-1.2-.8-2.1-.8-1.7 0-3 1.3-3 3s1.3 3 3 3c.9 0 1.6-.3 2.1-.8l1.1 1.1z"/></svg>` },
+  { id: 'shopify', name: 'Shopify', size: 'medium', x: -0.15, y: 0.72, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>` },
+  { id: 'nextjs', name: 'Next.js', size: 'medium', x: -0.22, y: -0.7, depth: 0.7, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 18V6l6 8V6"/></svg>` },
+  { id: 'php', name: 'PHP', size: 'medium', x: -0.74, y: 0.05, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><text x="6" y="15" font-family="sans-serif" font-weight="bold" font-size="9" fill="currentColor">PHP</text></svg>` },
+  { id: 'postgresql', name: 'PostgreSQL', size: 'medium', x: 0.76, y: 0.22, depth: 0.8, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2s-6 3-8 7l8 3v10z"/></svg>` },
+  { id: 'aws', name: 'AWS', size: 'medium', x: 0.1, y: 0.74, depth: 0.7, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a7 7 0 0 1 14 0v4H5v-4z"/><path d="M7 17v2M17 17v2"/></svg>` },
+
+  // Small Nodes (8)
+  { id: 'html', name: 'HTML5', size: 'small', x: -0.78, y: -0.24, depth: 0.6, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3.5 4.5l1.5 13.5 7 4 7-4 1.5-13.5L12 2z"/><path d="M12 6H8.5l.5 5.5h6l-.5 5.5-2.5 1.5-2.5-1.5-.2-2"/></svg>` },
+  { id: 'css', name: 'CSS3', size: 'small', x: -0.72, y: -0.5, depth: 0.6, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3.5 4.5l1.5 13.5 7 4 7-4 1.5-13.5L12 2z"/><path d="M12 6H8.5l.5 5.5h6l-.5 5.5-2.5 1.5-2.5-1.5-.2-2"/></svg>` },
+  { id: 'javascript', name: 'JavaScript', size: 'small', x: -0.38, y: -0.3, depth: 0.5, logo: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><text x="12" y="16" fill="currentColor" font-family="sans-serif" font-weight="900" font-size="8">JS</text></svg>` },
+  { id: 'typescript', name: 'TypeScript', size: 'small', x: -0.1, y: -0.42, depth: 0.5, logo: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><text x="12" y="16" fill="currentColor" font-family="sans-serif" font-weight="900" font-size="8">TS</text></svg>` },
+  { id: 'express', name: 'Express', size: 'small', x: 0.35, y: -0.38, depth: 0.6, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8l4 4-4 4"/></svg>` },
+  { id: 'github', name: 'GitHub', size: 'small', x: 0.35, y: 0.35, depth: 0.5, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>` },
+  { id: 'docker', name: 'Docker', size: 'small', x: 0.1, y: -0.55, depth: 0.6, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 16h20M2 8h20M12 2v6M7 2v6M17 2v6"/></svg>` },
+  { id: 'laravel', name: 'Laravel', size: 'small', x: -0.32, y: 0.38, depth: 0.5, logo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>` }
+];
+
+const techConnectionsData = [
+  // Center to Core Large
+  { from: 'center', to: 'react' },
+  { from: 'center', to: 'nodejs' },
+  { from: 'center', to: 'python' },
+  { from: 'center', to: 'wordpress' },
+
+  // Frontend clusters
+  { from: 'react', to: 'nextjs' },
+  { from: 'react', to: 'javascript' },
+  { from: 'react', to: 'typescript' },
+  { from: 'nextjs', to: 'typescript' },
+  { from: 'javascript', to: 'html' },
+  { from: 'css', to: 'html' },
+  { from: 'react', to: 'css' },
+
+  // Backend / Node / DB
+  { from: 'nodejs', to: 'express' },
+  { from: 'nodejs', to: 'mongodb' },
+  { from: 'express', to: 'mongodb' },
+  { from: 'nodejs', to: 'typescript' },
+
+  // Python / Django / Postgres
+  { from: 'python', to: 'django' },
+  { from: 'python', to: 'postgresql' },
+  { from: 'django', to: 'postgresql' },
+  { from: 'postgresql', to: 'mongodb' },
+
+  // CMS / PHP / MySQL
+  { from: 'wordpress', to: 'php' },
+  { from: 'wordpress', to: 'laravel' },
+  { from: 'wordpress', to: 'mysql' },
+  { from: 'php', to: 'mysql' },
+  { from: 'wordpress', to: 'shopify' },
+  { from: 'shopify', to: 'mysql' },
+
+  // Cloud & Tools
+  { from: 'aws', to: 'docker' },
+  { from: 'aws', to: 'nodejs' },
+  { from: 'aws', to: 'python' },
+  { from: 'docker', to: 'nodejs' },
+  { from: 'github', to: 'react' },
+  { from: 'github', to: 'nodejs' },
+  { from: 'github', to: 'laravel' }
+];
+
+// Ecosystem State Engine
+let ecoNodes = [];
+let ecoLines = [];
+let ecoParticles = [];
+let mouseParallax = { targetX: 0, targetY: 0, currentX: 0, currentY: 0 };
+let ecoHoveredNodeId = null;
+
+function initTechEcosystem() {
+  const container = document.getElementById('techEcosystem');
+  const canvas = document.getElementById('ecosystemCanvas');
+  if (!container || !canvas) return;
+
+  // Clear existing nodes (except center hub)
+  container.querySelectorAll('.eco-node:not(.node-center)').forEach(el => el.remove());
+  canvas.innerHTML = ''; // Clear SVG lines
+
+  // 1. Create technology node elements
+  ecoNodes = techNodesData.map(data => {
+    const el = document.createElement('div');
+    el.className = `eco-node size-${data.size}`;
+    el.id = `node-${data.id}`;
+    el.dataset.id = data.id;
+    el.innerHTML = data.logo;
+    el.title = data.name;
+    container.appendChild(el);
+
+    // Setup interactive hooks for custom cursor
+    el.setAttribute('data-cursor', data.name);
+
+    return {
+      id: data.id,
+      name: data.name,
+      size: data.size,
+      baseX: data.x,
+      baseY: data.y,
+      depth: data.depth,
+      el: el,
+      x: 0, y: 0,
+      floatOffset: Math.random() * 100,
+      floatSpeed: 0.4 + Math.random() * 0.4,
+      floatAmplitude: 12 + Math.random() * 10
+    };
+  });
+
+  // Include center hub in nodes list for easy connection calculations
+  const centerEl = document.getElementById('node-center');
+  ecoNodes.push({
+    id: 'center',
+    name: 'eParivartan',
+    size: 'center',
+    baseX: 0, baseY: 0,
+    depth: 0.5,
+    el: centerEl,
+    x: 0, y: 0,
+    floatOffset: 0,
+    floatSpeed: 0,
+    floatAmplitude: 0
+  });
+
+  // 2. Create SVG Connection Lines
+  ecoLines = techConnectionsData.map(conn => {
+    const lineEl = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    lineEl.setAttribute('class', 'connection-line');
+    canvas.appendChild(lineEl);
+    return {
+      from: conn.from,
+      to: conn.to,
+      el: lineEl
+    };
+  });
+
+  // 3. Create Data Flow Particles (8 particles moving through connections)
+  ecoParticles = [];
+  for (let i = 0; i < 8; i++) {
+    const particleEl = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    particleEl.setAttribute('class', 'eco-particle');
+    particleEl.setAttribute('r', '2');
+    canvas.appendChild(particleEl);
+
+    ecoParticles.push({
+      el: particleEl,
+      lineIndex: Math.floor(Math.random() * ecoLines.length),
+      progress: Math.random(),
+      speed: 0.008 + Math.random() * 0.008,
+      direction: Math.random() > 0.5 ? 1 : -1
+    });
+  }
+
+  // 4. Listeners for hover highlighting
+  ecoNodes.forEach(node => {
+    if (node.id === 'center') return;
+    
+    node.el.addEventListener('mouseenter', () => {
+      ecoHoveredNodeId = node.id;
+      updateEcosystemHighlighting();
+    });
+
+    node.el.addEventListener('mouseleave', () => {
+      ecoHoveredNodeId = null;
+      updateEcosystemHighlighting();
+    });
+  });
+
+  // 5. Parallax listener
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1; // -1 to 1
+    const y = ((e.clientY - rect.top) / rect.height) * 2 - 1; // -1 to 1
+    mouseParallax.targetX = x;
+    mouseParallax.targetY = y;
+  });
+
+  container.addEventListener('mouseleave', () => {
+    mouseParallax.targetX = 0;
+    mouseParallax.targetY = 0;
+  });
+
+  // Start animation loop
+  requestAnimationFrame(tickTechEcosystem);
+}
+
+function updateEcosystemHighlighting() {
+  if (!ecoHoveredNodeId) {
+    // Reset all
+    ecoNodes.forEach(node => {
+      node.el.classList.remove('dimmed', 'highlighted');
+    });
+    ecoLines.forEach(line => {
+      line.el.classList.remove('highlighted', 'dimmed');
+    });
+    return;
+  }
+
+  // Find all connected node IDs
+  const connectedNodeIds = new Set([ecoHoveredNodeId]);
+  ecoLines.forEach(line => {
+    if (line.from === ecoHoveredNodeId) connectedNodeIds.add(line.to);
+    if (line.to === ecoHoveredNodeId) connectedNodeIds.add(line.from);
+  });
+
+  // Dim unconnected nodes, highlight connected ones
+  ecoNodes.forEach(node => {
+    if (connectedNodeIds.has(node.id)) {
+      node.el.classList.remove('dimmed');
+      if (node.id !== ecoHoveredNodeId) {
+        node.el.classList.add('highlighted');
+      }
+    } else {
+      node.el.classList.add('dimmed');
+      node.el.classList.remove('highlighted');
+    }
+  });
+
+  // Highlight connections connected to hovered node
+  ecoLines.forEach(line => {
+    if (line.from === ecoHoveredNodeId || line.to === ecoHoveredNodeId) {
+      line.el.classList.add('highlighted');
+      line.el.classList.remove('dimmed');
+    } else {
+      line.el.classList.add('dimmed');
+      line.el.classList.remove('highlighted');
+    }
+  });
+}
+
+function tickTechEcosystem(timestamp) {
+  const container = document.getElementById('techEcosystem');
+  if (!container) return;
+
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+  const centerX = w / 2;
+  const centerY = h / 2;
+
+  // Responsive breakpoints
+  const isMobile = window.innerWidth < 768;
+  const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+
+  const time = timestamp * 0.001;
+
+  // 1. Smooth mouse parallax interpolation
+  mouseParallax.currentX += (mouseParallax.targetX - mouseParallax.currentX) * 0.08;
+  mouseParallax.currentY += (mouseParallax.targetY - mouseParallax.currentY) * 0.08;
+
+  // 2. Position Nodes
+  ecoNodes.forEach(node => {
+    // Hide small nodes on tablet mode
+    if (isTablet && node.size === 'small') {
+      node.el.style.display = 'none';
+      node.el.style.opacity = '0';
+      node.x = centerX;
+      node.y = centerY;
+      return;
+    } else {
+      node.el.style.display = '';
+      node.el.style.opacity = '';
+    }
+
+    if (node.id === 'center') {
+      // Center node stays exactly in center
+      node.x = centerX;
+      node.y = centerY;
+    } else if (isMobile) {
+      // Mobile: Orbiting carousel ring layout
+      const index = techNodesData.findIndex(n => n.id === node.id);
+      // Orbit only large & medium nodes to avoid cramming
+      if (node.size === 'small') {
+        node.el.style.display = 'none';
+        node.el.style.opacity = '0';
+        return;
+      }
+      
+      const activeCount = techNodesData.filter(n => n.size !== 'small').length;
+      const activeIndex = techNodesData.filter(n => n.size !== 'small').findIndex(n => n.id === node.id);
+      
+      const orbitSpeed = 0.15;
+      const angle = (activeIndex * (2 * Math.PI / activeCount)) + time * orbitSpeed;
+      const orbitRadiusX = w * 0.38;
+      const orbitRadiusY = h * 0.38;
+
+      node.x = centerX + Math.cos(angle) * orbitRadiusX;
+      node.y = centerY + Math.sin(angle) * orbitRadiusY;
+    } else {
+      // Desktop / Tablet Constellation Layout: Base Position + Float + Mouse Parallax
+      const scaleX = w * 0.42;
+      const scaleY = h * 0.42;
+
+      // Float drift offset calculation
+      const floatX = Math.sin(time * node.floatSpeed + node.floatOffset) * node.floatAmplitude * (isTablet ? 0.6 : 1);
+      const floatY = Math.cos(time * node.floatSpeed * 0.8 + node.floatOffset * 1.5) * node.floatAmplitude * (isTablet ? 0.6 : 1);
+
+      // Mouse Parallax offset calculation
+      const parallaxMultiplier = node.depth * (isTablet ? 12 : 24);
+      const px = mouseParallax.currentX * parallaxMultiplier;
+      const py = mouseParallax.currentY * parallaxMultiplier;
+
+      node.x = centerX + (node.baseX * scaleX) + floatX + px;
+      node.y = centerY + (node.baseY * scaleY) + floatY + py;
+    }
+
+    // Apply 2D transform positions
+    node.el.style.left = `${node.x}px`;
+    node.el.style.top = `${node.y}px`;
+  });
+
+  // 3. Render connection lines
+  ecoLines.forEach(line => {
+    const nodeFrom = ecoNodes.find(n => n.id === line.from);
+    const nodeTo = ecoNodes.find(n => n.id === line.to);
+
+    // Hide lines that connect to small/hidden nodes on tablet or mobile
+    if (
+      !nodeFrom || !nodeTo || 
+      nodeFrom.el.style.display === 'none' || 
+      nodeTo.el.style.display === 'none'
+    ) {
+      line.el.style.display = 'none';
+      return;
+    }
+    line.el.style.display = '';
+
+    line.el.setAttribute('x1', nodeFrom.x);
+    line.el.setAttribute('y1', nodeFrom.y);
+    line.el.setAttribute('x2', nodeTo.x);
+    line.el.setAttribute('y2', nodeTo.y);
+  });
+
+  // 4. Animate Data Particles
+  ecoParticles.forEach(p => {
+    const line = ecoLines[p.lineIndex];
+    const nodeFrom = ecoNodes.find(n => n.id === line.from);
+    const nodeTo = ecoNodes.find(n => n.id === line.to);
+
+    // Hide particle if connection line is hidden
+    if (line.el.style.display === 'none' || !nodeFrom || !nodeTo) {
+      p.el.style.display = 'none';
+      
+      // Reassign to another random line that is visible
+      const visibleLines = ecoLines.filter(l => l.el.style.display !== 'none');
+      if (visibleLines.length > 0) {
+        const newLine = visibleLines[Math.floor(Math.random() * visibleLines.length)];
+        p.lineIndex = ecoLines.indexOf(newLine);
+        p.progress = 0;
+      }
+      return;
+    }
+    p.el.style.display = '';
+
+    // Increment progress
+    p.progress += p.speed;
+    if (p.progress >= 1.0) {
+      p.progress = 0;
+      // Re-route to a new random visible line
+      const visibleLines = ecoLines.filter(l => l.el.style.display !== 'none');
+      if (visibleLines.length > 0) {
+        const newLine = visibleLines[Math.floor(Math.random() * visibleLines.length)];
+        p.lineIndex = ecoLines.indexOf(newLine);
+      }
+    }
+
+    // Interpolate positions
+    const startX = p.direction === 1 ? nodeFrom.x : nodeTo.x;
+    const startY = p.direction === 1 ? nodeFrom.y : nodeTo.y;
+    const endX = p.direction === 1 ? nodeTo.x : nodeFrom.x;
+    const endY = p.direction === 1 ? nodeTo.y : nodeFrom.y;
+
+    const x = startX + p.progress * (endX - startX);
+    const y = startY + p.progress * (endY - startY);
+
+    p.el.setAttribute('cx', x);
+    p.el.setAttribute('cy', y);
+  });
+
+  requestAnimationFrame(tickTechEcosystem);
+}
+
+// Hook setup on load
+document.addEventListener('DOMContentLoaded', () => {
+  initTechEcosystem();
+  window.addEventListener('resize', initTechEcosystem);
+});
 </script>
 </body>
 </html>
