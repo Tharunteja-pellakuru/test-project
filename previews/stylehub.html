@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StyleHub Minimalist Fashion</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #c2410c;
+      --primary-dark: #9a3412;
+      --ink: #18181b;
+      --ink-muted: #71717a;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --border: #f4f4f5;
+      --radius: 8px;
+      --font: 'DM Sans', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink);
+    }
+    .cart-btn {
+      background: var(--ink);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    .cart-btn:hover { background: #3f3f46; }
+    .filters {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .filter-tab {
+      background: var(--card);
+      border: 1px solid #e4e4e7;
+      padding: 6px 14px;
+      border-radius: 100px;
+      cursor: pointer;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .filter-tab.active, .filter-tab:hover {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .product-card:hover {
+      transform: translateY(-2px);
+    }
+    .prod-img {
+      height: 140px;
+      background: #f4f4f5;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .prod-tag {
+      position: absolute;
+      top: 8px; left: 8px;
+      background: var(--primary);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .prod-title {
+      font-weight: 600;
+      font-size: 13.5px;
+      margin-bottom: 4px;
+    }
+    .prod-price {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .add-to-bag {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      padding: 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 11px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .add-to-bag:hover {
+      background: var(--ink);
+      color: white;
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--ink);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      display: none;
+      animation: slide-in 0.2s ease-out;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+    @keyframes slide-in {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">S H / StyleHub</div>
+    <button class="cart-btn">🎒 Bag (<span id="cart-count">0</span>)</button>
+  </header>
+
+  <div class="filters">
+    <div class="filter-tab active" onclick="filterItems(this, 'all')">All Products</div>
+    <div class="filter-tab" onclick="filterItems(this, 'summer')">Summer</div>
+    <div class="filter-tab" onclick="filterItems(this, 'denim')">Denim</div>
+    <div class="filter-tab" onclick="filterItems(this, 'essentials')">Essentials</div>
+  </div>
+
+  <div class="product-grid" id="grid">
+    <div class="product-card" data-cat="summer">
+      <div class="prod-img">
+        <span>👕</span>
+        <span class="prod-tag">Sale</span>
+      </div>
+      <div class="prod-title">Linen Summer Shirt</div>
+      <div class="prod-price">₹1,499</div>
+      <button class="add-to-bag" onclick="addToCart('Linen Summer Shirt')">Add to Bag</button>
+    </div>
+    <div class="product-card" data-cat="denim">
+      <div class="prod-img">
+        <span>👖</span>
+      </div>
+      <div class="prod-title">Slim Fit Raw Denim</div>
+      <div class="prod-price">₹2,899</div>
+      <button class="add-to-bag" onclick="addToCart('Slim Fit Raw Denim')">Add to Bag</button>
+    </div>
+    <div class="product-card" data-cat="essentials">
+      <div class="prod-img">
+        <span>🧥</span>
+      </div>
+      <div class="prod-title">Classic Trench Coat</div>
+      <div class="prod-price">₹5,499</div>
+      <button class="add-to-bag" onclick="addToCart('Classic Trench Coat')">Add to Bag</button>
+    </div>
+    <div class="product-card" data-cat="summer">
+      <div class="prod-img">
+        <span>🕶️</span>
+        <span class="prod-tag">New</span>
+      </div>
+      <div class="prod-title">Retro Acetate Sunglasses</div>
+      <div class="prod-price">₹999</div>
+      <button class="add-to-bag" onclick="addToCart('Retro Acetate Sunglasses')">Add to Bag</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Added to bag!</div>
+
+  <script>
+    let count = 0;
+    
+    function filterItems(btn, cat) {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function addToCart(name) {
+      count++;
+      document.getElementById('cart-count').textContent = count;
+      
+      const toast = document.getElementById('toast');
+      toast.textContent = `"${name}" added to bag!`;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

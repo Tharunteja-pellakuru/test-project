@@ -1,0 +1,316 @@
+[
+  {
+    "id": 1,
+    "name": "ESTIC DST Science & Technology Portal",
+    "category": "Web Applications",
+    "client": "Department of Science & Technology (DST)",
+    "industry": "Government & Research",
+    "domain": "https://www.estic.dst.gov.in/",
+    "description": "A unified national scientific database and portal that aggregates, catalogs, and indexes research publications, patents, and S&T metrics across Indian institutions.",
+    "challenge": "Researchers and government bodies faced highly fragmented publication directories, slow cross-domain queries, and manual patent compilation processes.",
+    "solution": "Built a high-performance portal linking major national research databases, integrating Elasticsearch query nodes, and implementing automated PDF cataloging.",
+    "desktopScreenshot": "screenshots/project_1_desktop.png",
+    "tabletScreenshot": "screenshots/project_1_tablet.png",
+    "mobileScreenshot": "screenshots/project_1_mobile.png",
+    "techStack": [
+      "React",
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "Elasticsearch"
+    ],
+    "trafficGrowth": "320%",
+    "conversionGrowth": "180%",
+    "leadGrowth": "150%",
+    "revenueGrowth": "0%",
+    "testimonial": {
+      "quote": "The ESTIC clearinghouse portal has transformed national scientific data search, reducing publication retrieval times by over 60%.",
+      "author": "Dr. A. K. Singh",
+      "role": "Scientist 'G' & Head",
+      "company": "DST ESTIC Division",
+      "outcome": "National research search times reduced by 60%"
+    },
+    "launchDate": "2024-03-15",
+    "iframeAllowed": false,
+    "researchText": "We mapped user journeys for over 15,000 national researchers. Analysis revealed that critical science directories were silos with incompatible data models. To resolve this, we formulated a unified metadata schema linking journals, patents, and grants, enabling fast, cross-institution indexing.",
+    "designText": "Designed a high-density, accessible layout using slate-gray editorial spacing and clear typographic hierarchies. Custom search suggestion drawers and dynamic filter tags were optimized to meet national accessibility standards (WCAG 2.1 AA).",
+    "developmentText": "Built a cluster of Elasticsearch nodes to index millions of records synchronously. Integrated Django REST APIs with PostgreSQL database partitioning to ensure search query responses remain under 200ms across massive datasets.",
+    "lighthouse": {
+      "performance": 94,
+      "accessibility": 98,
+      "bestPractices": 96,
+      "seo": 100
+    },
+    "timeline": [
+      { "phase": "Discovery", "duration": "Week 1" },
+      { "phase": "UX Architecture", "duration": "Week 2-3" },
+      { "phase": "Elastic Engine", "duration": "Week 4-6" },
+      { "phase": "Portal Dev", "duration": "Week 7-9" },
+      { "phase": "Security Audit", "duration": "Week 10" }
+    ],
+    "growthData": {
+      "months": ["Jan", "Feb", "Mar", "Apr"],
+      "values": [100, 155, 230, 320]
+    },
+    "healthBadge": {
+      "status": "Online",
+      "loadTime": "1.4s",
+      "ssl": true,
+      "lastChecked": "2 minutes ago"
+    },
+    "relatedProjects": [3, 5],
+    "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-data-processing-screen-of-a-computer-close-up-33434-large.mp4"
+  },
+  {
+    "id": 2,
+    "name": "CACM 2026 Conference Portal",
+    "category": "Websites",
+    "client": "Clay Minerals Society of India (CMSI)",
+    "industry": "Science & Conferences",
+    "domain": "https://cacm2026.com/",
+    "description": "The official registration, scheduling, and abstract submission portal for the 2026 International Conference on Advanced Clay Materials.",
+    "challenge": "Legacy conference sites relied on manual email-based abstract reviews and static bank transfers, creating significant administrative overhead.",
+    "solution": "Developed a custom responsive website incorporating online fee payment systems, speaker lists, and automated peer-review abstract dashboards.",
+    "desktopScreenshot": "screenshots/project_2_desktop.png",
+    "tabletScreenshot": "screenshots/project_2_tablet.png",
+    "mobileScreenshot": "screenshots/project_2_mobile.png",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "PHP",
+      "MySQL",
+      "Razorpay"
+    ],
+    "trafficGrowth": "210%",
+    "conversionGrowth": "145%",
+    "leadGrowth": "190%",
+    "revenueGrowth": "280%",
+    "testimonial": {
+      "quote": "Our registration fees and abstract reviews were automated seamlessly, eliminating 90% of manual coordination work.",
+      "author": "Prof. R. Prasad",
+      "role": "Organizing Secretary",
+      "company": "CACM 2026 Committee",
+      "outcome": "Registration revenue boosted by 280%"
+    },
+    "launchDate": "2025-01-10",
+    "iframeAllowed": true,
+    "researchText": "Analyzed abstract submission systems from top international scientific congresses. We realized academic reviewers required a visual dashboard to comment, rate, and approve/reject abstracts without leaving their browser, while authors needed immediate PDF confirmation.",
+    "designText": "Crafted an editorial website utilizing deep navy tones and clay-orange highlights. Large, readable session calendars let attendees filter speaker topics by discipline, scaling smoothly to mobile devices for on-site navigation during the event.",
+    "developmentText": "Implemented an automated PDF parsing and upload module in PHP. Integrated Razorpay payment gateways with direct webhook confirmation, automatically triggering SQL receipt updates and instant email confirmations.",
+    "lighthouse": {
+      "performance": 98,
+      "accessibility": 100,
+      "bestPractices": 98,
+      "seo": 100
+    },
+    "timeline": [
+      { "phase": "Audit & Strategy", "duration": "Week 1" },
+      { "phase": "UI Prototyping", "duration": "Week 2" },
+      { "phase": "Payment Flow", "duration": "Week 3" },
+      { "phase": "Abstract Engine", "duration": "Week 4-5" },
+      { "phase": "Deployment", "duration": "Week 6" }
+    ],
+    "growthData": {
+      "months": ["Jan", "Feb", "Mar", "Apr"],
+      "values": [50, 110, 175, 210]
+    },
+    "healthBadge": {
+      "status": "Online",
+      "loadTime": "0.9s",
+      "ssl": true,
+      "lastChecked": "4 minutes ago"
+    },
+    "relatedProjects": [1, 3],
+    "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screens-39904-large.mp4"
+  },
+  {
+    "id": 3,
+    "name": "ARCI Advanced Research Corporate Portal",
+    "category": "Websites",
+    "client": "International Advanced Research Centre (ARCI)",
+    "industry": "Government Research & Metallurgy",
+    "domain": "https://www.arci.res.in/",
+    "description": "A comprehensive web portal showcasing ARCI's material science breakthroughs, patent directories, research labs, and technology transfer opportunities.",
+    "challenge": "Valuable research patents and metallurgical technologies were locked in static tables, rendering tech transfer pipelines opaque for private companies.",
+    "solution": "Redesigned the portal into an interactive directory with prominent tech transfer showcases, scientist directories, and contact forms for joint ventures.",
+    "desktopScreenshot": "screenshots/project_3_desktop.png",
+    "tabletScreenshot": "screenshots/project_3_tablet.png",
+    "mobileScreenshot": "screenshots/project_3_mobile.png",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "PHP",
+      "PostgreSQL",
+      "Apache"
+    ],
+    "trafficGrowth": "180%",
+    "conversionGrowth": "135%",
+    "leadGrowth": "165%",
+    "revenueGrowth": "40%",
+    "testimonial": {
+      "quote": "Our partnerships with commercial manufacturing firms grew substantially following the tech directory launch.",
+      "author": "Dr. Tata N. Rao",
+      "role": "Director",
+      "company": "ARCI Hyderabad",
+      "outcome": "Commercial research partnerships rose by 35%"
+    },
+    "launchDate": "2023-11-20",
+    "iframeAllowed": false,
+    "researchText": "Conducted UX audit of existing metallurgy databases. We discovered corporate buyers exited the site due to unstructured patent listings. We proposed a structured, searchable B2B Technology Transfer catalog that highlights commercial viability.",
+    "designText": "Adopted a structured, tech-forward aesthetic using industrial gray hues and emerald-green highlights. The design features a robust card grid highlighting patent status, licensing terms, and research divisions with high readability.",
+    "developmentText": "Built a fast database directory on PostgreSQL with indexed searches. Optimized Apache server configurations with gzip compression, browser caching headers, and responsive CSS to handle heavy traffic peaks.",
+    "lighthouse": {
+      "performance": 92,
+      "accessibility": 96,
+      "bestPractices": 98,
+      "seo": 100
+    },
+    "timeline": [
+      { "phase": "UX Audit", "duration": "Week 1" },
+      { "phase": "Database Schema", "duration": "Week 2-3" },
+      { "phase": "Frontend Dev", "duration": "Week 4-6" },
+      { "phase": "Content Load", "duration": "Week 7" },
+      { "phase": "Audit & Review", "duration": "Week 8" }
+    ],
+    "growthData": {
+      "months": ["Jan", "Feb", "Mar", "Apr"],
+      "values": [80, 120, 150, 180]
+    },
+    "healthBadge": {
+      "status": "Online",
+      "loadTime": "1.6s",
+      "ssl": true,
+      "lastChecked": "5 minutes ago"
+    },
+    "relatedProjects": [1, 4],
+    "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-server-room-rack-with-flashing-blue-lights-32867-large.mp4"
+  },
+  {
+    "id": 4,
+    "name": "Incap Limited Capacitors B2B Catalogue",
+    "category": "Ecommerce",
+    "client": "Incap Limited",
+    "industry": "Electronics Manufacturing",
+    "domain": "https://www.incap.co.in/",
+    "description": "A B2B product catalogue and distributor tracking platform for Incap Limited, a leading manufacturer of electrolytic capacitors.",
+    "challenge": "Industrial engineers struggled to find specific capacitor models, capacitor dimensions, or request pricing in a disorganized B2B product matrix.",
+    "solution": "Built a structured B2B catalogue with custom filter options (voltage, capacitance, size) along with a B2B cart request and datasheet download system.",
+    "desktopScreenshot": "screenshots/project_4_desktop.png",
+    "tabletScreenshot": "screenshots/project_4_tablet.png",
+    "mobileScreenshot": "screenshots/project_4_mobile.png",
+    "techStack": [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "TailwindCSS"
+    ],
+    "trafficGrowth": "240%",
+    "conversionGrowth": "160%",
+    "leadGrowth": "200%",
+    "revenueGrowth": "130%",
+    "testimonial": {
+      "quote": "Our distributor orders and bulk capacitor pricing requests doubled once our technical B2B catalog was rolled out.",
+      "author": "S. Chandra",
+      "role": "Managing Director",
+      "company": "Incap Limited India",
+      "outcome": "Inbound B2B lead counts increased by 200%"
+    },
+    "launchDate": "2024-07-05",
+    "iframeAllowed": true,
+    "researchText": "Analyzed B2B procurement behaviors of industrial electrical engineers. They require instant access to technical datasheets and a multi-variant filter (Voltage: 10V-450V, Capacitance: 1uF-10000uF) to identify stock numbers under 10 seconds.",
+    "designText": "Engineered a clean B2B portal using high-contrast borders and data tables. Added visual capacitor dimensional diagrams alongside product tables for immediate size reference, styled with modern typography.",
+    "developmentText": "Created a single-page app utilizing React for real-time parametric filtering. Powered by Node.js/Express REST API endpoints and MongoDB database indexing to deliver lightning-fast B2B catalog queries.",
+    "lighthouse": {
+      "performance": 97,
+      "accessibility": 99,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "timeline": [
+      { "phase": "Scope & Tech", "duration": "Week 1" },
+      { "phase": "UX & Wireframes", "duration": "Week 2-3" },
+      { "phase": "DB Architecture", "duration": "Week 4" },
+      { "phase": "React Catalogue", "duration": "Week 5-7" },
+      { "phase": "API Integration", "duration": "Week 8" },
+      { "phase": "Launch", "duration": "Week 9" }
+    ],
+    "growthData": {
+      "months": ["Jan", "Feb", "Mar", "Apr"],
+      "values": [40, 105, 170, 240]
+    },
+    "healthBadge": {
+      "status": "Online",
+      "loadTime": "1.1s",
+      "ssl": true,
+      "lastChecked": "1 minute ago"
+    },
+    "relatedProjects": [3, 2],
+    "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-hands-of-developer-typing-on-keyboard-with-backlight-40142-large.mp4"
+  },
+  {
+    "id": 5,
+    "name": "APADCL Airports Infrastructure Portal",
+    "category": "Websites",
+    "client": "AP Airports Development Corp Ltd",
+    "industry": "Aviation & Infrastructure",
+    "domain": "https://www.apadcl.com/",
+    "description": "The official portal for APADCL displaying tenders, civil airport progress maps, and aviation policy frameworks for greenfield airports.",
+    "challenge": "Important commercial tenders and project updates were buried in confusing lists, delaying developer bids and causing audit headaches.",
+    "solution": "Redesigned the site with a live active tenders noticeboard, interactive airport project status maps, and official news streams.",
+    "desktopScreenshot": "screenshots/project_5_desktop.png",
+    "tabletScreenshot": "screenshots/project_5_tablet.png",
+    "mobileScreenshot": "screenshots/project_5_mobile.png",
+    "techStack": [
+      "HTML5",
+      "Vanilla JS",
+      "CSS3",
+      "PHP",
+      "MySQL",
+      "Apache"
+    ],
+    "trafficGrowth": "200%",
+    "conversionGrowth": "148%",
+    "leadGrowth": "180%",
+    "revenueGrowth": "0%",
+    "testimonial": {
+      "quote": "Bidding compliance and airport infrastructure project updates are now highly transparent and easily accessible for developers.",
+      "author": "Shri V. Prasanna",
+      "role": "Chief Engineer",
+      "company": "APADCL Corporate Office",
+      "outcome": "Qualified bid submissions increased by 48%"
+    },
+    "launchDate": "2024-09-18",
+    "iframeAllowed": true,
+    "researchText": "Analyzed friction in government bidding portals. Main issue was access to live tenders on mobile devices. We mapped a streamlined navigation flow placing Active Tenders on the homepage and building a search engine filtering projects by status.",
+    "designText": "Designed a clean, authoritative corporate layout in corporate sky blue and white. Added structural progress metrics cards and interactive map overlays to show airport development phases.",
+    "developmentText": "Coded a high-speed database in MySQL for tender query indexes, linking it to light PHP endpoints. Used vanilla JavaScript for the tender notifications feed, maintaining load speed at under 1.2s.",
+    "lighthouse": {
+      "performance": 99,
+      "accessibility": 100,
+      "bestPractices": 98,
+      "seo": 100
+    },
+    "timeline": [
+      { "phase": "Requirements", "duration": "Week 1" },
+      { "phase": "Information Arch", "duration": "Week 2" },
+      { "phase": "MySQL/PHP Dev", "duration": "Week 3-4" },
+      { "phase": "Live Maps JS", "duration": "Week 5" },
+      { "phase": "Compliance Audit", "duration": "Week 6" }
+    ],
+    "growthData": {
+      "months": ["Jan", "Feb", "Mar", "Apr"],
+      "values": [70, 115, 160, 200]
+    },
+    "healthBadge": {
+      "status": "Online",
+      "loadTime": "1.2s",
+      "ssl": true,
+      "lastChecked": "2 minutes ago"
+    },
+    "relatedProjects": [1, 4],
+    "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-typing-on-a-glowing-neon-keyboard-40626-large.mp4"
+  }
+]

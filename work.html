@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected Work — eParivartan</title>
+  <meta name="description" content="Explore our portfolio of high-performance websites, web applications, and mobile apps built by eParivartan. 24+ years of digital excellence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    /* ════════════════════════════════
+       DESIGN TOKENS — MATCHING HOME
+       ════════════════════════════════ */
+    :root {
+      --g:        #22c55e;
+      --g-dark:   #16a34a;
+      --g-mid:    #4ade80;
+      --g-accent: #86efac;
+      --g-glow:   rgba(34,197,94,0.22);
+      --g-soft:   rgba(34,197,94,0.08);
+      --g-grad:   linear-gradient(135deg, #16a34a, #4ade80);
+      
+      /* Light Mode Palette */
+      --ink:    #080e0a;
+      --ink-2:  #1c2a21;
+      --ink-3:  #3d5247;
+      --ink-4:  #7a9285;
+      --off:    #f5faf6;
+      --card:   #ffffff;
+      --border: rgba(34,197,94,0.14);
+      --border-dark: rgba(34,197,94,0.26);
+      --r:      18px;
+      --r-lg:   28px;
+      --r-xl:   40px;
+      --transition: cubic-bezier(0.22, 1, 0.36, 1);
+      
+      /* Device Colors */
+      --chassis-silver: #d1d5db;
+      --chassis-spaceblack: #1f2937;
+      --chassis-titanium: #78716c;
+    }
+
+    /* Dark Mode Theme Variables */
+    body.dark-theme {
+      --ink:    #f5faf6;
+      --ink-2:  #e2e8f0;
+      --ink-3:  #cbd5e1;
+      --ink-4:  #94a3b8;
+      --off:    #08120b;
+      --card:   #040a06;
+      --border: rgba(34,197,94,0.25);
+      --border-dark: rgba(34,197,94,0.45);
+    }
+
+    /* ════════════════════════════════
+       RESET & BASE
+       ════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--card);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+      transition: background 0.4s var(--transition), color 0.4s var(--transition);
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ════════════════════════════════
+       CURSOR & NOISE
+       ════════════════════════════════ */
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: var(--g);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transition: transform 0.1s;
+      transform: translate(-50%,-50%);
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(34,197,94,0.5);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width 0.3s var(--transition), height 0.3s var(--transition), border-color 0.3s, left 0.12s var(--transition), top 0.12s var(--transition);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cursor-ring.hovered {
+      width: 72px; height: 72px;
+      border-color: var(--g);
+      background: rgba(34,197,94,0.08);
+    }
+    .cursor-label {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 11px; font-weight: 700;
+      color: var(--g-dark);
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+    }
+    .cursor-ring.hovered .cursor-label { opacity: 1; }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9997; pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+    /* Theme Toggle Button */
+    .theme-toggle-btn {
+      background: var(--off);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .theme-toggle-btn:hover {
+      background: var(--g-soft);
+      transform: rotate(15deg);
+    }
+
+    /* ════════════════════════════════
+       NAVBAR
+       ════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      padding: 0 40px;
+      transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px) saturate(1.6);
+      border-color: var(--border);
+      box-shadow: 0 4px 40px rgba(8,14,10,0.06);
+    }
+    body.dark-theme .nav.scrolled {
+      background: rgba(4,10,6,0.9);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 76px; max-width: 1240px; margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: 21px;
+      letter-spacing: -0.04em;
+      display: flex; align-items: center; gap: 2px;
+    }
+    .nav-logo span { color: var(--ink); }
+    .nav-logo span:first-child { color: var(--g-dark); }
+    .nav-logo-dot {
+      width: 8px; height: 8px; background: var(--g);
+      border-radius: 50%; margin-left: 2px; margin-bottom: 10px;
+      display: inline-block;
+      animation: pulse-dot 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+      50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 8px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--ink-3);
+      padding: 8px 16px; border-radius: 100px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: -0.01em;
+    }
+    .nav-links a:hover { color: var(--ink); background: var(--off); }
+    .nav-links a.active { color: var(--g-dark); font-weight: 600; background: var(--g-soft); }
+    
+    .nav-btn {
+      background: var(--ink) !important; color: var(--card) !important;
+      padding: 10px 22px !important; border-radius: 100px !important;
+      font-weight: 600 !important; font-size: 13.5px !important;
+      letter-spacing: -0.01em;
+      border: none; cursor: pointer; display: flex; align-items: center; gap: 6px;
+      transition: background 0.25s, transform 0.25s !important;
+      font-family: 'DM Sans', sans-serif;
+      position: relative; overflow: hidden;
+    }
+    .nav-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+      transform: translateX(-100%);
+      transition: transform 0s;
+    }
+    .nav-btn:hover { background: var(--g-dark) !important; transform: translateY(-1px); }
+    .nav-btn:hover::before { transform: translateX(100%); transition: transform 0.8s; }
+    .nav-btn .arr { transition: transform 0.2s; }
+    .nav-btn:hover .arr { transform: translateX(3px); }
+
+    .nav-actions {
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.3s; }
+    
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 850;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    body.dark-theme .mobile-menu {
+      background: rgba(4,10,6,0.97);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 700; color: var(--ink); letter-spacing: -0.04em; }
+    .mobile-menu a:hover { color: var(--g); }
+    .mobile-close { position: absolute; top: 28px; right: 36px; font-size: 28px; cursor: pointer; color: var(--ink-3); }
+
+    /* ════════════════════════════════
+       SECTION HERO — WORK
+       ════════════════════════════════ */
+    .hero-work {
+      padding: 160px 40px 60px;
+      position: relative; overflow: hidden;
+      background: var(--card);
+    }
+    .hero-aurora {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse at top left, rgba(34,197,94,0.12), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(74,222,128,0.06), transparent 50%);
+      filter: blur(120px);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(34,197,94,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,197,94,0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,0,0,0.8) 0%, transparent 100%);
+    }
+    .hero-work-inner {
+      position: relative; z-index: 1; text-align: center;
+      max-width: 800px; margin: 0 auto;
+    }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--g-soft); border: 1px solid var(--border-dark);
+      border-radius: 100px; padding: 7px 16px;
+      font-size: 12.5px; font-weight: 600; color: var(--g-dark);
+      margin-bottom: 24px; letter-spacing: 0.04em; text-transform: uppercase;
+      opacity: 0; animation: slide-up 0.7s var(--transition) 0.1s forwards;
+    }
+    .hero-h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.05; letter-spacing: -0.04em; color: var(--ink);
+      opacity: 0; animation: slide-up 0.8s var(--transition) 0.2s forwards;
+    }
+    .hero-h1 em {
+      font-style: italic; font-family: 'Instrument Serif', serif;
+      background: var(--g-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      font-size: 18px; line-height: 1.65; color: var(--ink-3);
+      margin: 20px auto 44px; font-weight: 300; max-width: 600px;
+      letter-spacing: -0.01em;
+      opacity: 0; animation: slide-up 0.8s var(--transition) 0.3s forwards;
+    }
+
+    /* Metric Grid (Hero Stats) */
+    .hero-stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      max-width: 700px; margin: 0 auto;
+      opacity: 0; animation: slide-up 0.8s var(--transition) 0.4s forwards;
+    }
+    .hero-stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 24px 16px;
+      box-shadow: 0 4px 24px rgba(8,14,10,0.03);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hero-stat-card:hover {
+      transform: translateY(-3px); box-shadow: 0 10px 32px rgba(8,14,10,0.06);
+    }
+    .h-stat-val {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: 38px; color: var(--ink); line-height: 1; letter-spacing: -0.04em;
+    }
+    .h-stat-val span.g { color: var(--g); font-size: 24px; vertical-align: super; }
+    .h-stat-lbl {
+      font-size: 12.5px; color: var(--ink-4); margin-top: 6px; font-weight: 500;
+    }
+
+    /* ════════════════════════════════
+       CLIENT LOGOS WALL (MARQUEE)
+       ════════════════════════════════ */
+    .logos-wall {
+      padding: 40px 0;
+      background: var(--off);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+    .logos-title {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-4);
+      margin-bottom: 20px;
+    }
+    .marquee-container {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 60px;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+    .logo-item {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink-3);
+      cursor: pointer;
+      transition: color 0.3s, transform 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-item:hover {
+      color: var(--g-dark);
+      transform: scale(1.05);
+    }
+    .logo-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--g);
+      border-radius: 50%;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ════════════════════════════════
+       SEARCH & FILTER CONTROLS
+       ════════════════════════════════ */
+    .controls-band {
+      position: sticky; top: 75px; z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px) saturate(1.6);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    body.dark-theme .controls-band {
+      background: rgba(4, 10, 6, 0.85);
+    }
+    .controls-inner {
+      display: flex; flex-direction: column; gap: 16px;
+      max-width: 1240px; margin: 0 auto; padding: 0 40px;
+    }
+    .search-row {
+      width: 100%;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      padding: 14px 20px 14px 48px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s var(--transition);
+      box-shadow: 0 4px 12px rgba(8,14,10,0.02);
+    }
+    .search-input:focus {
+      border-color: var(--g);
+      box-shadow: 0 4px 20px rgba(34,197,94,0.12);
+    }
+    .search-icon {
+      position: absolute; left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink-4);
+      font-size: 16px;
+      pointer-events: none;
+    }
+    .tabs-row {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13.5px;
+      padding: 8px 18px; border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--ink-3); cursor: pointer;
+      transition: all 0.3s var(--transition);
+      letter-spacing: -0.01em;
+    }
+    .tab-btn:hover {
+      border-color: var(--border-dark); background: var(--g-soft); color: var(--ink);
+    }
+    .tab-btn.active {
+      background: var(--g-grad); color: #ffffff; border-color: transparent;
+      box-shadow: 0 4px 16px var(--g-glow);
+    }
+
+    /* Smart Loading Skeleton Cards */
+    .skeleton-grid {
+      display: flex; flex-direction: column; gap: 90px;
+    }
+    .skeleton-card {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px;
+      opacity: 0.7;
+    }
+
+    /* ════════════════════════════════
+       SECTION CASE STUDY LIST
+       ════════════════════════════════ */
+    .case-studies {
+      padding: 60px 40px; background: var(--card);
+      position: relative;
+    }
+    .cs-grid {
+      display: flex; flex-direction: column; gap: 90px;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .cs-card {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px;
+      align-items: start;
+      perspective: 1000px; /* For 3D Tilt Effect */
+      opacity: 1; transform: scale(1);
+      transition: opacity 0.5s var(--transition), transform 0.5s var(--transition);
+    }
+    .cs-left-details {
+      transition: transform 0.6s var(--transition);
+      transform-style: preserve-3d;
+    }
+    
+    /* Layout Left (Content) */
+    .cs-label {
+      font-size: 11px; font-weight: 700; color: var(--g-dark);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cs-label::before {
+      content: ''; display: block; width: 12px; height: 1.5px; background: var(--g);
+    }
+    .cs-name {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: clamp(28px, 3.5vw, 42px); line-height: 1.1;
+      letter-spacing: -0.03em; color: var(--ink); margin-bottom: 16px;
+    }
+    .cs-desc {
+      font-size: 15.5px; line-height: 1.6; color: var(--ink-3);
+      font-weight: 300; margin-bottom: 24px;
+    }
+    
+    .cs-block {
+      margin-bottom: 20px;
+      border-left: 2px solid var(--border-dark);
+      padding-left: 16px;
+    }
+    .cs-block-lbl {
+      font-size: 11.5px; font-weight: 600; color: var(--ink-4);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
+    }
+    .cs-block-txt {
+      font-size: 14px; color: var(--ink-2); line-height: 1.5;
+    }
+
+    /* Stats inside Case Study Card */
+    .cs-stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin: 28px 0;
+    }
+    .cs-stat-box {
+      background: var(--off); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 16px;
+    }
+    .cs-stat-val {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: 24px; color: var(--g-dark); letter-spacing: -0.02em;
+    }
+    .cs-stat-lbl {
+      font-size: 11.5px; color: var(--ink-3); margin-top: 4px;
+    }
+
+    /* Tech Stack Tags */
+    .cs-tech {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px;
+    }
+    .cs-tech-tag {
+      font-size: 11.5px; font-weight: 500; color: var(--ink-3);
+      background: var(--card); border: 1px solid var(--border);
+      padding: 6px 12px; border-radius: 100px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .cs-card:hover .cs-tech-tag {
+      background: var(--g-soft); border-color: var(--border-dark); color: var(--g-dark);
+    }
+
+    /* Layout Right (Device Preview Frame Container) */
+    .cs-preview-wrap {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 16px;
+      transform-style: preserve-3d;
+      transition: transform 0.5s var(--transition);
+    }
+    .device-selectors {
+      display: flex; gap: 4px; background: var(--off);
+      border: 1px solid var(--border); padding: 4px;
+      border-radius: 100px;
+      z-index: 10;
+    }
+    .dev-btn {
+      font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600;
+      padding: 8px 14px; border-radius: 100px; border: none;
+      background: transparent; color: var(--ink-3); cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dev-btn.active {
+      background: var(--card); color: var(--ink);
+      box-shadow: 0 2px 8px rgba(8,14,10,0.06);
+    }
+
+    /* Sub selector for mobile brands */
+    .mobile-sub-selector {
+      display: none; gap: 6px; flex-wrap: wrap; margin-top: -6px;
+      background: rgba(34,197,94,0.05); padding: 4px 10px; border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+    .mobile-sub-selector.visible { display: flex; }
+    .brand-btn {
+      font-size: 10.5px; font-weight: 600; padding: 4px 10px; border: none;
+      background: transparent; color: var(--ink-4); cursor: pointer; border-radius: 100px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .brand-btn.active {
+      background: var(--g-dark); color: #fff;
+    }
+
+    /* Color selectors for device chassis */
+    .color-selectors {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .color-btn {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid transparent; cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .color-btn.active {
+      border-color: var(--g);
+      transform: scale(1.25);
+    }
+    .color-silver { background: var(--chassis-silver); }
+    .color-spaceblack { background: var(--chassis-spaceblack); }
+    .color-titanium { background: var(--chassis-titanium); }
+
+    /* ════════════════════════════════
+       HARDWARE FRAMES DESIGN (CSS Only)
+       ════════════════════════════════ */
+    .viewport-container {
+      width: 100%; display: flex; justify-content: center; align-items: center;
+      min-height: 420px;
+      transition: width 0.4s var(--transition), height 0.4s var(--transition);
+    }
+    
+    /* LAPTOP FRAME: MacBook */
+    .laptop-frame {
+      width: 540px; height: 320px;
+      background: #1e1e1e; border: 12px solid var(--chassis-spaceblack);
+      border-bottom-width: 0; border-radius: 16px 16px 0 0;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(8,14,10,0.15);
+      display: flex; flex-direction: column;
+      transition: border-color 0.3s;
+    }
+    /* MacBook Screen Top Notch/Camera */
+    .laptop-frame::before {
+      content: ''; position: absolute; top: -12px; left: 50%;
+      transform: translateX(-50%); width: 40px; height: 4px;
+      background: #000; border-radius: 0 0 4px 4px; z-index: 10;
+    }
+    /* MacBook Lower Aluminum Lip Base */
+    .laptop-base-lip {
+      width: 600px; height: 12px; background: var(--chassis-silver);
+      border-radius: 0 0 100px 100px; position: absolute;
+      bottom: -12px; left: 50%; transform: translateX(-50%);
+      box-shadow: 0 4px 12px rgba(8,14,10,0.1);
+      z-index: 5;
+      transition: background 0.3s;
+    }
+    
+    /* TABLET FRAME: iPad Pro Landscape */
+    .tablet-frame {
+      width: 480px; height: 320px;
+      background: #080808; border: 14px solid var(--chassis-spaceblack);
+      border-radius: 22px; position: relative;
+      box-shadow: 0 20px 50px rgba(8,14,10,0.15);
+      display: flex; flex-direction: column;
+      transition: border-color 0.3s;
+    }
+    /* iPad Screen Details */
+    .tablet-frame::before {
+      content: ''; position: absolute; top: 50%; left: -14px;
+      transform: translateY(-50%); width: 4px; height: 30px;
+      background: #374151; border-radius: 2px 0 0 2px;
+    }
+
+    /* SMARTPHONE FRAME */
+    .mobile-frame {
+      width: 200px; height: 400px;
+      background: #000; border: 9px solid var(--chassis-spaceblack);
+      border-radius: 30px; position: relative;
+      box-shadow: 0 20px 50px rgba(8,14,10,0.15);
+      display: flex; flex-direction: column;
+      transition: border-color 0.3s;
+    }
+    /* Screen Bezel Accent */
+    .mobile-frame::after {
+      content: ''; position: absolute; inset: -1px;
+      border-radius: 22px; border: 1px solid #4b5563;
+      pointer-events: none;
+    }
+
+    /* Dynamic Island or Punch Hole inside Mobile Screen */
+    .screen-camera {
+      position: absolute; top: 6px; left: 50%;
+      transform: translateX(-50%);
+      background: #000; z-index: 10;
+      transition: all 0.3s;
+    }
+    /* iPhone Dynamic Island Style */
+    .camera-dynamic-island {
+      width: 48px; height: 11px; border-radius: 100px;
+    }
+    /* Galaxy S25 / Vivo / iQOO Punch Hole Style */
+    .camera-punch-hole {
+      width: 7px; height: 7px; border-radius: 50%; top: 7px;
+    }
+
+    /* ════════════════════════════════
+       BROWSER CHROME & BAR
+       ════════════════════════════════ */
+    .browser-chrome {
+      background: #f3f4f6; border-bottom: 1px solid #e5e7eb;
+      padding: 6px 12px; display: flex; align-items: center; gap: 10px;
+      border-radius: 4px 4px 0 0;
+    }
+    body.dark-theme .browser-chrome {
+      background: #1e293b; border-color: #334155;
+    }
+    /* Chrome Window Circles */
+    .chrome-buttons { display: flex; gap: 6px; align-items: center; }
+    .chrome-btn {
+      width: 12px; height: 12px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .chrome-btn span {
+      font-size: 8px; font-weight: bold;
+      color: rgba(8, 14, 10, 0.65);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+      line-height: 1;
+    }
+    .chrome-buttons:hover span {
+      opacity: 1;
+    }
+    .chrome-address-bar {
+      flex: 1; background: #ffffff; border-radius: 4px;
+      padding: 2px 10px; font-size: 9.5px; font-family: monospace;
+      color: var(--ink-4); text-align: left; overflow: hidden;
+      white-space: nowrap; text-overflow: ellipsis;
+      border: 1px solid #e5e7eb;
+      display: flex; align-items: center; gap: 4px;
+    }
+    body.dark-theme .chrome-address-bar {
+      background: #0f172a; border-color: #1e293b; color: #64748b;
+    }
+    .chrome-address-bar span.lock { color: var(--g-dark); font-size: 8px; }
+
+    /* Screen Frame Iframe Content Wrapper */
+    .screen-content-wrapper {
+      flex: 1; position: relative; width: 100%; height: 100%;
+      background: #fff; overflow: hidden;
+    }
+    .screen-content-wrapper iframe {
+      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: top left;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .screen-content-wrapper iframe.loaded {
+      opacity: 1;
+    }
+
+    /* Scaling iframes for responsive layouts inside mockups */
+    .laptop-frame .screen-content-wrapper iframe {
+      width: 1280px; height: 720px; transform: scale(0.403);
+    }
+    .tablet-frame .screen-content-wrapper iframe {
+      width: 1024px; height: 680px; transform: scale(0.441);
+    }
+    .mobile-frame .screen-content-wrapper iframe {
+      width: 375px; height: 770px; transform: scale(0.485);
+    }
+
+    /* Skeleton Loading Shimmer */
+    .loading-shimmer {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+      background-size: 200% 100%;
+      animation: shimmer-anim 1.5s infinite linear;
+      z-index: 8;
+      display: flex; flex-direction: column; gap: 12px;
+      padding: 24px;
+    }
+    body.dark-theme .loading-shimmer {
+      background: linear-gradient(90deg, #1e293b 25%, #0f172a 50%, #1e293b 75%);
+    }
+    .shimmer-bar { height: 14px; background: #e5e7eb; border-radius: 4px; }
+    body.dark-theme .shimmer-bar { background: #334155; }
+    .shimmer-bar.w-40 { width: 40%; }
+    .shimmer-bar.w-70 { width: 70%; }
+    .shimmer-bar.w-100 { width: 100%; }
+    .shimmer-block { flex: 1; background: #e5e7eb; border-radius: 6px; }
+    body.dark-theme .shimmer-block { background: #334155; }
+
+    @keyframes shimmer-anim {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Hide base lower lip when not in laptop mode */
+    .viewport-container:not(.laptop-mode) .laptop-base-lip {
+      display: none;
+    }
+
+    /* ════════════════════════════════
+       IMMERSIVE CASE STUDY OVERLAY VIEW
+       ════════════════════════════════ */
+    .case-study-overlay {
+      position: fixed; inset: 0;
+      background: var(--card);
+      z-index: 1500;
+      overflow-y: auto;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s var(--transition);
+    }
+    .case-study-overlay.visible {
+      display: block;
+      opacity: 1;
+    }
+    #caseStudyOverlay .laptop-frame .screen-content-wrapper iframe {
+      width: 1280px !important;
+      height: 720px !important;
+      transform: scale(0.356) !important;
+    }
+    #caseStudyOverlay .tablet-frame .screen-content-wrapper iframe {
+      width: 1024px !important;
+      height: 1450px !important;
+      transform: scale(0.236) !important;
+    }
+    #caseStudyOverlay .mobile-frame .screen-content-wrapper iframe {
+      width: 375px !important;
+      height: 760px !important;
+      transform: scale(0.41) !important;
+    }
+    .cs-close-btn {
+      position: fixed; top: 20px; right: 40px;
+      z-index: 1600;
+      background: rgba(8, 14, 10, 0.8);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      padding: 10px 24px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 8px;
+      backdrop-filter: blur(10px);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .cs-close-btn:hover {
+      background: var(--g-dark);
+      transform: translateY(-1px);
+    }
+    
+    /* Scrolling Storytelling Tracker (Side Panel) */
+    .cs-story-tracker {
+      position: fixed; left: 40px; top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex; flex-direction: column; gap: 14px;
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
+    }
+    .tracker-dot {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 12px; font-weight: 700;
+      color: var(--ink-4);
+      cursor: pointer;
+      transition: color 0.3s, padding-left 0.3s;
+      display: flex; align-items: center; gap: 8px;
+      position: relative;
+    }
+    .tracker-dot::before {
+      content: ''; position: absolute; left: -21px; top: 50%;
+      transform: translateY(-50%); width: 8px; height: 8px;
+      background: var(--border-dark); border-radius: 50%;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .tracker-dot.active {
+      color: var(--g-dark);
+      padding-left: 4px;
+    }
+    .tracker-dot.active::before {
+      background: var(--g);
+      transform: translateY(-50%) scale(1.4);
+    }
+
+    /* Case Study Narrative Sections */
+    .cs-story-section {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 40px 120px 160px; /* Offset for side tracker */
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .cs-story-content {
+      max-width: 1040px; width: 100%; margin: 0 auto;
+    }
+    .cs-story-num {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic; font-size: 80px;
+      color: var(--g-soft);
+      line-height: 1;
+      margin-bottom: -10px;
+    }
+    .cs-story-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: clamp(32px, 4.5vw, 56px);
+      letter-spacing: -0.04em; color: var(--ink);
+      margin-bottom: 32px;
+    }
+    .cs-story-grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      align-items: start;
+    }
+    .cs-story-body {
+      font-size: 16px; line-height: 1.7; color: var(--ink-3);
+      font-weight: 300;
+    }
+
+    /* Live Website Health Badge */
+    .health-badge {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--ink-2);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(8,14,10,0.01);
+    }
+    .health-dot {
+      width: 8px; height: 8px; background: var(--g);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--g);
+      animation: pulse-dot 1.8s infinite;
+    }
+
+    /* ════════════════════════════════
+       BEFORE / AFTER COMPARISON SLIDER
+       ════════════════════════════════ */
+    .slider-container {
+      width: 100%; height: 480px;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border-dark);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(8,14,10,0.08);
+      user-select: none;
+    }
+    .slider-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+    }
+    .slider-before {
+      z-index: 2;
+      filter: grayscale(100%) blur(1px) contrast(80%);
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    }
+    .slider-after {
+      z-index: 1;
+    }
+    .slider-label {
+      position: absolute; bottom: 20px;
+      padding: 6px 14px; border-radius: 6px;
+      font-size: 11.5px; font-weight: 700;
+      color: #fff; text-transform: uppercase;
+      letter-spacing: 0.05em; z-index: 5;
+      background: rgba(8, 14, 10, 0.7);
+      backdrop-filter: blur(4px);
+    }
+    .slider-label.before-lbl { left: 20px; }
+    .slider-label.after-lbl { right: 20px; }
+    .slider-handle {
+      position: absolute; top: 0; bottom: 0; left: 50%;
+      width: 4px; background: var(--g);
+      z-index: 10; cursor: ew-resize;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px var(--g-glow);
+    }
+    .slider-handle-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #ffffff; border: 3px solid var(--g);
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 16px rgba(8,14,10,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--g-dark);
+      pointer-events: none;
+    }
+
+    /* ════════════════════════════════
+       LIGHTHOUSE ANIMATED CIRCLE GAUGES
+       ════════════════════════════════ */
+    .lighthouse-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      margin-top: 36px;
+    }
+    .lh-card {
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(8,14,10,0.02);
+    }
+    .lh-gauge-wrap {
+      width: 100px; height: 100px;
+      margin: 0 auto 16px;
+      position: relative;
+    }
+    .lh-gauge-svg {
+      transform: rotate(-90deg);
+      width: 100%; height: 100%;
+    }
+    .lh-bg-circle {
+      fill: none;
+      stroke: rgba(34,197,94,0.1);
+      stroke-width: 8;
+    }
+    .lh-progress-circle {
+      fill: none;
+      stroke: var(--g);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 282.6; /* 2 * pi * 45 */
+      stroke-dashoffset: 282.6;
+      transition: stroke-dashoffset 2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .lh-score-txt {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 24px; font-weight: 800;
+      color: var(--ink);
+    }
+    .lh-title {
+      font-size: 12.5px; font-weight: 600;
+      color: var(--ink-3); text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ════════════════════════════════
+       INTERACTIVE GROWTH GRAPH (SVG)
+       ════════════════════════════════ */
+    .graph-container {
+      width: 100%; height: 320px;
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 32px 32px 16px;
+      position: relative;
+      margin-top: 32px;
+      box-shadow: 0 10px 32px rgba(8,14,10,0.02);
+    }
+    .graph-svg {
+      width: 100%; height: 100%;
+      overflow: visible;
+    }
+    .graph-grid-line {
+      stroke: rgba(34,197,94,0.06);
+      stroke-width: 1px;
+    }
+    .graph-line-path {
+      fill: none;
+      stroke: var(--g);
+      stroke-width: 4px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+      transition: stroke-dashoffset 2.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .graph-glow-path {
+      fill: none;
+      stroke: var(--g);
+      stroke-width: 8px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.25;
+      filter: blur(4px);
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+      transition: stroke-dashoffset 2.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .graph-area-path {
+      fill: url(#graph-grad);
+      opacity: 0;
+      transition: opacity 1.5s ease 1s;
+    }
+    .graph-area-path.visible {
+      opacity: 0.08;
+    }
+    .graph-node {
+      fill: var(--card);
+      stroke: var(--g-dark);
+      stroke-width: 3px;
+      r: 6;
+      transition: transform 0.3s, fill 0.3s;
+      transform-origin: center;
+      cursor: pointer;
+    }
+    .graph-node:hover {
+      fill: var(--g);
+      transform: scale(1.4);
+    }
+    .graph-axis-lbl {
+      font-size: 11px;
+      font-weight: 500;
+      fill: var(--ink-4);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ════════════════════════════════
+       FULLSCREEN SITE PREVIEW MODAL
+       ════════════════════════════════ */
+    .preview-modal {
+      position: fixed; inset: 0;
+      background: rgba(8,14,10,0.9);
+      backdrop-filter: blur(12px);
+      z-index: 3000;
+      display: none;
+      align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s var(--transition);
+    }
+    .preview-modal.visible {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-browser-container {
+      width: 90%; height: 85%;
+      background: #1e1e1e;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 14px; right: 16px;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: none; color: #94a3b8; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; transition: background 0.2s, color 0.2s;
+      z-index: 10;
+    }
+    .modal-close:hover {
+      background: #ef4444; color: #fff;
+    }
+    .modal-iframe-wrap {
+      flex: 1;
+      width: 100%;
+      background: #fff;
+      position: relative;
+      overflow-y: auto;
+    }
+    .modal-iframe-wrap iframe {
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ════════════════════════════════
+       RECOMMENDATIONS (NETFLIX STYLE)
+       ════════════════════════════════ */
+    .rec-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      margin-top: 40px;
+    }
+    .rec-card {
+      background: var(--off); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 32px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .rec-card:hover {
+      transform: translateY(-4px); box-shadow: 0 12px 36px rgba(8,14,10,0.06);
+    }
+    .rec-lbl {
+      font-size: 11px; font-weight: 700; color: var(--g-dark);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;
+    }
+    .rec-title {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: 22px; color: var(--ink); letter-spacing: -0.02em;
+    }
+
+    /* Video Walkthrough Mockup */
+    .walkthrough-player-box {
+      width: 100%; border-radius: var(--r-lg);
+      overflow: hidden; border: 1px solid var(--border);
+      position: relative; height: 380px;
+      background: #000; box-shadow: 0 12px 36px rgba(8,14,10,0.04);
+    }
+    .walkthrough-player-box video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .video-play-btn {
+      position: absolute; bottom: 20px; right: 20px;
+      background: rgba(8,14,10,0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px; padding: 10px 20px;
+      font-size: 12.5px; font-weight: 600; color: #fff;
+      display: flex; align-items: center; gap: 8px; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .video-play-btn:hover {
+      background: var(--g-dark);
+    }
+
+    /* Project Timeline Grid */
+    .timeline-track {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+      position: relative; margin-top: 24px;
+      padding-top: 16px;
+    }
+    .timeline-track::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--border); border-radius: 10px;
+    }
+    .timeline-node {
+      position: relative;
+    }
+    .timeline-node::before {
+      content: ''; position: absolute; top: -21px; left: 0;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--g); border: 2.5px solid var(--card);
+      box-shadow: 0 0 6px var(--g-glow);
+    }
+    .timeline-title {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
+      font-size: 14px; color: var(--ink); margin-bottom: 2px;
+    }
+    .timeline-time {
+      font-size: 12px; color: var(--ink-4); font-weight: 500;
+    }
+
+    /* ════════════════════════════════
+       RESULTS BAND & OTHER STYLES
+       ════════════════════════════════ */
+    .results-band {
+      background: var(--off); border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border); padding: 72px 40px;
+    }
+    .results-band-inner {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+      max-width: 1240px; margin: 0 auto; text-align: center;
+    }
+    .res-card { position: relative; }
+    .res-card:not(:last-child)::after {
+      content: ''; position: absolute; right: -16px; top: 20%; height: 60%;
+      width: 1px; background: var(--border-dark);
+    }
+    .res-val {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: clamp(32px, 4.5vw, 52px); color: var(--ink); line-height: 1;
+      letter-spacing: -0.05em; margin-bottom: 8px;
+    }
+    .res-val span.plus { color: var(--g-dark); }
+    .res-lbl { font-size: 13.5px; color: var(--ink-3); font-weight: 500; }
+
+    .testimonial-sec { padding: 120px 40px; background: var(--card); }
+    .testimonial-wrap { max-width: 900px; margin: 0 auto; }
+    .t-card {
+      background: var(--off); border: 1px solid var(--border);
+      border-radius: var(--r-xl); padding: 60px 48px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 16px 48px rgba(8,14,10,0.04);
+    }
+    .t-quote-symbol {
+      font-family: 'Instrument Serif', serif; font-size: 160px; line-height: 0.8;
+      color: var(--border-dark); position: absolute; top: 12px; left: 36px;
+      pointer-events: none; user-select: none;
+    }
+    .t-quote-text {
+      font-family: 'Instrument Serif', serif; font-style: italic;
+      font-size: clamp(20px, 3vw, 26px); line-height: 1.55; color: var(--ink-2);
+      position: relative; z-index: 1; margin-bottom: 36px;
+      padding-top: 48px;
+    }
+    .t-author-row {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px; border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+    .t-profile { display: flex; align-items: center; gap: 14px; }
+    .t-avatar {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--g-grad); display: flex; align-items: center; justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: 16px; color: #fff;
+    }
+    .t-name {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
+      font-size: 16px; color: var(--ink); letter-spacing: -0.02em;
+    }
+    .t-role { font-size: 13px; color: var(--ink-4); margin-top: 2px; }
+    .t-outcome-pill {
+      background: var(--g-soft); border: 1px solid var(--border-dark);
+      padding: 8px 18px; border-radius: 100px;
+      font-size: 12.5px; font-weight: 600; color: var(--g-dark);
+    }
+
+    .cta-band {
+      padding: 120px 40px;
+      background: var(--ink); position: relative; overflow: hidden;
+    }
+    .cta-orb-1, .cta-orb-2 {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      filter: blur(80px);
+    }
+    .cta-orb-1 { width: 600px; height: 600px; right: -100px; top: -100px; background: radial-gradient(circle, rgba(22,163,74,0.18), transparent 60%); }
+    .cta-orb-2 { width: 400px; height: 400px; left: -80px; bottom: -80px; background: radial-gradient(circle, rgba(74,222,128,0.1), transparent 60%); }
+    
+    .cta-band-inner {
+      max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 1;
+    }
+    .cta-lbl { font-size: 12px; font-weight: 700; color: var(--g); letter-spacing: 0.1em; text-transform: uppercase; }
+    .cta-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: clamp(36px, 5.5vw, 64px);
+      line-height: 1.05; letter-spacing: -0.04em; color: #fff;
+      margin: 18px 0 22px;
+    }
+    .cta-title em { font-style: italic; font-family: 'Instrument Serif', serif; color: var(--g-mid); }
+    .cta-desc {
+      font-size: 17.5px; color: rgba(255,255,255,0.55); line-height: 1.65;
+      max-width: 520px; margin: 0 auto 40px; font-weight: 300;
+    }
+    .cta-button-row {
+      display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
+    }
+    .btn-green-shine {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--g-grad); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 16px 34px; border-radius: 100px;
+      border: none; cursor: pointer;
+      transition: opacity 0.25s, transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 8px 36px rgba(34,197,94,0.35);
+      letter-spacing: -0.01em;
+      position: relative; overflow: hidden;
+    }
+    .btn-green-shine::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0s;
+    }
+    .btn-green-shine:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 14px 44px rgba(34,197,94,0.45); }
+    .btn-green-shine:hover::before { transform: translateX(100%); transition: transform 0.8s; }
+    
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: rgba(255,255,255,0.8);
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px;
+      padding: 15px 30px; border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s;
+      letter-spacing: -0.01em;
+    }
+    .btn-outline-white:hover { border-color: var(--g); background: rgba(34,197,94,0.08); color: #fff; }
+
+    footer {
+      background: var(--ink); padding: 80px 40px 40px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 64px;
+      padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 36px;
+    }
+    .footer-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: 22px; color: #fff;
+      letter-spacing: -0.04em; margin-bottom: 14px; display: block;
+    }
+    .footer-logo span { color: var(--g-mid); }
+    .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 260px; margin-bottom: 28px; font-weight: 300; }
+    .footer-socials { display: flex; gap: 8px; }
+    .social-link {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: rgba(255,255,255,0.6);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { background: var(--g-grad); border-color: transparent; color: #fff; }
+    
+    .footer-col h5 {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
+      font-size: 11px; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a { font-size: 14px; color: rgba(255,255,255,0.55); transition: color 0.2s; letter-spacing: -0.01em; }
+    .footer-col ul a:hover { color: var(--g-mid); }
+    
+    .footer-bottom {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 12.5px; color: rgba(255,255,255,0.28); letter-spacing: -0.01em; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: 12.5px; color: rgba(255,255,255,0.28); transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ════════════════════════════════
+       SCROLL REVEAL & TRANSITIONS
+       ════════════════════════════════ */
+    .sr {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+    }
+    .sr.visible { opacity: 1; transform: translateY(0); }
+    .sr-d1 { transition-delay: 0.1s; }
+    .sr-d2 { transition-delay: 0.2s; }
+    .sr-d3 { transition-delay: 0.3s; }
+    @keyframes slide-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ════════════════════════════════
+       RESPONSIVE ADAPTATIONS
+       ════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .cs-card { grid-template-columns: 1fr; gap: 40px; }
+      .cs-preview-wrap { max-width: 600px; margin: 0 auto; }
+      .viewport-container { min-height: auto; }
+      .cs-story-section { padding-left: 40px; }
+      .cs-story-tracker { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-stats-row { grid-template-columns: 1fr; gap: 12px; }
+      .results-band-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .res-card::after { display: none; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .wrap { padding: 0 24px; }
+      .cs-story-grid-2 { grid-template-columns: 1fr; gap: 24px; }
+      .lighthouse-row { grid-template-columns: 1fr 1fr; }
+      .slider-container { height: 320px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-work { padding: 120px 20px 48px; }
+      .case-studies { padding: 48px 20px; }
+      .results-band-inner { grid-template-columns: 1fr; gap: 24px; }
+      .t-card { padding: 40px 24px; }
+      .t-quote-symbol { font-size: 110px; top: 4px; left: 16px; }
+      .cta-band { padding: 80px 20px; }
+      footer { padding: 60px 20px 32px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .cursor-dot, .cursor-ring { display: none; }
+      body { cursor: auto; }
+      
+      /* Scale mockup frames on extra small viewports */
+      .laptop-frame { width: 320px; height: 190px; border-width: 8px; }
+      .laptop-base-lip { width: 360px; height: 8px; bottom: -8px; }
+      .tablet-frame { width: 320px; height: 213px; border-width: 10px; }
+      .mobile-frame { width: 170px; height: 340px; }
+      .lighthouse-row { grid-template-columns: 1fr; }
+      .timeline-track { grid-template-columns: 1fr; gap: 24px; }
+      .timeline-track::before { display: none; }
+      .timeline-node::before { left: -20px; top: 4px; }
+      .timeline-node { padding-left: 20px; }
+      .rec-row { grid-template-columns: 1fr; }
+    }
+    @keyframes scale-node {
+      from { r: 0; }
+      to { r: 6; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor with Floating Text Labels -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing">
+    <span class="cursor-label" id="cursorLabel"></span>
+  </div>
+
+  <!-- Mobile Hamburger Overlay Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <span class="mobile-close" id="mobileClose">✕</span>
+    <a href="index.html#services" onclick="closeMobile()">Services</a>
+    <a href="#" onclick="closeMobile()" style="color:var(--g);">Work</a>
+    <a href="index.html#process" onclick="closeMobile()">Process</a>
+    <a href="index.html#clients" onclick="closeMobile()">Clients</a>
+    <a href="index.html#faq" onclick="closeMobile()">FAQ</a>
+    <a href="index.html#contact" onclick="closeMobile()" style="color:var(--g);">Get a Quote →</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span>e</span><span>Parivartan</span><span class="nav-logo-dot"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="#" class="active">Work</a></li>
+        <li><a href="index.html#process">Process</a></li>
+        <li><a href="index.html#clients">Clients</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light/Dark Mode" data-cursor="Theme">☀️</button>
+        <a href="index.html#contact" class="nav-btn">Get a Quote <span class="arr">→</span></a>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN PAGE WRAPPER (HIDDEN WHEN CASE STUDY IS OPEN) -->
+  <div id="mainPageContent">
+    <!-- SECTION 1 — HERO -->
+    <section class="hero-work">
+      <div class="hero-aurora"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-work-inner wrap">
+        <div class="hero-label">✦ Selected Work</div>
+        <h1 class="hero-h1">Projects That Deliver<br>Real Business <em>Results</em></h1>
+        <p class="hero-desc">Real websites, web applications, mobile apps and ecommerce experiences built to increase traffic, conversions and growth.</p>
+        
+        <!-- Metrics Grid -->
+        <div class="hero-stats-row">
+          <div class="hero-stat-card">
+            <div class="h-stat-val"><span class="counter" id="projectCounter" data-target="5012">5009</span><span class="g">+</span></div>
+            <div class="h-stat-lbl">Active Operations</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="h-stat-val"><span class="counter-decimal" data-target="4.9">4.5</span><span class="g">★</span></div>
+            <div class="h-stat-lbl">Client Rating</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="h-stat-val"><span class="counter" data-target="240">200</span><span class="g">%</span></div>
+            <div class="h-stat-lbl">Average Growth</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT LOGOS MARQUEE -->
+    <section class="logos-wall">
+      <h2 class="logos-title">Trusted By Enterprise & Government</h2>
+      <div class="marquee-container">
+        <div class="marquee-track" id="logoMarqueeTrack">
+          <!-- Populated by JavaScript and duplicated for smooth infinite scrolling -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 — SEARCH & FILTER TABS -->
+    <div class="controls-band" id="sticky-tabs-container">
+      <div class="controls-inner">
+        <div class="search-row">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" id="projectSearch" placeholder="Search projects by client, technology, industry or service..." data-cursor="Type" />
+        </div>
+        <div class="tabs-row">
+          <button class="tab-btn active" onclick="filterCategory('all', this)">All Projects</button>
+          <button class="tab-btn" onclick="filterCategory('websites', this)">Websites</button>
+          <button class="tab-btn" onclick="filterCategory('web-applications', this)">Web Applications</button>
+          <button class="tab-btn" onclick="filterCategory('ecommerce', this)">Ecommerce</button>
+          <button class="tab-btn" onclick="filterCategory('mobile-apps', this)">Mobile Apps</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 — CASE STUDY LIST (PROJECT DIRECTORY) -->
+    <section class="case-studies">
+      <div class="cs-grid wrap" id="projects-container">
+        <!-- Smart loading skeletons initially, then loaded by JS -->
+        <div class="skeleton-grid">
+          <div class="skeleton-card">
+            <div class="shimmer-block" style="height:350px;"></div>
+            <div class="shimmer-block" style="height:350px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 — RESULTS SHOWCASE -->
+    <section class="results-band">
+      <div class="results-band-inner wrap">
+        <div class="res-card sr sr-d1">
+          <div class="res-val"><span class="plus">+</span><span class="counter" data-target="320">0</span>%</div>
+          <div class="res-lbl">Traffic Growth</div>
+        </div>
+        <div class="res-card sr sr-d2">
+          <div class="res-val"><span class="plus">+</span><span class="counter" data-target="180">0</span>%</div>
+          <div class="res-lbl">Lead Generation</div>
+        </div>
+        <div class="res-card sr sr-d3">
+          <div class="res-val"><span class="plus">+</span><span class="counter" data-target="240">0</span>%</div>
+          <div class="res-lbl">Conversions Achieved</div>
+        </div>
+        <div class="res-card sr sr-d1">
+          <div class="res-val"><span class="counter-decimal" data-target="4.8">0</span>★</div>
+          <div class="res-lbl">Customer Rating</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6 — CLIENT TESTIMONIAL -->
+    <section class="testimonial-sec">
+      <div class="testimonial-wrap wrap">
+        <div class="t-card sr">
+          <div class="t-quote-symbol">"</div>
+          <p class="t-quote-text">We were highly impressed with eParivartan's detailed execution. They handcrafted an interactive system that significantly boosted our patients' portal usage, transforming clinic operations within just a month.</p>
+          
+          <div class="t-author-row">
+            <div class="t-profile">
+              <div class="t-avatar">MC</div>
+              <div>
+                <div class="t-name">Dr. Sarah Connor</div>
+                <div class="t-role">Chief of Cardiology, MediCare Portal</div>
+              </div>
+            </div>
+            <span class="t-outcome-pill">📈 +240% Appointment Conversions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7 — NEXT PROJECT CTA -->
+    <section class="cta-band">
+      <div class="cta-orb-1"></div>
+      <div class="cta-orb-2"></div>
+      <div class="cta-band-inner sr">
+        <div class="cta-lbl">Ready to scale?</div>
+        <h2 class="cta-title">Ready To Become<br>Our Next <em>Success Story?</em></h2>
+        <p class="cta-desc">Partner with eParivartan to craft agency-grade websites, web apps, and mobile ecosystems designed to drive results.</p>
+        
+        <div class="cta-button-row">
+          <a href="index.html#contact" class="btn-green-shine" data-cursor="Let's Go">Start Your Project →</a>
+          <a href="index.html#contact" class="btn-outline-white" data-cursor="Call →">Schedule Discovery Call</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner wrap">
+        <div>
+          <span class="footer-logo">e<span>Parivartan</span></span>
+          <p class="footer-tagline">A full-service digital agency helping businesses design, build, and grow their digital presence since 2000.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link">in</a>
+            <a href="#" class="social-link">fb</a>
+            <a href="#" class="social-link">tw</a>
+            <a href="#" class="social-link">ig</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="index.html#services">Web Development</a></li>
+            <li><a href="index.html#services">Mobile Apps</a></li>
+            <li><a href="index.html#services">E-Commerce</a></li>
+            <li><a href="index.html#services">UI/UX Design</a></li>
+            <li><a href="index.html#services">SEO & Marketing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html#">About Us</a></li>
+            <li><a href="#">Our Work</a></li>
+            <li><a href="index.html#">Blog</a></li>
+            <li><a href="index.html#">Careers</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:hello@eparivartan.com">hello@eparivartan.com</a></li>
+            <li><a href="#">Hyderabad, Telangana</a></li>
+            <li><a href="#">Mon–Sat 9AM–7PM IST</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom wrap">
+        <p>© 2025 eParivartan. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- IMMERSIVE SCROLL-DRIVEN CASE STUDY VIEW OVERLAY -->
+  <div class="case-study-overlay" id="caseStudyOverlay">
+    <button class="cs-close-btn" id="closeCaseStudyBtn" data-cursor="Close">✕ Close Case Study</button>
+    
+    <!-- Floating side navigation tracker dots -->
+    <div class="cs-story-tracker" id="storyTracker">
+      <div class="tracker-dot active" onclick="scrollToSection('cs-sec-intro')">Intro</div>
+      <div class="tracker-dot" onclick="scrollToSection('cs-sec-challenge')">Challenge & Research</div>
+      <div class="tracker-dot" onclick="scrollToSection('cs-sec-design')">Design</div>
+      <div class="tracker-dot" onclick="scrollToSection('cs-sec-development')">Development</div>
+      <div class="tracker-dot" onclick="scrollToSection('cs-sec-results')">Results</div>
+    </div>
+
+    <!-- Container where dynamic case study slides are rendered -->
+    <div id="caseStudyContainer"></div>
+  </div>
+
+  <!-- FULLSCREEN WEB EXPERIENCES PREVIEW MODAL -->
+  <div class="preview-modal" id="livePreviewModal">
+    <div class="modal-browser-container">
+      <!-- Fake Browser Bar (Cancel button removed, controls on right, Red workable as close, Yellow/Green disabled, real-time view text replaced with green pulse dot) -->
+      <div class="browser-chrome" style="display: flex; align-items: center; justify-content: space-between;">
+        <div class="chrome-address-bar" style="max-width: 80%; margin-right: auto; flex: 1;">
+          <span class="lock">🔒</span>
+          <span id="modalAddressBar">loading...</span>
+          <span class="browser-pulse-dot" style="margin-left: auto; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse-dot 2s ease-in-out infinite;" title="Real-time View Active"></span>
+        </div>
+        <div class="chrome-buttons" style="display: flex; gap: 6px; margin-left: 16px;">
+          <div class="chrome-btn" style="background:#28c840; opacity: 0.8; cursor: not-allowed;" title="Zoom (Disabled)"><span>+</span></div>
+          <div class="chrome-btn" style="background:#febc2e; opacity: 0.8; cursor: not-allowed;" title="Minimize (Disabled)"><span>−</span></div>
+          <div class="chrome-btn" onclick="closeLivePreview()" style="background:#ff5f57; cursor: pointer; transition: transform 0.2s;" title="Close Preview"><span>✕</span></div>
+        </div>
+      </div>
+      
+      <!-- Preview Frame -->
+      <div class="modal-iframe-wrap" id="modalIframeContainer">
+        <!-- Rendered by JS based on whether framing is allowed or uses high-res fallback -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ════════════ OVERLAY CURSOR BEHAVIORS ════════════ */
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    const cursorLabel = document.getElementById('cursorLabel');
+    let ringX = 0, ringY = 0;
+    let mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+    });
+    function animateCursor() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    function hookInteractiveElements() {
+      document.querySelectorAll('[data-cursor]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          ring.classList.add('hovered');
+          cursorLabel.textContent = el.dataset.cursor;
+        });
+        el.addEventListener('mouseleave', () => {
+          ring.classList.remove('hovered');
+          cursorLabel.textContent = '';
+        });
+      });
+      document.querySelectorAll('a:not([data-cursor]), button:not([data-cursor]), .tab-btn, .dev-btn, .brand-btn, .color-btn, .tracker-dot').forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+      });
+    }
+
+    /* ════════════ LIGHT / DARK MODE TOGGLE ════════════ */
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    let isDarkMode = localStorage.getItem('dark-theme') === 'true';
+
+    // Apply saved theme state on load
+    if (isDarkMode) {
+      document.body.classList.add('dark-theme');
+      themeToggleBtn.textContent = '🌙';
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      isDarkMode = !isDarkMode;
+      document.body.classList.toggle('dark-theme', isDarkMode);
+      localStorage.setItem('dark-theme', isDarkMode);
+      themeToggleBtn.textContent = isDarkMode ? '🌙' : '☀️';
+    });
+
+    /* ════════════ NAVBAR SCROLL ════════════ */
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 30);
+    }, { passive: true });
+
+    /* ════════════ MOBILE HAMBURGER MENU ════════════ */
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.add('open');
+    });
+    document.getElementById('mobileClose').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+    function closeMobile() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    /* ════════════ SCROLL REVEAL ════════════ */
+    const srObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          srObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    /* ════════════ ANIMATED NUMBER COUNTERS ════════════ */
+    function animateNumber(el, target, isDecimal = false, duration = 1800) {
+      let start = null;
+      const step = ts => {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
+        if (isDecimal) {
+          el.textContent = (eased * target).toFixed(1);
+        } else {
+          const val = Math.floor(eased * target);
+          el.textContent = val >= 1000 ? val.toLocaleString() : val;
+        }
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = isDecimal ? target.toFixed(1) : (target >= 1000 ? target.toLocaleString() : target);
+      };
+      requestAnimationFrame(step);
+    }
+
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          counterObs.unobserve(e.target);
+          e.target.querySelectorAll('.counter').forEach(c => {
+            animateNumber(c, parseInt(c.dataset.target), false);
+          });
+          e.target.querySelectorAll('.counter-decimal').forEach(c => {
+            animateNumber(c, parseFloat(c.dataset.target), true);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.hero-stats-row, .results-band-inner').forEach(row => counterObs.observe(row));
+
+    // Real-Time counter ticking simulator in hero
+    setInterval(() => {
+      const projectCounter = document.getElementById('projectCounter');
+      if (projectCounter) {
+        let val = parseInt(projectCounter.textContent.replace(/,/g, ''));
+        if (!isNaN(val)) {
+          // Slowly tick up project counts (simulating real-time updates)
+          projectCounter.textContent = (val + 1).toLocaleString();
+        }
+      }
+    }, 8000);
+
+    /* ════════════ DYNAMIC PROJECT LOAD & CLIENT LOGOS ════════════ */
+    let projectsData = [];
+
+    async function initProjects() {
+      try {
+        const response = await fetch('projects.json');
+        if (!response.ok) throw new Error(`Status: ${response.status}`);
+        projectsData = await response.json();
+        
+        renderLogoMarquee();
+        renderProjects('all');
+        setupSearchFilter();
+      } catch (err) {
+        console.error('Failed to load projects dynamic database:', err);
+        document.getElementById('projects-container').innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+            <div style="font-size: 32px; margin-bottom: 16px;">⚠️</div>
+            <h3 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink);">Failed to Load Client Projects</h3>
+            <p style="color: var(--ink-3); font-weight:300; margin-top: 8px; font-size: 14px;">Error: ${err.message}. Please launch a local server to read JSON files.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Render Client Logo Marquee Wall
+    function renderLogoMarquee() {
+      const marqueeTrack = document.getElementById('logoMarqueeTrack');
+      if (!marqueeTrack) return;
+
+      let itemsHtml = '';
+      projectsData.forEach(proj => {
+        itemsHtml += `
+          <div class="logo-item" onclick="openCaseStudy(${proj.id})" data-cursor="Explore">
+            <span class="logo-dot"></span>
+            ${proj.client}
+          </div>
+        `;
+      });
+
+      // Repeat items to ensure smooth infinite loop
+      marqueeTrack.innerHTML = itemsHtml + itemsHtml + itemsHtml;
+      hookInteractiveElements();
+    }
+
+    // Render cards list in directory
+    function renderProjects(categoryFilter, searchFilter = '') {
+      const container = document.getElementById('projects-container');
+      container.innerHTML = '';
+
+      const filtered = projectsData.filter(proj => {
+        // Category filtering
+        let catMatch = true;
+        if (categoryFilter !== 'all') {
+          const normalizedCat = proj.category.toLowerCase().replace(/\s+/g, '-');
+          catMatch = (normalizedCat === categoryFilter);
+        }
+
+        // Search text filtering
+        let searchMatch = true;
+        if (searchFilter.trim() !== '') {
+          const s = searchFilter.toLowerCase();
+          searchMatch = (
+            proj.name.toLowerCase().includes(s) ||
+            proj.client.toLowerCase().includes(s) ||
+            proj.industry.toLowerCase().includes(s) ||
+            proj.description.toLowerCase().includes(s) ||
+            proj.techStack.some(t => t.toLowerCase().includes(s))
+          );
+        }
+
+        return catMatch && searchMatch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 100px 40px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; color: var(--ink-4);">
+            No projects found matching your search.
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(proj => {
+        const card = document.createElement('article');
+        card.className = 'cs-card sr';
+        card.dataset.id = proj.id;
+
+        const techPills = proj.techStack.map(tech => `<span class="cs-tech-tag">${tech}</span>`).join('');
+
+        card.innerHTML = `
+          <div class="cs-left-details">
+            <div class="cs-label">${proj.industry} · ${proj.client}</div>
+            <h2 class="cs-name">${proj.name}</h2>
+            <p class="cs-desc">${proj.description}</p>
+
+            <div style="margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap;">
+              <button class="nav-btn" style="background: var(--ink) !important; color:var(--card) !important; font-size:13.5px; padding:12px 24px;" onclick="openCaseStudy(${proj.id})" data-cursor="Study 📖">Explore Case Study <span class="arr">→</span></button>
+              <button class="btn-outline-white" style="font-size:13.5px; padding:11px 22px; border:1px solid var(--border); color:var(--ink-2);" onclick="openLivePreviewModal(${proj.id})" data-cursor="Live 🌐">View Live Experience</button>
+            </div>
+          </div>
+
+          <!-- Interactive Card Thumbnail/Preview chassis -->
+          <div class="cs-preview-wrap" onclick="openCaseStudy(${proj.id})" data-cursor="View Case">
+            <div class="laptop-frame" style="transform: scale(0.9);">
+              <div class="browser-chrome">
+                <div class="chrome-buttons">
+                  <div class="chrome-btn" style="background:#ff5f57"></div>
+                  <div class="chrome-btn" style="background:#febc2e"></div>
+                  <div class="chrome-btn" style="background:#28c840"></div>
+                </div>
+                <div class="chrome-address-bar">
+                  <span>${proj.domain.replace('https://','').replace('www.','')}</span>
+                </div>
+              </div>
+              <div class="screen-content-wrapper">
+                <img src="${proj.desktopScreenshot}" style="width:100%; height:100%; object-fit:cover; object-position:top;" alt="${proj.name}" />
+              </div>
+              <div class="laptop-base-lip" style="display:block;"></div>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+        srObs.observe(card);
+      });
+
+      hook3DTiltEffects();
+      hookInteractiveElements();
+    }
+
+    // Set up real-time search input listening
+    function setupSearchFilter() {
+      const searchInput = document.getElementById('projectSearch');
+      if (!searchInput) return;
+
+      searchInput.addEventListener('input', (e) => {
+        const activeTab = document.querySelector('.tab-btn.active');
+        let category = 'all';
+        if (activeTab) {
+          category = activeTab.textContent.toLowerCase().replace(/\s+/g, '-');
+          if (category === 'all-projects') category = 'all';
+        }
+        renderProjects(category, e.target.value);
+      });
+    }
+
+    /* ════════════ TABS CATEGORY FILTERING ════════════ */
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const searchInput = document.getElementById('projectSearch');
+      const searchVal = searchInput ? searchInput.value : '';
+      
+      renderProjects(cat, searchVal);
+      
+      // Smooth scroll back to top of project list if user scrolled down
+      const tabsOuter = document.getElementById('sticky-tabs-container');
+      const offsetTop = tabsOuter.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    }
+
+    /* ════════════ 3D TILT EFFECT ON CARDS ════════════ */
+    function hook3DTiltEffects() {
+      document.querySelectorAll('.cs-card').forEach(card => {
+        const leftBox = card.querySelector('.cs-left-details');
+        const previewWrap = card.querySelector('.cs-preview-wrap');
+        
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = (centerY - y) / 25; // Tilt up/down
+          const rotateY = (x - centerX) / 30; // Tilt left/right
+          
+          if (previewWrap) {
+            previewWrap.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+          }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          if (previewWrap) {
+            previewWrap.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+          }
+        });
+      });
+    }
+
+    /* ════════════ IMMERSIVE CASE STUDY PRESENTATION ════════════ */
+    let currentCaseStudyId = null;
+
+    function openCaseStudy(projectId) {
+      const proj = projectsData.find(p => p.id === projectId);
+      if (!proj) return;
+
+      currentCaseStudyId = projectId;
+      const overlay = document.getElementById('caseStudyOverlay');
+      const container = document.getElementById('caseStudyContainer');
+      const mainPage = document.getElementById('mainPageContent');
+      
+      // Generate Case Study Narrative Content HTML
+      const techList = proj.techStack.map(t => `<span class="cs-tech-tag">${t}</span>`).join('');
+      const timelineHtml = proj.timeline.map(step => `
+        <div class="timeline-node">
+          <div class="timeline-title">${step.phase}</div>
+          <div class="timeline-time">${step.duration}</div>
+        </div>
+      `).join('');
+      
+      const relatedProjs = proj.relatedProjects.map(id => {
+        const p = projectsData.find(x => x.id === id);
+        if (!p) return '';
+        return `
+          <div class="rec-card" onclick="switchCaseStudy(${p.id})" data-cursor="Open">
+            <div class="rec-lbl">${p.industry}</div>
+            <div class="rec-title">${p.name}</div>
+            <p style="font-size:13px; color:var(--ink-4); margin-top:8px; line-height:1.4;">${p.description.substring(0, 90)}...</p>
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <!-- Section 1: Hero & Real Device Chassis Preview -->
+        <section class="cs-story-section" id="cs-sec-intro" style="background: var(--off); min-height:85vh; border-bottom:1px solid var(--border); padding-top: 80px; padding-bottom: 60px;">
+          <div class="cs-story-content">
+            <div class="cs-story-grid-2" style="align-items: center; gap: 60px;">
+              <!-- Left Column: Story Intro Text & Info -->
+              <div>
+                <div class="health-badge" style="margin-bottom: 20px;">
+                  <span class="health-dot"></span>
+                  <span>🟢 Online</span>
+                  <span>•</span>
+                  <span>Load: ${proj.healthBadge.loadTime}</span>
+                  <span>•</span>
+                  <span>SSL Active</span>
+                </div>
+                
+                <h1 class="cs-story-title" style="font-size: clamp(28px, 4vw, 48px); line-height: 1.15; margin-bottom: 16px;">${proj.name}</h1>
+                <p style="font-size: 15.5px; font-weight: 300; line-height: 1.65; color: var(--ink-3); margin-bottom: 32px;">
+                  ${proj.description}
+                </p>
+
+                <div style="display: flex; gap: 24px; margin-bottom: 32px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 16px 0;">
+                  <div style="flex: 1;">
+                    <div class="cs-block-lbl" style="font-size: 10px; margin-bottom: 2px;">Client Partner</div>
+                    <div class="cs-block-txt" style="font-size: 14px; font-weight: 700; color: var(--ink-2);">${proj.client}</div>
+                  </div>
+                  <div style="flex: 1; border-left: 1px solid var(--border); padding-left: 20px;">
+                    <div class="cs-block-lbl" style="font-size: 10px; margin-bottom: 2px;">Timeline Process</div>
+                    <div class="cs-block-txt" style="font-size: 14px; font-weight: 700; color: var(--ink-2);">${proj.launchDate} Launch</div>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+                  <button class="nav-btn" style="background: var(--g-dark) !important; color: #fff !important; padding: 12px 28px;" onclick="openLivePreviewModal(${proj.id})">View Live Experience</button>
+                  <a href="${proj.domain}" target="_blank" class="btn-outline-white" style="border: 1px solid var(--border); color: var(--ink-2); padding: 11px 24px;">Visit Site ↗</a>
+                </div>
+              </div>
+
+              <!-- Right Column: Real Device frame visualizer with interactive controls -->
+              <div class="cs-preview-wrap">
+                <div style="display: flex; justify-content: space-between; width: 100%; max-width: 480px; align-items: center; margin-bottom: 8px;">
+                  <!-- Device select -->
+                  <div class="device-selectors">
+                    <button class="dev-btn active" onclick="storySwitchDevice(${proj.id}, 'laptop')">💻 Laptop</button>
+                    <button class="dev-btn" onclick="storySwitchDevice(${proj.id}, 'tablet')">📲 Tablet</button>
+                    <button class="dev-btn" onclick="storySwitchDevice(${proj.id}, 'mobile')">📱 Mobile</button>
+                  </div>
+                  <!-- Color select -->
+                  <div class="color-selectors">
+                    <span style="font-size: 9px; font-weight: 700; text-transform: uppercase; color: var(--ink-4); margin-right: 4px;">Finish</span>
+                    <button class="color-btn color-spaceblack active" onclick="storySwitchColor(${proj.id}, 'spaceblack')"></button>
+                    <button class="color-btn color-silver" onclick="storySwitchColor(${proj.id}, 'silver')"></button>
+                    <button class="color-btn color-titanium" onclick="storySwitchColor(${proj.id}, 'titanium')"></button>
+                  </div>
+                </div>
+
+                <!-- Brand selector for mobile layout -->
+                <div class="mobile-sub-selector" id="story-mobile-subbrand">
+                  <button class="brand-btn active" onclick="storySwitchBrand(${proj.id}, 'iphone16')">iPhone 16 Pro</button>
+                  <button class="brand-btn" onclick="storySwitchBrand(${proj.id}, 'galaxy25')">Galaxy S25 Ultra</button>
+                </div>
+
+                <div class="viewport-container laptop-mode" id="story-viewport-${proj.id}">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Challenge & Research -->
+        <section class="cs-story-section" id="cs-sec-challenge">
+          <div class="cs-story-content">
+            <div class="cs-story-num">01</div>
+            <h2 class="cs-story-title">Challenge & User Research</h2>
+            <div class="cs-story-grid-2">
+              <div>
+                <h3 style="font-family:'Bricolage Grotesque'; font-size:22px; color:var(--ink); margin-bottom:12px;">The Core Challenge</h3>
+                <p class="cs-story-body">${proj.challenge}</p>
+                <div class="cs-block" style="margin-top:24px;">
+                  <div class="cs-block-lbl">Business Metric Focus</div>
+                  <div class="cs-block-txt" style="color:var(--g-dark); font-weight:700;">Boost conversion flow rate & simplify user navigation patterns.</div>
+                </div>
+              </div>
+              <div>
+                <h3 style="font-family:'Bricolage Grotesque'; font-size:22px; color:var(--ink); margin-bottom:12px;">UX & Audience Insights</h3>
+                <p class="cs-story-body">${proj.researchText}</p>
+              </div>
+            </div>
+            
+            <div style="margin-top:56px; border-top:1px solid var(--border); padding-top:40px;">
+              <h3 style="font-family:'Bricolage Grotesque'; font-size:18px; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-4); margin-bottom:16px;">Delivery Roadmap</h3>
+              <div class="timeline-track">
+                ${timelineHtml}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Design & Before/After Comparison Slider -->
+        <section class="cs-story-section" id="cs-sec-design" style="background:var(--off);">
+          <div class="cs-story-content">
+            <div class="cs-story-num">02</div>
+            <h2 class="cs-story-title">UX/UI Visual Redesign</h2>
+            <div class="cs-story-grid-2" style="margin-bottom:44px;">
+              <div>
+                <p class="cs-story-body">${proj.designText}</p>
+              </div>
+              <div class="cs-story-body">
+                We constructed high-fidelity prototypes and verified usability schemas with focus cohorts, adjusting button layouts and contrast metrics to optimize call-to-action engagement rates.
+              </div>
+            </div>
+
+            <!-- Before/After slider chassis -->
+            <div class="slider-container" id="beforeAfterSlider">
+              <span class="slider-label before-lbl">Legacy Layout (Before)</span>
+              <span class="slider-label after-lbl">eParivartan Design (After)</span>
+              <div class="slider-handle" id="sliderHandle">
+                <div class="slider-handle-btn">↔</div>
+              </div>
+              <img src="${proj.desktopScreenshot}" class="slider-img slider-before" id="sliderBeforeImg" alt="Before" />
+              <img src="${proj.desktopScreenshot}" class="slider-img slider-after" alt="After" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Development & Lighthouse Gauges -->
+        <section class="cs-story-section" id="cs-sec-development">
+          <div class="cs-story-content">
+            <div class="cs-story-num">03</div>
+            <h2 class="cs-story-title">Clean Code & Performance Optimization</h2>
+            <div class="cs-story-grid-2">
+              <div>
+                <p class="cs-story-body">${proj.developmentText}</p>
+                <div class="cs-tech" style="margin-top:28px;">
+                  ${techList}
+                </div>
+              </div>
+              <div>
+                <!-- Video Walkthrough Player component -->
+                <div class="walkthrough-player-box">
+                  <video id="walkthroughVideo" src="${proj.videoWalkthrough}" muted loop autoplay playsinline></video>
+                  <button class="video-play-btn" onclick="toggleWalkthroughVideo()">
+                    <span>⏸</span> Pause Walkthrough
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lighthouse metrics section -->
+            <div style="margin-top:60px; border-top:1px solid var(--border); padding-top:40px;">
+              <h3 style="font-family:'Bricolage Grotesque'; font-size:20px; color:var(--ink); text-align:center; margin-bottom:28px;">Real Lighthouse API Audit Metrics</h3>
+              <div class="lighthouse-row" id="lighthouseGauges">
+                <div class="lh-card">
+                  <div class="lh-gauge-wrap">
+                    <svg class="lh-gauge-svg"><circle class="lh-bg-circle" cx="50" cy="50" r="45"/><circle class="lh-progress-circle" id="circle-perf" cx="50" cy="50" r="45"/></svg>
+                    <div class="lh-score-txt" id="txt-perf">0</div>
+                  </div>
+                  <div class="lh-title">Performance</div>
+                </div>
+                <div class="lh-card">
+                  <div class="lh-gauge-wrap">
+                    <svg class="lh-gauge-svg"><circle class="lh-bg-circle" cx="50" cy="50" r="45"/><circle class="lh-progress-circle" id="circle-access" cx="50" cy="50" r="45"/></svg>
+                    <div class="lh-score-txt" id="txt-access">0</div>
+                  </div>
+                  <div class="lh-title">Accessibility</div>
+                </div>
+                <div class="lh-card">
+                  <div class="lh-gauge-wrap">
+                    <svg class="lh-gauge-svg"><circle class="lh-bg-circle" cx="50" cy="50" r="45"/><circle class="lh-progress-circle" id="circle-practices" cx="50" cy="50" r="45"/></svg>
+                    <div class="lh-score-txt" id="txt-practices">0</div>
+                  </div>
+                  <div class="lh-title">Best Practices</div>
+                </div>
+                <div class="lh-card">
+                  <div class="lh-gauge-wrap">
+                    <svg class="lh-gauge-svg"><circle class="lh-bg-circle" cx="50" cy="50" r="45"/><circle class="lh-progress-circle" id="circle-seo" cx="50" cy="50" r="45"/></svg>
+                    <div class="lh-score-txt" id="txt-seo">0</div>
+                  </div>
+                  <div class="lh-title">SEO</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Results, Growth Graph & Testimonials -->
+        <section class="cs-story-section" id="cs-sec-results" style="background:var(--off);">
+          <div class="cs-story-content">
+            <div class="cs-story-num">04</div>
+            <h2 class="cs-story-title">Results & Business Value Delivered</h2>
+            
+            <div class="cs-story-grid-2">
+              <div>
+                <p class="cs-story-body" style="font-size:18px; font-weight:400; color:var(--ink-2); line-height:1.6;">
+                  Following launch, the platform recorded an immediate boost in active metrics. Seamless UX, faster API response rates, and simplified layouts boosted business value.
+                </p>
+                <div class="cs-stats-grid" style="margin-top:28px;">
+                  <div class="cs-stat-box" style="background:var(--card);">
+                    <div class="cs-stat-val" style="font-size:32px;">+${proj.trafficGrowth}</div>
+                    <div class="cs-stat-lbl">Inbound Traffic</div>
+                  </div>
+                  <div class="cs-stat-box" style="background:var(--card);">
+                    <div class="cs-stat-val" style="font-size:32px;">+${proj.conversionGrowth || proj.leadGrowth}</div>
+                    <div class="cs-stat-lbl">Conversion Growth</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Growth interactive graph SVG drawing -->
+              <div>
+                <h3 style="font-family:'Bricolage Grotesque'; font-size:18px; color:var(--ink); margin-bottom:8px;">4-Month Active Analytics Progress</h3>
+                <div class="graph-container">
+                  <svg class="graph-svg" id="resultsGrowthGraph">
+                    <defs>
+                      <linearGradient id="graph-grad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#22c55e" />
+                        <stop offset="100%" stop-color="#22c55e" stop-opacity="0" />
+                      </linearGradient>
+                    </defs>
+                    <!-- Y Axis grids -->
+                    <line class="graph-grid-line" x1="0" y1="50" x2="100%" y2="50" />
+                    <line class="graph-grid-line" x1="0" y1="120" x2="100%" y2="120" />
+                    <line class="graph-grid-line" x1="0" y1="190" x2="100%" y2="190" />
+                    
+                    <!-- Area, Line paths and nodes will be populated by JS -->
+                    <path class="graph-area-path" id="graphAreaPath" d="" />
+                    <path class="graph-glow-path" id="graphGlowPath" d="" />
+                    <path class="graph-line-path" id="graphLinePath" d="" />
+                    
+                    <!-- Nodes & Labels -->
+                    <g id="graphElementsGroup"></g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detailed testimonial -->
+            <div class="t-card" style="margin-top:64px; background:var(--card);">
+              <div class="t-quote-symbol">"</div>
+              <p class="t-quote-text" style="font-size:22px;">${proj.testimonial.quote}</p>
+              <div class="t-author-row">
+                <div class="t-profile">
+                  <div class="t-avatar">${proj.testimonial.author.split(' ').map(n=>n[0]).join('')}</div>
+                  <div>
+                    <div class="t-name">${proj.testimonial.author}</div>
+                    <div class="t-role">${proj.testimonial.role}, ${proj.testimonial.company}</div>
+                  </div>
+                </div>
+                <span class="t-outcome-pill">🚀 ${proj.testimonial.outcome}</span>
+              </div>
+            </div>
+
+            <!-- Netflix recommendations section -->
+            <div style="margin-top:80px; border-top:1px solid var(--border); padding-top:50px;">
+              <h3 style="font-family:'Bricolage Grotesque'; font-size:24px; color:var(--ink); margin-bottom:12px;">You May Also Like</h3>
+              <div class="rec-row">
+                ${relatedProjs}
+              </div>
+            </div>
+            
+            <!-- Finish Case Study btn -->
+            <div style="margin-top:64px; text-align:center;">
+              <button class="nav-btn" style="background:var(--ink) !important; color:var(--card) !important; padding:16px 40px; font-size:15px;" onclick="closeCaseStudy()">
+                Back to All Work
+              </button>
+            </div>
+          </div>
+        </section>
+      `;
+
+      // Render default device frame inside the case study view
+      storyLoadDeviceFrame(proj.id, 'laptop', 'spaceblack', 'iphone16');
+      
+      // Animate overlay open
+      mainPage.style.display = 'none';
+      window.scrollTo(0, 0);
+      overlay.classList.add('visible');
+      
+      // Setup Before/After Slider Interaction
+      initBeforeAfterSlider();
+
+      // Hook scroll intersection observer for Lighthouse gauges and Curve graphs
+      initStoryObservers(proj);
+      
+      // Hook links in generated overlays
+      hookInteractiveElements();
+    }
+
+    function closeCaseStudy() {
+      const overlay = document.getElementById('caseStudyOverlay');
+      const mainPage = document.getElementById('mainPageContent');
+      
+      overlay.classList.remove('visible');
+      mainPage.style.display = 'block';
+      currentCaseStudyId = null;
+
+      // Re-trigger scroll animations on main screen
+      document.querySelectorAll('.sr').forEach(el => srObs.observe(el));
+      
+      // Smooth scroll back to project card position
+      setTimeout(() => {
+        const activeCard = document.querySelector(`.cs-card[data-id="${currentCaseStudyId}"]`);
+        if (activeCard) {
+          activeCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 50);
+    }
+
+    function switchCaseStudy(id) {
+      // Transition directly to another project's case study
+      openCaseStudy(id);
+      document.getElementById('caseStudyOverlay').scrollTop = 0;
+    }
+
+    // Scroll tracker navigation helper
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    /* ════════════ CASE STUDY DEVICE PREVIEW CHASSIS ORCHESTRATION ════════════ */
+    let storyDeviceState = 'laptop';
+    let storyColorState = 'spaceblack';
+    let storyBrandState = 'iphone16';
+
+    function storyLoadDeviceFrame(projId, device, color, brand) {
+      const proj = projectsData.find(p => p.id === projId);
+      if (!proj) return;
+      const container = document.getElementById(`story-viewport-${projId}`);
+      if (!container) return;
+
+      container.innerHTML = storyRenderDeviceFrame(proj, device, color, brand);
+
+      const iframe = container.querySelector('iframe');
+      if (iframe) {
+        // Watchdog dynamic fallback check
+        setTimeout(() => {
+          if (iframe && !iframe.classList.contains('loaded')) {
+            console.log(`[Watchdog Triggered] Fallback to cached screenshot for Case Study.`);
+            proj.iframeAllowed = false;
+            container.innerHTML = storyRenderDeviceFrame(proj, device, color, brand);
+          }
+        }, 3000);
+      }
+    }
+
+    function storySwitchDevice(projId, device) {
+      storyDeviceState = device;
+      const wrap = document.querySelector('#cs-sec-intro .cs-preview-wrap');
+      if (!wrap) return;
+
+      wrap.querySelectorAll('.dev-btn').forEach(btn => {
+        if (btn.textContent.toLowerCase().includes(device)) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+
+      const brandSelector = document.getElementById('story-mobile-subbrand');
+      if (device === 'mobile') {
+        brandSelector.classList.add('visible');
+      } else {
+        brandSelector.classList.remove('visible');
+      }
+
+      const container = document.getElementById(`story-viewport-${projId}`);
+      container.className = `viewport-container ${device}-mode`;
+
+      storyLoadDeviceFrame(projId, device, storyColorState, storyBrandState);
+    }
+
+    function storySwitchColor(projId, color) {
+      storyColorState = color;
+      const wrap = document.querySelector('#cs-sec-intro .cs-preview-wrap');
+      if (!wrap) return;
+
+      wrap.querySelectorAll('.color-btn').forEach(btn => {
+        if (btn.classList.contains(`color-${color}`)) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+
+      storyLoadDeviceFrame(projId, storyDeviceState, color, storyBrandState);
+    }
+
+    function storySwitchBrand(projId, brand) {
+      storyBrandState = brand;
+      const wrap = document.querySelector('#cs-sec-intro .cs-preview-wrap');
+      if (!wrap) return;
+
+      wrap.querySelectorAll('.brand-btn').forEach(btn => {
+        const brandLabel = brand === 'iphone16' ? 'iphone' : 'galaxy';
+        if (btn.textContent.toLowerCase().includes(brandLabel)) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+
+      storyLoadDeviceFrame(projId, 'mobile', storyColorState, brand);
+    }
+
+    function storyRenderDeviceFrame(proj, device, color, brand) {
+      const isAllowed = proj.iframeAllowed;
+      const domainName = proj.domain.replace('https://', '').replace('www.', '');
+      
+      // Determine hex chassis color
+      let chassisHex = '#1f2937'; // spaceblack
+      if (color === 'silver') chassisHex = '#e5e7eb';
+      else if (color === 'titanium') chassisHex = '#8c8580';
+
+      if (device === 'laptop') {
+        return `
+          <div class="laptop-frame" style="border-color: ${chassisHex}; width:480px; height:280px;">
+            <div class="browser-chrome">
+              <div class="chrome-buttons">
+                <div class="chrome-btn" style="background:#ff5f57"></div>
+                <div class="chrome-btn" style="background:#febc2e"></div>
+                <div class="chrome-btn" style="background:#28c840"></div>
+              </div>
+              <div class="chrome-address-bar">
+                <span class="lock">🔒</span>
+                <span>${domainName}</span>
+              </div>
+            </div>
+            <div class="screen-content-wrapper">
+              ${isAllowed ? `
+                <iframe src="${proj.domain}" onload="this.classList.add('loaded')"></iframe>
+              ` : `
+                <img src="${proj.desktopScreenshot}" style="width:100%; height:100%; object-fit:cover; object-position:top;" alt="Desktop Layout" />
+              `}
+            </div>
+            <div class="laptop-base-lip" style="display:block; background: ${color === 'spaceblack' ? '#4b5563' : '#d1d5db'};"></div>
+          </div>
+        `;
+      } else if (device === 'tablet') {
+        return `
+          <div class="tablet-frame" style="border-color: ${chassisHex}; width:270px; height:400px; border-radius:18px;">
+            <div class="screen-content-wrapper" style="border-radius:6px;">
+              ${isAllowed ? `
+                <iframe src="${proj.domain}" onload="this.classList.add('loaded')"></iframe>
+              ` : `
+                <img src="${proj.tabletScreenshot}" style="width:100%; height:100%; object-fit:cover; object-position:top;" alt="Tablet Layout" />
+              `}
+            </div>
+          </div>
+        `;
+      } else if (device === 'mobile') {
+        let bezelStyle = `border: 8px solid ${chassisHex}; border-radius: 26px;`;
+        let notchClass = "camera-dynamic-island";
+        
+        if (brand === 'galaxy25') {
+          bezelStyle = `border: 6px solid ${chassisHex}; border-radius: 20px;`;
+          notchClass = "camera-punch-hole";
+        }
+
+        return `
+          <div class="mobile-frame" style="${bezelStyle} width:170px; height:330px;">
+            <div class="screen-camera ${notchClass}"></div>
+            <div class="screen-content-wrapper" style="border-radius:16px;">
+              ${isAllowed ? `
+                <iframe src="${proj.domain}" onload="this.classList.add('loaded')"></iframe>
+              ` : `
+                <img src="${proj.mobileScreenshot}" style="width:100%; height:100%; object-fit:cover; object-position:top;" alt="Mobile Layout" />
+              `}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    /* ════════════ DRAGGABLE BEFORE/AFTER COMPARISON SLIDER ════════════ */
+    function initBeforeAfterSlider() {
+      const slider = document.getElementById('beforeAfterSlider');
+      const handle = document.getElementById('sliderHandle');
+      const beforeImg = document.getElementById('sliderBeforeImg');
+      
+      if (!slider || !handle || !beforeImg) return;
+
+      let isDragging = false;
+
+      function updateSlider(clientX) {
+        const rect = slider.getBoundingClientRect();
+        let x = clientX - rect.left;
+        
+        // Clamp bounds
+        if (x < 0) x = 0;
+        if (x > rect.width) x = rect.width;
+        
+        const pct = (x / rect.width) * 100;
+        handle.style.left = `${pct}%`;
+        beforeImg.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+      }
+
+      // Mouse Event Hooks
+      handle.addEventListener('mousedown', () => isDragging = true);
+      window.addEventListener('mouseup', () => isDragging = false);
+      
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        updateSlider(e.clientX);
+      });
+
+      // Touch Event Hooks for Mobile
+      handle.addEventListener('touchstart', () => isDragging = true);
+      window.addEventListener('touchend', () => isDragging = false);
+      
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        if (e.touches.length > 0) {
+          updateSlider(e.touches[0].clientX);
+        }
+      });
+
+      // Initial alignment center
+      setTimeout(() => {
+        const rect = slider.getBoundingClientRect();
+        updateSlider(rect.left + rect.width / 2);
+      }, 200);
+    }
+
+    /* ════════════ VIDEO CASE STUDY PLAY CONTROLLER ════════════ */
+    function toggleWalkthroughVideo() {
+      const video = document.getElementById('walkthroughVideo');
+      const btn = document.querySelector('.video-play-btn');
+      if (!video || !btn) return;
+
+      if (video.paused) {
+        video.play();
+        btn.innerHTML = '<span>⏸</span> Pause Walkthrough';
+      } else {
+        video.pause();
+        btn.innerHTML = '<span>▶</span> Play Walkthrough';
+      }
+    }
+
+    /* ════════════ STORY INTERSECTION ANIMATIONS ════════════ */
+    function initStoryObservers(proj) {
+      // 1. Highlight Side Tracker dots based on scroll section in overlay
+      const overlay = document.getElementById('caseStudyOverlay');
+      const sections = ['cs-sec-intro', 'cs-sec-challenge', 'cs-sec-design', 'cs-sec-development', 'cs-sec-results'];
+      const trackerDots = document.querySelectorAll('.tracker-dot');
+
+      overlay.addEventListener('scroll', () => {
+        let currentSec = 'cs-sec-intro';
+        sections.forEach(secId => {
+          const sec = document.getElementById(secId);
+          if (sec) {
+            const top = sec.getBoundingClientRect().top;
+            if (top <= window.innerHeight * 0.45) {
+              currentSec = secId;
+            }
+          }
+        });
+
+        // Update dot highlight
+        trackerDots.forEach(dot => {
+          const targetId = dot.getAttribute('onclick').replace("scrollToSection('", "").replace("')", "");
+          if (targetId === currentSec) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }, { passive: true });
+
+      // 2. Animate Lighthouse SVG Meters on view entry
+      const lhObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            lhObserver.unobserve(entry.target);
+            animateLighthouseGauges(proj.lighthouse);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      const gaugesEl = document.getElementById('lighthouseGauges');
+      if (gaugesEl) lhObserver.observe(gaugesEl);
+
+      // 3. Animate Growth Graph Path drawing on entry
+      const graphObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            graphObserver.unobserve(entry.target);
+            animateGrowthGraph(proj.growthData);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      const graphEl = document.getElementById('resultsGrowthGraph');
+      if (graphEl) graphObserver.observe(graphEl);
+    }
+
+    function animateLighthouseGauges(scores) {
+      const gMap = [
+        { cId: 'circle-perf', tId: 'txt-perf', target: scores.performance },
+        { cId: 'circle-access', tId: 'txt-access', target: scores.accessibility },
+        { cId: 'circle-practices', tId: 'txt-practices', target: scores.bestPractices },
+        { cId: 'circle-seo', tId: 'txt-seo', target: scores.seo }
+      ];
+
+      gMap.forEach(item => {
+        const circle = document.getElementById(item.cId);
+        const txt = document.getElementById(item.tId);
+        if (!circle || !txt) return;
+
+        // Animate stroke circle offset
+        const radius = circle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+        circle.style.strokeDasharray = `${circumference}`;
+        
+        const offsetVal = circumference - (item.target / 100) * circumference;
+        circle.style.strokeDashoffset = `${offsetVal}`;
+
+        // Animate number count text
+        animateNumber(txt, item.target, false, 1500);
+      });
+    }
+
+    function animateGrowthGraph(growth) {
+      const linePath = document.getElementById('graphLinePath');
+      const glowPath = document.getElementById('graphGlowPath');
+      const areaPath = document.getElementById('graphAreaPath');
+      const elementsGrp = document.getElementById('graphElementsGroup');
+      
+      if (!linePath || !glowPath || !areaPath || !elementsGrp) return;
+
+      const container = document.getElementById('resultsGrowthGraph');
+      const w = container.clientWidth || 380;
+      const h = container.clientHeight || 280;
+
+      // Construct dynamic coordinate paths
+      const paddingX = 40;
+      const paddingY = 30;
+      const graphWidth = w - paddingX * 2;
+      const graphHeight = h - paddingY * 2;
+
+      const stepX = graphWidth / (growth.values.length - 1);
+      const maxVal = Math.max(...growth.values) * 1.15;
+
+      let coords = [];
+      growth.values.forEach((val, idx) => {
+        const cx = paddingX + idx * stepX;
+        const cy = h - paddingY - (val / maxVal) * graphHeight;
+        coords.push({ x: cx, y: cy, label: growth.months[idx], val: val });
+      });
+
+      // SVG Path generators
+      let lineD = `M ${coords[0].x} ${coords[0].y}`;
+      let areaD = `M ${coords[0].x} ${coords[0].y}`;
+
+      for (let i = 1; i < coords.length; i++) {
+        // Curve fit
+        const cpX1 = coords[i-1].x + stepX / 3;
+        const cpY1 = coords[i-1].y;
+        const cpX2 = coords[i].x - stepX / 3;
+        const cpY2 = coords[i].y;
+        
+        lineD += ` C ${cpX1} ${cpY1}, ${cpX2} ${cpY2}, ${coords[i].x} ${coords[i].y}`;
+        areaD += ` C ${cpX1} ${cpY1}, ${cpX2} ${cpY2}, ${coords[i].x} ${coords[i].y}`;
+      }
+
+      // Close area path
+      areaD += ` L ${coords[coords.length-1].x} ${h - paddingY} L ${coords[0].x} ${h - paddingY} Z`;
+
+      // Apply coordinates to elements
+      linePath.setAttribute('d', lineD);
+      glowPath.setAttribute('d', lineD);
+      areaPath.setAttribute('d', areaD);
+
+      // Trigger draw dashoffset
+      setTimeout(() => {
+        linePath.style.strokeDashoffset = '0';
+        glowPath.style.strokeDashoffset = '0';
+        areaPath.classList.add('visible');
+      }, 100);
+
+      // Render nodes & axes dynamically
+      let grpMarkup = '';
+      coords.forEach(pt => {
+        grpMarkup += `
+          <!-- Axis Node Circle -->
+          <circle class="graph-node" cx="${pt.x}" cy="${pt.y}" r="0" style="transform-origin: ${pt.x}px ${pt.y}px; animation: scale-node 0.4s ease forwards 1s;" />
+          
+          <!-- Month Text Label -->
+          <text class="graph-axis-lbl" x="${pt.x}" y="${h - 8}" text-anchor="middle">${pt.label}</text>
+          
+          <!-- Value Label -->
+          <text class="graph-axis-lbl" x="${pt.x}" y="${pt.y - 12}" text-anchor="middle" style="font-weight:700; fill:var(--g-dark)">${pt.val}%</text>
+        `;
+      });
+      elementsGrp.innerHTML = grpMarkup;
+    }
+
+    /* ════════════ FULLSCREEN LIVE SITE PREVIEW MODAL ════════════ */
+    function openLivePreviewModal(projectId) {
+      const proj = projectsData.find(p => p.id === projectId);
+      if (!proj) return;
+
+      const modal = document.getElementById('livePreviewModal');
+      const addressBar = document.getElementById('modalAddressBar');
+      const container = document.getElementById('modalIframeContainer');
+
+      addressBar.textContent = proj.domain;
+      
+      if (proj.iframeAllowed) {
+        container.innerHTML = `
+          <div class="loading-shimmer">
+            <div class="shimmer-bar w-40"></div>
+            <div class="shimmer-bar w-100"></div>
+            <div class="shimmer-block"></div>
+          </div>
+          <iframe src="${proj.domain}" onload="this.closest('.modal-iframe-wrap').querySelector('.loading-shimmer').style.display='none'"></iframe>
+        `;
+      } else {
+        // Fallback layout displaying the captured screenshot vertically scrollable
+        container.innerHTML = `
+          <div style="background:#f3f4f6; border-bottom:1px solid #e5e7eb; padding:12px 24px; text-align:center;">
+            <span style="font-size:12.5px; font-weight:600; color:var(--ink-3);">🔒 Security Sandboxed Screenshot Fallback (Framing Blocked by Host Headers)</span>
+          </div>
+          <img src="${proj.desktopScreenshot}" style="width:100%; height:auto; display:block;" alt="Interactive Fallback Desktop Frame" />
+        `;
+      }
+
+      modal.classList.add('visible');
+      hookInteractiveElements();
+    }
+
+    function closeLivePreview() {
+      const modal = document.getElementById('livePreviewModal');
+      const container = document.getElementById('modalIframeContainer');
+      modal.classList.remove('visible');
+      container.innerHTML = ''; // Clear DOM memory
+    }
+
+    /* ════════════ INIT PAGE ON LOAD ════════════ */
+    document.addEventListener('DOMContentLoaded', () => {
+      initProjects();
+      
+      // Hook scroll reveal elements
+      document.querySelectorAll('.sr').forEach(el => srObs.observe(el));
+    });
+  </script>
+</body>
+</html>
