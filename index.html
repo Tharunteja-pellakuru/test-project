@@ -432,13 +432,22 @@ body::before {
   height: 62px;
   padding: 13px;
 }
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
   .eco-node.size-large,
   .eco-node.size-medium,
   .eco-node.size-small {
-    width: 50px;
-    height: 50px;
-    padding: 10px;
+    width: 54px;
+    height: 54px;
+    padding: 11px;
+  }
+}
+@media (max-width: 768px) {
+  .eco-node.size-large,
+  .eco-node.size-medium,
+  .eco-node.size-small {
+    width: 46px;
+    height: 46px;
+    padding: 9px;
   }
 }
 
@@ -457,10 +466,37 @@ body::before {
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 480px) {
+.eco-node .hub-leaf-icon {
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: contain;
+  margin-bottom: 6px;
+  animation: logo-drift 6s ease-in-out infinite alternate;
+}
+@keyframes logo-drift {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-3px) scale(1.03); }
+}
+@media (max-width: 1024px) {
   .eco-node.node-center {
-    width: 130px;
-    height: 130px;
+    width: 140px;
+    height: 140px;
+  }
+  .eco-node .hub-leaf-icon {
+    width: 70px !important;
+    height: 70px !important;
+    margin-bottom: 4px;
+  }
+}
+@media (max-width: 640px) {
+  .eco-node.node-center {
+    width: 120px;
+    height: 120px;
+  }
+  .eco-node .hub-leaf-icon {
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 2px;
   }
 }
 
@@ -890,6 +926,7 @@ body::before {
 .portfolio-laptop-mockup {
   position: relative;
   height: 100%;
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1291,6 +1328,8 @@ footer {
   .tech-grid { grid-template-columns: repeat(4, 1fr); }
   .portfolio-grid { grid-template-columns: 1fr; }
   .portfolio-card.large { grid-column: span 1; }
+  .portfolio-img { height: 260px; }
+  .portfolio-card.large .portfolio-img { height: 260px; }
 }
 
 @media (max-width: 960px) {
@@ -1307,12 +1346,17 @@ footer {
   .tech-grid { grid-template-columns: repeat(3, 1fr); }
   .services-header { flex-direction: column; align-items: flex-start; gap: 16px; }
   .wrap { padding: 0 28px; }
+  .portfolio-img { height: 240px; }
+  .portfolio-card.large .portfolio-img { height: 240px; }
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
 }
 
 @media (max-width: 640px) {
-  .nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
   .hero { padding: 90px 24px 72px; }
   .services { padding: 80px 24px; }
   .services-grid { grid-template-columns: 1fr; }
@@ -1322,6 +1366,8 @@ footer {
   .process-section { padding: 80px 24px; }
   .process-grid { grid-template-columns: 1fr; }
   .portfolio-section { padding: 80px 24px; }
+  .portfolio-img { height: 180px; }
+  .portfolio-card.large .portfolio-img { height: 180px; }
   .clients-section { padding: 60px 24px; }
   .tech-section { padding: 80px 24px; }
   .tech-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1337,6 +1383,12 @@ footer {
   body { cursor: auto; }
   .calc-tabs { flex-direction: column; }
 }
+
+@media (max-width: 480px) {
+  .portfolio-img { height: 150px; }
+  .portfolio-card.large .portfolio-img { height: 150px; }
+}
+
 
 /* ── PREMIUM PAGE LOADER ── */
 #page-loader {
@@ -1669,9 +1721,8 @@ footer {
         <svg id="ecosystemCanvas" class="ecosystem-canvas"></svg>
         <div class="eco-node node-center" id="node-center">
           <div class="eco-center-inner">
-            <div class="hub-logo"><span class="hub-logo-dot">e</span>Parivartan<span class="hub-nav-logo-dot"></span></div>
-            <div class="hub-tagline">Digital Engineering</div>
-            <div class="hub-since">Since 2000</div>
+            <img src="Parivartan Leaf.png" class="hub-leaf-icon" alt="eParivartan Leaf Logo" draggable="false">
+            <div class="hub-logo">eParivartan<span class="hub-nav-logo-dot"></span></div>
           </div>
         </div>
       </div>
@@ -2727,8 +2778,16 @@ function tickTechEcosystem(timestamp) {
   const innerNodes = ecoNodes.filter(n => n.id !== 'center' && n.size !== 'small');
   const outerNodes = ecoNodes.filter(n => n.id !== 'center' && n.size === 'small');
 
-  const innerRadius = Math.min(w, h) * 0.26;
-  const outerRadius = Math.min(w, h) * 0.43;
+  let innerRadius = Math.min(w, h) * 0.26;
+  let outerRadius = Math.min(w, h) * 0.43;
+
+  if (window.innerWidth < 768) {
+    innerRadius = Math.min(w, h) * 0.21;
+    outerRadius = Math.min(w, h) * 0.35;
+  } else if (window.innerWidth < 1024) {
+    innerRadius = Math.min(w, h) * 0.24;
+    outerRadius = Math.min(w, h) * 0.39;
+  }
 
   const innerRotation = time * 0.03;          // slow clockwise rotation
   const outerRotation = time * -0.015;         // slow counter-clockwise rotation
