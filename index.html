@@ -6,7 +6,7 @@
 <title>eParivartan — Design. Strategy. Growth.</title>
 <meta name="description" content="eParivartan is a full-service digital agency building high-performance websites, mobile apps, and digital strategies that grow your business.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════
    DESIGN TOKENS — UPGRADE #12: Richer Color System
@@ -128,6 +128,12 @@ body::before {
   font-weight: 800; font-size: 21px;
   letter-spacing: -0.04em;
   display: flex; align-items: center; gap: 2px;
+}
+.nav-logo img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 .nav-logo-dot {
   width: 8px; height: 8px; background: var(--g);
@@ -328,26 +334,72 @@ body::before {
 }
 .btn-outline:hover { border-color: var(--g); background: var(--g-soft); transform: translateY(-2px); }
 
-.hero-social-proof {
-  display: flex; align-items: center; gap: 16px; margin-top: 44px;
-  opacity: 0; animation: slide-up 0.8s var(--transition) 0.56s forwards;
+.hero-stats-badges {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 44px;
+  opacity: 0;
+  animation: slide-up 0.8s var(--transition) 0.56s forwards;
+  flex-wrap: wrap;
 }
-.avatars { display: flex; }
-.avatar {
-  width: 38px; height: 38px; border-radius: 50%;
-  border: 2.5px solid var(--card);
-  background: var(--g-soft);
-  display: flex; align-items: center; justify-content: center;
+.stat-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-badge-num {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 12px; font-weight: 700; color: var(--g-dark);
-  margin-left: -11px; position: relative;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  background: var(--g-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.avatar:first-child { margin-left: 0; }
-.avatar:nth-child(2) { background: #e0f2e9; }
-.avatar:nth-child(3) { background: var(--g-grad); color: #fff; }
-.avatar:nth-child(4) { background: var(--ink); color: #fff; }
-.proof-text { font-size: 13px; color: var(--ink-3); line-height: 1.45; letter-spacing: -0.01em; }
-.proof-text strong { color: var(--ink); font-weight: 600; display: block; }
+.stat-badge-lbl {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-3);
+  letter-spacing: -0.01em;
+}
+.stat-badge-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(8, 14, 10, 0.08);
+}
+@media (max-width: 480px) {
+  .hero-stats-badges {
+    gap: 16px;
+  }
+  .stat-badge-divider {
+    display: none;
+  }
+  .stat-badge {
+    background: rgba(8, 14, 10, 0.02);
+    border: 1px solid rgba(8, 14, 10, 0.05);
+    padding: 8px 16px;
+    border-radius: 12px;
+    flex: 1 1 calc(50% - 8px);
+    align-items: center;
+    text-align: center;
+  }
+  .stat-badge:last-child {
+    flex: 1 1 100%;
+  }
+}
+
+/* Pulsing logo and brand dots */
+.nav-logo-dot, .hub-nav-logo-dot {
+  animation: dotPulse 2s infinite ease-in-out;
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.8); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 8px 2px rgba(34, 197, 94, 0.6); }
+}
 
 /* Hero Visual - Premium Technology Ecosystem */
 .hero-visual {
@@ -573,11 +625,25 @@ body::before {
   stroke-width: 1.5;
   fill: none;
   transition: stroke 0.3s, stroke-width 0.3s;
+  animation: lineGlow 4s ease-in-out infinite alternate;
+}
+@keyframes lineGlow {
+  0% { stroke: rgba(34, 197, 94, 0.05); stroke-width: 1.2; }
+  100% { stroke: rgba(34, 197, 94, 0.14); stroke-width: 1.8; filter: drop-shadow(0 0 1px rgba(34,197,94,0.15)); }
 }
 
-.connection-line.highlighted {
-  stroke: rgba(34, 197, 94, 0.45);
-  stroke-width: 2.2;
+.connection-line.highlighted,
+.connection-line.hover-center-line {
+  stroke: rgba(34, 197, 94, 0.85) !important;
+  stroke-width: 2.2 !important;
+  filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.65)) !important;
+  stroke-dasharray: 4;
+  animation: hoverLineAnim 0.8s linear infinite !important;
+}
+@keyframes hoverLineAnim {
+  to {
+    stroke-dashoffset: -8;
+  }
 }
 
 .connection-line.dimmed {
@@ -596,12 +662,24 @@ body::before {
   transform: translate(-50%, -50%) scale(1.06);
 }
 
+.eco-node.node-center.highlighted {
+  border-color: var(--g) !important;
+  box-shadow: 0 16px 48px rgba(34, 197, 94, 0.25), 0 0 16px rgba(34, 197, 94, 0.2) !important;
+  transform: translate(-50%, -50%) scale(1.03) !important;
+}
+
 /* Data Flow Particles */
 .eco-particle {
   fill: var(--g-accent);
   filter: drop-shadow(0 0 3px var(--g));
   opacity: 0.85;
+  animation: particlePulse 3s infinite ease-in-out;
 }
+@keyframes particlePulse {
+  0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px var(--g)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 6px var(--g)); }
+}
+
 
 /* ════════════════════════════════
    TICKER / MARQUEE
@@ -609,6 +687,13 @@ body::before {
 .ticker {
   background: var(--ink); padding: 16px 0; overflow: hidden;
   position: relative;
+}
+.hero .ticker {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
 }
 .ticker::before, .ticker::after {
   content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
@@ -678,100 +763,337 @@ body::before {
 /* ════════════════════════════════
    UPGRADE #1 + #2: Premium Glass Service Cards + Spotlight
 ════════════════════════════════ */
-.services { padding: 120px 40px; background: var(--off); }
-.services-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 64px; gap: 32px; flex-wrap: wrap;
+.services {
+  padding: 120px 40px;
+  background: var(--off);
+  position: relative;
+  overflow: hidden;
 }
+/* ═══ SERVICES LAYOUT: Left (text + stats) | Right (accordion cards) ═══ */
+.services-layout {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* LEFT PANEL: heading → description → trusted → stats */
+.services-left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding-top: 8px;
+}
+.services-left-panel-text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.services-left-panel .section-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-top: 16px;
+}
+.services-left-panel .section-body {
+  max-width: 100%;
+  font-size: 18px;
+  line-height: 1.65;
+}
+.services-left-panel .section-title span.highlight-script {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  color: var(--g);
+  font-size: 1.25em;
+  display: inline-block;
+  line-height: 0.9;
+}
+
+/* Handwritten arrow & annotation */
+.trusted-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0 44px;
+}
+.trusted-arrow {
+  color: var(--g);
+  width: 44px;
+  height: 44px;
+}
+.trusted-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+.trusted-text {
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--g-dark);
+  transform: rotate(-3deg);
+  display: inline-block;
+}
+
+/* Stats: 2x2 grid in the left panel */
+.services-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.service-stat-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 18px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 20px rgba(8, 14, 10, 0.02);
+  transition: transform 0.3s var(--transition), box-shadow 0.3s, border-color 0.3s;
+}
+.service-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.06);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+.stat-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--g-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--g);
+  flex-shrink: 0;
+}
+.stat-icon-wrapper svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2px;
+}
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+.stat-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.stat-lbl {
+  font-size: 11px;
+  color: var(--ink-4);
+  font-weight: 500;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* ═══ HORIZONTAL ACCORDION CARDS ═══ */
 .services-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 520px;
 }
 .service-card {
-  backdrop-filter: blur(20px);
-  background: rgba(255,255,255,0.82);
-  border: 1px solid rgba(255,255,255,0.35);
-  box-shadow:
-    0 20px 60px rgba(8,14,10,0.07),
-    inset 0 1px rgba(255,255,255,0.6);
-  border-radius: var(--r-lg); padding: 36px 32px;
-  position: relative; overflow: hidden;
-  transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition), border-color 0.3s;
-  cursor: default;
+  flex: 0 0 60px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.07);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition:
+    flex 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease;
 }
-/* Moving gradient border */
-.service-card::before {
-  content: '';
-  position: absolute; inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(120deg, transparent, rgba(34,197,94,0.45), rgba(74,222,128,0.3), transparent);
-  opacity: 0;
-  transition: opacity 0.5s;
-  z-index: 0;
+.service-card:hover, .service-card.active {
+  flex: 1;
+  border-color: rgba(34,197,94,0.35);
+  box-shadow: 0 20px 48px rgba(34,197,94,0.1), 0 0 0 1px rgba(34,197,94,0.06);
 }
-.service-card:hover::before { opacity: 1; }
-
-/* Spotlight layer */
-.service-card .spotlight {
+.service-card.highlighted {
+  border-color: rgba(34,197,94,0.3);
+  background: linear-gradient(145deg, #ffffff 60%, #f0fdf4);
+}
+/* Collapsed pill label */
+.acc-label {
   position: absolute;
-  width: 280px; height: 280px;
-  background: radial-gradient(circle, rgba(34,197,94,0.14), transparent 70%);
+  inset: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 24px;
+  gap: 24px;
+  opacity: 1;
+  transition: opacity 0.2s ease;
   pointer-events: none;
-  border-radius: 50%;
-  transform: translate(var(--x, -50%), var(--y, -50%)) translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: 0;
-  top: 0; left: 0;
-}
-.service-card:hover .spotlight { opacity: 1; }
-
-.service-card > * { position: relative; z-index: 1; }
-
-.service-card::after {
-  content: ''; position: absolute;
-  bottom: 0; left: 1px; right: 1px; height: 2px;
-  background: var(--g-grad);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.5s var(--transition);
   z-index: 2;
 }
-.service-card:hover {
-  transform: translateY(-8px) rotateX(2deg);
-  box-shadow: 0 30px 70px rgba(8,14,10,0.13), 0 0 0 1px rgba(34,197,94,0.2);
+.service-card:hover .acc-label, .service-card.active .acc-label {
+  opacity: 0;
 }
-.service-card:hover::after { transform: scaleX(1); }
-
-.svc-num {
+.acc-num {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 800; font-size: 11px; color: var(--ink-4);
-  letter-spacing: 0.1em; margin-bottom: 24px;
-  display: flex; align-items: center; justify-content: space-between;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--g-dark);
+  letter-spacing: 0.05em;
 }
-.svc-icon {
-  width: 52px; height: 52px; border-radius: 14px;
-  background: var(--g-soft); border: 1px solid var(--border-dark);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; margin-bottom: 20px;
-  transition: background 0.3s, transform 0.3s;
+.acc-title-vert {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
-.service-card:hover .svc-icon { background: var(--g-grad); transform: scale(1.05) rotate(-3deg); }
+/* Expanded content */
+.acc-content {
+  position: absolute;
+  inset: 0;
+  padding: 20px 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.35s ease 0.15s,
+    transform 0.35s ease 0.15s;
+  overflow: hidden;
+}
+.service-card:hover .acc-content, .service-card.active .acc-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+.acc-text-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  max-width: 65%;
+}
+.acc-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.svc-card-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--g-dark);
+}
 .svc-name {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 700; font-size: 20px; color: var(--ink);
-  margin-bottom: 10px; letter-spacing: -0.03em;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.02em;
 }
 .svc-desc {
-  font-size: 14.5px; color: var(--ink-3); line-height: 1.65;
-  margin-bottom: 24px; font-weight: 300;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-3);
+  margin: 0;
 }
-.svc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.svc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.acc-illus {
+  width: 140px;
+  height: 90px;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+.card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #000;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  padding: 5px 10px;
+  border-radius: 100px;
+  z-index: 10;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.3s;
+}
+.service-card.active .card-badge { opacity: 1; }
+.svc-card-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--g-dark);
+  letter-spacing: 0.06em;
+}
+.svc-name {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--ink);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  white-space: nowrap;
+}
+.svc-accent-line {
+  width: 24px;
+  height: 2px;
+  background: var(--g);
+  margin: 8px 0 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.svc-desc {
+  font-size: 13.5px;
+  color: var(--ink-3);
+  line-height: 1.6;
+  font-weight: 400;
+  flex: 1;
+}
+.svc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 14px;
+}
 .tag-pill {
-  font-size: 11.5px; padding: 4px 11px; border-radius: 100px;
-  background: var(--off); color: var(--ink-4);
-  border: 1px solid var(--border); font-weight: 500;
-  transition: background 0.2s, color 0.2s;
+  font-size: 10.5px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  background: var(--g-soft);
+  color: var(--g-dark);
+  border: 1px solid rgba(34,197,94,0.1);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
 }
-.service-card:hover .tag-pill { background: var(--g-soft); color: var(--g-dark); border-color: var(--border-dark); }
+.service-card.active .tag-pill {
+  background: var(--g);
+  color: #fff;
+  border-color: var(--g);
+}
 
 /* ════════════════════════════════
    UPGRADE #4: Bento Grid Stats
@@ -1335,7 +1657,11 @@ footer {
 @media (max-width: 960px) {
   .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
   .hero-visual { display: block; width: 100%; max-width: 500px; margin: 0 auto; }
-  .services-grid { grid-template-columns: 1fr 1fr; }
+  /* Stack services left/right panels */
+  .services-layout { grid-template-columns: 1fr; gap: 40px; }
+  .services-left-panel { gap: 28px; }
+  .services-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { height: 480px; }
   .stats-inner { grid-template-columns: 1fr; gap: 60px; }
   .process-grid { grid-template-columns: 1fr 1fr; }
   .process-connector { display: none; }
@@ -1354,12 +1680,22 @@ footer {
   .nav { padding: 0 24px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
+  .services-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { display: flex; flex-direction: column; gap: 8px; height: 480px; }
 }
 
 @media (max-width: 640px) {
   .hero { padding: 90px 24px 72px; }
   .services { padding: 80px 24px; }
-  .services-grid { grid-template-columns: 1fr; }
+  .services-layout { gap: 32px; }
+  .services-stats-grid { grid-template-columns: 1fr 1fr; }
+  .services-grid { display: flex; flex-direction: column; gap: 6px; height: 440px; }
+  .service-card { flex: 0 0 52px; }
+  .acc-content { padding: 14px 20px; gap: 0; }
+  .acc-text-col { max-width: 100%; }
+  .acc-illus { display: none; }
+  .acc-label { padding: 0 16px; gap: 16px; }
+  .acc-title-vert { font-size: 13px; }
   .stats-section { padding: 80px 24px; }
   .bento-grid { grid-template-columns: 1fr; }
   .bento-cell.accent { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -1655,6 +1991,7 @@ footer {
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <span class="mobile-close" id="mobileClose">✕</span>
+  <a href="#home" onclick="closeMobile()">Home</a>
   <a href="#services" onclick="closeMobile()">Services</a>
   <a href="work.html" onclick="closeMobile()">Work</a>
   <a href="#process" onclick="closeMobile()">Process</a>
@@ -1667,9 +2004,10 @@ footer {
 <nav class="nav" id="navbar">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <span>e</span><span>Parivartan</span><span class="nav-logo-dot"></span>
+      <img src="Parivartan_Logo.png" alt="eParivartan Logo">
     </a>
     <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="work.html">Work</a></li>
       <li><a href="#process">Process</a></li>
@@ -1689,29 +2027,32 @@ footer {
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-eyebrow">
-        <span class="eyebrow-pip">✦</span>
-        Full-Service Digital Agency · Since 2000
+        <span class="eyebrow-pip">✦</span> Trusted Digital Partner Since 2002
       </div>
       <h1 class="hero-h1">
         We Build<br>
         Websites That<br>
         <em>Grow</em> <span class="outline-text">Businesses.</span>
       </h1>
-      <p class="hero-sub">From stunning websites to powerful mobile apps — we design, build, and scale digital experiences that convert visitors into loyal customers.</p>
+      <p class="hero-sub">Helping businesses scale online through websites, mobile apps, and digital platforms trusted for over 24 years.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-ink" data-cursor="Let's Talk">Start Your Project <span class="arr">→</span></a>
-        <a href="#services" class="btn-outline" data-cursor="View →">Explore Services</a>
+        <a href="#services" class="btn-outline">Explore Services</a>
       </div>
-      <div class="hero-social-proof">
-        <div class="avatars">
-          <div class="avatar">VY</div>
-          <div class="avatar">CA</div>
-          <div class="avatar">RK</div>
-          <div class="avatar">+</div>
+      <div class="hero-stats-badges">
+        <div class="stat-badge">
+          <span class="stat-badge-num">1,000+</span>
+          <span class="stat-badge-lbl">Projects Delivered</span>
         </div>
-        <div class="proof-text">
-          <strong>100+ happy clients</strong>
-          across industries — and growing
+        <div class="stat-badge-divider"></div>
+        <div class="stat-badge">
+          <span class="stat-badge-num">24 Yrs</span>
+          <span class="stat-badge-lbl">Experience</span>
+        </div>
+        <div class="stat-badge-divider"></div>
+        <div class="stat-badge">
+          <span class="stat-badge-num">20+</span>
+          <span class="stat-badge-lbl">Industries Served</span>
         </div>
       </div>
     </div>
@@ -1728,108 +2069,270 @@ footer {
       </div>
     </div>
   </div>
-</section>
 
-<!-- ══════ TICKER ══════ -->
-<div class="ticker">
-  <div class="ticker-track">
-    <div class="ticker-item"><span class="ticker-star">✦</span> Web Design</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> WordPress Development</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> React Applications</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> Shopify Stores</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> Mobile Apps</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> UI/UX Design</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> SEO Strategy</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> Node.js Backend</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> Digital Marketing</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> E-Commerce</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> Web Design</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> WordPress Development</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> React Applications</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> Shopify Stores</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> Mobile Apps</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> UI/UX Design</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> SEO Strategy</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> Node.js Backend</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> Digital Marketing</div>
-    <div class="ticker-item"><span class="ticker-star">✦</span> E-Commerce</div>
+  <!-- ══════ TICKER ══════ -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="ticker-star">✦</span> Web Design</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> WordPress Development</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> React Applications</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> Shopify Stores</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> Mobile Apps</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> UI/UX Design</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> SEO Strategy</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> Node.js Backend</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> Digital Marketing</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> E-Commerce</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> Web Design</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> WordPress Development</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> React Applications</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> Shopify Stores</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> Mobile Apps</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> UI/UX Design</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> SEO Strategy</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> Node.js Backend</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> Digital Marketing</div>
+      <div class="ticker-item"><span class="ticker-star">✦</span> E-Commerce</div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- ══════ SERVICES — UPGRADE #1 + #2 ══════ -->
 <section class="services" id="services">
+  <div class="services-grid-bg"></div>
   <div class="wrap">
-    <div class="services-header">
-      <div class="sr">
-        <div class="section-label">What We Do</div>
-        <h2 class="section-title">End-to-End Digital<br>Services Built for <em>Results</em></h2>
-      </div>
-      <p class="section-body sr sr-d2" style="max-width: 360px; margin: 0;">We don't just build websites — we build growth engines designed to convert, engage, and scale.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card sr sr-d1" data-cursor="View →">
-        <div class="spotlight"></div>
-        <div class="svc-num"><span>01</span></div>
-        <div class="svc-icon">🌐</div>
-        <div class="svc-name">Website Development</div>
-        <div class="svc-desc">Custom, lightning-fast websites engineered for conversion and SEO from day one.</div>
-        <div class="svc-tags">
-          <span class="tag-pill">HTML/CSS</span><span class="tag-pill">React</span><span class="tag-pill">WordPress</span><span class="tag-pill">Shopify</span>
+    <div class="services-layout">
+      <!-- Top Panel: Text Left + Stats Right -->
+      <div class="services-left-panel sr">
+        <div class="services-left-panel-text">
+          <div class="section-label">What We Do</div>
+          <h2 class="section-title">End-to-End Digital Services Built for <span class="highlight-script">Results</span></h2>
+          
+          <p class="section-body" style="margin: 24px 0 20px;">
+            For 24 years, we've partnered with businesses across the globe to build powerful digital products that drive growth, engagement, and measurable success.
+          </p>
+          
+          <!-- Curved arrow + Trusted since 2002 script -->
+          <div class="trusted-container">
+            <div class="trusted-arrow">
+              <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 12C16 28 26 32 34 22M34 22L26 18M34 22L30 30" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="trusted-text">Trusted since 2002</span>
+          </div>
         </div>
+        
+        <!-- 2x2 Stats Grid -->
+
       </div>
-      <div class="service-card sr sr-d2" data-cursor="View →">
-        <div class="spotlight"></div>
-        <div class="svc-num"><span>02</span></div>
-        <div class="svc-icon">📱</div>
-        <div class="svc-name">Mobile App Development</div>
-        <div class="svc-desc">Native and cross-platform apps for Android and iOS that users actually love to use.</div>
-        <div class="svc-tags">
-          <span class="tag-pill">Flutter</span><span class="tag-pill">Android</span><span class="tag-pill">iOS</span><span class="tag-pill">React Native</span>
+      
+      <!-- Horizontal Accordion Cards -->
+      <div class="services-grid">
+
+        <!-- Card 1: Website Development -->
+        <div class="service-card highlighted active sr sr-d1">
+          <div class="card-badge">★ MOST REQUESTED</div>
+          <!-- Collapsed label -->
+          <div class="acc-label">
+            <span class="acc-num">01</span>
+            <span class="acc-title-vert">Website Development</span>
+          </div>
+          <!-- Expanded content -->
+          <div class="acc-content">
+            <div class="acc-text-col">
+              <div class="acc-title-row">
+                <span class="svc-card-num">01</span>
+                <h3 class="svc-name">Website Development</h3>
+              </div>
+              <p class="svc-desc">High-performance websites crafted for speed, SEO, and seamless user experiences.</p>
+              <div class="svc-tags">
+                <span class="tag-pill">HTML/CSS</span>
+                <span class="tag-pill">React</span>
+                <span class="tag-pill">WordPress</span>
+                <span class="tag-pill">Shopify</span>
+              </div>
+            </div>
+            <svg class="acc-illus" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="8" width="140" height="64" rx="8" fill="#fff" stroke="rgba(34,197,94,0.2)" stroke-width="1.5"/>
+              <rect x="10" y="8" width="140" height="16" rx="8" fill="#f4fbf7"/>
+              <circle cx="22" cy="16" r="3" fill="#ef4444"/><circle cx="30" cy="16" r="3" fill="#eab308"/><circle cx="38" cy="16" r="3" fill="#22c55e"/>
+              <rect x="22" y="34" width="80" height="6" rx="3" fill="#22c55e" opacity="0.6"/>
+              <rect x="22" y="44" width="52" height="4" rx="2" fill="#22c55e" opacity="0.3"/>
+              <rect x="22" y="52" width="64" height="4" rx="2" fill="#22c55e" opacity="0.2"/>
+              <circle cx="128" cy="50" r="12" fill="#22c55e" opacity="0.85"/>
+            </svg>
+          </div>
         </div>
-      </div>
-      <div class="service-card sr sr-d3" data-cursor="View →">
-        <div class="spotlight"></div>
-        <div class="svc-num"><span>03</span></div>
-        <div class="svc-icon">⚙️</div>
-        <div class="svc-name">Backend & API Development</div>
-        <div class="svc-desc">Scalable, secure server-side systems built to handle real-world traffic and complexity.</div>
-        <div class="svc-tags">
-          <span class="tag-pill">Node.js</span><span class="tag-pill">PHP</span><span class="tag-pill">Django</span><span class="tag-pill">MySQL</span>
+
+        <!-- Card 2: Mobile App Development -->
+        <div class="service-card sr sr-d2">
+          <!-- Collapsed label -->
+          <div class="acc-label">
+            <span class="acc-num">02</span>
+            <span class="acc-title-vert">Mobile App Development</span>
+          </div>
+          <!-- Expanded content -->
+          <div class="acc-content">
+            <div class="acc-text-col">
+              <div class="acc-title-row">
+                <span class="svc-card-num">02</span>
+                <h3 class="svc-name">Mobile App Development</h3>
+              </div>
+              <p class="svc-desc">Native and cross-platform apps for iOS and Android that users love and businesses rely on.</p>
+              <div class="svc-tags">
+                <span class="tag-pill">Flutter</span>
+                <span class="tag-pill">Android</span>
+                <span class="tag-pill">iOS</span>
+                <span class="tag-pill">React Native</span>
+              </div>
+            </div>
+            <svg class="acc-illus" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="55" y="4" width="50" height="72" rx="10" fill="#fff" stroke="rgba(34,197,94,0.2)" stroke-width="1.5"/>
+              <rect x="61" y="10" width="38" height="60" rx="6" fill="#f4fbf7"/>
+              <rect x="74" y="6" width="12" height="3" rx="1.5" fill="rgba(34,197,94,0.2)"/>
+              <rect x="67" y="18" width="26" height="8" rx="2" fill="#22c55e" opacity="0.7"/>
+              <rect x="67" y="30" width="26" height="4" rx="2" fill="rgba(34,197,94,0.25)"/>
+              <rect x="67" y="38" width="18" height="4" rx="2" fill="rgba(34,197,94,0.2)"/>
+              <circle cx="72" cy="56" r="5" fill="#22c55e" opacity="0.5"/>
+              <circle cx="88" cy="56" r="5" fill="#22c55e" opacity="0.5"/>
+            </svg>
+          </div>
         </div>
-      </div>
-      <div class="service-card sr sr-d1" data-cursor="View →">
-        <div class="spotlight"></div>
-        <div class="svc-num"><span>04</span></div>
-        <div class="svc-icon">🛒</div>
-        <div class="svc-name">E-Commerce Solutions</div>
-        <div class="svc-desc">High-converting online stores that make buying effortless and selling profitable.</div>
-        <div class="svc-tags">
-          <span class="tag-pill">Shopify</span><span class="tag-pill">WooCommerce</span><span class="tag-pill">Payments</span>
+
+        <!-- Card 3: Backend & API Development -->
+        <div class="service-card sr sr-d3">
+          <!-- Collapsed label -->
+          <div class="acc-label">
+            <span class="acc-num">03</span>
+            <span class="acc-title-vert">Backend &amp; API Development</span>
+          </div>
+          <!-- Expanded content -->
+          <div class="acc-content">
+            <div class="acc-text-col">
+              <div class="acc-title-row">
+                <span class="svc-card-num">03</span>
+                <h3 class="svc-name">Backend &amp; API Development</h3>
+              </div>
+              <p class="svc-desc">Scalable, secure, and future-ready backend systems and APIs to power your digital products.</p>
+              <div class="svc-tags">
+                <span class="tag-pill">Node.js</span>
+                <span class="tag-pill">PHP</span>
+                <span class="tag-pill">Django</span>
+                <span class="tag-pill">MySQL</span>
+              </div>
+            </div>
+            <svg class="acc-illus" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="10" width="100" height="14" rx="4" fill="#fff" stroke="rgba(34,197,94,0.2)" stroke-width="1.5"/>
+              <rect x="30" y="28" width="100" height="14" rx="4" fill="#fff" stroke="rgba(34,197,94,0.2)" stroke-width="1.5"/>
+              <rect x="30" y="46" width="100" height="14" rx="4" fill="#fff" stroke="rgba(34,197,94,0.2)" stroke-width="1.5"/>
+              <circle cx="42" cy="17" r="3" fill="#22c55e"/><circle cx="42" cy="35" r="3" fill="#22c55e"/><circle cx="42" cy="53" r="3" fill="#22c55e"/>
+              <rect x="90" y="30" width="44" height="28" rx="6" fill="#22c55e"/>
+              <path d="M100 44l4-4-4-4M108 40l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
-      </div>
-      <div class="service-card sr sr-d2" data-cursor="View →">
-        <div class="spotlight"></div>
-        <div class="svc-num"><span>05</span></div>
-        <div class="svc-icon">🎨</div>
-        <div class="svc-name">UI/UX Design</div>
-        <div class="svc-desc">Research-driven design that reduces bounce rates and guides users toward action.</div>
-        <div class="svc-tags">
-          <span class="tag-pill">Figma</span><span class="tag-pill">Prototyping</span><span class="tag-pill">User Research</span>
+
+        <!-- Card 4: E-Commerce Solutions -->
+        <div class="service-card sr sr-d1">
+          <!-- Collapsed label -->
+          <div class="acc-label">
+            <span class="acc-num">04</span>
+            <span class="acc-title-vert">E-Commerce Solutions</span>
+          </div>
+          <!-- Expanded content -->
+          <div class="acc-content">
+            <div class="acc-text-col">
+              <div class="acc-title-row">
+                <span class="svc-card-num">04</span>
+                <h3 class="svc-name">E-Commerce Solutions</h3>
+              </div>
+              <p class="svc-desc">Robust e-commerce platforms that drive sales, streamline operations, and scale with your business.</p>
+              <div class="svc-tags">
+                <span class="tag-pill">Shopify</span>
+                <span class="tag-pill">WooCommerce</span>
+                <span class="tag-pill">Payments</span>
+              </div>
+            </div>
+            <svg class="acc-illus" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="80" cy="40" r="32" fill="#f4fbf7"/>
+              <path d="M56 28H62L68 52H94L100 36H64" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="72" cy="58" r="4" fill="#22c55e"/><circle cx="88" cy="58" r="4" fill="#22c55e"/>
+            </svg>
+          </div>
         </div>
-      </div>
-      <div class="service-card sr sr-d3" data-cursor="View →">
-        <div class="spotlight"></div>
-        <div class="svc-num"><span>06</span></div>
-        <div class="svc-icon">📈</div>
-        <div class="svc-name">Digital Marketing & SEO</div>
-        <div class="svc-desc">Organic growth strategies that bring the right visitors and keep them coming back.</div>
-        <div class="svc-tags">
-          <span class="tag-pill">SEO</span><span class="tag-pill">Content</span><span class="tag-pill">Analytics</span>
+
+        <!-- Card 5: UI/UX Design -->
+        <div class="service-card sr sr-d2">
+          <!-- Collapsed label -->
+          <div class="acc-label">
+            <span class="acc-num">05</span>
+            <span class="acc-title-vert">UI/UX Design</span>
+          </div>
+          <!-- Expanded content -->
+          <div class="acc-content">
+            <div class="acc-text-col">
+              <div class="acc-title-row">
+                <span class="svc-card-num">05</span>
+                <h3 class="svc-name">UI/UX Design</h3>
+              </div>
+              <p class="svc-desc">User-centered designs that are beautiful, intuitive, and built to convert.</p>
+              <div class="svc-tags">
+                <span class="tag-pill">Figma</span>
+                <span class="tag-pill">Prototyping</span>
+                <span class="tag-pill">User Research</span>
+              </div>
+            </div>
+            <svg class="acc-illus" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="80" cy="40" r="32" fill="#f4fbf7"/>
+              <path d="M52 52C62 32 98 32 108 52" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="49" y="49" width="6" height="6" fill="#fff" stroke="#22c55e" stroke-width="1.5"/>
+              <rect x="105" y="49" width="6" height="6" fill="#fff" stroke="#22c55e" stroke-width="1.5"/>
+              <rect x="77" y="34" width="6" height="6" fill="#22c55e"/>
+              <path d="M80 37L80 26L74 30L80 37Z" fill="#22c55e"/>
+            </svg>
+          </div>
         </div>
+
+        <!-- Card 6: Digital Marketing & SEO -->
+        <div class="service-card sr sr-d3">
+          <!-- Collapsed label -->
+          <div class="acc-label">
+            <span class="acc-num">06</span>
+            <span class="acc-title-vert">Digital Marketing &amp; SEO</span>
+          </div>
+          <!-- Expanded content -->
+          <div class="acc-content">
+            <div class="acc-text-col">
+              <div class="acc-title-row">
+                <span class="svc-card-num">06</span>
+                <h3 class="svc-name">Digital Marketing &amp; SEO</h3>
+              </div>
+              <p class="svc-desc">Data-driven strategies that boost visibility, drive traffic, and maximize ROI.</p>
+              <div class="svc-tags">
+                <span class="tag-pill">SEO</span>
+                <span class="tag-pill">Content</span>
+                <span class="tag-pill">Analytics</span>
+              </div>
+            </div>
+            <svg class="acc-illus" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="80" cy="40" r="32" fill="#f4fbf7"/>
+              <rect x="62" y="48" width="6" height="14" rx="1.5" fill="#22c55e" opacity="0.4"/>
+              <rect x="72" y="40" width="6" height="22" rx="1.5" fill="#22c55e" opacity="0.6"/>
+              <rect x="82" y="32" width="6" height="30" rx="1.5" fill="#22c55e" opacity="0.8"/>
+              <rect x="92" y="24" width="6" height="38" rx="1.5" fill="#22c55e"/>
+              <path d="M58 50L70 40L82 38L96 24" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M90 24H96V30" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
+
+
 
 <!-- ══════ STATS — UPGRADE #4: Bento Grid + #9: Counter ══════ -->
 <section class="stats-section" id="about">
@@ -2441,14 +2944,6 @@ document.querySelectorAll('.service-card').forEach(card => {
       spotlight.style.left = x + 'px';
       spotlight.style.top = y + 'px';
     }
-    const tiltX = ((y / rect.height) - 0.5) * 6;
-    const tiltY = -((x / rect.width) - 0.5) * 6;
-    card.style.transform = `translateY(-8px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-    card.style.transition = 'box-shadow 0.4s, border-color 0.3s, transform 0.1s';
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-    card.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s, border-color 0.3s';
   });
 });
 
@@ -2603,6 +3098,13 @@ function initTechEcosystem() {
   container.querySelectorAll('.eco-node:not(.node-center)').forEach(el => el.remove());
   canvas.innerHTML = ''; // Clear SVG lines
 
+  // Create dynamic hover-center-line (drawn behind other nodes)
+  const hoverLineEl = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  hoverLineEl.setAttribute('id', 'hoverCenterLine');
+  hoverLineEl.setAttribute('class', 'connection-line hover-center-line');
+  hoverLineEl.style.display = 'none';
+  canvas.appendChild(hoverLineEl);
+
   // 1. Create technology node elements
   ecoNodes = techNodesData.map(data => {
     const el = document.createElement('div');
@@ -2709,6 +3211,8 @@ function initTechEcosystem() {
 }
 
 function updateEcosystemHighlighting() {
+  const hoverLine = document.getElementById('hoverCenterLine');
+
   if (!ecoHoveredNodeId) {
     // Reset all
     ecoNodes.forEach(node => {
@@ -2717,6 +3221,7 @@ function updateEcosystemHighlighting() {
     ecoLines.forEach(line => {
       line.el.classList.remove('highlighted', 'dimmed');
     });
+    if (hoverLine) hoverLine.style.display = 'none';
     return;
   }
 
@@ -2729,7 +3234,11 @@ function updateEcosystemHighlighting() {
 
   // Dim unconnected nodes, highlight connected ones
   ecoNodes.forEach(node => {
-    if (connectedNodeIds.has(node.id)) {
+    if (node.id === 'center') {
+      // Always highlight center when hovering any node
+      node.el.classList.remove('dimmed');
+      node.el.classList.add('highlighted');
+    } else if (connectedNodeIds.has(node.id)) {
       node.el.classList.remove('dimmed');
       if (node.id !== ecoHoveredNodeId) {
         node.el.classList.add('highlighted');
@@ -2750,6 +3259,11 @@ function updateEcosystemHighlighting() {
       line.el.classList.remove('highlighted');
     }
   });
+
+  // Show dynamic hover line to center
+  if (hoverLine && ecoHoveredNodeId !== 'center') {
+    hoverLine.style.display = '';
+  }
 }
 
 function tickTechEcosystem(timestamp) {
@@ -2778,15 +3292,15 @@ function tickTechEcosystem(timestamp) {
   const innerNodes = ecoNodes.filter(n => n.id !== 'center' && n.size !== 'small');
   const outerNodes = ecoNodes.filter(n => n.id !== 'center' && n.size === 'small');
 
-  let innerRadius = Math.min(w, h) * 0.26;
-  let outerRadius = Math.min(w, h) * 0.43;
+  let innerRadius = Math.min(w, h) * 0.32;
+  let outerRadius = Math.min(w, h) * 0.48;
 
   if (window.innerWidth < 768) {
-    innerRadius = Math.min(w, h) * 0.21;
-    outerRadius = Math.min(w, h) * 0.35;
+    innerRadius = Math.min(w, h) * 0.27;
+    outerRadius = Math.min(w, h) * 0.41;
   } else if (window.innerWidth < 1024) {
-    innerRadius = Math.min(w, h) * 0.24;
-    outerRadius = Math.min(w, h) * 0.39;
+    innerRadius = Math.min(w, h) * 0.30;
+    outerRadius = Math.min(w, h) * 0.45;
   }
 
   const innerRotation = time * 0.03;          // slow clockwise rotation
@@ -2867,6 +3381,19 @@ function tickTechEcosystem(timestamp) {
     line.el.setAttribute('x2', nodeTo.x);
     line.el.setAttribute('y2', nodeTo.y);
   });
+
+  // Render dynamic hover line to center
+  const hoverLine = document.getElementById('hoverCenterLine');
+  if (hoverLine && ecoHoveredNodeId && ecoHoveredNodeId !== 'center') {
+    const hoveredNode = ecoNodes.find(n => n.id === ecoHoveredNodeId);
+    const centerNode = ecoNodes.find(n => n.id === 'center');
+    if (hoveredNode && centerNode) {
+      hoverLine.setAttribute('x1', hoveredNode.x);
+      hoverLine.setAttribute('y1', hoveredNode.y);
+      hoverLine.setAttribute('x2', centerNode.x);
+      hoverLine.setAttribute('y2', centerNode.y);
+    }
+  }
 
   // 4. Animate Data Particles
   ecoParticles.forEach(p => {
@@ -3002,6 +3529,29 @@ document.addEventListener('DOMContentLoaded', () => {
   initTechEcosystem();
   window.addEventListener('resize', initTechEcosystem);
   startPageLoader();
+  
+  // Accordion interaction (Desktop hover + Mobile touch/click)
+  const cards = document.querySelectorAll('.service-card');
+  const grid = document.querySelector('.services-grid');
+
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
+
+    card.addEventListener('click', () => {
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
+  });
+
+  if (grid) {
+    grid.addEventListener('mouseleave', () => {
+      cards.forEach(c => c.classList.remove('active'));
+      if (cards[0]) cards[0].classList.add('active');
+    });
+  }
 });
 </script>
 </body>

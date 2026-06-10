@@ -6,7 +6,7 @@
 <title>eParivartan — Design. Strategy. Growth.</title>
 <meta name="description" content="eParivartan is a full-service digital agency building high-performance websites, mobile apps, and digital strategies that grow your business.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════
    DESIGN TOKENS — UPGRADE #12: Richer Color System
@@ -128,6 +128,12 @@ body::before {
   font-weight: 800; font-size: 21px;
   letter-spacing: -0.04em;
   display: flex; align-items: center; gap: 2px;
+}
+.nav-logo img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 .nav-logo-dot {
   width: 8px; height: 8px; background: var(--g);
@@ -1554,7 +1560,7 @@ footer {
 <nav class="nav" id="navbar">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <span>e</span><span>Parivartan</span><span class="nav-logo-dot"></span>
+      <img src="Parivartan_Logo.png" alt="eParivartan Logo">
     </a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
@@ -1587,7 +1593,7 @@ footer {
       <p class="hero-sub">From stunning websites to powerful mobile apps — we design, build, and scale digital experiences that convert visitors into loyal customers.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-ink" data-cursor="Let's Talk">Start Your Project <span class="arr">→</span></a>
-        <a href="#services" class="btn-outline" data-cursor="View →">Explore Services</a>
+        <a href="#services" class="btn-outline">Explore Services</a>
       </div>
       <div class="hero-social-proof">
         <div class="avatars">
@@ -1655,7 +1661,7 @@ footer {
       <p class="section-body sr sr-d2" style="max-width: 360px; margin: 0;">We don't just build websites — we build growth engines designed to convert, engage, and scale.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card sr sr-d1" data-cursor="View →">
+      <div class="service-card sr sr-d1">
         <div class="spotlight"></div>
         <div class="svc-num"><span>01</span></div>
         <div class="svc-icon">🌐</div>
@@ -1665,7 +1671,7 @@ footer {
           <span class="tag-pill">HTML/CSS</span><span class="tag-pill">React</span><span class="tag-pill">WordPress</span><span class="tag-pill">Shopify</span>
         </div>
       </div>
-      <div class="service-card sr sr-d2" data-cursor="View →">
+      <div class="service-card sr sr-d2">
         <div class="spotlight"></div>
         <div class="svc-num"><span>02</span></div>
         <div class="svc-icon">📱</div>
@@ -1675,7 +1681,7 @@ footer {
           <span class="tag-pill">Flutter</span><span class="tag-pill">Android</span><span class="tag-pill">iOS</span><span class="tag-pill">React Native</span>
         </div>
       </div>
-      <div class="service-card sr sr-d3" data-cursor="View →">
+      <div class="service-card sr sr-d3">
         <div class="spotlight"></div>
         <div class="svc-num"><span>03</span></div>
         <div class="svc-icon">⚙️</div>
@@ -1685,7 +1691,7 @@ footer {
           <span class="tag-pill">Node.js</span><span class="tag-pill">PHP</span><span class="tag-pill">Django</span><span class="tag-pill">MySQL</span>
         </div>
       </div>
-      <div class="service-card sr sr-d1" data-cursor="View →">
+      <div class="service-card sr sr-d1">
         <div class="spotlight"></div>
         <div class="svc-num"><span>04</span></div>
         <div class="svc-icon">🛒</div>
@@ -1695,7 +1701,7 @@ footer {
           <span class="tag-pill">Shopify</span><span class="tag-pill">WooCommerce</span><span class="tag-pill">Payments</span>
         </div>
       </div>
-      <div class="service-card sr sr-d2" data-cursor="View →">
+      <div class="service-card sr sr-d2">
         <div class="spotlight"></div>
         <div class="svc-num"><span>05</span></div>
         <div class="svc-icon">🎨</div>
@@ -1705,7 +1711,7 @@ footer {
           <span class="tag-pill">Figma</span><span class="tag-pill">Prototyping</span><span class="tag-pill">User Research</span>
         </div>
       </div>
-      <div class="service-card sr sr-d3" data-cursor="View →">
+      <div class="service-card sr sr-d3">
         <div class="spotlight"></div>
         <div class="svc-num"><span>06</span></div>
         <div class="svc-icon">📈</div>
