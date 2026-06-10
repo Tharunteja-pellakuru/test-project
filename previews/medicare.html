@@ -212,11 +212,21 @@
       padding: 2px 8px;
       border-radius: 4px;
     }
+    
+    /* Responsive details */
+    @media (max-width: 480px) {
+      body { padding: 12px; }
+      .stats-row { grid-template-columns: 1fr; gap: 8px; }
+      header { flex-direction: column; gap: 12px; text-align: center; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">🏥 Medicare Portal</div>
+    <div class="logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; color: var(--primary);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+      Medicare Portal
+    </div>
     <div class="user-badge">
       <div class="user-avatar">JD</div>
       <span>John Doe</span>
@@ -244,7 +254,9 @@
         <div class="card-title">Select a Doctor</div>
         <div class="doctor-list">
           <div class="doctor-item selected" onclick="selectDoc(this, 'Dr. Sarah Connor', 'Cardiologist')">
-            <div class="doc-av">👩‍⚕️</div>
+            <div class="doc-av">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle><path d="M12 11v3M10 13h4" stroke-width="1.5"></path></svg>
+            </div>
             <div class="doc-info">
               <div class="doc-name">Dr. Sarah Connor</div>
               <div class="doc-spec">Cardiologist · 12 Yrs Exp</div>
@@ -252,7 +264,9 @@
             <div class="doc-rate">4.9★</div>
           </div>
           <div class="doctor-item" onclick="selectDoc(this, 'Dr. James Carter', 'Neurologist')">
-            <div class="doc-av">👨‍⚕️</div>
+            <div class="doc-av">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle><path d="M12 11v3M10 13h4" stroke-width="1.5"></path></svg>
+            </div>
             <div class="doc-info">
               <div class="doc-name">Dr. James Carter</div>
               <div class="doc-spec">Neurologist · 9 Yrs Exp</div>
@@ -260,7 +274,9 @@
             <div class="doc-rate">4.8★</div>
           </div>
           <div class="doctor-item" onclick="selectDoc(this, 'Dr. Elena Rostova', 'Pediatrician')">
-            <div class="doc-av">👩‍⚕️</div>
+            <div class="doc-av">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle><path d="M12 11v3M10 13h4" stroke-width="1.5"></path></svg>
+            </div>
             <div class="doc-info">
               <div class="doc-name">Dr. Elena Rostova</div>
               <div class="doc-spec">Pediatrician · 15 Yrs Exp</div>
@@ -317,7 +333,7 @@
         </form>
 
         <div class="success-alert" id="successAlert">
-          <span>✅</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><circle cx="12" cy="12" r="10"></circle><polyline points="9 11 12 14 17 9"></polyline></svg>
           <div>
             <div style="font-weight:600;">Booking Confirmed!</div>
             <div style="font-size:11px;">A calendar invite and SMS details have been sent.</div>

@@ -178,11 +178,18 @@
       border-color: #f87171;
       color: #991b1b;
     }
+    @media (max-width: 480px) {
+      body { padding: 12px; }
+      header { flex-direction: column; gap: 10px; align-items: center; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">🎓 CAFE Academy</div>
+    <div class="logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; color: var(--primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+      CAFE Academy
+    </div>
     <div style="display:flex; align-items:center; gap:8px;">
       <span style="font-size:11px; font-weight:600;">Course: 60%</span>
       <div class="progress-bar-wrap">
@@ -195,7 +202,9 @@
     <div>
       <div class="card">
         <div class="video-mock" id="videoMock">
-          <div class="video-play-btn" onclick="togglePlay(this)">▶️</div>
+          <div class="video-play-btn" onclick="togglePlay(this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color: white; margin-left: 2px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </div>
         </div>
         <h3 id="active-title" style="font-size:15px; font-weight:600; margin-bottom:4px;">1. Introduction to Web APIs</h3>
         <p style="font-size:12px; color:var(--ink-muted);">Learn the basics of REST APIs, HTTP requests, methods, and payload structures.</p>
@@ -242,17 +251,31 @@
       document.getElementById('active-title').textContent = title;
       
       const videoMock = document.getElementById('videoMock');
-      videoMock.innerHTML = '<div class="video-play-btn" onclick="togglePlay(this)">▶️</div>';
+      videoMock.innerHTML = `
+        <div class="video-play-btn" onclick="togglePlay(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color: white; margin-left: 2px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </div>
+      `;
     }
 
     function togglePlay(btn) {
       const videoMock = document.getElementById('videoMock');
-      videoMock.innerHTML = '<div style="font-size:14px; text-align:center; font-weight:500;">🍿 Playing Lesson Video...<br><span style="font-size:11px;color:#a78bfa;cursor:pointer;" onclick="stopVideo()">Click to Stop</span></div>';
+      videoMock.innerHTML = `
+        <div style="font-size:13px; text-align:center; font-weight:500; display:flex; flex-direction:column; align-items:center; gap:8px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><path d="M12 18V6l-5 4H2v4h5l5 4z"></path></svg>
+          <span>Playing Lesson Video...</span>
+          <span style="font-size:11px;color:#a78bfa;cursor:pointer;text-decoration:underline;" onclick="stopVideo()">Stop Lesson</span>
+        </div>
+      `;
     }
 
     function stopVideo() {
       const videoMock = document.getElementById('videoMock');
-      videoMock.innerHTML = '<div class="video-play-btn" onclick="togglePlay(this)">▶️</div>';
+      videoMock.innerHTML = `
+        <div class="video-play-btn" onclick="togglePlay(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color: white; margin-left: 2px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </div>
+      `;
     }
 
     function checkAns(el, isCorrect) {
@@ -266,15 +289,23 @@
 
       if (isCorrect) {
         el.classList.add('correct');
-        fb.textContent = '🎉 Correct! PUT updates or replaces the target resource.';
-        fb.style.color = 'var(--success)';
+        fb.innerHTML = `
+          <div style="display:flex; align-items:center; gap:6px; color:var(--success)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Correct! PUT updates or replaces the target resource.</span>
+          </div>
+        `;
         
         // Progress increases
         document.getElementById('progFill').style.width = '100%';
       } else {
         el.classList.add('incorrect');
-        fb.textContent = '❌ Incorrect. Try again!';
-        fb.style.color = '#ef4444';
+        fb.innerHTML = `
+          <div style="display:flex; align-items:center; gap:6px; color:#ef4444">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <span>Incorrect. Try again!</span>
+          </div>
+        `;
       }
     }
   </script>

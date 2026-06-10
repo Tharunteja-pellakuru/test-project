@@ -168,12 +168,20 @@
       from { transform: translateY(100px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+    @media (max-width: 480px) {
+      body { padding: 12px; }
+      header { flex-direction: column; gap: 8px; text-align: center; }
+      .product-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">S H / StyleHub</div>
-    <button class="cart-btn">🎒 Bag (<span id="cart-count">0</span>)</button>
+    <button class="cart-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      Bag (<span id="cart-count">0</span>)
+    </button>
   </header>
 
   <div class="filters">
@@ -186,7 +194,7 @@
   <div class="product-grid" id="grid">
     <div class="product-card" data-cat="summer">
       <div class="prod-img">
-        <span>👕</span>
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.37 4.65a2 2 0 0 0-1.74-.65l-2.63.44a1 1 0 0 1-.78-.27l-2.07-2a1.5 1.5 0 0 0-2.3 0l-2.07 2a1 1 0 0 1-.78.27l-2.63-.44a2 2 0 0 0-1.74.65L1 7.25V11a2 2 0 0 0 2 2h2v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7h2a2 2 0 0 0 2-2V7.25z"></path></svg>
         <span class="prod-tag">Sale</span>
       </div>
       <div class="prod-title">Linen Summer Shirt</div>
@@ -195,7 +203,7 @@
     </div>
     <div class="product-card" data-cat="denim">
       <div class="prod-img">
-        <span>👖</span>
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8v2.5a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V2z"></path><path d="M4 22V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v17l-6-2-6 2z"></path><line x1="12" y1="4" x2="12" y2="20"></line></svg>
       </div>
       <div class="prod-title">Slim Fit Raw Denim</div>
       <div class="prod-price">₹2,899</div>
@@ -203,7 +211,7 @@
     </div>
     <div class="product-card" data-cat="essentials">
       <div class="prod-img">
-        <span>🧥</span>
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4h3.5L12 8.5 14.5 4H18v18H6z"></path><path d="M12 8.5V22M9 15h6"></path></svg>
       </div>
       <div class="prod-title">Classic Trench Coat</div>
       <div class="prod-price">₹5,499</div>
@@ -211,7 +219,7 @@
     </div>
     <div class="product-card" data-cat="summer">
       <div class="prod-img">
-        <span>🕶️</span>
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10a4 4 0 0 1 8 0M14 10a4 4 0 0 1 8 0"></path><path d="M10 10h4M2 10C2 6 5 4 12 4s10 2 10 6M2 10c0 4 2 6 4 6s4-2 4-6M14 10c0 4 2 6 4 6s4-2 4-6"></path></svg>
         <span class="prod-tag">New</span>
       </div>
       <div class="prod-title">Retro Acetate Sunglasses</div>

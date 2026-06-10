@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eParivartan — Premium Loader Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --g: #22c55e;
+  --g-dark: #16a34a;
+  --g-soft: #e2f5e9;
+  --ink: #080e0a;
+  --off-white: #f8f9f6;
+  --white: #ffffff;
+  --gray: #6b7280;
+  --light-gray: #9ca3af;
+  --border: rgba(34, 197, 94, 0.08);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off-white);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ════════════════════════════════════════════════
+   1. PREMIUM PAGE LOADER STYLING
+   ════════════════════════════════════════════════ */
+
+#page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 400ms cubic-bezier(0.4, 0, 1, 1), transform 400ms cubic-bezier(0.4, 0, 1, 1);
+  will-change: opacity, transform;
+}
+
+/* Subtle CSS noise texture */
+.loader-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.018;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* Soft radial vignette */
+.loader-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 40%, rgba(8, 14, 10, 0.04) 100%);
+}
+
+/* Ambient Floating Dots */
+.loader-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.loader-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--g);
+  border-radius: 50%;
+  opacity: 0.12;
+  filter: blur(1.5px);
+}
+
+.dot-1 { top: 15%; left: 20%; animation: drift1 20s ease-in-out infinite; }
+.dot-2 { top: 25%; right: 15%; animation: drift2 24s ease-in-out infinite; }
+.dot-3 { bottom: 20%; left: 15%; animation: drift3 18s ease-in-out infinite; }
+.dot-4 { bottom: 25%; right: 20%; animation: drift4 22s ease-in-out infinite; }
+.dot-5 { top: 52%; left: 78%; animation: drift5 26s ease-in-out infinite; }
+
+@keyframes drift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.2); }
+}
+@keyframes drift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, 30px) scale(0.9); }
+}
+@keyframes drift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(25px, 35px) scale(1.1); }
+}
+@keyframes drift4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, -25px) scale(1.3); }
+}
+@keyframes drift5 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -30px) scale(0.85); }
+}
+
+/* Centered layout */
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Ring container */
+.ring-container {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.ring-track {
+  position: absolute;
+  inset: 0;
+  border: 4px solid var(--g-soft);
+  border-radius: 50%;
+}
+
+.ring-progress {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  /* Conic gradient for progress and fading tail */
+  background: conic-gradient(from 0deg, rgba(34, 197, 94, 0.25) 0deg, var(--g) 0deg, transparent 0deg);
+  /* Use radial gradient as mask to make it a 4px ring */
+  -webkit-mask: radial-gradient(circle, transparent 75.5px, #000 76px);
+  mask: radial-gradient(circle, transparent 75.5px, #000 76px);
+}
+
+/* Spring entry animation for leaf wrapper */
+.leaf-logo-wrap {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.85);
+  opacity: 0;
+  animation: springEntry 450ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 50ms;
+}
+
+.leaf-logo-pulse {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: breathingPulse 2s ease-in-out infinite;
+  animation-delay: 500ms;
+}
+
+.leaf-logo-pulse img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes springEntry {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes breathingPulse {
+  0%, 100% { transform: scale(1.0); }
+  50% { transform: scale(1.05); }
+}
+
+/* Counter */
+.loader-counter {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--gray);
+  margin-bottom: 4px;
+  min-height: 20px;
+  letter-spacing: -0.01em;
+}
+
+/* Brand styling & fade-in */
+.loader-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeInBrand 350ms ease-out forwards;
+  animation-delay: 300ms;
+}
+
+.brand-name {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.brand-sparkle {
+  color: var(--g);
+  font-size: 14px;
+}
+
+.brand-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--light-gray);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+@keyframes fadeInBrand {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Completion states */
+#page-loader.complete .leaf-logo-pulse {
+  animation: finalPulse 300ms ease-in-out forwards;
+}
+
+#page-loader.complete .ring-progress {
+  background: var(--g-dark) !important;
+  transition: background 150ms ease-out;
+}
+
+@keyframes finalPulse {
+  0% { transform: scale(1.0); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1.0); }
+}
+
+/* Exit transition */
+#page-loader.exit {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+
+/* ════════════════════════════════════════════════
+   2. MOCKUP LANDING PAGE STYLING (REVEALED CONTENT)
+   ════════════════════════════════════════════════ */
+
+.main-content {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logo span {
+  color: var(--g);
+}
+
+nav {
+  display: flex;
+  gap: 32px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--gray);
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--g);
+}
+
+.cta-nav {
+  background: var(--g);
+  color: var(--white);
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.cta-nav:hover {
+  background: var(--g-dark);
+  color: var(--white);
+}
+
+.hero {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 720px;
+  padding: 100px 0;
+}
+
+.hero-badge {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  background: var(--g-soft);
+  color: var(--g-dark);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 56px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--white);
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-weight: 500;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(8, 14, 10, 0.03);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav { display: none; }
+  .hero h1 { font-size: 42px; }
+  .hero p { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     PAGE LOADER COMPONENT (DIV TO COPY)
+     ════════════════════════════════════════════════ -->
+<div id="page-loader">
+  <!-- Subtle Grain noise overlay -->
+  <div class="loader-noise"></div>
+  
+  <!-- Subtle Vignette overlay -->
+  <div class="loader-vignette"></div>
+
+  <!-- Background Ambient Floating Dots -->
+  <div class="loader-dots">
+    <div class="loader-dot dot-1"></div>
+    <div class="loader-dot dot-2"></div>
+    <div class="loader-dot dot-3"></div>
+    <div class="loader-dot dot-4"></div>
+    <div class="loader-dot dot-5"></div>
+  </div>
+
+  <!-- Main centered content -->
+  <div class="loader-content">
+    <!-- SVG Circular Progress Ring -->
+    <div class="ring-container">
+      <div class="ring-track"></div>
+      <div class="ring-progress" id="ringProgress"></div>
+      
+      <!-- Logo inside the ring -->
+      <div class="leaf-logo-wrap" id="leafLogoWrap">
+        <div class="leaf-logo-pulse">
+          <img src="Parivartan-Leaf.png" alt="eParivartan Leaf Logo">
+        </div>
+      </div>
+    </div>
+
+    <!-- Centered percentage label -->
+    <div class="loader-counter" id="loaderCounter">Loading... 0%</div>
+
+    <!-- Branded wordmark & tagline -->
+    <div class="loader-brand" id="loaderBrand">
+      <div class="brand-name">
+        <span class="brand-sparkle">✦</span>eParivartan
+      </div>
+      <div class="brand-tagline">Transforming businesses digitally</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     REVEALED MAIN PAGE CONTENT (MOCKUP DEMO)
+     ════════════════════════════════════════════════ -->
+<div class="main-content">
+  <header>
+    <div class="logo">✦ e<span>Parivartan</span></div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#story">Our Story</a>
+      <a href="#contact" class="cta-nav">Get in touch</a>
+    </nav>
+  </header>
+  
+  <div class="hero">
+    <div class="hero-badge">✦ FULL-SERVICE DIGITAL AGENCY</div>
+    <h1>We build premium digital experiences that scale.</h1>
+    <p>We partner with enterprises and startups to transform business models, engineer modern tech platforms, and deliver robust software. Handcrafted in Hyderabad.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">View our work</a>
+      <button class="btn-secondary" onclick="replayLoader()">Replay Loader Animation</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     3. LOADER LOGIC (VANILLA JS ONLY)
+     ════════════════════════════════════════════════ -->
+<script>
+// Mathematical Cubic Bezier solver to match cubic-bezier(0.4, 0, 0.2, 1) exactly
+function cubicBezier(x1, y1, x2, y2) {
+  return function(x) {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    
+    // Binary search for parameter t corresponding to elapsed time percentage x
+    let start = 0, end = 1;
+    for (let i = 0; i < 14; i++) {
+      let t = (start + end) / 2;
+      let xt = 3 * (1 - t) * (1 - t) * t * x1 + 3 * (1 - t) * t * t * x2 + t * t * t;
+      if (Math.abs(x - xt) < 0.001) {
+        start = t;
+        break;
+      }
+      if (xt < x) {
+        start = t;
+      } else {
+        end = t;
+      }
+    }
+    const t = start;
+    return 3 * (1 - t) * (1 - t) * t * y1 + 3 * (1 - t) * t * t * y2 + t * t * t;
+  };
+}
+
+// Global animation reference so we can cancel and replay it
+let loaderAnimFrame = null;
+let loaderDoneTimeout = null;
+
+function startPageLoader() {
+  const loader = document.getElementById('page-loader');
+  const ringProgress = document.getElementById('ringProgress');
+  const loaderCounter = document.getElementById('loaderCounter');
+  const mainContent = document.querySelector('.main-content');
+  
+  // Reset loader styling classes
+  loader.style.display = 'flex';
+  loader.style.opacity = '1';
+  loader.style.transform = 'translateY(0)';
+  loader.classList.remove('complete', 'exit');
+  mainContent.classList.remove('visible');
+  
+  // Duration: 2300ms loading phase (starts after 100ms delay, reaches 100% at 2400ms)
+  const duration = 2300;
+  const delay = 100;
+  const startTime = Date.now() + delay;
+  const ease = cubicBezier(0.4, 0, 0.2, 1);
+  
+  function update() {
+    const now = Date.now();
+    
+    // Hold at 0% until delay is complete
+    if (now < startTime) {
+      ringProgress.style.background = `conic-gradient(from 0deg, rgba(34, 197, 94, 0.25) 0deg, var(--g) 0deg, transparent 0deg)`;
+      loaderCounter.textContent = 'Loading... 0%';
+      loaderAnimFrame = requestAnimationFrame(update);
+      return;
+    }
+    
+    const elapsed = now - startTime;
+    const progress = Math.min(1, elapsed / duration);
+    const easedProgress = ease(progress);
+    
+    // Calculate values
+    const angle = easedProgress * 360;
+    const percent = Math.floor(easedProgress * 100);
+    
+    // Update SVG progress ring conic gradient
+    // This creates the directionality / fading trail effect
+    ringProgress.style.background = `conic-gradient(from 0deg, 
+      rgba(34, 197, 94, 0.25) 0deg, 
+      var(--g) ${angle}deg, 
+      transparent ${angle}deg)`;
+      
+    // Update Sync Counter
+    loaderCounter.textContent = `Loading... ${percent}%`;
+    
+    if (progress < 1) {
+      loaderAnimFrame = requestAnimationFrame(update);
+    } else {
+      // 2400ms: Progress reaches 100% and holds for 200ms
+      loaderCounter.textContent = 'Loading... 100%';
+      loaderDoneTimeout = setTimeout(() => {
+        
+        // 2600ms: Trigger completion phase (final scale pulse on leaf + ring stroke brightening)
+        loader.classList.add('complete');
+        
+        // 2900ms: Trigger exit phase (fades out + translateY over 400ms)
+        loaderDoneTimeout = setTimeout(() => {
+          loader.classList.add('exit');
+          
+          // Dispatch loaderDone custom event so content can fade in
+          document.dispatchEvent(new CustomEvent('loaderDone'));
+          
+          // 3300ms: Hide completely when transition completes
+          loaderDoneTimeout = setTimeout(() => {
+            loader.style.display = 'none';
+          }, 400);
+          
+        }, 300); // Pulse duration 300ms
+        
+      }, 200); // Hold duration 200ms
+    }
+  }
+  
+  loaderAnimFrame = requestAnimationFrame(update);
+}
+
+// Listener to handle the entrance animations for the landing page
+document.addEventListener('loaderDone', () => {
+  document.querySelector('.main-content').classList.add('visible');
+});
+
+// Replay helper
+function replayLoader() {
+  cancelAnimationFrame(loaderAnimFrame);
+  clearTimeout(loaderDoneTimeout);
+  startPageLoader();
+}
+
+// Start immediately on window load
+window.addEventListener('DOMContentLoaded', startPageLoader);
+</script>
+</body>
+</html>
