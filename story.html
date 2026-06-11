@@ -4,1923 +4,1206 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Our Story — eParivartan</title>
-<meta name="description" content="The story behind eParivartan — 20+ years of digital transformation, enterprise projects, and long-term client partnerships from Hyderabad.">
-
+<meta name="description" content="Learn about eParivartan's 24-year journey, our core philosophy of driving digital growth, and meet the leadership team behind Hyderabad's leading digital agency.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 <style>
+/* ════════════════════════════════
+   DESIGN TOKENS — MATCHING INDEX
+   ════════════════════════════════ */
 :root {
-  --g:        #22c55e;
-  --g-dark:   #16a34a;
-  --g-mid:    #4ade80;
-  --g-accent: #86efac;
-  --g-glow:   rgba(34,197,94,0.18);
-  --g-soft:   rgba(34,197,94,0.06);
-  --g-grad:   linear-gradient(135deg, #16a34a, #22c55e);
-  --g-grad-lime: linear-gradient(135deg, #22c55e, #84cc16);
-  --ink:    #030704;
-  --ink-2:  #142419;
-  --ink-3:  #344e3d;
-  --ink-4:  #688a74;
-  --off:    #f7faf7;
+  --g:        #75BF46;
+  --g-dark:   #599632;
+  --g-mid:    #91d467;
+  --g-accent: #b1e393;
+  --g-glow:   rgba(117,191,70,0.22);
+  --g-soft:   rgba(117,191,70,0.08);
+  --g-grad:   linear-gradient(135deg, #599632, #91d467);
+  --ink:    #080e0a;
+  --ink-2:  #1c2a21;
+  --ink-3:  #3d5247;
+  --ink-4:  #7a9285;
+  --off:    #f6faf5;
   --card:   #ffffff;
-  --border: rgba(34,197,94,0.08);
-  --border-dark: rgba(34,197,94,0.18);
-  --r:      16px;
-  --r-lg:   24px;
-  --r-xl:   36px;
-  --transition: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-sm: 0 2px 8px rgba(8,14,10,0.02);
-  --shadow-md: 0 12px 32px rgba(8,14,10,0.04), 0 2px 8px rgba(8,14,10,0.02);
-  --shadow-lg: 0 24px 60px rgba(8,14,10,0.06), 0 4px 16px rgba(8,14,10,0.03);
+  --border: rgba(117,191,70,0.14);
+  --border-dark: rgba(117,191,70,0.26);
+  --r:      18px;
+  --r-lg:   28px;
+  --r-xl:   40px;
+  --transition: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:initial;}
-
-::-webkit-scrollbar{width:8px;}
-::-webkit-scrollbar-track{background:var(--off);}
-::-webkit-scrollbar-thumb{background:var(--border-dark);border-radius:100px;}
-::-webkit-scrollbar-thumb:hover{background:var(--g-dark);}
-
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--off);
-  color:var(--ink);
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
+/* ════════════════════════════════
+   RESET & BASE
+   ════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--card);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
 }
-img{display:block;max-width:100%;}
-a{text-decoration:none;color:inherit;}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
 
-body::before{
-  content:'';position:fixed;inset:0;z-index:9997;pointer-events:none;
-  opacity:0.02;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size:200px;
-}
-
-.wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
-
-/* ── PREMIUM PAGE LOADER ── */
-#page-loader {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background-color: #f8f9f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 400ms cubic-bezier(0.4, 0, 1, 1), transform 400ms cubic-bezier(0.4, 0, 1, 1);
-  will-change: opacity, transform;
-  cursor: default;
-}
-.loader-noise {
-  position: absolute;
-  inset: 0;
-  opacity: 0.018;
-  pointer-events: none;
+/* Noise Overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9997; pointer-events: none;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 200px;
 }
-.loader-vignette {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at center, transparent 40%, rgba(8, 14, 10, 0.04) 100%);
-}
-.loader-dots {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.loader-dot {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--g);
-  border-radius: 50%;
-  opacity: 0.12;
-  filter: blur(1.5px);
-}
-.dot-1 { top: 15%; left: 20%; animation: loaderDrift1 20s ease-in-out infinite; }
-.dot-2 { top: 25%; right: 15%; animation: loaderDrift2 24s ease-in-out infinite; }
-.dot-3 { bottom: 20%; left: 15%; animation: loaderDrift3 18s ease-in-out infinite; }
-.dot-4 { bottom: 25%; right: 20%; animation: loaderDrift4 22s ease-in-out infinite; }
-.dot-5 { top: 52%; left: 78%; animation: loaderDrift5 26s ease-in-out infinite; }
 
-@keyframes loaderDrift1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(30px, -20px) scale(1.2); }
+/* Layout Util */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+/* ════════════════════════════════
+   CUSTOM CURSOR
+   ════════════════════════════════ */
+.cursor-dot {
+  width: 24px; height: 24px;
+  background: url("Parivartan Leaf.png") no-repeat center center;
+  background-size: contain;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transition: transform 0.1s;
+  transform: translate(-50%,-50%);
 }
-@keyframes loaderDrift2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-40px, 30px) scale(0.9); }
-}
-@keyframes loaderDrift3 {
-  0%, 100% { transform: translate(25px, 35px) scale(1.1); }
-}
-@keyframes loaderDrift4 {
-  0%, 100% { transform: translate(-30px, -25px) scale(1.3); }
-}
-@keyframes loaderDrift5 {
-  0%, 100% { transform: translate(20px, -30px) scale(0.85); }
-}
-.loader-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 10;
-}
-.ring-container {
-  width: 160px;
-  height: 160px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-.ring-track {
-  position: absolute;
-  inset: 0;
-  border: 4px solid var(--g-soft);
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(117,191,70,0.5);
   border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: width 0.3s var(--transition), height 0.3s var(--transition), border-color 0.3s, left 0.12s var(--transition), top 0.12s var(--transition);
+  display: flex; align-items: center; justify-content: center;
 }
-.ring-progress {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, rgba(34, 197, 94, 0.25) 0deg, var(--g) 0deg, transparent 0deg);
-  -webkit-mask: radial-gradient(circle, transparent 75.5px, #000 76px);
-  mask: radial-gradient(circle, transparent 75.5px, #000 76px);
+.cursor-ring.hovered {
+  width: 72px; height: 72px;
+  border-color: var(--g);
+  background: rgba(117,191,70,0.08);
 }
-.leaf-logo-wrap {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: scale(0.85);
-  opacity: 0;
-  animation: loaderSpringEntry 450ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  animation-delay: 50ms;
-}
-.leaf-logo-pulse {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: loaderBreathingPulse 2s ease-in-out infinite;
-  animation-delay: 500ms;
-}
-.leaf-logo-pulse img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-@keyframes loaderSpringEntry {
-  0% { transform: scale(0.85); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-@keyframes loaderBreathingPulse {
-  0%, 100% { transform: scale(1.0); }
-  50% { transform: scale(1.05); }
-}
-.loader-counter {
+.cursor-label {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--gray);
-  margin-bottom: 4px;
-  min-height: 20px;
+  font-size: 11px; font-weight: 700;
+  color: var(--g-dark);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s;
+}
+.cursor-ring.hovered .cursor-label { opacity: 1; }
+
+
+/* ════════════════════════════════
+   NAVBAR
+   ════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  padding: 0 40px;
+  transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(20px) saturate(1.6);
+  border-color: var(--border);
+  box-shadow: 0 4px 40px rgba(8,14,10,0.06);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 76px; max-width: 1240px; margin: 0 auto;
+}
+.nav-logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 21px;
+  letter-spacing: -0.04em;
+  display: flex; align-items: center; gap: 2px;
+}
+.nav-logo img {
+  height: 52px; width: auto; object-fit: contain; display: block;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 8px; list-style: none;
+}
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--ink-3);
+  padding: 8px 16px; border-radius: 100px;
+  transition: color 0.2s, background 0.2s;
   letter-spacing: -0.01em;
 }
-.loader-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  opacity: 0;
-  transform: translateY(6px);
-  animation: loaderFadeInBrand 350ms ease-out forwards;
-  animation-delay: 300ms;
-}
-.brand-name {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 19px;
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: -0.03em;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.brand-sparkle {
-  color: var(--g);
-  font-size: 14px;
-}
-.brand-tagline {
+.nav-links a:hover { color: var(--ink); background: var(--off); }
+.nav-links a.active { color: var(--g-dark); background: var(--g-soft); font-weight: 600; }
+
+.nav-btn {
+  background: var(--g) !important; color: #fff !important;
+  padding: 10px 22px !important; border-radius: 100px !important;
+  font-weight: 600 !important; font-size: 13.5px !important;
+  letter-spacing: -0.01em;
+  border: none; cursor: pointer; display: flex; align-items: center; gap: 6px;
+  transition: background 0.25s, transform 0.25s !important;
   font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  color: var(--light-gray);
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  position: relative; overflow: hidden;
 }
-@keyframes loaderFadeInBrand {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.nav-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  transform: translateX(-100%); transition: transform 0s;
 }
-#page-loader.complete .leaf-logo-pulse {
-  animation: loaderFinalPulse 300ms ease-in-out forwards;
+.nav-btn:hover { background: var(--g-dark) !important; transform: translateY(-1px); }
+.nav-btn:hover::before { transform: translateX(100%); transition: transform 0.8s; }
+.nav-btn .arr { transition: transform 0.2s; }
+.nav-btn:hover .arr { transform: translateX(3px); }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.3s; }
+
+.mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 850;
+  background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
+  flex-direction: column; align-items: center; justify-content: center; gap: 32px;
 }
-#page-loader.complete .ring-progress {
-  background: var(--g-dark) !important;
-  transition: background 150ms ease-out;
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 700; color: var(--ink); letter-spacing: -0.04em; }
+.mobile-menu a:hover { color: var(--g); }
+.mobile-close { position: absolute; top: 28px; right: 36px; font-size: 28px; cursor: pointer; color: var(--ink-3); }
+
+
+/* Scroll Reveal */
+.sr { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
+.sr.visible { opacity: 1; transform: translateY(0); }
+.sr-d1 { transition-delay: 0.1s; }
+.sr-d2 { transition-delay: 0.2s; }
+.sr-d3 { transition-delay: 0.3s; }
+.sr-d4 { transition-delay: 0.4s; }
+
+/* Section UI Components */
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11.5px; font-weight: 600; color: var(--g-dark);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 16px;
 }
-@keyframes loaderFinalPulse {
-  0% { transform: scale(1.0); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1.0); }
+.section-label::before {
+  content: ''; display: block;
+  width: 20px; height: 2px; background: var(--g-grad); border-radius: 2px;
 }
-#page-loader.exit {
-  opacity: 0;
-  transform: translateY(-8px);
+.section-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.05; letter-spacing: -0.04em; color: var(--ink);
 }
-.page-wrapper {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-.page-wrapper.visible {
-  opacity: 1;
-  transform: translateY(0);
+.section-title em {
+  font-style: italic;
+  font-family: 'Instrument Serif', serif;
+  background: var(--g-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* ── CURSOR ── */
-.cursor-dot{width:8px;height:8px;background:var(--g);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
-.cursor-ring{width:40px;height:40px;border:1.5px solid rgba(34,197,94,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s var(--transition),height 0.3s var(--transition),border-color 0.3s,background 0.3s;}
-.cursor-ring.hovered{width:60px;height:60px;border-color:var(--g);background:rgba(34,197,94,0.06);}
+/* ════════════════════════════════
+   STORY HERO SECTION
+   ════════════════════════════════ */
+.story-hero {
+  min-height: 100vh; padding: 100px 40px 80px;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  background: #ffffff;
+}
+.story-hero-inner {
+  max-width: 1240px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px;
+  align-items: center; position: relative; z-index: 10;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--g-soft); border: 1px solid var(--border-dark);
+  border-radius: 100px; padding: 7px 16px 7px 8px;
+  font-size: 12.5px; font-weight: 500; color: var(--g-dark);
+  margin-bottom: 32px; letter-spacing: 0.02em;
+}
+.eyebrow-pip {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: #ffffff; display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(117, 191, 70, 0.25);
+  box-shadow: 0 2px 6px rgba(117, 191, 70, 0.1);
+}
+.hero-h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: clamp(40px, 5vw, 68px);
+  line-height: 1.05; letter-spacing: -0.04em; color: var(--ink);
+  margin-bottom: 24px;
+}
+.hero-h1 em {
+  font-style: italic; font-family: 'Instrument Serif', serif;
+  background: var(--g-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub {
+  font-size: 18px; line-height: 1.7; color: var(--ink-3); margin-bottom: 40px; font-weight: 300; max-width: 600px;
+}
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 1px solid var(--border); padding-top: 32px;
+}
+.stat-item { display: flex; flex-direction: column; }
+.stat-num {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(28px, 3vw, 40px); font-weight: 800; color: var(--ink); letter-spacing: -0.03em;
+}
+.stat-num span { color: var(--g); }
+.stat-lbl { font-size: 13px; color: var(--ink-4); margin-top: 4px; font-weight: 500; }
 
-/* ── SCROLL PROGRESS BAR ── */
-.scroll-progress{
-  position:fixed;top:0;left:0;height:3px;background:var(--g-grad);z-index:9996;
-  width:0%;transition:width 0.1s linear;
-  box-shadow:0 0 8px var(--g-glow);
+.hero-graphic {
+  position: relative; display: flex; justify-content: center; align-items: center;
 }
+.philosophy-leaf-svg {
+  width: 280px; height: auto; filter: drop-shadow(0 8px 30px var(--g-glow));
+  animation: leafFloat 8s ease-in-out infinite alternate;
+}
+@keyframes leafFloat {
+  0% { transform: translateY(-10px) rotate(-3deg); }
+  100% { transform: translateY(10px) rotate(3deg); }
+}
+.circle-backdrop {
+  position: absolute; width: 320px; height: 320px; border: 1.5px dashed var(--border); border-radius: 50%; z-index: -1;
+  animation: rotation 40s linear infinite;
+}
+@keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* ── NAVBAR ── */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:900;
-  padding:0 40px;
-  transition:background 0.4s,box-shadow 0.4s,border-color 0.4s;
-  border-bottom:1px solid transparent;
+/* ════════════════════════════════
+   CORE PHILOSOPHY (BENTO VALUES)
+   ════════════════════════════════ */
+.philosophy {
+  padding: 100px 0; background: var(--off); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
 }
-.nav.scrolled{
-  background:rgba(255,255,255,0.85);
-  backdrop-filter:blur(20px) saturate(1.8);
-  border-color:var(--border);
-  box-shadow:var(--shadow-sm);
+.philosophy-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px;
 }
-.nav-inner{
-  display:flex;align-items:center;justify-content:space-between;
-  height:80px;max-width:1240px;margin:0 auto;
+.value-card {
+  background: var(--card); border: 1.5px solid var(--border); border-radius: var(--r-lg);
+  padding: 40px; display: flex; flex-direction: column; gap: 24px;
+  box-shadow: 0 4px 20px rgba(8,14,10,0.01);
+  transition: transform 0.35s var(--transition), box-shadow 0.35s var(--transition), border-color 0.35s;
 }
-.nav-logo{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;
-  letter-spacing:-0.04em;display:flex;align-items:center;gap:2px;
+.value-card:hover {
+  transform: translateY(-5px); box-shadow: 0 16px 40px rgba(117,191,70,0.06); border-color: rgba(117,191,70,0.25);
 }
-.nav-logo span{color:var(--ink);}
-.nav-logo span:first-child{color:var(--g-dark);}
-.nav-logo-dot{width:8px;height:8px;background:var(--g);border-radius:50%;margin-left:2px;margin-bottom:10px;display:inline-block;animation:pulse-dot 2.5s ease-in-out infinite;}
-@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.6);}50%{box-shadow:0 0 0 8px rgba(34,197,94,0);}}
-.nav-links{display:flex;align-items:center;gap:6px;list-style:none;}
-.nav-links a{font-size:14px;font-weight:500;color:var(--ink-3);padding:8px 16px;border-radius:100px;transition:color 0.3s,background 0.3s;letter-spacing:-0.01em;}
-.nav-links a:hover{color:var(--ink);background:var(--border);}
-.nav-links a.active{color:var(--g-dark);font-weight:600;background:var(--g-soft);}
-.nav-btn{
-  background:var(--ink);color:var(--card);
-  padding:12px 24px;border-radius:100px;font-weight:600;font-size:14px;
-  border:none;cursor:pointer;display:flex;align-items:center;gap:6px;
-  transition:background 0.25s,transform 0.25s,box-shadow 0.25s;
-  box-shadow:var(--shadow-sm);
+.value-icon {
+  width: 48px; height: 48px; border-radius: var(--r); background: var(--g-soft);
+  display: flex; align-items: center; justify-content: center; color: var(--g-dark);
 }
-.nav-btn:hover{background:var(--g-dark);box-shadow:0 4px 16px var(--g-glow);}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
-.hamburger span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:0.3s;}
-.mobile-menu{display:none;position:fixed;inset:0;z-index:850;background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:32px;}
-.mobile-menu.open{display:flex;}
-.mobile-menu a{font-family:'Bricolage Grotesque',sans-serif;font-size:32px;font-weight:700;color:var(--ink);letter-spacing:-0.04em;}
-.mobile-menu a:hover{color:var(--g);}
-.mobile-close{position:absolute;top:28px;right:36px;font-size:28px;cursor:pointer;color:var(--ink-3);}
-
-/* ── LITE HERO SECTION ── */
-.hero-lite{
-  background:var(--card);
-  color:var(--ink);
-  padding:180px 40px 140px;
-  position:relative;overflow:hidden;
-  min-height:100vh;display:flex;align-items:center;
+.value-h3 {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 21px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em;
 }
-.hero-lite-glow{
-  position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 60% 60% at top left, rgba(34,197,94,0.06), transparent 60%),
-    radial-gradient(ellipse 50% 50% at bottom right, rgba(132,204,22,0.03), transparent 60%);
-  filter:blur(80px);
-}
-.hero-lite-grid{
-  position:absolute;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(34,197,94,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,0.015) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(0,0,0,1) 0%,transparent 100%);
-}
-.hero-lite-inner{position:relative;z-index:2;text-align:center;max-width:1100px;margin:0 auto;width:100%;}
-.hero-lite-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--g-soft);border:1px solid var(--border-dark);
-  border-radius:100px;padding:8px 18px;
-  font-size:13px;font-weight:700;color:var(--g-dark);
-  margin-bottom:28px;letter-spacing:0.08em;text-transform:uppercase;
-  opacity:0;
-}
-.hero-lite-h1{
-  font-family:'Bricolage Grotesque',sans-serif;
-  font-weight:800;font-size:clamp(40px,5vw,68px);
-  line-height:1.1;letter-spacing:-0.04em;color:var(--ink);
-  margin-bottom:24px;
-}
-.hero-lite-h1 em{
-  font-style:italic;font-family:'Instrument Serif',serif;
-  background:linear-gradient(135deg,#16a34a 0%,#4ade80 50%,#22c55e 100%);
-  background-size:200% auto;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:shift-grad 5s linear infinite;
-}
-.hero-lite-h1 .word-wrap {
-  display:inline-block;overflow:hidden;vertical-align:bottom;
-}
-.hero-lite-h1 .word {
-  display:inline-block;opacity:0;transform:translateY(100%);
-}
-.hero-lite-desc{
-  font-size:18px;line-height:1.65;color:var(--ink-3);
-  margin:0 auto 52px;font-weight:300;max-width:620px;
-  letter-spacing:-0.01em;opacity:0;transform:translateY(20px);
-}
-.hero-stats-pinned{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
-  max-width:1040px;margin:0 auto;opacity:0;transform:translateY(30px);
-}
-.h-stat-lite{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-  padding:32px 24px;box-shadow:var(--shadow-sm);
-  transition:transform 0.4s var(--transition),box-shadow 0.4s,border-color 0.3s,background 0.3s;
-  position:relative;overflow:hidden;
-  backdrop-filter:blur(8px);
-}
-.h-stat-lite::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(150px circle at var(--x,0) var(--y,0),rgba(34,197,94,0.06),transparent 70%);
-  pointer-events:none;
-}
-.h-stat-lite:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--border-dark);background:var(--card);}
-.h-stat-lite .h-stat-val{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
-  font-size:42px;color:var(--ink);line-height:1;letter-spacing:-0.04em;
-}
-.h-stat-lite .h-stat-val .g{color:var(--g-dark);font-size:24px;vertical-align:super;margin-left:2px;}
-.h-stat-lite .h-stat-lbl{font-size:11px;color:var(--ink-4);margin-top:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;}
-
-/* Scroll indicator */
-.scroll-indicator-lite{
-  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  opacity:0;animation:fade-in-scroll 1s ease 2s forwards;
-}
-.scroll-indicator-lite span{font-size:11px;font-weight:600;color:var(--ink-4);letter-spacing:0.1em;text-transform:uppercase;}
-.scroll-mouse-lite{
-  width:24px;height:38px;border:2px solid var(--border-dark);border-radius:12px;
-  position:relative;
-}
-.scroll-mouse-lite::before{
-  content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);
-  width:4px;height:8px;background:var(--g-dark);border-radius:2px;
-  animation:scroll-mouse-anim 1.6s ease-in-out infinite;
+.value-body {
+  font-size: 15px; line-height: 1.6; color: var(--ink-3); font-weight: 400;
 }
 
-/* Floating particles */
-.particle-lite{position:absolute;background:rgba(34,197,94,0.08);border-radius:50%;pointer-events:none;z-index:1;animation:float-drift 20s infinite ease-in-out;}
-@keyframes float-drift{0%,100%{transform:translateY(0) translateX(0) scale(1);}50%{transform:translateY(-40px) translateX(30px) scale(1.15);opacity:0.8;}}
+/* ════════════════════════════════
+   TEAM SECTION
+   ════════════════════════════════ */
+.team { padding: 120px 0; }
+.team-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+.team-subtitle { max-width: 480px; font-size: 16px; color: var(--ink-3); line-height: 1.6; margin-top: 12px; }
 
-/* ── SECTION LABELS ── */
-.section-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11px;font-weight:700;color:var(--g-dark);
-  letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;
+.team-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
 }
-.section-eyebrow::before{content:'';display:block;width:14px;height:2px;background:var(--g-grad);}
-.section-title{
-  font-family:'Bricolage Grotesque',sans-serif;
-  font-weight:800;font-size:clamp(32px,4vw,52px);
-  line-height:1.08;letter-spacing:-0.04em;color:var(--ink);margin-bottom:20px;
+.team-card {
+  background: var(--card); border: 1.5px solid var(--border); border-radius: var(--r-xl);
+  padding: 36px; display: flex; gap: 32px; align-items: center;
+  box-shadow: 0 4px 24px rgba(8,14,10,0.01);
+  transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition), border-color 0.4s;
 }
-.section-title em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--g-dark);}
-.section-desc{font-size:17px;line-height:1.65;color:var(--ink-3);font-weight:300;max-width:560px;}
+.team-card:hover {
+  transform: translateY(-4px); box-shadow: 0 20px 48px rgba(8,14,10,0.04); border-color: rgba(117,191,70,0.25);
+}
+.team-img-wrap {
+  position: relative; border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--border); width: 200px; height: 200px; flex-shrink: 0;
+  background: var(--off);
+}
+.team-img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s var(--transition);
+}
+.team-card:hover .team-img { transform: scale(1.05); }
 
-/* Clip path reveals utility */
-.clip-reveal{
-  clip-path:inset(0 100% 0 0);
-  transition:clip-path 1.2s var(--transition);
+.team-info { display: flex; flex-direction: column; }
+.team-name {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.03em;
+  display: flex; align-items: center; gap: 6px;
 }
-.clip-reveal.revealed{
-  clip-path:inset(0 0% 0 0);
+.team-verified { color: var(--g); font-size: 14px; }
+.team-role {
+  font-size: 13px; font-weight: 600; color: var(--g-dark); text-transform: uppercase; letter-spacing: 0.08em; margin: 4px 0 16px;
 }
+.team-bio {
+  font-size: 14.5px; line-height: 1.6; color: var(--ink-3); font-weight: 400;
+  white-space: pre-line;
+}
+.team-bio-wrap-text {
+  max-height: 116px; /* Matches 5 lines of text (approx. height of image alignment) */
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.4s var(--transition);
+  margin-bottom: 8px;
+}
+.team-bio-wrap-text.collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40px;
+  background: linear-gradient(transparent, var(--card));
+  pointer-events: none;
+}
+.team-bio-wrap-text.expanded {
+  max-height: 1000px;
+  margin-bottom: 16px;
+}
+.read-more-btn {
+  background: none;
+  border: none;
+  color: var(--g-dark);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+.read-more-btn:hover {
+  color: var(--g);
+}
+.team-social {
+  display: flex; gap: 12px;
+}
+.team-social-link {
+  font-size: 12px; font-weight: 700; color: var(--ink-4); transition: color 0.2s;
+}
+.team-social-link:hover { color: var(--g-dark); }
 
-/* ── ORIGIN STORY SECTION ── */
-.origin-sec{
-  padding:140px 40px;background:var(--off);
-  position:relative;overflow:hidden;
+/* ════════════════════════════════
+   GET CONNECTED (MAP + INFO SPLIT)
+   ════════════════════════════════ */
+.map-section { padding: 100px 0; background: var(--off); border-top: 1px solid var(--border); }
+.map-grid {
+  display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; margin-top: 52px;
 }
-.origin-bg-grid{
-  position:absolute;inset:0;
-  background-image:linear-gradient(rgba(34,197,94,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,0.015) 1px,transparent 1px);
-  background-size:40px 40px;
-  mask-image:radial-gradient(ellipse at center,black,transparent 80%);
-  pointer-events:none;
+.info-card {
+  background: var(--card); border: 1.5px solid var(--border); border-radius: var(--r-xl);
+  padding: 44px; display: flex; flex-direction: column; gap: 28px;
+  box-shadow: 0 4px 30px rgba(8,14,10,0.02);
 }
-.origin-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;max-width:1240px;margin:0 auto;position:relative;}
-.origin-visual{position:relative;}
-.origin-card-stack{position:relative;height:520px;width:100%;}
-.origin-card{
-  position:absolute;background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r-lg);padding:36px;box-shadow:var(--shadow-md);
-  transition:transform 0.4s var(--transition),box-shadow 0.4s;
+.info-h3 {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; font-weight: 800; color: var(--ink); letter-spacing: -0.03em;
 }
-.origin-card:hover{
-  transform:translateY(-5px);
-  box-shadow:var(--shadow-lg);
+.info-item { display: flex; gap: 20px; align-items: flex-start; }
+.info-icon {
+  width: 44px; height: 44px; border-radius: var(--r); background: var(--g-soft); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--g-dark); flex-shrink: 0;
 }
-.origin-card-main{
-  top:0;left:0;right:60px;
-  border-left:4px solid var(--g);
-  z-index:2;
-}
-.origin-card-stat{
-  bottom:30px;right:-30px;width:420px;
-  background:var(--g-dark);color:#fff;border:none;
-  box-shadow:var(--shadow-lg);
-  z-index:4;
-}
-.origin-card-float{
-  top:50%;left:-20px;transform:translateY(-50%);
-  width:160px;background:var(--card);
-  text-align:center;
-  box-shadow:var(--shadow-lg);
-  z-index:3;
-  border-top:3px solid var(--g-accent);
-}
-.origin-year{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
-  font-size:72px;color:var(--g);line-height:1;letter-spacing:-0.04em;
-}
-.origin-card-main h3{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:24px;
-  color:var(--ink);margin-bottom:12px;letter-spacing:-0.02em;
-}
-.origin-card-main p{font-size:15px;line-height:1.75;color:var(--ink-3);font-weight:300;}
-.origin-card-stat p{font-size:14.5px;line-height:1.7;opacity:0.9;font-weight:300;}
-.origin-card-stat strong{
-  font-family:'Bricolage Grotesque',sans-serif;font-size:36px;font-weight:800;
-  display:block;letter-spacing:-0.04em;margin-bottom:8px;color:#fff;
-}
-.origin-float-num{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;
-  color:var(--ink);letter-spacing:-0.04em;
-}
-.origin-float-lbl{font-size:11px;font-weight:700;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;}
+.info-title { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-4); margin-bottom: 4px; }
+.info-val { font-size: 16px; color: var(--ink-2); line-height: 1.5; font-weight: 500; }
+.info-val a:hover { color: var(--g-dark); text-decoration: underline; }
 
-/* ── STICKY SCROLL TIMELINE ── */
-.timeline-sec{
-  background:var(--card);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  position:relative;
-  padding:140px 40px;
+/* Custom Vector Map representation */
+.map-visual-card {
+  height: 420px; background: var(--card); border: 1.5px solid var(--border); border-radius: var(--r-xl);
+  position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(8,14,10,0.02);
+  display: flex; align-items: center; justify-content: center;
 }
-.timeline-container{
-  display:grid;grid-template-columns:1fr 1.2fr;gap:80px;
-  max-width:1240px;margin:0 auto;position:relative;
+.map-canvas {
+  width: 100%; height: 100%; background: #fafdfb; position: relative;
 }
-.timeline-left{
-  position:relative;
+/* Styled map grid vector lines */
+.map-grid-overlay {
+  position: absolute; inset: 0; opacity: 0.25;
+  background-image: 
+    radial-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(rgba(117,191,70,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
-.timeline-sticky-content{
-  position:sticky;
-  top:120px;
-  height:calc(100vh - 180px);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+/* Vector roads */
+.map-road-1 { position: absolute; top: 35%; left: 0; right: 0; height: 12px; background: rgba(117,191,70,0.06); transform: rotate(-8deg); }
+.map-road-2 { position: absolute; left: 45%; top: 0; bottom: 0; width: 12px; background: rgba(117,191,70,0.06); transform: rotate(15deg); }
+.map-road-3 { position: absolute; left: 10%; right: 0; bottom: 25%; height: 8px; background: rgba(117,191,70,0.04); transform: rotate(4deg); }
+/* Location marker pulse */
+.map-marker-wrap {
+  position: absolute; top: 48%; left: 52%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; z-index: 10;
 }
-.timeline-sticky-content .section-desc {
-  margin-top: 10px;
-  max-width: 420px;
+.map-pulse {
+  width: 32px; height: 32px; border-radius: 50%; background: rgba(117,191,70,0.2);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
 }
-.timeline-year-display{
-  margin-top:48px;
-  font-family:'Bricolage Grotesque',sans-serif;
-  font-weight:800;
-  font-size:130px;
-  line-height:1;
-  color:var(--g);
-  letter-spacing:-0.05em;
-  position:relative;
-  overflow:hidden;
-  height:130px;
+.map-pulse::after {
+  content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%;
+  border: 1.5px solid var(--g);
+  animation: pulse-ring 2s ease-out infinite;
 }
-.active-year-num{
-  display:block;
-  position:absolute;
-  bottom:0;left:0;
-  transition: transform 0.4s var(--transition), opacity 0.4s var(--transition);
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
-.timeline-v-line{
-  position:absolute;
-  right:-40px;
-  top:10%;
-  height:80%;
-  width:4px;
-  background:rgba(34,197,94,0.06);
-  border-radius:100px;
+.map-dot {
+  width: 12px; height: 12px; background: var(--g); border-radius: 50%; border: 2px solid #fff;
+  box-shadow: 0 2px 10px var(--g-glow);
 }
-.timeline-v-progress{
-  width:100%;
-  height:0%;
-  background:var(--g-grad);
-  border-radius:100px;
-  box-shadow:0 0 10px var(--g-glow);
+.map-tooltip {
+  margin-top: 10px; background: var(--ink); color: #fff; padding: 6px 12px; border-radius: 8px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(8,14,10,0.15);
+  display: flex; align-items: center; gap: 6px;
 }
-.timeline-right{
-  display:flex;
-  flex-direction:column;
-  gap:120px;
-  padding:60px 0;
-}
-.milestone-v-card{
-  position:relative;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--r-lg);
-  padding:44px 36px;
-  box-shadow:var(--shadow-sm);
-  transition:transform 0.4s var(--transition),box-shadow 0.4s,border-color 0.3s;
-  overflow:hidden;
-}
-.milestone-v-card:hover{
-  transform:translateY(-8px);
-  box-shadow:var(--shadow-lg);
-  border-color:var(--border-dark);
-}
-.ghost-year{
-  position:absolute;
-  right:20px;bottom:-20px;
-  font-family:'Bricolage Grotesque',sans-serif;
-  font-weight:800;font-size:110px;
-  color:rgba(34,197,94,0.04);
-  line-height:1;letter-spacing:-0.05em;
-  pointer-events:none;
-  z-index:0;
-  transition: color 0.3s;
-}
-.milestone-v-card:hover .ghost-year {
-  color: rgba(34,197,94,0.08);
-}
-.milestone-card-inner{
-  position:relative;
-  z-index:1;
-}
-.milestone-icon{
-  width:46px;height:46px;
-  background:var(--g-soft);
-  border:1px solid var(--border-dark);
-  border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:20px;
-}
-.milestone-icon svg{width:22px;height:22px;stroke:var(--g-dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.milestone-title{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
-  font-size:20px;color:var(--ink);margin-bottom:10px;letter-spacing:-0.02em;
-}
-.milestone-desc{font-size:14.5px;line-height:1.65;color:var(--ink-3);font-weight:300;}
+.map-tooltip img { width: 12px; height: 12px; }
 
-/* ── MEANING SECTION ── */
-.meaning-sec{padding:140px 40px;background:var(--off);position:relative;overflow:hidden;}
-.meaning-inner{display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:center;max-width:1240px;margin:0 auto;}
-.meaning-visual{display:flex;justify-content:center;}
-.leaf-illustration{width:290px;height:290px;position:relative;}
-.leaf-glow{
-  position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 50%, rgba(34,197,94,0.18), transparent 65%);
-  border-radius:50%;
-  animation:pulse-leaf 4s ease-in-out infinite;
+/* ════════════════════════════════
+   CTA BAND
+   ════════════════════════════════ */
+.cta-band {
+  padding: 120px 40px; background: var(--ink); position: relative; overflow: hidden;
 }
-@keyframes pulse-leaf{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
+.cta-orb-1, .cta-orb-2 {
+  position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px);
+}
+.cta-orb-1 { width: 600px; height: 600px; right: -100px; top: -100px; background: radial-gradient(circle, rgba(117,191,70,0.14), transparent 60%); }
+.cta-orb-2 { width: 400px; height: 400px; left: -80px; bottom: -80px; background: radial-gradient(circle, rgba(117,191,70,0.08), transparent 60%); }
+.cta-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+.cta-h2 {
+  font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 5.5vw, 62px);
+  line-height: 1.05; letter-spacing: -0.04em; color: #fff; margin-bottom: 20px;
+}
+.cta-h2 em {
+  font-style: italic; font-family: 'Instrument Serif', serif;
+  background: var(--g-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.cta-body { font-size: 18px; color: var(--ink-4); margin-bottom: 40px; font-weight: 300; line-height: 1.6; }
+.cta-btns { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.btn-green {
+  background: var(--g); color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14.5px;
+  padding: 16px 32px; border-radius: 100px; border: none; cursor: pointer; transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 4px 28px rgba(117,191,70,0.2);
+}
+.btn-green:hover { background: var(--g-dark); transform: translateY(-2px); box-shadow: 0 12px 36px var(--g-glow); }
+.btn-white-outline {
+  display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #fff;
+  font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14.5px;
+  padding: 15px 30px; border-radius: 100px; border: 1.5px solid rgba(255,255,255,0.25);
+  cursor: pointer; transition: all 0.25s;
+}
+.btn-white-outline:hover { border-color: var(--g); background: rgba(117,191,70,0.08); }
 
-.meaning-cards{display:flex;flex-direction:column;gap:24px;}
-.meaning-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r-lg);padding:32px;
-  display:flex;align-items:flex-start;gap:24px;
-  box-shadow:var(--shadow-sm);
-  transition:transform 0.4s var(--transition),box-shadow 0.4s,border-color 0.3s;
-  position:relative;overflow:hidden;
+/* ════════════════════════════════
+   FOOTER
+   ════════════════════════════════ */
+footer {
+  background: var(--off); border-top: 1px solid var(--border); padding: 100px 40px 40px;
 }
-.meaning-card::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
-  background:var(--g-grad);border-radius:0 2px 2px 0;
-  transform:scaleY(0);transform-origin:top;
-  transition:transform 0.4s var(--transition);
+.footer-inner {
+  display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr 2.2fr; gap: 64px; max-width: 1240px; margin: 0 auto 80px;
 }
-.meaning-card:hover{transform:translateX(8px);box-shadow:var(--shadow-md);border-color:var(--border-dark);}
-.meaning-card:hover::before{transform:scaleY(1);}
-.meaning-icon{
-  width:48px;height:48px;flex-shrink:0;
-  background:var(--g-soft);border:1px solid var(--border-dark);
-  border-radius:12px;display:flex;align-items:center;justify-content:center;
+.footer-logo {
+  font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.04em; color: var(--ink);
 }
-.meaning-icon svg{width:24px;height:24px;stroke:var(--g-dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.meaning-card h3{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;
-  color:var(--ink);margin-bottom:8px;letter-spacing:-0.02em;
+.footer-logo span { color: var(--g-dark); }
+.footer-tagline { font-size: 14.5px; line-height: 1.6; color: var(--ink-3); margin: 16px 0 24px; max-width: 300px; }
+.footer-socials { display: flex; gap: 12px; }
+.social-link {
+  width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border); background: var(--card);
+  display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--ink-3);
+  transition: all 0.2s;
 }
-.meaning-card p{font-size:14.5px;line-height:1.65;color:var(--ink-3);font-weight:300;}
+.social-link:hover { border-color: var(--g-dark); color: var(--g-dark); transform: translateY(-1px); }
 
-/* ── TEAM CARD GRID ── */
-.team-sec{padding:140px 40px;background:var(--card);position:relative;overflow:hidden;}
-.team-inner{max-width:1240px;margin:0 auto;}
-.team-header{text-align:center;margin-bottom:80px;}
-.team-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:32px;
-}
-.team-card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);
-  padding:24px;box-shadow:var(--shadow-sm);
-  display:flex;flex-direction:column;
-  transition:border-color 0.3s,box-shadow 0.4s,transform 0.4s;
-  position:relative;will-change:transform;
-  transform-style:preserve-3d;
-}
-.team-card:hover{
-  border-color:var(--border-dark);
-  box-shadow:var(--shadow-lg);
-}
-.team-image-wrap{
-  width:100%;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;
-  position:relative;background:var(--off);margin-bottom:20px;
-  border:1px solid var(--border);
-}
-.team-image-wrap img{
-  width:100%;height:100%;object-fit:cover;object-position:top;
-  position:absolute;inset:0;z-index:2;
-  transition:transform 0.6s var(--transition);
-}
-.team-card:hover .team-image-wrap img{
-  transform:scale(1.08);
-}
-.team-monogram{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Bricolage Grotesque',sans-serif;
-  font-size:54px;font-weight:800;color:#fff;
-  z-index:1;
-}
-.team-card-overlay{
-  position:absolute;inset:0;
-  background:rgba(3,7,4,0.85);backdrop-filter:blur(8px);
-  display:flex;align-items:center;justify-content:center;
-  padding:28px;opacity:0;transform:translateY(100%);
-  transition:opacity 0.4s var(--transition),transform 0.4s var(--transition);
-  z-index:3;
-}
-.team-card:hover .team-card-overlay{
-  opacity:1;transform:translateY(0);
-}
-.team-card-quote{
-  font-family:'Instrument Serif',serif;font-style:italic;
-  font-size:19px;line-height:1.4;color:#fff;text-align:center;
-}
-.team-card-quote::before{
-  content:'“';font-size:40px;line-height:0.1;vertical-align:bottom;
-  color:var(--g);margin-right:4px;
-}
-.team-card-quote::after{
-  content:'”';font-size:40px;line-height:0.1;vertical-align:bottom;
-  color:var(--g);margin-left:4px;
-}
-.team-card-info{
-  text-align:left;
-}
-.team-card-name{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
-  font-size:22px;color:var(--ink);letter-spacing:-0.02em;margin-bottom:4px;
-}
-.team-card-role{
-  font-size:11px;font-weight:700;color:var(--g-dark);
-  text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;
-}
-.team-card-bio{
-  font-size:13.5px;line-height:1.6;color:var(--ink-3);font-weight:300;
-  margin-bottom:20px;
-}
-.team-card-linkedin{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:12px;font-weight:600;color:var(--ink-2);
-  transition:color 0.3s;align-self:flex-start;
-}
-.team-card-linkedin:hover{color:var(--g-dark);}
-.team-card-linkedin svg{width:14px;height:14px;fill:currentColor;}
+.footer-col h5 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 24px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-col a { font-size: 14.5px; color: var(--ink-3); transition: color 0.2s; }
+.footer-col a:hover { color: var(--g-dark); }
 
-.bg-grad-ap{background:linear-gradient(135deg, #15803d, #22c55e);}
-.bg-grad-cn{background:linear-gradient(135deg, #0284c7, #22c55e);}
-.bg-grad-ph{background:linear-gradient(135deg, #d97706, #dc2626);}
-.bg-grad-jp{background:linear-gradient(135deg, #7c3aed, #db2777);}
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 32px;
+  font-size: 13.5px; color: var(--ink-4); max-width: 1240px; margin: 0 auto;
+}
+.footer-bottom-links { display: flex; gap: 24px; }
+.footer-bottom-links a:hover { color: var(--g-dark); }
 
-/* ── LITE VALUES SECTION ── */
-.values-sec-lite{
-  padding:140px 40px;background:var(--off);color:var(--ink);
-  position:relative;overflow:hidden;
+/* ════════════════════════════════
+   TEAM MODAL POPUP
+   ════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1200;
+  background: rgba(8, 14, 10, 0.4);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s var(--transition);
+  padding: 24px;
 }
-.values-inner{max-width:1240px;margin:0 auto;}
-.values-header{text-align:center;margin-bottom:80px;}
-.values-grid-lite{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
-.value-card-lite{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);
-  padding:44px 30px;box-shadow:var(--shadow-sm);
-  transition:transform 0.4s var(--transition),border-color 0.3s;
-  position:relative;overflow:hidden;
-  text-align:left;
-  z-index:1;
+.modal-overlay.open {
+  opacity: 1; pointer-events: auto;
 }
-.value-card-lite:hover{
-  transform:translateY(-8px);
-  border-color:transparent;
+.modal-container {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  max-width: 800px; width: 100%;
+  padding: 44px;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(8,14,10,0.12);
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.4s var(--transition);
 }
-.value-card-ghost-num{
-  position:absolute;top:20px;right:20px;
-  font-family:'Bricolage Grotesque',sans-serif;font-size:80px;font-weight:800;
-  color:rgba(34,197,94,0.04);line-height:1;pointer-events:none;
-  z-index:0;transition:color 0.3s;
+.modal-overlay.open .modal-container {
+  transform: scale(1) translateY(0);
 }
-.value-card-lite:hover .value-card-ghost-num{
-  color:rgba(255,255,255,0.08);
+.modal-close {
+  position: absolute; top: 24px; right: 24px;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--off);
+  font-size: 14px; color: var(--ink-3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.25s var(--transition);
 }
-.value-card-fill{
-  position:absolute;inset:0;
-  background:var(--g-grad);z-index:-1;
-  clip-path:inset(100% 0 0 0);
-  transition:clip-path 0.5s var(--transition);
+.modal-close:hover {
+  border-color: var(--g); color: var(--g-dark); background: var(--g-soft);
+  transform: rotate(90deg);
 }
-.value-card-lite:hover .value-card-fill{
-  clip-path:inset(0 0 0 0);
+.modal-content {
+  display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; align-items: start;
 }
-.value-card-inner{position:relative;z-index:2;}
-.value-icon-lite{
-  width:52px;height:52px;background:var(--g-soft);border:1px solid var(--border-dark);
-  border-radius:14px;display:flex;align-items:center;justify-content:center;
-  margin-bottom:24px;transition:background 0.3s,border-color 0.3s;
+.modal-img-wrap {
+  position: relative; border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--border); aspect-ratio: 1/1;
+  background: var(--off);
 }
-.value-card-lite:hover .value-icon-lite{
-  background:rgba(255,255,255,0.25);
-  border-color:rgba(255,255,255,0.3);
+.modal-img {
+  width: 100%; height: 100%; object-fit: cover;
 }
-.value-icon-lite svg{
-  width:26px;height:26px;stroke:var(--g-dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
-  transition:stroke 0.3s;
+.modal-right {
+  display: flex; flex-direction: column;
 }
-.value-card-lite:hover .value-icon-lite svg{
-  stroke:#fff;
+#modal-name {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 28px; font-weight: 800; color: var(--ink); letter-spacing: -0.03em;
+  display: flex; align-items: center; gap: 6px;
 }
-.value-title-lite{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
-  font-size:22px;color:var(--ink);margin-bottom:12px;letter-spacing:-0.02em;
-  transition:color 0.3s;
+#modal-role {
+  font-size: 13.5px; font-weight: 600; color: var(--g-dark); text-transform: uppercase; letter-spacing: 0.08em; margin: 6px 0 20px;
 }
-.value-card-lite:hover .value-title-lite{
-  color:#fff;
-}
-.value-desc-lite{
-  font-size:14px;line-height:1.65;color:var(--ink-3);font-weight:300;
-  transition:color 0.3s;
-}
-.value-card-lite:hover .value-desc-lite{
-  color:rgba(255,255,255,0.9);
+#modal-bio {
+  font-size: 15px; line-height: 1.6; color: var(--ink-3); font-weight: 400; margin-bottom: 24px;
+  white-space: pre-line;
 }
 
-/* ── CONTACT/CTA SECTION (Full Map Overlay) ── */
-.contact-sec-new{
-  position:relative;
-  width:100%;min-height:680px;
-  background:var(--off);
-  display:flex;align-items:center;
-  padding:100px 0;
-  overflow:hidden;
+@media (max-width: 768px) {
+  .modal-container { padding: 32px 24px 24px; max-height: 90vh; overflow-y: auto; }
+  .modal-content { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+  .modal-img-wrap { max-width: 160px; margin: 0 auto; }
+  #modal-name { justify-content: center; }
+  #modal-bio { text-align: left; }
 }
-.map-full-width{
-  position:absolute;inset:0;z-index:1;
-}
-.map-full-width iframe{
-  width:100%;height:100%;border:none;
-  filter:grayscale(1) contrast(1.15) opacity(0.85);
-}
-.map-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(247,250,247,0.96) 40%, rgba(247,250,247,0.3) 100%);
-  z-index:2;pointer-events:none;
-}
-.contact-card-container{
-  position:relative;z-index:3;
-  width:100%;display:flex;justify-content:flex-start;
-}
-.contact-card-overlay{
-  background:#ffffff;border:1px solid var(--border-dark);
-  border-left:5px solid var(--g);
-  border-radius:var(--r-lg);padding:52px;
-  max-width:580px;box-shadow:var(--shadow-lg);
-  width:100%;
-}
-.contact-card-title{
-  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;
-  color:var(--ink);letter-spacing:-0.03em;margin-bottom:8px;
-}
-.contact-card-sub{font-size:15px;color:var(--ink-3);font-weight:300;margin-bottom:36px;line-height:1.6;}
-.contact-items{display:flex;flex-direction:column;gap:18px;margin-bottom:36px;}
-.contact-item{
-  display:flex;align-items:flex-start;gap:14px;
-  padding:16px;background:var(--off);border:1px solid var(--border);
-  border-radius:var(--r);transition:border-color 0.3s,box-shadow 0.3s,transform 0.3s;
-}
-.contact-item:hover{border-color:var(--border-dark);box-shadow:var(--shadow-sm);transform:translateX(4px);}
-.contact-item-icon{
-  width:40px;height:40px;flex-shrink:0;background:var(--g-soft);
-  border:1px solid var(--border-dark);border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-}
-.contact-item-icon svg{width:18px;height:18px;stroke:var(--g-dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.contact-item h4{font-size:11px;font-weight:700;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:3px;}
-.contact-item p{font-size:14px;color:var(--ink-2);font-weight:400;line-height:1.5;}
-.contact-cta{
-  display:inline-flex;align-items:center;gap:10px;
-  background:var(--g-grad);color:#fff;
-  font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;
-  padding:16px 32px;border-radius:100px;border:none;cursor:pointer;
-  transition:transform 0.25s,box-shadow 0.25s;
-  box-shadow:0 8px 30px rgba(34,197,94,0.25);
-  width:100%;justify-content:center;
-}
-.contact-cta:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(34,197,94,0.4);}
 
-/* ── FOOTER ── */
-footer{background:var(--card);padding:100px 40px 40px;border-top:1px solid var(--border);position:relative;}
-footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--border-dark),transparent);}
-.footer-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:64px;padding-bottom:64px;border-bottom:1px solid var(--border);margin-bottom:36px;}
-.footer-logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:var(--ink);letter-spacing:-0.04em;margin-bottom:18px;display:block;}
-.footer-logo span{color:var(--g-mid);}
-.footer-tagline{font-size:14.5px;color:var(--ink-3);line-height:1.7;max-width:280px;margin-bottom:32px;font-weight:300;}
-.footer-socials{display:flex;gap:10px;}
-.social-link{width:40px;height:40px;border-radius:12px;background:var(--off);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink-3);transition:background 0.3s,border-color 0.3s,color 0.3s,transform 0.3s;}
-.social-link:hover{background:var(--g-grad);border-color:transparent;color:#fff;transform:translateY(-2px);}
-.footer-col h5{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:12px;color:var(--ink-4);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:22px;}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:14px;}
-.footer-col ul a{font-size:14.5px;color:var(--ink-3);transition:color 0.3s;letter-spacing:-0.01em;}
-.footer-col ul a:hover{color:var(--g-dark);}
-.footer-bottom{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
-.footer-bottom p{font-size:13px;color:var(--ink-4);}
-.footer-bottom-links{display:flex;gap:24px;}
-.footer-bottom-links a{font-size:13px;color:var(--ink-4);transition:color 0.3s;}
-.footer-bottom-links a:hover{color:var(--ink);}
+/* ════════════════════════════════
+   RESPONSIVE LAYOUTS
+   ════════════════════════════════ */
+@media (max-width: 1100px) {
+  .story-hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-stats { justify-content: center; }
+  .hero-graphic { order: -1; }
+  .team-grid { grid-template-columns: 1fr; }
+  .map-grid { grid-template-columns: 1fr; gap: 40px; }
+}
 
-/* ── RESPONSIVE ── */
-@media(max-width:1100px){
-  .hero-stats-pinned{grid-template-columns:repeat(2,1fr);}
-  .values-grid-lite{grid-template-columns:repeat(2,1fr);}
-  .origin-inner{grid-template-columns:1fr;gap:60px;}
-  .origin-card-stat{bottom:-30px;right:-10px;max-width:100%;}
-  .meaning-inner{grid-template-columns:1fr;gap:48px;}
-  .meaning-visual{order:-1;}
-  .team-grid{grid-template-columns:repeat(2,1fr);gap:28px;}
+@media (max-width: 768px) {
+  .story-hero { padding: 90px 24px 72px; }
+  .wrap { padding: 0 24px; }
+  .nav { padding: 0 24px; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-col-map { grid-column: span 2; }
+  .philosophy-grid { grid-template-columns: 1fr; }
+  .team-card { grid-template-columns: 1fr; text-align: center; gap: 24px; padding: 28px; }
+  .team-img-wrap { max-width: 160px; margin: 0 auto; }
+  .team-name { justify-content: center; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
 }
-@media(max-width:900px){
-  .team-grid{gap:24px;}
-  .footer-inner{grid-template-columns:1fr 1fr;gap:40px;}
-  .timeline-container{
-    grid-template-columns:1fr;gap:40px;
-  }
-  .timeline-sticky-content{
-    position:relative;top:0;height:auto;
-  }
-  .timeline-year-display{
-    font-size:80px;height:80px;margin-top:24px;
-  }
-  .timeline-v-line{
-    display:none;
-  }
-  .timeline-right{
-    gap:48px;padding:20px 0;
-  }
-  .contact-card-container{justify-content:center;}
-  .contact-card-overlay{max-width:100%;padding:32px;}
-  .map-overlay{
-    background:linear-gradient(to bottom, rgba(247,250,247,0.9) 30%, rgba(247,250,247,0.5) 100%);
-  }
-}
-@media(max-width:768px){
-  .hero-stats-pinned{grid-template-columns:1fr 1fr;}
-  .values-grid-lite{grid-template-columns:1fr 1fr;}
-  .wrap,.hero-lite,.origin-sec,.meaning-sec,.team-sec,.values-sec-lite,.contact-sec-new,footer{padding-left:24px;padding-right:24px;}
-  .origin-card-stat{position:relative;bottom:0;right:0;width:100%;margin-top:20px;}
-  .origin-card-stack{height:auto;display:flex;flex-direction:column;gap:16px;}
-  .origin-card{position:relative;top:auto;left:auto;right:auto;bottom:auto;width:100%;}
-}
-@media(max-width:640px){
-  .nav-links{display:none;}
-  .hamburger{display:flex;}
-  .cursor-dot,.cursor-ring{display:none!important;}
-  body{cursor:auto!important;}
-  .hero-stats-pinned{grid-template-columns:1fr 1fr;}
-  .values-grid-lite{grid-template-columns:1fr;}
-  .team-grid{grid-template-columns:1fr;gap:24px;}
-}
-@media(max-width:480px){
-  .hero-stats-pinned{grid-template-columns:1fr;}
+
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+  .footer-col-map { grid-column: span 1; }
+  /* Disable cursor follower on touch devices */
+  .cursor-dot, .cursor-ring { display: none !important; }
+  body { cursor: auto !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════
-     PAGE LOADER COMPONENT
-     ════════════════════════════════════════════════ -->
-<div id="page-loader">
-  <!-- Subtle Grain noise overlay -->
-  <div class="loader-noise"></div>
-  
-  <!-- Subtle Vignette overlay -->
-  <div class="loader-vignette"></div>
 
-  <!-- Background Ambient Floating Dots -->
-  <div class="loader-dots">
-    <div class="loader-dot dot-1"></div>
-    <div class="loader-dot dot-2"></div>
-    <div class="loader-dot dot-3"></div>
-    <div class="loader-dot dot-4"></div>
-    <div class="loader-dot dot-5"></div>
-  </div>
 
-  <!-- Main centered content -->
-  <div class="loader-content">
-    <!-- SVG Circular Progress Ring -->
-    <div class="ring-container">
-      <div class="ring-track"></div>
-      <div class="ring-progress" id="ringProgress"></div>
-      
-      <!-- Logo inside the ring -->
-      <div class="leaf-logo-wrap" id="leafLogoWrap">
-        <div class="leaf-logo-pulse">
-          <img src="Parivartan-Leaf.png" alt="eParivartan Leaf Logo">
-        </div>
-      </div>
-    </div>
-
-    <!-- Centered percentage label -->
-    <div class="loader-counter" id="loaderCounter">Loading... 0%</div>
-
-    <!-- Branded wordmark & tagline -->
-    <div class="loader-brand" id="loaderBrand">
-      <div class="brand-name">
-        <span class="brand-sparkle">✦</span>eParivartan
-      </div>
-      <div class="brand-tagline">Transforming businesses digitally</div>
-    </div>
-  </div>
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing">
+  <span class="cursor-label" id="cursorLabel"></span>
 </div>
 
-<!-- Scroll Progress Bar -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- Cursor -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<div class="page-wrapper" id="pageWrapper">
-
-<!-- Mobile Menu -->
+<!-- Mobile Hamburger Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <span class="mobile-close" id="mobileClose">✕</span>
-  <a href="index.html#services">Services</a>
-  <a href="work.html">Work</a>
-  <a href="our-story.html" style="color:var(--g);">Our Story</a>
-  <a href="index.html#clients">Clients</a>
-  <a href="index.html#contact" style="color:var(--g);">Get a Quote →</a>
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="story.html" onclick="closeMobile()" style="color:var(--g);">Our Story</a>
+  <a href="work.html" onclick="closeMobile()">Our Work</a>
+  <a href="clients.html" onclick="closeMobile()">Our Clients</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
 </div>
 
 <!-- Navbar -->
 <nav class="nav" id="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><span>e</span><span>Parivartan</span><span class="nav-logo-dot"></span></a>
+    <a href="index.html" class="nav-logo">
+      <img src="Parivartan_Logo.png" alt="eParivartan Logo">
+    </a>
     <ul class="nav-links">
-      <li><a href="index.html#services">Services</a></li>
-      <li><a href="work.html">Work</a></li>
-      <li><a href="our-story.html" class="active">Our Story</a></li>
-      <li><a href="index.html#clients">Clients</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="story.html" class="active">Our Story</a></li>
+      <li><a href="work.html">Our Work</a></li>
+      <li><a href="clients.html">Our Clients</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-      <a href="index.html#contact" class="nav-btn">Get a Quote <span>→</span></a>
+    <a href="contact.html" class="nav-btn">Get a Quote <span class="arr">→</span></a>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 
-<!-- ── HERO SECTION (Lite Mode + Kinetic Text) ── -->
-<section class="hero-lite" id="hero">
-  <div class="hero-lite-glow"></div>
-  <div class="hero-lite-grid"></div>
-  <div class="hero-lite-inner wrap">
-    <div class="hero-lite-badge">✦ Since 2002</div>
-    <h1 class="hero-lite-h1">
-      <span class="word-wrap"><span class="word">Building</span></span>
-      <span class="word-wrap"><span class="word">Digital</span></span>
-      <span class="word-wrap"><span class="word">Experiences</span></span>
-      <span class="word-wrap"><span class="word">That</span></span>
-      <span class="word-wrap"><span class="word"><em>Transform</em></span></span>
-      <span class="word-wrap"><span class="word">Businesses</span></span>
-    </h1>
-    <p class="hero-lite-desc">A journey of innovation, technology, digital transformation, and long-term client partnerships spanning over two decades.</p>
-    
-    <!-- Stats inside the hero section -->
-    <div class="hero-stats-pinned">
-      <div class="h-stat-lite"><div class="h-stat-val"><span class="counter" data-target="20">0</span><span class="g">+</span></div><div class="h-stat-lbl">Years Experience</div></div>
-      <div class="h-stat-lite"><div class="h-stat-val"><span class="counter" data-target="500">0</span><span class="g">+</span></div><div class="h-stat-lbl">Projects Delivered</div></div>
-      <div class="h-stat-lite"><div class="h-stat-val"><span class="counter" data-target="100">0</span><span class="g">+</span></div><div class="h-stat-lbl">Enterprise Clients</div></div>
-      <div class="h-stat-lite"><div class="h-stat-val"><span class="counter-dec" data-target="4.9">0</span><span class="g">★</span></div><div class="h-stat-lbl">Client Rating</div></div>
-    </div>
-  </div>
-  <div class="scroll-indicator-lite">
-    <div class="scroll-mouse-lite"></div>
-    <span>Scroll to explore</span>
-  </div>
-</section>
+<div class="page-wrapper" id="pageWrapper">
 
-<!-- ── ORIGIN STORY (Grid Overlap + Slide Animation) ── -->
-<section class="origin-sec" id="origin-sec">
-  <div class="origin-bg-grid"></div>
-  <div class="origin-inner wrap">
-    <div class="origin-visual">
-      <div class="origin-card-stack">
-        <div class="origin-card origin-card-main">
-          <h3>Started in a dining room, built into a legacy</h3>
-          <p>In 2002, what began as an idea in Anand's dining room became a company that has served government ministries, enterprise conglomerates, and hundreds of growing businesses across India and beyond.</p>
-          <div style="margin-top:24px;display:flex;gap:20px;">
-            <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:var(--g-dark);letter-spacing:-0.04em;">5,000+</div><div style="font-size:11px;font-weight:700;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.06em;margin-top:3px;">Active Operations</div></div>
-            <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:var(--g-dark);letter-spacing:-0.04em;">24 yrs</div><div style="font-size:11px;font-weight:700;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.06em;margin-top:3px;">Market Presence</div></div>
+  <!-- STORY HERO -->
+  <section class="story-hero">
+    <div class="story-hero-inner wrap">
+      <div class="hero-content sr">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-pip"><img src="Parivartan Leaf.png" alt="Leaf" style="width: 14px; height: 14px; object-fit: contain;"></span> Trusted Digital Partner Since 2002
+        </div>
+        <h1 class="hero-h1">
+          Niche-Specific Designs.<br>
+          Really. <em>Virtually.</em>
+        </h1>
+        <p class="hero-sub">
+          We are a full-service digital agency built for results. For over 24 years, we've partnered with businesses across the globe to build powerful digital products that drive growth, engagement, and measurable success.
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">1,000<span>+</span></span>
+            <span class="stat-lbl">Projects Delivered</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">24<span> Yrs</span></span>
+            <span class="stat-lbl">Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">20<span>+</span></span>
+            <span class="stat-lbl">Industries Served</span>
           </div>
         </div>
-        <!-- Overlapping card sliding in from left -->
-        <div class="origin-card origin-card-stat" id="inc-card">
-          <strong>Incorporated 2002</strong>
-          <p>Boutique digital agency rooted in Hyderabad, Telangana — crafting enterprise-grade digital products for 20+ domains including government, healthcare, finance and education.</p>
-        </div>
-        <div class="origin-card origin-card-float">
-          <div class="origin-year">20<span style="font-size:36px;color:var(--g-dark);">+</span></div>
-          <div class="origin-float-lbl">Years of<br>Excellence</div>
-        </div>
       </div>
-    </div>
-    <div>
-      <div class="section-eyebrow clip-reveal">Our Origin</div>
-      <h2 class="section-title clip-reveal">Where It All<br><em>Began</em></h2>
-      <p class="section-desc" style="margin-bottom:32px;">Incorporated in 2002, eParivartan started as a boutique digital studio and has since grown into a full-service digital agency serving enterprise clients across India.</p>
-      <p class="section-desc">What makes us unique is our team. We love to take risks and push our boundaries constantly, with an everlasting vigour. We believe in change — better than ever.</p>
-      <div style="margin-top:40px;display:flex;flex-direction:column;gap:16px;">
-        <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);">
-          <div style="width:36px;height:36px;background:var(--g-soft);border:1px solid var(--border-dark);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="18" height="18" stroke="var(--g-dark)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <div><div style="font-size:12px;font-weight:700;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.07em;">Headquarters</div><div style="font-size:14px;color:var(--ink-2);margin-top:2px;">Kapra Hills, Hyderabad, Telangana</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);">
-          <div style="width:36px;height:36px;background:var(--g-soft);border:1px solid var(--border-dark);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="18" height="18" stroke="var(--g-dark)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div><div style="font-size:12px;font-weight:700;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.07em;">Industries Served</div><div style="font-size:14px;color:var(--ink-2);margin-top:2px;">Government, Enterprise, Healthcare, Finance, Education</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── TIMELINE (Sticky Scroll Narrative) ── -->
-<section class="timeline-sec" id="timeline-sec">
-  <div class="timeline-container wrap">
-    <!-- Left Column: Sticky Year display -->
-    <div class="timeline-left">
-      <div class="timeline-sticky-content">
-        <div class="section-eyebrow">Our Journey</div>
-        <h2 class="section-title">Two Decades of<br><em>Digital Evolution</em></h2>
-        <p class="section-desc">Scroll to travel through the milestones that shaped eParivartan into the enterprise digital partner it is today.</p>
-        
-        <div class="timeline-year-display">
-          <span class="active-year-num" id="active-year">2002</span>
-        </div>
-        <!-- Progress track line -->
-        <div class="timeline-v-line">
-          <div class="timeline-v-progress" id="timelineProgress"></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Right Column: Scrolling Cards -->
-    <div class="timeline-right">
-      <!-- Milestone 1 -->
-      <div class="milestone-v-card" data-year="2002">
-        <div class="ghost-year">2002</div>
-        <div class="milestone-card-inner">
-          <div class="milestone-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <h3 class="milestone-title">Company Founded</h3>
-          <p class="milestone-desc">eParivartan is born from a single idea in Anand's dining room, incorporated as a boutique digital studio in Hyderabad.</p>
-        </div>
-      </div>
-
-      <!-- Milestone 2 -->
-      <div class="milestone-v-card" data-year="2005">
-        <div class="ghost-year">2005</div>
-        <div class="milestone-card-inner">
-          <div class="milestone-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <h3 class="milestone-title">First Government Project</h3>
-          <p class="milestone-desc">Secured our first government portal contract, establishing credibility in the public sector and enterprise segment.</p>
-        </div>
-      </div>
-
-      <!-- Milestone 3 -->
-      <div class="milestone-v-card" data-year="2010">
-        <div class="ghost-year">2010</div>
-        <div class="milestone-card-inner">
-          <div class="milestone-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-          </div>
-          <h3 class="milestone-title">Enterprise Expansion</h3>
-          <p class="milestone-desc">Expanded into enterprise web applications and national research portals. Team grew to 20+ specialists across disciplines.</p>
-        </div>
-      </div>
-
-      <!-- Milestone 4 -->
-      <div class="milestone-v-card" data-year="2015">
-        <div class="ghost-year">2015</div>
-        <div class="milestone-card-inner">
-          <div class="milestone-icon">
-            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h3 class="milestone-title">Technology Growth</h3>
-          <p class="milestone-desc">Adopted React, Node.js, and cloud infrastructure. Delivered 100+ projects including national science databases for DST.</p>
-        </div>
-      </div>
-
-      <!-- Milestone 5 -->
-      <div class="milestone-v-card" data-year="2020">
-        <div class="ghost-year">2020</div>
-        <div class="milestone-card-inner">
-          <div class="milestone-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-          </div>
-          <h3 class="milestone-title">Digital Transformation</h3>
-          <p class="milestone-desc">Pivoted to full-service digital transformation: mobile apps, B2B platforms, and government e-services in one unified studio.</p>
-        </div>
-      </div>
-
-      <!-- Milestone 6 -->
-      <div class="milestone-v-card" data-year="2025">
-        <div class="ghost-year">2025</div>
-        <div class="milestone-card-inner">
-          <div class="milestone-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M8 12s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-          </div>
-          <h3 class="milestone-title">AI & Automation Era</h3>
-          <p class="milestone-desc">Integrating AI-powered workflows and automation into every client deliverable — ushering in the next generation of digital products.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── MEANING SECTION ── -->
-<section class="meaning-sec">
-  <div class="meaning-inner wrap">
-    <div class="meaning-visual">
-      <div class="leaf-illustration">
-        <div class="leaf-glow"></div>
-        <svg id="meaningLeafLogo" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:relative;z-index:2;will-change:transform;">
-          <defs>
-            <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#16a34a"/>
-              <stop offset="100%" stop-color="#4ade80"/>
-            </linearGradient>
-            <linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#22c55e"/>
-              <stop offset="100%" stop-color="#86efac"/>
-            </linearGradient>
-          </defs>
-          <!-- Left leaf -->
-          <path d="M140 240 Q60 180 80 80 Q120 100 140 240Z" fill="url(#lg1)" opacity="0.9"/>
-          <!-- Right leaf -->
-          <path d="M140 240 Q220 180 200 80 Q160 100 140 240Z" fill="url(#lg2)" opacity="0.85"/>
-          <!-- Center stem -->
-          <line x1="140" y1="240" x2="140" y2="90" stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-          <!-- Small vein lines left -->
-          <line x1="140" y1="180" x2="105" y2="150" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="140" y1="155" x2="110" y2="125" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="140" y1="130" x2="118" y2="105" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Small vein lines right -->
-          <line x1="140" y1="180" x2="175" y2="150" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="140" y1="155" x2="170" y2="125" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="140" y1="130" x2="162" y2="105" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Label -->
-          <text x="140" y="270" text-anchor="middle" font-family="'Instrument Serif', serif" font-style="italic" font-size="18" fill="#16a34a">Parivartan</text>
-        </svg>
-      </div>
-    </div>
-    <div>
-      <div class="section-eyebrow clip-reveal">Our Name</div>
-      <h2 class="section-title clip-reveal">What <em>Parivartan</em><br>Means to Us</h2>
-      <p class="section-desc" style="margin-bottom:40px;">In Sanskrit, Parivartan means transformation. It became the foundation of how we think, build, and partner with every client.</p>
       
-      <!-- Staggered Pillar Cards -->
-      <div class="meaning-cards">
-        <div class="meaning-card pillar-card">
-          <div class="meaning-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="hero-graphic sr sr-d2">
+        <div class="circle-backdrop"></div>
+        <img src="Parivartan Leaf.png" class="philosophy-leaf-svg" alt="eParivartan Leaf outline logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY SECTION -->
+  <section class="philosophy" id="philosophy">
+    <div class="wrap">
+      <div style="text-align: center;" class="sr">
+        <span class="section-label" style="justify-content: center;">Our Beliefs</span>
+        <h2 class="section-title">Our Core <em>Philosophy</em></h2>
+      </div>
+      
+      <div class="philosophy-grid">
+        <div class="value-card sr sr-d1">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Dashed square (top-left) -->
+              <rect x="8" y="8" width="14" height="14" rx="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3" />
+              <!-- Solid square (bottom-right) -->
+              <rect x="26" y="26" width="14" height="14" rx="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Top-right curved arrow (dashed to solid) -->
+              <path d="M 22 12 H 30 C 34 12 38 16 38 20 V 26" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 35 23 L 38 26 L 41 23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Bottom-left curved arrow (solid to dashed) -->
+              <path d="M 26 36 H 18 C 14 36 10 32 10 28 V 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 7 25 L 10 22 L 13 25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
           </div>
-          <div>
-            <h3>Change for Better</h3>
-            <p>Parivartan in Sanskrit translates to change — a change for the better. Representing change in a visual manner was our founding challenge, and we answered with a leaf that embodies growth.</p>
+          <h3 class="value-h3">Change for the better</h3>
+          <p class="value-body">Parivartan in Sanskrit translates to change; a change for the better. Representing change in a visual manner was quite the challenge.</p>
+        </div>
+        
+        <div class="value-card sr sr-d2">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Scalloped badge border -->
+              <path d="M24 5C25.5 5 26.5 6.5 28 7C29.5 7.5 31.5 7 32.5 8.5C33.5 10 33 12 34 13.5C35 15 37 15.5 37.5 17.5C38 19.5 36.5 21 36.5 23C36.5 25 38 26.5 37.5 28.5C37 30.5 35 31 34 32.5C33 34 33.5 36 32.5 37.5C31.5 39 29.5 38.5 28 39C26.5 39.5 25.5 41 24 41C22.5 41 21.5 39.5 20 39C18.5 38.5 16.5 39 15.5 37.5C14.5 36 15 34 14 32.5C13 31 11 30.5 10.5 28.5C10 26.5 11.5 25 11.5 23C11.5 21 10 19.5 10.5 17.5C11 15.5 13 15 14 13.5C15 12 14.5 10 15.5 8.5C16.5 7 18.5 7.5 20 7C21.5 6.5 22.5 5 24 5Z" 
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Inner Circle -->
+              <circle cx="24" cy="23" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Checkmark -->
+              <path d="M20.5 23L23 25.5L27.5 20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Left Ribbon -->
+              <path d="M18 31 L14 43 L19 39.5 L24 43 L21 32.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Right Ribbon -->
+              <path d="M30 32.5 L27 43 L32 39.5 L37 43 L30 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3 class="value-h3">Epitome</h3>
+          <p class="value-body">The leaf came about as an epitome of showing change; its cycle being that of birth, growth, fall and regeneration.</p>
+        </div>
+        
+        <div class="value-card sr sr-d3">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Three People at the top -->
+              <!-- Center Person -->
+              <circle cx="24" cy="11" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M18 18.5C18 16.5 20.5 15.5 24 15.5C27.5 15.5 30 16.5 30 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              
+              <!-- Left Person -->
+              <circle cx="15" cy="13" r="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M10 20.5C10 19 11.5 18 15 18C16.8 18 18 18.5 18.5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              
+              <!-- Right Person -->
+              <circle cx="33" cy="13" r="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M29.5 19C30 18.5 31.2 18 33 18C36.5 18 38 19 38 20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              
+              <!-- Hands holding puzzle pieces -->
+              <!-- Left Arm / Hand -->
+              <path d="M6 37 H13 C14.5 37 15.5 36 16 34.5 L17 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Left Puzzle Piece -->
+              <rect x="17" y="27" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <!-- Puzzle knob/connector -->
+              <circle cx="25" cy="31" r="2.5" stroke="currentColor" stroke-width="2" fill="currentColor" />
+
+              <!-- Right Arm / Hand -->
+              <path d="M42 37 H35 C33.5 37 32.5 36 32 34.5 L31 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Right Puzzle Piece -->
+              <rect x="25" y="27" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3 class="value-h3">Team Effort</h3>
+          <p class="value-body">It is this change that is constant but not quite. An inspired thinking is always a team effort, the most important constituents of the team being.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM SECTION -->
+  <section class="team" id="team">
+    <div class="wrap">
+      <div class="team-header sr">
+        <div>
+          <span class="section-label">Our Studio</span>
+          <h2 class="section-title">The Minds Behind <em>eParivartan</em></h2>
+        </div>
+        <p class="team-subtitle">A collective of seasoned designers, engineers, and product strategists working together to build impactful digital platforms.</p>
+      </div>
+      
+      <div class="team-grid">
+        <!-- Member 1: Anand Pohankar -->
+        <div class="team-card sr sr-d1">
+          <div class="team-img-wrap">
+            <img src="founders/anand.png" class="team-img" alt="Anand Pohankar Headshot">
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Anand Pohankar <span class="team-verified" title="Co-Founder">✦</span></h3>
+            <div class="team-role">Chief Executive Officer</div>
+            <div class="team-bio-wrap-text">
+              <p class="team-bio">The man behind the company who has been delivering designs, where his expertise lies, for the past 16 years, and only continues to do so. He possesses various sets of skills that the company is built on. He has extensive experience in marketing, brand management, business development, man management and organisational skills.
+
+Apart from Parivartan, Anand has been involved with startup companies, and possesses an in-depth knowledge of setting up companies; he also advises people on various aspects of doing business and setting them up. Anand is also passionate about tennis, photography, and enjoys travelling, although, we’re sure he’s not a party animal!</p>
+            </div>
+            <button class="read-more-btn" onclick="toggleBio(this)">Read More</button>
+            <div class="team-social">
+              <a href="#" class="team-social-link">LinkedIn</a>
+            </div>
           </div>
         </div>
-        <div class="meaning-card pillar-card">
-          <div class="meaning-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+
+        <!-- Member 2: Chaitanya Nagulapalli -->
+        <div class="team-card sr sr-d2">
+          <div class="team-img-wrap">
+            <img src="founders/chaitanya.png" class="team-img" alt="Chaitanya Nagulapalli Headshot">
           </div>
-          <div>
-            <h3>Growth & Evolution</h3>
-            <p>The leaf came about as an epitome of showing change — its cycle being that of birth, growth, fall, and regeneration. Every client engagement is a cycle of continuous improvement.</p>
+          <div class="team-info">
+            <h3 class="team-name">Chaitanya Nagulapalli <span class="team-verified" title="Co-Founder">✦</span></h3>
+            <div class="team-role">Chief Technology Officer</div>
+            <div class="team-bio-wrap-text">
+              <div class="team-bio">A man of his words, chosen for his analytical abilities, and the complexity of his computer programming skills, Chaitanya started his career at Parivartan in 2006. As a Project Manager, he has had extensive experience with numerous technical aspects of the business, like open source technologies, CMS, PHP 5.x, MySQL 5.x and WordPress technologies, Windows XP/7, Linux, etcetera. He’s come about to being the CTO of the company, constantly overlooking the smooth running of the business and his programming team. He also takes care of the recruitment of the staff.
+
+In his personal space, Chaitanya is a complete family man, vanishing during holidays and weekends. He’s a fun-loving, straight forward man who appreciates you when you’re at your best, which makes him the most loved in the office. He’s also loves movies, and trying different cuisines thoroughly; also is an ardent Chiranjeevi fan</div>
+            </div>
+            <button class="read-more-btn" onclick="toggleBio(this)">Read More</button>
+            <div class="team-social">
+              <a href="#" class="team-social-link">LinkedIn</a>
+            </div>
           </div>
         </div>
-        <div class="meaning-card pillar-card">
-          <div class="meaning-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+
+        <!-- Member 3: Pradeep Hasanabada -->
+        <div class="team-card sr sr-d3">
+          <div class="team-img-wrap">
+            <img src="founders/pradeep.png" class="team-img" alt="Pradeep Hasanabada Headshot">
           </div>
-          <div>
-            <h3>Collaborative Innovation</h3>
-            <p>It is this change that is constant but not quite. An inspired thinking is always a team effort — the most important constituent of the team being the client themselves.</p>
+          <div class="team-info">
+            <h3 class="team-name">Pradeep Hasanabada</h3>
+            <div class="team-role">Team Lead</div>
+            <div class="team-bio-wrap-text">
+              <div class="team-bio">Pradeep takes charge of the major internal project operations. He’s heavily experienced in HTML5, CSS3, Bootstrap, JQuery. He’s adept at creating responsive websites, Mobile websites, Angular and NodeJs and a prodigy at designing. He’s been associated with Parivartan since 2010, and has long been the point of contact for the clients. He loves experimenting with latest technologies, and strives to bring them in the company.
+
+An asset to the company, he’s known for his perseverance, hard work, and a never-say-die attitude even with a pile of work and tightest of deadlines hanging over his head. He’s always the one Anand falls back on for support. He comes up with an exemplary, ‘Yes, Boss,’ even if something is impossible to achieve.
+
+On a personal note, he loves his hometown of Thungathurthy and wishes that some day, it would find its way around the World Map.</div>
+            </div>
+            <button class="read-more-btn" onclick="toggleBio(this)">Read More</button>
+            <div class="team-social">
+              <a href="#" class="team-social-link">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 4: Jagruti Pohankar -->
+        <div class="team-card sr sr-d4">
+          <div class="team-img-wrap">
+            <img src="founders/jagruti.png" class="team-img" alt="Jagruti Pohankar Headshot">
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Jagruti Pohankar</h3>
+            <div class="team-role">Head Client Relations</div>
+            <div class="team-bio-wrap-text">
+              <div class="team-bio">Jagruti primarily takes up the role of client management at Parivartan. She is the bridge between the clients and the team at Parivartan. Executing projects in its most effective manner is a forte that Jagruti thrives on.
+
+On a personal note, Jagruti loves to spend her time dancing with her kid.</div>
+            </div>
+            <button class="read-more-btn" onclick="toggleBio(this)">Read More</button>
+            <div class="team-social">
+              <a href="#" class="team-social-link">LinkedIn</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── LEADERSHIP (Grid + Tilt cards) ── -->
-<section class="team-sec">
-  <div class="team-inner wrap">
-    <div class="team-header">
-      <div class="section-eyebrow clip-reveal">The People</div>
-      <h2 class="section-title clip-reveal">Meet the Team<br>Behind the <em>Vision</em></h2>
-    </div>
-
-    <div class="team-grid">
-      <!-- Anand Pohankar -->
-      <div class="team-card">
-        <div class="team-image-wrap">
-          <img src="images/anand.jpg" alt="Anand Pohankar" onerror="this.style.display='none'">
-          <div class="team-monogram bg-grad-ap">AP</div>
-          <div class="team-card-overlay">
-            <div class="team-card-quote">Just being different might not be original, but being original ensures being different.</div>
+  <!-- GET CONNECTED (MAP + INFO SPLIT) -->
+  <!-- <section class="map-section" id="location">
+    <div class="wrap">
+      <div class="map-grid">
+        <div class="info-card sr">
+          <h3 class="info-h3">Get <em>Connected</em></h3>
+          
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-title">Studio Location</div>
+              <div class="info-val">4th Floor, Kakatiya Hills,<br>Madhapur, Hyderabad,<br>Telangana — 500081, India</div>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">📧</div>
+            <div>
+              <div class="info-title">Email Us</div>
+              <div class="info-val"><a href="mailto:hello@eparivartan.com">hello@eparivartan.com</a></div>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">🕐</div>
+            <div>
+              <div class="info-title">Working Hours</div>
+              <div class="info-val">Mon–Sat, 9:00 AM – 7:00 PM IST</div>
+            </div>
           </div>
         </div>
-        <div class="team-card-info">
-          <h3 class="team-card-name">Anand Pohankar</h3>
-          <div class="team-card-role">Founder & CEO</div>
-          <p class="team-card-bio">Organisational leader with 16+ years of expertise in marketing, brand management, business development, and organisation building.</p>
-          <a href="https://linkedin.com" target="_blank" class="team-card-linkedin">
-            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-        </div>
-      </div>
 
-      <!-- Chaitanya Nagulapalli -->
-      <div class="team-card">
-        <div class="team-image-wrap">
-          <img src="images/chaitanya.jpg" alt="Chaitanya Nagulapalli" onerror="this.style.display='none'">
-          <div class="team-monogram bg-grad-cn">CN</div>
-          <div class="team-card-overlay">
-            <div class="team-card-quote">There is no great genius without a mixture of madness.</div>
+        <div class="map-visual-card sr sr-d2">
+          <div class="map-canvas">
+            <div class="map-grid-overlay"></div>
+            <div class="map-road-1"></div>
+            <div class="map-road-2"></div>
+            <div class="map-road-3"></div>
+            <div class="map-marker-wrap">
+              <div class="map-pulse">
+                <div class="map-dot"></div>
+              </div>
+              <div class="map-tooltip">
+                <img src="Parivartan Leaf.png" alt="Leaf Logo">
+                eParivartan Studio
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="team-card-info">
-          <h3 class="team-card-name">Chaitanya Nagulapalli</h3>
-          <div class="team-card-role">Project Manager & CTO</div>
-          <p class="team-card-bio">Analytical engineering leader adept at open-source technologies, CMS pipelines, and high-performance system programming.</p>
-          <a href="https://linkedin.com" target="_blank" class="team-card-linkedin">
-            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-        </div>
-      </div>
-
-      <!-- Pradeep Hasanabada -->
-      <div class="team-card">
-        <div class="team-image-wrap">
-          <img src="images/pradeep.jpg" alt="Pradeep Hasanabada" onerror="this.style.display='none'">
-          <div class="team-monogram bg-grad-ph">PH</div>
-          <div class="team-card-overlay">
-            <div class="team-card-quote">You live longer once you realise time spent unhappy is wasted; find happiness in work.</div>
-          </div>
-        </div>
-        <div class="team-card-info">
-          <h3 class="team-card-name">Pradeep Hasanabada</h3>
-          <div class="team-card-role">Team Lead & Senior Developer</div>
-          <p class="team-card-bio">Spearheading internal design operations and frontend technologies (HTML5, CSS3, Angular, Node.js) at eParivartan since 2010.</p>
-          <a href="https://linkedin.com" target="_blank" class="team-card-linkedin">
-            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-        </div>
-      </div>
-
-      <!-- Jagruti Pohankar -->
-      <div class="team-card">
-        <div class="team-image-wrap">
-          <img src="images/jagruti.jpg" alt="Jagruti Pohankar" onerror="this.style.display='none'">
-          <div class="team-monogram bg-grad-jp">JP</div>
-          <div class="team-card-overlay">
-            <div class="team-card-quote">People first. The core spirit of Parivartan is about cultivating trust and human relationships.</div>
-          </div>
-        </div>
-        <div class="team-card-info">
-          <h3 class="team-card-name">Jagruti Pohankar</h3>
-          <div class="team-card-role">Client Relations Manager</div>
-          <p class="team-card-bio">Customer success specialist acting as a bridge between clients and engineering pipelines, prioritizing relationship growth.</p>
-          <a href="https://linkedin.com" target="_blank" class="team-card-linkedin">
-            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section> -->
 
-<!-- ── VALUES SECTION (Lite Mode + Clip Bottom Slide) ── -->
-<section class="values-sec-lite" id="values-sec">
-  <div class="values-inner wrap">
-    <div class="values-header">
-      <div class="section-eyebrow clip-reveal">What We Stand For</div>
-      <h2 class="section-title clip-reveal">Core Values That<br><em>Guide</em> Everything</h2>
-    </div>
-    <div class="values-grid-lite">
-      <!-- Value 1 -->
-      <div class="value-card-lite">
-        <div class="value-card-ghost-num">01</div>
-        <div class="value-card-fill"></div>
-        <div class="value-card-inner">
-          <div class="value-icon-lite">
-            <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3M6.343 6.343l-.707-.707M12 20.5v1M17.657 17.657l-.707-.707M6.343 17.657l-.707.707M12 12a3 3 0 100-6 3 3 0 000 6z"/></svg>
-          </div>
-          <h3 class="value-title-lite">Innovation</h3>
-          <p class="value-desc-lite">We push boundaries and challenge conventions — every project is an opportunity to build something that hasn't existed in exactly this form before.</p>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner wrap">
+      <div>
+        <a href="#" class="footer-logo">
+          <img src="Parivartan_Logo.png" alt="eParivartan Logo" style="height: 38px; display: block; object-fit: contain;">
+        </a>
+        <p class="footer-tagline">A full-service digital agency helping businesses design, build, and grow their digital presence since 2002.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link">in</a>
+          <a href="#" class="social-link">fb</a>
+          <a href="#" class="social-link">tw</a>
+          <a href="#" class="social-link">ig</a>
         </div>
       </div>
-
-      <!-- Value 2 -->
-      <div class="value-card-lite">
-        <div class="value-card-ghost-num">02</div>
-        <div class="value-card-fill"></div>
-        <div class="value-card-inner">
-          <div class="value-icon-lite">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3 class="value-title-lite">Trust</h3>
-          <p class="value-desc-lite">Our clients become long-term partners. The foundation is transparency, honest communication, and delivering exactly what we promise — every time.</p>
-        </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="index.html#services">Web Development</a></li>
+          <li><a href="index.html#services">Mobile Apps</a></li>
+          <li><a href="index.html#services">E-Commerce</a></li>
+          <li><a href="index.html#services">UI/UX Design</a></li>
+          <li><a href="index.html#services">SEO & Marketing</a></li>
+        </ul>
       </div>
-
-      <!-- Value 3 -->
-      <div class="value-card-lite">
-        <div class="value-card-ghost-num">03</div>
-        <div class="value-card-fill"></div>
-        <div class="value-card-inner">
-          <div class="value-icon-lite">
-            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <h3 class="value-title-lite">Execution</h3>
-          <p class="value-desc-lite">Ideas are only as good as the execution. We are a team of finishers — we take ownership from discovery through to launch and beyond.</p>
-        </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="story.html" style="color:var(--g-dark);">About Us</a></li>
+          <li><a href="work.html">Our Work</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </div>
-
-      <!-- Value 4 -->
-      <div class="value-card-lite">
-        <div class="value-card-ghost-num">04</div>
-        <div class="value-card-fill"></div>
-        <div class="value-card-inner">
-          <div class="value-icon-lite">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          </div>
-          <h3 class="value-title-lite">Partnership</h3>
-          <p class="value-desc-lite">We don't work for clients — we work with them. Our best outcomes happen when the client's team and eParivartan's team operate as one unified unit.</p>
+      <div class="footer-col footer-col-map">
+        <h5>Contact</h5>
+        <div style="border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(8, 14, 10, 0.04);">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15225.19098656789!2d78.3975591!3d17.4454575!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe0ce6ff63d856fff!2seParivartan!5e0!3m2!1sen!2sin!4v1671609496367!5m2!1sen!2sin" width="100%" height="200" style="border:0; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" spellcheck="false"></iframe>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ── CONTACT & FULL WIDTH MAP OVERLAY ── -->
-<section class="contact-sec-new">
-  <!-- Full Width Background Map -->
-  <div class="map-full-width">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.9!2d78.5581!3d17.4832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI4JzU5LjUiTiA3OMKwMzMnMjkuMiJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="eParivartan Office Location"></iframe>
-    <div class="map-overlay"></div>
-  </div>
-
-  <div class="contact-card-container wrap">
-    <!-- Overlay Contact Card with green accent border -->
-    <div class="contact-card-overlay">
-      <div class="contact-card-title">Get in Touch</div>
-      <div class="contact-card-sub">We're always open to a conversation — whether it's a new project, a collaboration, or just an introduction.</div>
-      <div class="contact-items">
-        <div class="contact-item">
-          <div class="contact-item-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <h4>Address</h4>
-            <p>Flat No 201, Vasudha Avenue, Road Number 12, Kapra Hills, Hyderabad — 500035, Telangana State</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 11.6a19.79 19.79 0 01-3.07-8.63A2 2 0 012.2 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          </div>
-          <div>
-            <h4>Phone</h4>
-            <p>+91 9848 55645</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div>
-            <h4>Email</h4>
-            <p>feedback@eparivartan.com</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <h4>Business Hours</h4>
-            <p>Monday – Saturday, 9:00 AM – 7:00 PM IST</p>
-          </div>
-        </div>
-      </div>
-      <a href="index.html#contact" class="contact-cta">Start a Conversation →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-inner wrap">
-    <div>
-      <span class="footer-logo">e<span>Parivartan</span></span>
-      <p class="footer-tagline">A full-service digital agency helping businesses design, build, and grow their digital presence since 2002.</p>
-      <div class="footer-socials">
-        <a href="#" class="social-link">in</a>
-        <a href="#" class="social-link">fb</a>
-        <a href="#" class="social-link">tw</a>
-        <a href="#" class="social-link">ig</a>
+    <div class="footer-bottom wrap">
+      <p>© 2026 eParivartan. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
       </div>
     </div>
-    <div class="footer-col">
-      <h5>Services</h5>
-      <ul>
-        <li><a href="index.html#services">Web Development</a></li>
-        <li><a href="index.html#services">Mobile Apps</a></li>
-        <li><a href="index.html#services">E-Commerce</a></li>
-        <li><a href="index.html#services">UI/UX Design</a></li>
-        <li><a href="index.html#services">SEO & Marketing</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="our-story.html">Our Story</a></li>
-        <li><a href="work.html">Our Work</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Contact</h5>
-      <ul>
-        <li><a href="mailto:feedback@eparivartan.com">feedback@eparivartan.com</a></li>
-        <li><a href="#">Hyderabad, Telangana</a></li>
-        <li><a href="#">Mon–Sat 9AM–7PM IST</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom wrap">
-    <p>© 2026 eParivartan. All rights reserved.</p>
-    <div class="footer-bottom-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Sitemap</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 </div><!-- End pageWrapper -->
 
+<!-- Team Member Modal Overlay -->
+<div id="team-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-container">
+    <button class="modal-close" aria-label="Close modal">✕</button>
+    <div class="modal-content">
+      <div class="modal-left">
+        <div class="modal-img-wrap">
+          <img id="modal-img" src="" alt="Headshot">
+        </div>
+      </div>
+      <div class="modal-right">
+        <h3 id="modal-name"></h3>
+        <div id="modal-role"></div>
+        <div id="modal-bio"></div>
+        <div class="team-social" id="modal-social"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-/* ── PREMIUM PAGE LOADER ── */
-function cubicBezier(x1, y1, x2, y2) {
-  return function(x) {
-    if (x <= 0) return 0;
-    if (x >= 1) return 1;
-    let start = 0, end = 1;
-    for (let i = 0; i < 14; i++) {
-      let t = (start + end) / 2;
-      let xt = 3 * (1 - t) * (1 - t) * t * x1 + 3 * (1 - t) * t * t * x2 + t * t * t;
-      if (Math.abs(x - xt) < 0.001) { start = t; break; }
-      if (xt < x) { start = t; } else { end = t; }
-    }
-    const t = start;
-    return 3 * (1 - t) * (1 - t) * t * y1 + 3 * (1 - t) * t * t * x2 + t * t * t;
-  };
-}
-
-function startPageLoader() {
-  const loader = document.getElementById('page-loader');
-  const ringProgress = document.getElementById('ringProgress');
-  const loaderCounter = document.getElementById('loaderCounter');
-  const pageWrapper = document.getElementById('pageWrapper');
-  
-  if (!loader || !ringProgress || !loaderCounter) return;
-  
-  // Prevent body scrolling
-  document.body.style.overflow = 'hidden';
-  
-  const duration = 2300;
-  const delay = 100;
-  const startTime = Date.now() + delay;
-  const ease = cubicBezier(0.4, 0, 0.2, 1);
-  
-  function update() {
-    const now = Date.now();
-    if (now < startTime) {
-      ringProgress.style.background = `conic-gradient(from 0deg, rgba(34, 197, 94, 0.25) 0deg, var(--g) 0deg, transparent 0deg)`;
-      loaderCounter.textContent = 'Loading... 0%';
-      requestAnimationFrame(update);
-      return;
-    }
-    const elapsed = now - startTime;
-    const progress = Math.min(1, elapsed / duration);
-    const easedProgress = ease(progress);
-    
-    const angle = easedProgress * 360;
-    const percent = Math.floor(easedProgress * 100);
-    
-    ringProgress.style.background = `conic-gradient(from 0deg, 
-      rgba(34, 197, 94, 0.25) 0deg, 
-      var(--g) ${angle}deg, 
-      transparent ${angle}deg)`;
-    loaderCounter.textContent = `Loading... ${percent}%`;
-    
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      loaderCounter.textContent = 'Loading... 100%';
-      setTimeout(() => {
-        loader.classList.add('complete');
-        setTimeout(() => {
-          loader.classList.add('exit');
-          
-          document.body.style.overflow = '';
-          if (pageWrapper) {
-            pageWrapper.classList.add('visible');
-          }
-          
-          // Trigger entrance animations
-          if (typeof triggerHeroIn === 'function') {
-            triggerHeroIn();
-          }
-          
-          document.dispatchEvent(new CustomEvent('loaderDone'));
-          
-          setTimeout(() => {
-            loader.style.display = 'none';
-          }, 400);
-        }, 300);
-      }, 200);
-    }
-  }
-  requestAnimationFrame(update);
-}
-
-document.addEventListener('DOMContentLoaded', startPageLoader);
-
-function triggerHeroIn(){
-  const tl = gsap.timeline();
-  
-  tl.to('.hero-lite-badge', {opacity: 1, y: 0, duration: 0.6, ease: 'power3.out'})
-    .to('.hero-lite-h1 .word', {
-      opacity: 1,
-      y: '0%',
-      duration: 1.1,
-      ease: 'power4.out',
-      stagger: 0.08
-    }, '-=0.4')
-    .to('.hero-lite-desc', {opacity: 1, y: 0, duration: 0.7, ease: 'power3.out'}, '-=0.65')
-    .to('.hero-stats-pinned', {opacity: 1, y: 0, duration: 0.7, ease: 'power3.out'}, '-=0.5');
-
-  // Trigger counters
-  setTimeout(() => {
-    document.querySelectorAll('.hero-stats-pinned .counter').forEach(el => {
-      animNum(el, parseInt(el.dataset.target), false);
-    });
-    document.querySelectorAll('.hero-stats-pinned .counter-dec').forEach(el => {
-      animNum(el, parseFloat(el.dataset.target), true);
-    });
-    createParticles();
-    initScrollAnimations();
-  }, 600);
-}
-
-/* ── SMOOTH SCROLL ── */
-const lenis = new Lenis({duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true});
-gsap.ticker.add((t) => lenis.raf(t * 1000));
-gsap.ticker.lagSmoothing(0);
-lenis.on('scroll', ScrollTrigger.update);
-
-/* ── SCROLL PROGRESS BAR ── */
-window.addEventListener('scroll', () => {
-  const el = document.getElementById('scrollProgress');
-  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-  if (el) el.style.width = Math.min(pct, 100) + '%';
-}, {passive: true});
-
-/* ── NAVBAR THEME ADAPTATION ── */
-const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 30);
-}, {passive: true});
-
-/* ── MOBILE MENU ── */
-document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
-document.getElementById('mobileClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
-
-/* ── CUSTOM CURSOR & MAGNETIC EFFECT ── */
+/* ════════════ CURSOR FOLLOW COMPONENT ════════════ */
 const dot = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
-let rx = 0, ry = 0, mx = 0, my = 0;
+const cursorLabel = document.getElementById('cursorLabel');
+let ringX = 0, ringY = 0;
+let mouseX = 0, mouseY = 0;
+
 document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  mouseX = e.clientX; mouseY = e.clientY;
+  dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
 });
-(function animCursor(){
-  rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
-  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-  requestAnimationFrame(animCursor);
-})();
-document.querySelectorAll('a, button, .meaning-card, .value-card-lite, .h-stat-lite, .milestone-v-card, .team-card').forEach(el => {
+function animateCursor() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+document.querySelectorAll('[data-cursor]').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.classList.add('hovered');
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.classList.remove('hovered');
+  });
+});
+document.querySelectorAll('a:not([data-cursor]), button:not([data-cursor]), .value-card, .team-card').forEach(el => {
   el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
   el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
 });
 
-/* ── NUMBER COUNTER ── */
-function animNum(el, target, isDec, dur = 1500){
-  let s = null;
-  const step = ts => {
-    if (!s) s = ts;
-    const p = Math.min((ts - s) / dur, 1);
-    const e = 1 - Math.pow(1 - p, 3);
-    el.textContent = isDec ? (e * target).toFixed(1) : Math.floor(e * target).toLocaleString();
-    if (p < 1) requestAnimationFrame(step);
-    else el.textContent = isDec ? target.toFixed(1) : target.toLocaleString();
-  };
-  requestAnimationFrame(step);
+/* ════════════ NAVBAR SCROLL TRIGGER ════════════ */
+const nav = document.getElementById('navbar');
+function updateNavbarScroll() {
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 30);
+}
+window.addEventListener('scroll', updateNavbarScroll, { passive: true });
+updateNavbarScroll();
+window.addEventListener('load', () => setTimeout(updateNavbarScroll, 100));
+
+/* ════════════ MOBILE NAVIGATION OVERLAY ════════════ */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+}
+if (mobileClose && mobileMenu) {
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+}
+function closeMobile() {
+  if (mobileMenu) mobileMenu.classList.remove('open');
 }
 
-/* ── PARTICLES ── */
-function createParticles(){
-  const hero = document.getElementById('hero');
-  for(let i=0; i<12; i++){
-    const p = document.createElement('div');
-    p.className = 'particle-lite';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.top = Math.random() * 100 + '%';
-    const s = Math.random() * 8 + 4;
-    p.style.width = s + 'px'; p.style.height = s + 'px';
-    p.style.animationDelay = Math.random() * 8 + 's';
-    p.style.animationDuration = (Math.random() * 12 + 10) + 's';
-    hero.appendChild(p);
+/* ════════════ SCROLL REVEAL STAGGER ════════════ */
+const srEls = document.querySelectorAll('.sr');
+const srObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      srObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+srEls.forEach(el => srObs.observe(el));
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // Initialize Team Bios Read More
+  document.querySelectorAll('.team-card').forEach(card => {
+    const bioWrap = card.querySelector('.team-bio-wrap-text');
+    const btn = card.querySelector('.read-more-btn');
+    if (bioWrap && btn) {
+      if (bioWrap.scrollHeight <= 125) {
+        btn.style.display = 'none';
+        bioWrap.classList.remove('collapsed');
+      } else {
+        bioWrap.classList.add('collapsed');
+      }
+    }
+  });
+
+  // Modal event listeners
+  const modal = document.getElementById('team-modal');
+  const closeBtn = modal ? modal.querySelector('.modal-close') : null;
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeTeamModal);
   }
-}
-
-/* ── SPOTLIGHT CARDS HOVER ── */
-document.querySelectorAll('.h-stat-lite, .origin-card-main, .contact-card-overlay').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--x', (e.clientX - r.left) + 'px');
-    card.style.setProperty('--y', (e.clientY - r.top) + 'px');
+  if (modal) {
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeTeamModal();
+    });
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeTeamModal();
   });
 });
 
-/* ── SCROLL ANIMATIONS ── */
-function initScrollAnimations(){
-  // General clip reveals
-  gsap.utils.toArray('.clip-reveal').forEach(el => {
-    ScrollTrigger.create({
-      trigger: el, start: 'top 88%',
-      onEnter: () => el.classList.add('revealed'),
-      once: true
-    });
-  });
-
-  // Slide-in Incorporated card
-  gsap.from('#inc-card', {
-    xPercent: -45,
-    opacity: 0,
-    duration: 1.2,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.origin-sec',
-      start: 'top 75%'
-    }
-  });
-
-  // Staggered value card reveals
-  ScrollTrigger.create({
-    trigger: '.values-grid-lite', start: 'top 82%',
-    onEnter: () => {
-      gsap.from('.value-card-lite', {
-        y: 45, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out'
-      });
-    }, once: true
-  });
-
-  // Rotating Leaf Logo Animation
-  gsap.to('#meaningLeafLogo', {
-    rotation: 40,
-    scale: 1.12,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.meaning-sec',
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true
-    }
-  });
-
-  // Staggered Pillar Card reveals
-  ScrollTrigger.create({
-    trigger: '.meaning-cards', start: 'top 85%',
-    onEnter: () => {
-      gsap.from('.pillar-card', {
-        y: 35, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out'
-      });
-    }, once: true
-  });
-
-  // Team cards reveal
-  ScrollTrigger.create({
-    trigger: '.team-grid', start: 'top 82%',
-    onEnter: () => {
-      gsap.from('.team-card', {
-        y: 50, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out'
-      });
-    }, once: true
-  });
-
-  // Profile rows parallax
-  gsap.utils.toArray('.origin-card-stack, .leaf-illustration').forEach(layer => {
-    gsap.to(layer, {
-      yPercent: -10,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: layer.parentElement,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-  });
-
-  initStickyTimeline();
+function toggleBio(btn) {
+  handleReadMoreClick(btn);
 }
 
-/* ── STICKY SCROLL TIMELINE ── */
-function initStickyTimeline(){
-  if (window.innerWidth <= 900) return; // Disable sticky timeline layout on mobile viewports
-
-  const rightCol = document.querySelector('.timeline-right');
-  const cards = gsap.utils.toArray('.milestone-v-card');
-  const activeYearText = document.getElementById('active-year');
-
-  // Animate the vertical timeline indicator progress bar
-  gsap.to('#timelineProgress', {
-    height: '100%',
-    ease: 'none',
-    scrollTrigger: {
-      trigger: rightCol,
-      start: 'top 60%',
-      end: 'bottom 60%',
-      scrub: true
-    }
-  });
-
-  // Update active year and trigger subtle side-swap text effect on sticky display
-  cards.forEach(card => {
-    const cardYear = card.dataset.year;
-    ScrollTrigger.create({
-      trigger: card,
-      start: 'top 50%',
-      end: 'bottom 50%',
-      onToggle: (self) => {
-        if (self.isActive) {
-          gsap.to(activeYearText, {
-            y: -40, opacity: 0, duration: 0.15,
-            onComplete: () => {
-              activeYearText.textContent = cardYear;
-              gsap.fromTo(activeYearText, {y: 40, opacity: 0}, {y: 0, opacity: 1, duration: 0.25, ease: 'power2.out'});
-            }
-          });
-        }
-      }
-    });
-  });
+function handleReadMoreClick(btn) {
+  const card = btn.closest('.team-card');
+  if (!card) return;
+  
+  const imgEl = card.querySelector('.team-img');
+  const nameEl = card.querySelector('.team-name');
+  const roleEl = card.querySelector('.team-role');
+  const bioEl = card.querySelector('.team-bio');
+  const socialLinks = card.querySelectorAll('.team-social-link');
+  
+  const memberData = {
+    img: imgEl ? imgEl.getAttribute('src') : '',
+    name: nameEl ? nameEl.childNodes[0].textContent.trim() : '',
+    verified: nameEl ? !!nameEl.querySelector('.team-verified') : false,
+    role: roleEl ? roleEl.textContent.trim() : '',
+    bio: bioEl ? bioEl.textContent.trim() : '',
+    socials: Array.from(socialLinks).map(link => ({
+      label: link.textContent.trim(),
+      url: link.href
+    }))
+  };
+  
+  openTeamModal(memberData);
 }
 
-/* ── TEAM CARD 3D TILT EFFECT ── */
-document.querySelectorAll('.team-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const xc = rect.width / 2;
-    const yc = rect.height / 2;
-    // Calculate tilt angles based on cursor offset from card center
-    const tiltX = (yc - y) / 10;
-    const tiltY = (x - xc) / 10;
-    
-    gsap.to(card, {
-      rotateX: tiltX,
-      rotateY: tiltY,
-      transformPerspective: 800,
-      scale: 1.02,
-      duration: 0.3,
-      ease: 'power2.out'
-    });
+function openTeamModal(memberData) {
+  const modal = document.getElementById('team-modal');
+  const img = document.getElementById('modal-img');
+  const name = document.getElementById('modal-name');
+  const role = document.getElementById('modal-role');
+  const bio = document.getElementById('modal-bio');
+  const social = document.getElementById('modal-social');
+  
+  if (!modal || !img || !name || !role || !bio || !social) return;
+  
+  img.src = memberData.img;
+  img.alt = memberData.name + " Headshot";
+  name.innerHTML = memberData.name + (memberData.verified ? ' <span class="team-verified" title="Co-Founder">✦</span>' : '');
+  role.textContent = memberData.role;
+  bio.textContent = memberData.bio;
+  
+  social.innerHTML = '';
+  memberData.socials.forEach(s => {
+    const a = document.createElement('a');
+    a.href = s.url;
+    a.className = 'team-social-link';
+    a.textContent = s.label;
+    social.appendChild(a);
   });
   
-  card.addEventListener('mouseleave', () => {
-    gsap.to(card, {
-      rotateX: 0,
-      rotateY: 0,
-      scale: 1,
-      duration: 0.5,
-      ease: 'power2.out'
-    });
-  });
-});
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTeamModal() {
+  const modal = document.getElementById('team-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
 </script>
 </body>
 </html>

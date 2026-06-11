@@ -19,14 +19,14 @@
        DESIGN TOKENS — PREMIUM REDESIGN
        ════════════════════════════════ */
     :root {
-      --g:        #22c55e;
-      --g-dark:   #16a34a;
-      --g-mid:    #4ade80;
-      --g-accent: #86efac;
-      --g-glow:   rgba(34,197,94,0.18);
-      --g-soft:   rgba(34,197,94,0.06);
-      --g-grad:   linear-gradient(135deg, #16a34a, #22c55e);
-      --g-grad-lime: linear-gradient(135deg, #22c55e, #84cc16);
+      --g:        #75BF46;
+      --g-dark:   #599632;
+      --g-mid:    #91d467;
+      --g-accent: #b1e393;
+      --g-glow:   rgba(117,191,70,0.22);
+      --g-soft:   rgba(117,191,70,0.08);
+      --g-grad:   linear-gradient(135deg, #599632, #91d467);
+      --g-grad-lime: linear-gradient(135deg, #75BF46, #91d467);
       
       /* Light Mode Premium Palette */
       --ink:    #030704;
@@ -102,222 +102,22 @@
 
     .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
 
-    /* ── PREMIUM PAGE LOADER ── */
-    #page-loader {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background-color: #f8f9f6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 400ms cubic-bezier(0.4, 0, 1, 1), transform 400ms cubic-bezier(0.4, 0, 1, 1);
-      will-change: opacity, transform;
-      cursor: default;
-    }
-    .loader-noise {
-      position: absolute;
-      inset: 0;
-      opacity: 0.018;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      background-size: 200px;
-    }
-    .loader-vignette {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(circle at center, transparent 40%, rgba(8, 14, 10, 0.04) 100%);
-    }
-    .loader-dots {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .loader-dot {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: var(--g);
-      border-radius: 50%;
-      opacity: 0.12;
-      filter: blur(1.5px);
-    }
-    .dot-1 { top: 15%; left: 20%; animation: loaderDrift1 20s ease-in-out infinite; }
-    .dot-2 { top: 25%; right: 15%; animation: loaderDrift2 24s ease-in-out infinite; }
-    .dot-3 { bottom: 20%; left: 15%; animation: loaderDrift3 18s ease-in-out infinite; }
-    .dot-4 { bottom: 25%; right: 20%; animation: loaderDrift4 22s ease-in-out infinite; }
-    .dot-5 { top: 52%; left: 78%; animation: loaderDrift5 26s ease-in-out infinite; }
-
-    @keyframes loaderDrift1 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(30px, -20px) scale(1.2); }
-    }
-    @keyframes loaderDrift2 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-40px, 30px) scale(0.9); }
-    }
-    @keyframes loaderDrift3 {
-      0%, 100% { transform: translate(25px, 35px) scale(1.1); }
-    }
-    @keyframes loaderDrift4 {
-      0%, 100% { transform: translate(-30px, -25px) scale(1.3); }
-    }
-    @keyframes loaderDrift5 {
-      0%, 100% { transform: translate(20px, -30px) scale(0.85); }
-    }
-    .loader-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 10;
-    }
-    .ring-container {
-      width: 160px;
-      height: 160px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-    .ring-track {
-      position: absolute;
-      inset: 0;
-      border: 4px solid var(--g-soft);
-      border-radius: 50%;
-    }
-    .ring-progress {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, rgba(34, 197, 94, 0.25) 0deg, var(--g) 0deg, transparent 0deg);
-      -webkit-mask: radial-gradient(circle, transparent 75.5px, #000 76px);
-      mask: radial-gradient(circle, transparent 75.5px, #000 76px);
-    }
-    .leaf-logo-wrap {
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: scale(0.85);
-      opacity: 0;
-      animation: loaderSpringEntry 450ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      animation-delay: 50ms;
-    }
-    .leaf-logo-pulse {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: loaderBreathingPulse 2s ease-in-out infinite;
-      animation-delay: 500ms;
-    }
-    .leaf-logo-pulse img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    @keyframes loaderSpringEntry {
-      0% { transform: scale(0.85); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    @keyframes loaderBreathingPulse {
-      0%, 100% { transform: scale(1.0); }
-      50% { transform: scale(1.05); }
-    }
-    .loader-counter {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--gray);
-      margin-bottom: 4px;
-      min-height: 20px;
-      letter-spacing: -0.01em;
-    }
-    .loader-brand {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      opacity: 0;
-      transform: translateY(6px);
-      animation: loaderFadeInBrand 350ms ease-out forwards;
-      animation-delay: 300ms;
-    }
-    .brand-name {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 19px;
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.03em;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .brand-sparkle {
-      color: var(--g);
-      font-size: 14px;
-    }
-    .brand-tagline {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      color: var(--light-gray);
-      font-weight: 400;
-      letter-spacing: 0.02em;
-    }
-    @keyframes loaderFadeInBrand {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    #page-loader.complete .leaf-logo-pulse {
-      animation: loaderFinalPulse 300ms ease-in-out forwards;
-    }
-    #page-loader.complete .ring-progress {
-      background: var(--g-dark) !important;
-      transition: background 150ms ease-out;
-    }
-    @keyframes loaderFinalPulse {
-      0% { transform: scale(1.0); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1.0); }
-    }
-    #page-loader.exit {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    .page-wrapper {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
-    .page-wrapper.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     /* ════════════════════════════════
        CURSOR & NOISE
        ════════════════════════════════ */
     .cursor-dot {
-      width: 8px; height: 8px;
-      background: var(--g);
-      border-radius: 50%;
+      width: 24px; height: 24px;
+      background: url("Parivartan Leaf.png") no-repeat center center;
+      background-size: contain;
       position: fixed; top: 0; left: 0;
       pointer-events: none; z-index: 9999;
+      transition: transform 0.1s;
       transform: translate(-50%,-50%);
     }
     .cursor-ring {
-      width: 40px; height: 40px;
-      border: 1.5px solid rgba(34,197,94,0.4);
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(117,191,70,0.5);
       border-radius: 50%;
       position: fixed; top: 0; left: 0;
       pointer-events: none; z-index: 9998;
@@ -326,20 +126,18 @@
       display: flex; align-items: center; justify-content: center;
     }
     .cursor-ring.hovered {
-      width: 76px; height: 76px;
+      width: 72px; height: 72px;
       border-color: var(--g);
-      background: rgba(34,197,94,0.06);
-      backdrop-filter: blur(2px);
+      background: rgba(117,191,70,0.08);
     }
     .cursor-label {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 10px; font-weight: 800;
+      font-size: 11px; font-weight: 700;
       color: var(--g-dark);
       opacity: 0;
       pointer-events: none;
       white-space: nowrap;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       transition: opacity 0.2s;
     }
     .cursor-ring.hovered .cursor-label { opacity: 1; }
@@ -440,19 +238,24 @@
     }
 
     .nav-btn {
-      background: var(--ink); color: var(--card);
-      padding: 12px 24px; border-radius: 100px;
-      font-weight: 600; font-size: 14px;
+      background: var(--g) !important; color: #fff !important;
+      padding: 10px 22px !important; border-radius: 100px !important;
+      font-weight: 600 !important; font-size: 13.5px !important;
       letter-spacing: -0.01em;
       border: none; cursor: pointer; display: flex; align-items: center; gap: 6px;
-      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+      transition: background 0.25s, transform 0.25s !important;
+      font-family: 'DM Sans', sans-serif;
       position: relative; overflow: hidden;
-      box-shadow: var(--shadow-sm);
     }
-    .nav-btn:hover {
-      background: var(--g-dark);
-      box-shadow: 0 4px 16px var(--g-glow);
+    .nav-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+      transform: translateX(-100%);
+      transition: transform 0s;
     }
+    .nav-btn:hover { background: var(--g-dark) !important; transform: translateY(-1px); }
+    .nav-btn:hover::before { transform: translateX(100%); transition: transform 0.8s; }
     .nav-btn .arr { transition: transform 0.2s; }
     .nav-btn:hover .arr { transform: translateX(3px); }
 
@@ -531,36 +334,45 @@
 
     /* Metric Grid (Hero Stats) */
     .hero-stats-row {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-      max-width: 800px; margin: 0 auto;
-    }
-    .hero-stat-card {
+      display: grid; grid-template-columns: repeat(4, 1fr);
       background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 28px 24px;
+      border-radius: var(--r); padding: 24px 0;
+      max-width: 900px; margin: 0 auto;
       box-shadow: var(--shadow-sm);
-      transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition), border-color 0.3s;
-      position: relative;
+      align-items: center;
+      transition: box-shadow 0.4s var(--transition), border-color 0.3s;
       overflow: hidden;
     }
-    .hero-stat-card::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(150px circle at var(--x, 0) var(--y, 0), rgba(34, 197, 94, 0.08), transparent 70%);
-      pointer-events: none; z-index: 0;
-    }
-    .hero-stat-card:hover {
-      transform: translateY(-4px); box-shadow: var(--shadow-md);
+    .hero-stats-row:hover {
+      box-shadow: var(--shadow-md);
       border-color: var(--border-dark);
+    }
+    .hero-stat-card {
+      padding: 0 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-stat-card:not(:last-child) {
+      border-right: 1px solid var(--border);
     }
     .h-stat-val {
       font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
-      font-size: 42px; color: var(--ink); line-height: 1; letter-spacing: -0.04em;
+      font-size: 32px; color: var(--g); line-height: 1.1; letter-spacing: -0.03em;
       position: relative; z-index: 1;
+      display: flex;
+      align-items: center;
     }
-    .h-stat-val span.g { color: var(--g); font-size: 26px; vertical-align: super; }
+    .h-stat-val span.g { color: var(--g); font-size: 22px; vertical-align: baseline; margin-left: 2px; }
+    .h-stat-val span.g-lbl { font-size: 22px; margin-left: 6px; font-weight: 700; color: var(--g); vertical-align: baseline; }
     .h-stat-lbl {
-      font-size: 13px; color: var(--ink-4); margin-top: 8px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.05em;
+      font-size: 13.5px; color: var(--ink-3); margin-top: 6px; font-weight: 500;
+      text-transform: none; letter-spacing: normal;
       position: relative; z-index: 1;
+      line-height: 1.3;
     }
 
     /* Floating Particles Background */
@@ -1270,7 +1082,7 @@
        FOOTER
        ════════════════════════════════ */
     footer {
-      background: var(--card); padding: 100px 40px 40px;
+      background: var(--off); padding: 100px 40px 40px;
       border-top: 1px solid var(--border);
       position: relative;
     }
@@ -1282,7 +1094,7 @@
     }
     .footer-inner {
       max-width: 1240px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 64px;
+      display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr 2.2fr; gap: 64px;
       padding-bottom: 64px; border-bottom: 1px solid var(--border);
       margin-bottom: 36px;
     }
@@ -1954,9 +1766,24 @@
 
     @media (max-width: 768px) {
       .hero-work { padding: 140px 24px 60px; }
-      .hero-stats-row { grid-template-columns: 1fr; gap: 16px; }
+      .hero-stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px 0;
+        gap: 24px 0;
+        border-radius: var(--r);
+      }
+      .hero-stat-card {
+        padding: 0 24px;
+      }
+      .hero-stat-card:nth-child(even) {
+        border-right: none !important;
+      }
+      .hero-stat-card:nth-child(odd) {
+        border-right: 1px solid var(--border) !important;
+      }
       .results-band-inner { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer-col-map { grid-column: span 2; }
       .wrap { padding: 0 24px; }
       .cs-story-grid-2 { grid-template-columns: 1fr; gap: 32px; }
       .lighthouse-row { grid-template-columns: repeat(2, 1fr); }
@@ -1966,6 +1793,21 @@
     }
 
     @media (max-width: 640px) {
+      .hero-stats-row {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 20px;
+      }
+      .hero-stat-card {
+        padding: 0;
+        align-items: center;
+        text-align: center;
+        border-right: none !important;
+      }
+      .hero-stat-card:not(:last-child) {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 16px;
+      }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .case-studies { padding: 60px 20px; }
@@ -1974,6 +1816,7 @@
       .cta-container { padding: 60px 20px; }
       footer { padding: 60px 20px 32px; }
       .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-col-map { grid-column: span 1; }
       
       /* Disable custom cursor follower on touch screens */
       .cursor-dot, .cursor-ring { display: none !important; }
@@ -2132,56 +1975,118 @@
         transform: scale(0.32) !important;
       }
     }
+
+    /* Mobile App Showcase Custom Styles */
+    .mobile-showcase {
+      display: none;
+      padding: 0;
+    }
+    .mobile-app-row {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      margin-bottom: 0;
+    }
+    .mobile-app-row.alternate {
+      flex-direction: row-reverse;
+    }
+    .mobile-app-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+    .mobile-circle-bg {
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--off);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.4s var(--transition), border-color 0.4s var(--transition);
+    }
+    .mobile-circle-bg:hover {
+      transform: scale(1.02);
+      border-color: var(--border-dark);
+    }
+    .mobile-circle-bg img {
+      width: 205px;
+      height: auto;
+      border-radius: 32px;
+      box-shadow: var(--shadow-md);
+      border: 5px solid var(--card);
+      z-index: 2;
+      transition: transform 0.4s var(--transition);
+    }
+    .mobile-circle-bg:hover img {
+      transform: translateY(-8px) rotate(-1deg);
+    }
+    .mobile-app-details {
+      flex: 1.2;
+    }
+    .mobile-app-details h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .mobile-app-details ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-app-details li {
+      display: flex;
+      gap: 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink-3);
+      font-weight: 300;
+    }
+    .mobile-app-details .bullet-dot {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      background-image: url('Parivartan-Leaf.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .mobile-app-row, .mobile-app-row.alternate {
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 80px;
+        text-align: center;
+      }
+      .mobile-circle-bg {
+        width: 290px;
+        height: 290px;
+      }
+      .mobile-circle-bg img {
+        width: 155px;
+      }
+      .mobile-app-details ul {
+        align-items: center;
+      }
+      .mobile-app-details li {
+        text-align: left;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ════════════════════════════════════════════════
-       PAGE LOADER COMPONENT
-       ════════════════════════════════════════════════ -->
-  <div id="page-loader">
-    <!-- Subtle Grain noise overlay -->
-    <div class="loader-noise"></div>
-    
-    <!-- Subtle Vignette overlay -->
-    <div class="loader-vignette"></div>
-
-    <!-- Background Ambient Floating Dots -->
-    <div class="loader-dots">
-      <div class="loader-dot dot-1"></div>
-      <div class="loader-dot dot-2"></div>
-      <div class="loader-dot dot-3"></div>
-      <div class="loader-dot dot-4"></div>
-      <div class="loader-dot dot-5"></div>
-    </div>
-
-    <!-- Main centered content -->
-    <div class="loader-content">
-      <!-- SVG Circular Progress Ring -->
-      <div class="ring-container">
-        <div class="ring-track"></div>
-        <div class="ring-progress" id="ringProgress"></div>
-        
-        <!-- Logo inside the ring -->
-        <div class="leaf-logo-wrap" id="leafLogoWrap">
-          <div class="leaf-logo-pulse">
-            <img src="Parivartan-Leaf.png" alt="eParivartan Leaf Logo">
-          </div>
-        </div>
-      </div>
-
-      <!-- Centered percentage label -->
-      <div class="loader-counter" id="loaderCounter">Loading... 0%</div>
-
-      <!-- Branded wordmark & tagline -->
-      <div class="loader-brand" id="loaderBrand">
-        <div class="brand-name">
-          <span class="brand-sparkle">✦</span>eParivartan
-        </div>
-        <div class="brand-tagline">Transforming businesses digitally</div>
-      </div>
-    </div>
-  </div>
 
   <!-- Custom Cursor with Floating Text Labels -->
   <div class="cursor-dot" id="cursorDot"></div>
@@ -2192,12 +2097,11 @@
   <!-- Mobile Hamburger Overlay Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <span class="mobile-close" id="mobileClose">✕</span>
-    <a href="index.html#services" onclick="closeMobile()">Services</a>
-    <a href="#" onclick="closeMobile()" style="color:var(--g);">Work</a>
-    <a href="index.html#process" onclick="closeMobile()">Process</a>
-    <a href="index.html#clients" onclick="closeMobile()">Clients</a>
-    <a href="index.html#faq" onclick="closeMobile()">FAQ</a>
-    <a href="index.html#contact" onclick="closeMobile()" style="color:var(--g);">Get a Quote →</a>
+    <a href="index.html" onclick="closeMobile()">Home</a>
+    <a href="story.html" onclick="closeMobile()">Our Story</a>
+    <a href="work.html" onclick="closeMobile()" style="color:var(--g);">Our Work</a>
+    <a href="clients.html" onclick="closeMobile()">Our Clients</a>
+    <a href="contact.html" onclick="closeMobile()">Contact</a>
   </div>
 
   <!-- NAVBAR -->
@@ -2207,17 +2111,15 @@
         <img src="Parivartan_Logo.png" alt="eParivartan Logo">
       </a>
       <ul class="nav-links">
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="#" class="active">Work</a></li>
-        <li><a href="index.html#process">Process</a></li>
-        <li><a href="index.html#clients">Clients</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="story.html">Our Story</a></li>
+        <li><a href="work.html" class="active">Our Work</a></li>
+        <li><a href="clients.html">Our Clients</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
-      
-      <div class="nav-actions">
-        <div class="hamburger" id="hamburger">
-          <span></span><span></span><span></span>
-        </div>
+      <a href="contact.html" class="nav-btn">Get a Quote <span class="arr">→</span></a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
       </div>
     </div>
   </nav>
@@ -2235,18 +2137,30 @@
         <p class="hero-desc">Real websites, web applications, mobile apps and ecommerce experiences built to increase traffic, conversions and growth.</p>
         
         <!-- Metrics Grid -->
-        <div class="hero-stats-row">
-          <div class="hero-stat-card spotlight-card">
-            <div class="h-stat-val"><span class="counter" id="projectCounter" data-target="5012">5009</span><span class="g">+</span></div>
-            <div class="h-stat-lbl">Active Operations</div>
+        <div class="hero-stats-row spotlight-card">
+          <div class="hero-stat-card">
+            <div class="h-stat-val"><span class="counter" id="projectCounter" data-target="1000">990</span><span class="g">+</span></div>
+            <div class="h-stat-lbl">Projects Delivered</div>
           </div>
-          <div class="hero-stat-card spotlight-card">
-            <div class="h-stat-val"><span class="counter-decimal" data-target="4.9">4.5</span><span class="g">★</span></div>
-            <div class="h-stat-lbl">Client Rating</div>
+          <div class="hero-stat-card">
+            <div class="h-stat-val"><span class="counter" data-target="24">10</span><span class="g-lbl">Yrs</span></div>
+            <div class="h-stat-lbl">Experience</div>
           </div>
-          <div class="hero-stat-card spotlight-card">
-            <div class="h-stat-val"><span class="counter" data-target="240">200</span><span class="g">%</span></div>
-            <div class="h-stat-lbl">Average Growth</div>
+          <div class="hero-stat-card">
+            <div class="h-stat-val"><span class="counter" data-target="20">5</span><span class="g">+</span></div>
+            <div class="h-stat-lbl">Industries Served</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="h-stat-val" style="display: flex; align-items: center; gap: 6px;">
+              <svg viewBox="0 0 24 24" width="22" height="22" style="vertical-align: middle; display: inline-block; flex-shrink: 0;">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.47-.63-.79-1.38-.85-2.13z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span class="counter-decimal" data-target="4.8">4.0</span>
+            </div>
+            <div class="h-stat-lbl">Google Reviews</div>
           </div>
         </div>
       </div>
@@ -2266,7 +2180,7 @@
     <div class="controls-band" id="sticky-tabs-container">
       <div class="controls-inner">
         <div class="search-row">
-          <span class="search-icon">🔍</span>
+          <span class="search-icon" style="display: inline-flex; align-items: center; justify-content: center; color: var(--ink-4);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
           <input type="text" class="search-input" id="projectSearch" placeholder="Search projects by client, technology or industry..." data-cursor="Type" />
         </div>
         <div class="tabs-row-wrapper">
@@ -2291,153 +2205,185 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- SECTION 5 — RESULTS SHOWCASE -->
-    <section class="results-band">
-      <div class="results-band-inner wrap">
-        <div class="res-card spotlight-card">
-          <div class="res-val"><span class="plus">+</span><span class="counter" data-target="320">0</span>%</div>
-          <div class="res-lbl">Traffic Growth <span class="res-icon">📈</span></div>
-          <svg class="bento-sparkline" viewBox="0 0 120 40">
-            <defs>
-              <linearGradient id="sparkline-grad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#22c55e" stop-opacity="0.5"/>
-                <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path d="M0 38 C 20 32, 40 18, 60 12 C 80 8, 100 2, 120 1" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M0 38 C 20 32, 40 18, 60 12 C 80 8, 100 2, 120 1 L 120 40 L 0 40 Z" fill="url(#sparkline-grad)"/>
-          </svg>
+      <!-- SECTION 3.5 — MOBILE APPS CUSTOM SHOWCASE (VISIBLE ONLY WHEN MOBILE TAB IS ACTIVE) -->
+      <div class="mobile-showcase" id="mobileAppsShowcase">
+      <div class="wrap">
+        <div class="mobile-showcase-header" style="text-align: center; max-width: 800px; margin: 0 auto 80px;">
+          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 800; line-height: 1.15; color: var(--ink); margin-bottom: 24px;">Mobile App Development That Brings You Closer to Customers</h2>
+          <p style="font-size: 16.5px; font-weight: 300; line-height: 1.65; color: var(--ink-3);">Don't miss your chance—help your audience get an app! Today, convenience is everything. A well-developed mobile application delivers personalized experiences, drives engagement, and turns visits into sales.</p>
         </div>
-        <div class="res-card spotlight-card">
-          <div class="res-val"><span class="plus">+</span><span class="counter" data-target="180">0</span>%</div>
-          <div class="res-lbl">Lead Generation <span class="res-icon">🎯</span></div>
-          <svg class="bento-sparkline" viewBox="0 0 120 40">
-            <path d="M0 35 Q 30 10 60 25 T 120 5" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M0 35 Q 30 10 60 25 T 120 5 L 120 40 L 0 40 Z" fill="url(#sparkline-grad)"/>
-          </svg>
-        </div>
-        <div class="res-card spotlight-card">
-          <div class="res-val"><span class="plus">+</span><span class="counter" data-target="240">0</span>%</div>
-          <div class="res-lbl">Conversions <span class="res-icon">🚀</span></div>
-          <svg class="bento-sparkline" viewBox="0 0 120 40">
-            <path d="M0 37 C 30 35, 50 15, 80 18 C 95 20, 110 5, 120 2" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M0 37 C 30 35, 50 15, 80 18 C 95 20, 110 5, 120 2 L 120 40 L 0 40 Z" fill="url(#sparkline-grad)"/>
-          </svg>
-        </div>
-        <div class="res-card spotlight-card">
-          <div class="res-val"><span class="counter-decimal" data-target="4.8">0</span>★</div>
-          <div class="res-lbl">Customer Rating <span class="res-icon">⭐</span></div>
-          <svg class="bento-sparkline" viewBox="0 0 120 40">
-            <path d="M0 30 C 20 28, 40 28, 60 22 C 80 18, 100 5, 120 1" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M0 30 C 20 28, 40 28, 60 22 C 80 18, 100 5, 120 1 L 120 40 L 0 40 Z" fill="url(#sparkline-grad)"/>
-          </svg>
-        </div>
-      </div>
-    </section>
 
-    <!-- SECTION 6 — CLIENT TESTIMONIAL CAROUSEL -->
-    <section class="testimonial-sec">
-      <div class="testimonial-wrap wrap">
-        <div class="t-carousel" id="testimonialCarousel">
+        <div class="mobile-apps-list" style="display: flex; flex-direction: column; gap: 40px;">
           
-          <div class="t-card active">
-            <div class="t-quote-symbol">"</div>
-            <p class="t-quote-text">We were highly impressed with eParivartan's detailed execution. They handcrafted an interactive system that significantly boosted our patients' portal usage, transforming clinic operations within just a month.</p>
-            
-            <div class="t-author-row">
-              <div class="t-profile">
-                <div class="t-avatar">MC</div>
-                <div>
-                  <div class="t-name">Dr. Sarah Connor</div>
-                  <div class="t-role">Chief of Cardiology, MediCare Portal</div>
-                </div>
+          <!-- App 1: Rental App -->
+          <div class="mobile-app-row">
+            <div class="mobile-app-visual">
+              <div class="mobile-circle-bg">
+                <img src="images/rental_app.png" alt="Rental App Mockup">
               </div>
-              <div class="t-badge-group">
-                <div class="t-rating">★★★★★</div>
-                <span class="t-outcome-pill">📈 +240% Appointment Conversions</span>
-              </div>
+            </div>
+            <div class="mobile-app-details">
+              <h3>Rental App</h3>
+              <ul>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Developed a centralized rental management platform for handling properties, tenants, and locations efficiently.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Enabled seamless tenant management with streamlined onboarding, tracking, and communication features.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Integrated rental payment management for tracking dues, payment history, and transaction records.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Built a scalable and user-friendly system to simplify day-to-day property rental operations and management.</span>
+                </li>
+              </ul>
             </div>
           </div>
 
-          <div class="t-card">
-            <div class="t-quote-symbol">"</div>
-            <p class="t-quote-text">The ESTIC clearinghouse portal has transformed national scientific data search, reducing publication retrieval times by over 60%. Their engineering capability is top tier.</p>
-            
-            <div class="t-author-row">
-              <div class="t-profile">
-                <div class="t-avatar">AS</div>
-                <div>
-                  <div class="t-name">Dr. A. K. Singh</div>
-                  <div class="t-role">Scientist 'G' & Head, DST ESTIC Division</div>
-                </div>
+          <!-- App 2: Clap Kartel -->
+          <div class="mobile-app-row alternate">
+            <div class="mobile-app-visual">
+              <div class="mobile-circle-bg">
+                <img src="images/clap_kartel.png" alt="Clap Kartel Mockup">
               </div>
-              <div class="t-badge-group">
-                <div class="t-rating">★★★★★</div>
-                <span class="t-outcome-pill">🚀 Search Latency Reduced by 60%</span>
-              </div>
+            </div>
+            <div class="mobile-app-details">
+              <h3>Clap Kartel</h3>
+              <ul>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Developed a social-driven entertainment platform for movie-related rentals, jobs, learning, and talent discovery.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Enabled artists and creators to showcase their talent through engaging profile and media-sharing features similar to Instagram.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Built dedicated modules for connecting users with film industry opportunities, services, and professional directories.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Designed an interactive and scalable platform that supports networking, collaboration, and creative community growth.</span>
+                </li>
+              </ul>
             </div>
           </div>
 
-          <div class="t-card">
-            <div class="t-quote-symbol">"</div>
-            <p class="t-quote-text">Our distributor orders and bulk capacitor pricing requests doubled once our technical B2B catalog was rolled out. The React product directory is incredibly fast.</p>
-            
-            <div class="t-author-row">
-              <div class="t-profile">
-                <div class="t-avatar">SC</div>
-                <div>
-                  <div class="t-name">S. Chandra</div>
-                  <div class="t-role">Managing Director, Incap Limited</div>
-                </div>
+          <!-- App 3: CAD Career Coach -->
+          <div class="mobile-app-row">
+            <div class="mobile-app-visual">
+              <div class="mobile-circle-bg">
+                <img src="images/cad_coach.png" alt="CAD Career Coach Mockup">
               </div>
-              <div class="t-badge-group">
-                <div class="t-rating">★★★★★</div>
-                <span class="t-outcome-pill">📦 +200% Inbound B2B Leads</span>
-              </div>
+            </div>
+            <div class="mobile-app-details">
+              <h3>CAD Career Coach</h3>
+              <ul>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Developed a career-focused platform for civil and mechanical engineering jobs, training, and professional growth.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Enabled users to explore job opportunities, technical courses, and industry-relevant learning resources in one place.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Built an intuitive system for skill development, career guidance, and connecting candidates with recruiters.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Designed a scalable and user-friendly application tailored to support engineering students and professionals throughout their career journey.</span>
+                </li>
+              </ul>
             </div>
           </div>
 
-        </div>
+          <!-- App 4: Hemanth Enterprises -->
+          <div class="mobile-app-row alternate">
+            <div class="mobile-app-visual">
+              <div class="mobile-circle-bg">
+                <img src="images/hemanth_ent.png" alt="Hemanth Enterprises Mockup">
+              </div>
+            </div>
+            <div class="mobile-app-details">
+              <h3>Hemanth Enterprises</h3>
+              <ul>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Developed a comprehensive sanitary solutions platform featuring products from multiple leading brands.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Enabled streamlined quotation generation and cost estimation for sanitary product requirements.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Built an intuitive system for product selection to simplify comparison and decision-making for customers.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Designed a scalable and user-friendly solution to manage product inquiries, estimations, and brand-wise selections efficiently.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-        <div class="t-dots">
-          <div class="t-dot active" onclick="switchTestimonial(0)"></div>
-          <div class="t-dot" onclick="switchTestimonial(1)"></div>
-          <div class="t-dot" onclick="switchTestimonial(2)"></div>
+          <!-- App 5: Minutes of Meeting -->
+          <div class="mobile-app-row">
+            <div class="mobile-app-visual">
+              <div class="mobile-circle-bg">
+                <img src="images/minutes_meeting.png" alt="Minutes of Meeting Mockup">
+              </div>
+            </div>
+            <div class="mobile-app-details">
+              <h3>Minutes of Meeting</h3>
+              <ul>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Developed an intelligent meeting management platform for recording, organizing, and summarizing discussions.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Enabled automatic generation of meeting minutes with key discussion points and action items.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Integrated email sharing features to instantly send meeting summaries and important updates to participants.</span>
+                </li>
+                <li>
+                  <span class="bullet-dot"></span>
+                  <span>Built a centralized system to securely store recordings, notes, and historical meeting data for easy access and tracking.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
-    </section>
-
-    <!-- SECTION 7 — NEXT PROJECT CTA -->
-    <section class="cta-band">
-      <div class="cta-container wrap">
-        <div class="cta-orb-1"></div>
-        <div class="cta-orb-2"></div>
-        <div class="cta-band-inner">
-          <div class="cta-lbl">Ready to scale?</div>
-          <h2 class="cta-title">Ready To Become<br>Our Next <em>Success Story?</em></h2>
-          <p class="cta-desc">Partner with eParivartan to craft agency-grade websites, web apps, and mobile ecosystems designed to drive results.</p>
-          
-          <div class="cta-button-row">
-            <a href="index.html#contact" class="btn-green-shine btn-magnetic" data-cursor="Let's Go">Start Your Project →</a>
-            <a href="index.html#contact" class="btn-outline-white btn-magnetic" data-cursor="Call →">Schedule Discovery Call</a>
-          </div>
-        </div>
       </div>
     </section>
-
+    
     <!-- FOOTER -->
     <footer>
       <div class="footer-inner wrap">
         <div>
-          <span class="footer-logo">e<span>Parivartan</span></span>
-          <p class="footer-tagline">A full-service digital agency helping businesses design, build, and grow their digital presence since 2000.</p>
-          <div class="footer-socials">
-            <a href="#" class="social-link btn-magnetic">in</a>
-            <a href="#" class="social-link btn-magnetic">fb</a>
-            <a href="#" class="social-link btn-magnetic">tw</a>
-            <a href="#" class="social-link btn-magnetic">ig</a>
+          <a href="#" class="footer-logo">
+            <img src="Parivartan_Logo.png" alt="eParivartan Logo" style="height: 38px; display: block; object-fit: contain;">
+          </a>
+          <p class="footer-tagline">A full-service digital agency helping businesses design, build, and grow their digital presence since 2002.</p>
+          <div class="footer-socials" style="display: flex; gap: 12px; margin-top: 16px;">
+            <a href="#" class="social-link" aria-label="LinkedIn" style="display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+            <a href="#" class="social-link" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            <a href="#" class="social-link" aria-label="Twitter" style="display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: block;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="social-link" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
           </div>
         </div>
         <div class="footer-col">
@@ -2453,20 +2399,18 @@
         <div class="footer-col">
           <h5>Company</h5>
           <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Our Work</a></li>
+            <li><a href="story.html">About Us</a></li>
+            <li><a href="work.html">Our Work</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-        <div class="footer-col">
+        <div class="footer-col footer-col-map">
           <h5>Contact</h5>
-          <ul>
-            <li><a href="mailto:hello@eparivartan.com">hello@eparivartan.com</a></li>
-            <li><a href="#">Hyderabad, Telangana</a></li>
-            <li><a href="#">Mon–Sat 9AM–7PM IST</a></li>
-          </ul>
+          <div style="border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(8, 14, 10, 0.04);">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15225.19098656789!2d78.3975591!3d17.4454575!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe0ce6ff63d856fff!2seParivartan!5e0!3m2!1sen!2sin!4v1671609496367!5m2!1sen!2sin" width="100%" height="200" style="border:0; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" spellcheck="false"></iframe>
+          </div>
         </div>
       </div>
       <div class="footer-bottom wrap">
@@ -2483,15 +2427,15 @@
 
   <!-- IMMERSIVE SCROLL-DRIVEN CASE STUDY VIEW OVERLAY -->
   <div class="case-study-overlay" id="caseStudyOverlay">
-    <button class="cs-close-btn" id="closeCaseStudyBtn" onclick="closeCaseStudy()">✕ Close Case Study</button>
-    
-    <!-- Floating side navigation tracker dots -->
+
+
+    <!-- Side Navigation Section Tracker -->
     <div class="cs-story-tracker" id="storyTracker">
       <div class="tracker-dot active" onclick="scrollToSection('cs-sec-intro')">Intro</div>
-      <div class="tracker-dot" onclick="scrollToSection('cs-sec-challenge')">Challenge & Research</div>
-      <div class="tracker-dot" onclick="scrollToSection('cs-sec-design')">Design</div>
-      <div class="tracker-dot" onclick="scrollToSection('cs-sec-development')">Development</div>
-      <div class="tracker-dot" onclick="scrollToSection('cs-sec-results')">Results</div>
+      <div class="tracker-dot" onclick="scrollToSection('cs-sec-challenge')">01 Research</div>
+      <div class="tracker-dot" onclick="scrollToSection('cs-sec-design')">02 Redesign</div>
+      <div class="tracker-dot" onclick="scrollToSection('cs-sec-development')">03 Performance</div>
+      <div class="tracker-dot" onclick="scrollToSection('cs-sec-results')">04 Results</div>
     </div>
 
     <!-- Container where dynamic case study slides are rendered -->
@@ -2504,14 +2448,14 @@
       <!-- Fake Browser Bar -->
       <div class="browser-chrome" style="display: flex; align-items: center; justify-content: space-between;">
         <div class="chrome-address-bar" id="modalAddressBarWrapper" style="max-width: 70%; margin-right: auto; flex: 1; cursor: pointer; transition: all 0.2s; display: flex; align-items: center;" title="Click to open website in a new tab" onclick="window.open(document.getElementById('modalAddressBar').textContent, '_blank')">
-          <span class="lock">🔒</span>
+          <span class="lock" style="display: inline-flex; align-items: center; margin-right: 4px; color: #16a34a; vertical-align: middle;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
           <span id="modalAddressBar" style="text-decoration: underline; color: var(--ink-2); font-weight: 500;">loading...</span>
-          <span style="font-size: 11px; margin-left: 6px; color: var(--ink-4); opacity: 0.8;">↗</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px; color: var(--ink-4); opacity: 0.8;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           <span class="browser-pulse-dot" style="margin-left: auto; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse-dot 2s ease-in-out infinite;" title="Real-time View Active"></span>
         </div>
         <div style="display: flex; align-items: center; gap: 12px; margin-left: 16px;">
-          <a id="modalExternalLink" href="#" target="_blank" style="font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 500; color: var(--ink); background: rgba(0,0,0,0.05); padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.1)'" onmouseout="this.style.background='rgba(0,0,0,0.05)'">
-            Open Website <span style="font-size: 11px; transition: transform 0.2s;">↗</span>
+          <a id="modalExternalLink" href="#" target="_blank" style="font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 500; color: var(--ink); background: rgba(0,0,0,0.05); padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.1)'" onmouseout="this.style.background='rgba(0,0,0,0.05)'">
+            Open Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
           <div class="chrome-buttons" style="display: flex; gap: 6px;">
             <div class="chrome-btn" style="background:#28c840; opacity: 0.8; cursor: not-allowed;" title="Zoom (Disabled)"><span>+</span></div>
@@ -2529,90 +2473,6 @@
   </div>
 
   <script>
-    /* ── PREMIUM PAGE LOADER ── */
-    function cubicBezier(x1, y1, x2, y2) {
-      return function(x) {
-        if (x <= 0) return 0;
-        if (x >= 1) return 1;
-        let start = 0, end = 1;
-        for (let i = 0; i < 14; i++) {
-          let t = (start + end) / 2;
-          let xt = 3 * (1 - t) * (1 - t) * t * x1 + 3 * (1 - t) * t * t * x2 + t * t * t;
-          if (Math.abs(x - xt) < 0.001) { start = t; break; }
-          if (xt < x) { start = t; } else { end = t; }
-        }
-        const t = start;
-        return 3 * (1 - t) * (1 - t) * t * y1 + 3 * (1 - t) * t * t * x2 + t * t * t;
-      };
-    }
-
-    function startPageLoader() {
-      const loader = document.getElementById('page-loader');
-      const ringProgress = document.getElementById('ringProgress');
-      const loaderCounter = document.getElementById('loaderCounter');
-      const pageWrapper = document.getElementById('pageWrapper');
-      
-      if (!loader || !ringProgress || !loaderCounter) return;
-      
-      // Prevent body scrolling
-      document.body.style.overflow = 'hidden';
-      
-      const duration = 2300;
-      const delay = 100;
-      const startTime = Date.now() + delay;
-      const ease = cubicBezier(0.4, 0, 0.2, 1);
-      
-      function update() {
-        const now = Date.now();
-        if (now < startTime) {
-          ringProgress.style.background = `conic-gradient(from 0deg, rgba(34, 197, 94, 0.25) 0deg, var(--g) 0deg, transparent 0deg)`;
-          loaderCounter.textContent = 'Loading... 0%';
-          requestAnimationFrame(update);
-          return;
-        }
-        const elapsed = now - startTime;
-        const progress = Math.min(1, elapsed / duration);
-        const easedProgress = ease(progress);
-        
-        const angle = easedProgress * 360;
-        const percent = Math.floor(easedProgress * 100);
-        
-        ringProgress.style.background = `conic-gradient(from 0deg, 
-          rgba(34, 197, 94, 0.25) 0deg, 
-          var(--g) ${angle}deg, 
-          transparent ${angle}deg)`;
-        loaderCounter.textContent = `Loading... ${percent}%`;
-        
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        } else {
-          loaderCounter.textContent = 'Loading... 100%';
-          setTimeout(() => {
-            loader.classList.add('complete');
-            setTimeout(() => {
-              loader.classList.add('exit');
-              
-              document.body.style.overflow = '';
-              if (pageWrapper) {
-                pageWrapper.classList.add('visible');
-              }
-              
-              // Trigger entrance animations
-              if (typeof triggerHeroStagger === 'function') {
-                triggerHeroStagger();
-              }
-              
-              document.dispatchEvent(new CustomEvent('loaderDone'));
-              
-              setTimeout(() => {
-                loader.style.display = 'none';
-              }, 400);
-            }, 300);
-          }, 200);
-        }
-      }
-      requestAnimationFrame(update);
-    }
 
     function triggerHeroStagger() {
       const tl = gsap.timeline();
@@ -2667,25 +2527,17 @@
       document.querySelectorAll('[data-cursor]').forEach(el => {
         el.addEventListener('mouseenter', () => {
           ring.classList.add('hovered');
-          cursorLabel.textContent = el.dataset.cursor;
         });
         el.addEventListener('mouseleave', () => {
           ring.classList.remove('hovered');
-          cursorLabel.textContent = '';
         });
       });
       document.querySelectorAll('a:not([data-cursor]), button:not([data-cursor]), .tab-btn, .dev-btn, .brand-btn, .color-btn, .tracker-dot').forEach(el => {
         el.addEventListener('mouseenter', () => {
           ring.classList.add('hovered');
-          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-            cursorLabel.textContent = 'TYPE';
-          } else {
-            cursorLabel.textContent = 'EXPLORE';
-          }
         });
         el.addEventListener('mouseleave', () => {
           ring.classList.remove('hovered');
-          cursorLabel.textContent = '';
         });
       });
     }
@@ -3049,7 +2901,7 @@
       {
         "id": 4,
         "name": "Incap Limited Capacitors B2B Catalogue",
-        "category": "Ecommerce",
+        "category": "Websites",
         "client": "Incap Limited",
         "industry": "Electronics Manufacturing",
         "domain": "https://www.incap.co.in/",
@@ -3158,6 +3010,117 @@
         },
         "relatedProjects": [1, 4],
         "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-typing-on-a-glowing-neon-keyboard-40626-large.mp4"
+      },
+      {
+        "id": 6,
+        "name": "Rithika Suits E-Commerce Store",
+        "category": "Ecommerce",
+        "client": "Rithika Suits",
+        "industry": "Fashion & Retail",
+        "domain": "https://www.rithikasuits.com/",
+        "description": "A premium direct-to-consumer e-commerce storefront for Rithika Suits, featuring custom catalog search, product variants, and seamless payment gateways.",
+        "challenge": "Legacy platform struggled with slow product load times, poor mobile conversions, and high checkout abandonment rates.",
+        "solution": "Designed and built a high-speed custom Shopify storefront with optimized product detail pages, instant search, and a simplified checkout funnel.",
+        "desktopScreenshot": "screenshots/project_6_desktop.png",
+        "tabletScreenshot": "screenshots/project_6_tablet.png",
+        "mobileScreenshot": "screenshots/project_6_mobile.png",
+        "techStack": ["React", "Shopify", "Node.js", "MongoDB", "TailwindCSS"],
+        "trafficGrowth": "280%",
+        "conversionGrowth": "190%",
+        "leadGrowth": "210%",
+        "revenueGrowth": "150%",
+        "testimonial": {
+          "quote": "Parivartan completely overhauled our online store, resulting in a dramatic increase in sales and load speed.",
+          "author": "Rithika S.",
+          "role": "Founder & CEO",
+          "company": "Rithika Suits",
+          "outcome": "Conversion rate increased by 190%"
+        },
+        "launchDate": "2024-11-20",
+        "iframeAllowed": false,
+        "researchText": "We analyzed user interactions on mobile apparel sites. Findings showed that shoppers exit when image loading takes over 2 seconds or when size selection requires extra clicks. We optimized image compression pipelines and built a single-tap size selectors.",
+        "designText": "Crafted a luxurious editorial layout using cream colors, serif headers, and spacious product grids. High-resolution zoom views and sticky Add to Cart actions were optimized for mobile shoppers.",
+        "developmentText": "Built a headless Shopify experience using React on the frontend and Node.js middleware to handle cart sync and customer accounts. Combined with MongoDB caching, server response times were reduced to 120ms.",
+        "lighthouse": {
+          "performance": 98,
+          "accessibility": 100,
+          "bestPractices": 98,
+          "seo": 100
+        },
+        "timeline": [
+          { "phase": "Discovery", "duration": "Week 1" },
+          { "phase": "UX Architecture", "duration": "Week 2" },
+          { "phase": "Headless API", "duration": "Week 3-4" },
+          { "phase": "Frontend Storefront", "duration": "Week 5-7" },
+          { "phase": "Launch", "duration": "Week 8" }
+        ],
+        "growthData": {
+          "months": ["Jan", "Feb", "Mar", "Apr"],
+          "values": [50, 120, 200, 280]
+        },
+        "healthBadge": {
+          "status": "Online",
+          "loadTime": "0.8s",
+          "ssl": true,
+          "lastChecked": "3 minutes ago"
+        },
+        "relatedProjects": [4, 5],
+        "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screens-39904-large.mp4"
+      },
+      {
+        "id": 7,
+        "name": "Panchabhuta Co. Eco-Portal",
+        "category": "Websites",
+        "client": "Panchabhuta Co.",
+        "industry": "Sustainability & Organic Lifestyle",
+        "domain": "https://panchabhutaco.com/",
+        "description": "A comprehensive digital portal and interactive marketplace for Panchabhuta Co., highlighting sustainable living, organic farming, and ecological conservation programs.",
+        "challenge": "Struggled to convey complex ecological impacts and scientific initiatives in a way that resonated with average consumers.",
+        "solution": "Created an interactive storytelling website with custom maps, ecological calculators, and an integrated organic product storefront.",
+        "desktopScreenshot": "screenshots/project_7_desktop.png",
+        "tabletScreenshot": "screenshots/project_7_tablet.png",
+        "mobileScreenshot": "screenshots/project_7_mobile.png",
+        "techStack": ["HTML5", "Vanilla JS", "CSS3", "PHP", "MySQL", "Apache"],
+        "trafficGrowth": "190%",
+        "conversionGrowth": "140%",
+        "leadGrowth": "170%",
+        "revenueGrowth": "0%",
+        "testimonial": {
+          "quote": "Our brand narrative and ecological conservation impact are now beautifully presented and understood by our community.",
+          "author": "A. K. Sharma",
+          "role": "Director of Conservation",
+          "company": "Panchabhuta Co.",
+          "outcome": "Organic community engagement increased by 190%"
+        },
+        "launchDate": "2025-01-10",
+        "iframeAllowed": false,
+        "researchText": "Conducted usability testing for environmental educational portals. Found that users are 3x more engaged when narrative content is paired with interactive visual elements rather than static PDFs.",
+        "designText": "Designed an organic, clean interface with earthy green palettes and elegant sans-serif typography. Used immersive parallax sections, custom maps, and clean icons to tell the ecological story.",
+        "developmentText": "Built a lightweight, responsive vanilla JS site for maximum performance. Implemented custom canvas maps and ecological footprint calculators, maintaining load times under 1.0s.",
+        "lighthouse": {
+          "performance": 99,
+          "accessibility": 100,
+          "bestPractices": 98,
+          "seo": 100
+        },
+        "timeline": [
+          { "phase": "Discovery", "duration": "Week 1" },
+          { "phase": "Design Language", "duration": "Week 2" },
+          { "phase": "Custom Maps JS", "duration": "Week 3-4" },
+          { "phase": "Launch", "duration": "Week 5" }
+        ],
+        "growthData": {
+          "months": ["Jan", "Feb", "Mar", "Apr"],
+          "values": [60, 100, 150, 190]
+        },
+        "healthBadge": {
+          "status": "Online",
+          "loadTime": "0.9s",
+          "ssl": true,
+          "lastChecked": "2 minutes ago"
+        },
+        "relatedProjects": [1, 3],
+        "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-hands-of-developer-typing-on-keyboard-with-backlight-40142-large.mp4"
       }
     ];
 
@@ -3202,6 +3165,67 @@
     // Render cards list in directory
     function renderProjects(categoryFilter, searchFilter = '') {
       const container = document.getElementById('projects-container');
+      const mobileShowcase = document.getElementById('mobileAppsShowcase');
+
+      if (categoryFilter === 'mobile-apps') {
+        container.style.display = 'none';
+        if (mobileShowcase) {
+          mobileShowcase.style.display = 'block';
+          
+          // Filter mobile apps by search query
+          const s = searchFilter.toLowerCase().trim();
+          const rows = mobileShowcase.querySelectorAll('.mobile-app-row');
+          let visibleCount = 0;
+          
+          rows.forEach(row => {
+            const title = row.querySelector('h3').textContent.toLowerCase();
+            const bullets = Array.from(row.querySelectorAll('li')).map(li => li.textContent.toLowerCase());
+            const matches = title.includes(s) || bullets.some(b => b.includes(s));
+            
+            if (matches) {
+              row.style.display = ''; // Restore row CSS (flex)
+              visibleCount++;
+            } else {
+              row.style.display = 'none';
+            }
+          });
+          
+          // Handle a "No results found" for mobile
+          let noResultsMsg = mobileShowcase.querySelector('.mobile-no-results');
+          if (visibleCount === 0) {
+            if (!noResultsMsg) {
+              noResultsMsg = document.createElement('div');
+              noResultsMsg.className = 'mobile-no-results';
+              noResultsMsg.style.textAlign = 'center';
+              noResultsMsg.style.padding = '100px 40px';
+              noResultsMsg.style.fontFamily = "'Bricolage Grotesque', sans-serif";
+              noResultsMsg.style.fontSize = '18px';
+              noResultsMsg.style.color = 'var(--ink-4)';
+              noResultsMsg.textContent = 'No mobile apps found matching your search.';
+              mobileShowcase.querySelector('.mobile-apps-list').appendChild(noResultsMsg);
+            } else {
+              noResultsMsg.style.display = 'block';
+            }
+          } else {
+            if (noResultsMsg) {
+              noResultsMsg.style.display = 'none';
+            }
+          }
+        }
+        
+        hookInteractiveElements();
+        initMicroInteractions();
+        if (typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.refresh();
+        }
+        return;
+      } else {
+        container.style.display = ''; // Restore default
+        if (mobileShowcase) {
+          mobileShowcase.style.display = 'none';
+        }
+      }
+
       container.innerHTML = '';
 
       const filtered = projectsData.filter(proj => {
@@ -3274,12 +3298,16 @@
                   <div class="chrome-btn" style="background:#28c840; width:8px; height:8px;"></div>
                 </div>
                 <div class="chrome-address-bar">
-                  <span class="lock">🔒</span>
+                  <span class="lock" style="display: inline-flex; align-items: center; margin-right: 4px; color: #16a34a; vertical-align: middle;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
                   <span>${proj.domain.replace('https://','').replace('www.','')}</span>
                 </div>
               </div>
               <div class="screen-content-wrapper">
-                <img src="${proj.desktopScreenshot}" style="width:100%; height:110%; object-fit:cover; object-position:top;" alt="${proj.name}" />
+                ${proj.iframeAllowed ? `
+                  <iframe src="${proj.domain}" onload="this.classList.add('loaded')"></iframe>
+                ` : `
+                  <img src="${proj.desktopScreenshot}" style="width:100%; height:110%; object-fit:cover; object-position:top;" alt="${proj.name}" />
+                `}
               </div>
             </div>
             <div class="laptop-base-lip" style="display:block;"></div>
@@ -3287,6 +3315,20 @@
         `;
 
         container.appendChild(card);
+
+        // Robust watchdog timer for main list card iframes fallback to screenshot if loading takes too long
+        const iframe = card.querySelector('.screen-content-wrapper iframe');
+        if (iframe) {
+          setTimeout(() => {
+            if (iframe && !iframe.classList.contains('loaded')) {
+              console.log(`[Card Watchdog Triggered] Screenshot fallback for project ${proj.id}`);
+              const wrapper = iframe.closest('.screen-content-wrapper');
+              if (wrapper) {
+                wrapper.innerHTML = `<img src="${proj.desktopScreenshot}" style="width:100%; height:110%; object-fit:cover; object-position:top;" alt="${proj.name}" />`;
+              }
+            }
+          }, 4000);
+        }
       });
 
       hookInteractiveElements();
@@ -3419,20 +3461,20 @@
 
       container.innerHTML = `
         <!-- Section 1: Hero & Real Device Chassis Preview -->
-        <section class="cs-story-section spotlight-card" id="cs-sec-intro" style="background: var(--off); min-height:85vh; border-bottom:1px solid var(--border); padding-top: 100px; padding-bottom: 60px;">
+        <section class="cs-story-section spotlight-card" id="cs-sec-intro" style="background: var(--off); min-height:85vh; border-bottom:1px solid var(--border); padding-top: 95px; padding-bottom: 60px;">
           <div class="cs-story-content">
+            <!-- Breadcrumbs at starting (placed inside content container to align properly) -->
+            <div class="cs-breadcrumbs" style="padding: 0px 0px 24px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; display: flex; align-items: center; gap: 8px; letter-spacing: -0.01em;">
+              <a href="javascript:void(0)" onclick="closeCaseStudy()" style="font-weight: 700; color: var(--g-dark); display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s; text-decoration: none;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--g-dark)'">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 2px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Our Work
+              </a>
+              <span style="color: var(--ink-4); font-weight: 400;">/</span>
+              <span style="color: var(--ink-3); font-weight: 500;">${proj.name}</span>
+            </div>
+
             <div class="cs-story-grid-2" style="align-items: center; gap: 60px;">
               <!-- Left Column: Story Intro -->
               <div>
-                <div class="health-badge">
-                  <span class="health-dot"></span>
-                  <span>🟢 Online</span>
-                  <span>•</span>
-                  <span>Load: ${proj.healthBadge.loadTime}</span>
-                  <span>•</span>
-                  <span>SSL SECURE</span>
-                </div>
-                
                 <h1 class="cs-story-title" style="font-size: clamp(28px, 4vw, 46px); line-height: 1.15; margin-bottom: 20px;">${proj.name}</h1>
                 <p style="font-size: 16.5px; font-weight: 300; line-height: 1.65; color: var(--ink-3); margin-bottom: 32px;">
                   ${proj.description}
@@ -3451,7 +3493,7 @@
 
                 <div style="display: flex; gap: 14px; flex-wrap: wrap;">
                   <button class="nav-btn btn-magnetic" style="background: var(--g-dark) !important; color: #fff !important; padding: 12px 28px;" onclick="openLivePreviewModal(${proj.id})">View Live Experience</button>
-                  <a href="${proj.domain}" target="_blank" class="btn-outline-white btn-magnetic" style="border: 1px solid var(--border); color: var(--ink-2); padding: 11px 24px;">Visit Site ↗</a>
+                  <a href="${proj.domain}" target="_blank" class="btn-outline-white btn-magnetic" style="border: 1px solid var(--border); color: var(--ink-2); padding: 11px 24px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">Visit Site <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
                 </div>
               </div>
 
@@ -3577,7 +3619,7 @@
                 <div class="walkthrough-player-box">
                   <video id="walkthroughVideo" src="${proj.videoWalkthrough}" muted loop autoplay playsinline></video>
                   <button class="video-play-btn" onclick="toggleWalkthroughVideo()">
-                    <span>⏸</span> Pause Walkthrough
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; display: inline-block;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> Pause Walkthrough
                   </button>
                 </div>
               </div>
@@ -3633,12 +3675,12 @@
                 </p>
                 <div class="cs-stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top:28px;">
                   <div class="res-card spotlight-card">
-                    <div class="cs-stat-val" style="font-family:'Bricolage Grotesque'; font-weight:800; font-size:32px; color:var(--g-dark);">+${proj.trafficGrowth}</div>
-                    <div class="cs-stat-lbl" style="font-size:12px; color:var(--ink-3); margin-top:4px;">Inbound Traffic</div>
+                    <div class="res-val" style="color: var(--g-dark);"><span class="plus">+</span>${proj.trafficGrowth.replace('+', '').replace('%', '')}<span class="plus">%</span></div>
+                    <div class="res-lbl">Inbound Traffic</div>
                   </div>
                   <div class="res-card spotlight-card">
-                    <div class="cs-stat-val" style="font-family:'Bricolage Grotesque'; font-weight:800; font-size:32px; color:var(--g-dark);">+${proj.conversionGrowth || proj.leadGrowth}</div>
-                    <div class="cs-stat-lbl" style="font-size:12px; color:var(--ink-3); margin-top:4px;">Conversion Growth</div>
+                    <div class="res-val" style="color: var(--g-dark);"><span class="plus">+</span>${(proj.conversionGrowth || proj.leadGrowth).replace('+', '').replace('%', '')}<span class="plus">%</span></div>
+                    <div class="res-lbl">Conversion Growth</div>
                   </div>
                 </div>
               </div>
@@ -3875,7 +3917,7 @@
                   <div class="chrome-btn" style="background:#28c840; width:7px; height:7px;"></div>
                 </div>
                 <div class="chrome-address-bar">
-                  <span class="lock">🔒</span>
+                  <span class="lock" style="display: inline-flex; align-items: center; margin-right: 4px; color: #16a34a; vertical-align: middle;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
                   <span>${domainName}</span>
                 </div>
               </div>
@@ -3973,10 +4015,10 @@
 
       if (video.paused) {
         video.play();
-        btn.innerHTML = '<span>⏸</span> Pause Walkthrough';
+        btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; display: inline-block;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> Pause Walkthrough';
       } else {
         video.pause();
-        btn.innerHTML = '<span>▶</span> Play Walkthrough';
+        btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; display: inline-block;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Play Walkthrough';
       }
     }
 
@@ -4200,7 +4242,7 @@
     gsap.ticker.lagSmoothing(0);
 
     document.addEventListener('DOMContentLoaded', () => {
-      startPageLoader();
+      triggerHeroStagger();
       initProjects();
       resetTestimonialTimer();
     });

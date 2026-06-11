@@ -274,7 +274,7 @@
   {
     "id": 4,
     "name": "Incap Limited Capacitors B2B Catalogue",
-    "category": "Ecommerce",
+    "category": "Websites",
     "client": "Incap Limited",
     "industry": "Electronics Manufacturing",
     "domain": "https://www.incap.co.in/",
@@ -455,5 +455,182 @@
       4
     ],
     "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-typing-on-a-glowing-neon-keyboard-40626-large.mp4"
+  },
+  {
+    "id": 6,
+    "name": "Rithika Suits E-Commerce Store",
+    "category": "Ecommerce",
+    "client": "Rithika Suits",
+    "industry": "Fashion & Retail",
+    "domain": "https://www.rithikasuits.com/",
+    "description": "A premium direct-to-consumer e-commerce storefront for Rithika Suits, featuring custom catalog search, product variants, and seamless payment gateways.",
+    "challenge": "Legacy platform struggled with slow product load times, poor mobile conversions, and high checkout abandonment rates.",
+    "solution": "Designed and built a high-speed custom Shopify storefront with optimized product detail pages, instant search, and a simplified checkout funnel.",
+    "desktopScreenshot": "screenshots/project_6_desktop.png",
+    "tabletScreenshot": "screenshots/project_6_tablet.png",
+    "mobileScreenshot": "screenshots/project_6_mobile.png",
+    "techStack": [
+      "React",
+      "Shopify",
+      "Node.js",
+      "MongoDB",
+      "TailwindCSS"
+    ],
+    "trafficGrowth": "280%",
+    "conversionGrowth": "190%",
+    "leadGrowth": "210%",
+    "revenueGrowth": "150%",
+    "testimonial": {
+      "quote": "Parivartan completely overhauled our online store, resulting in a dramatic increase in sales and load speed.",
+      "author": "Rithika S.",
+      "role": "Founder & CEO",
+      "company": "Rithika Suits",
+      "outcome": "Conversion rate increased by 190%"
+    },
+    "launchDate": "2024-11-20",
+    "iframeAllowed": false,
+    "researchText": "We analyzed user interactions on mobile apparel sites. Findings showed that shoppers exit when image loading takes over 2 seconds or when size selection requires extra clicks. We optimized image compression pipelines and built a single-tap size selectors.",
+    "designText": "Crafted a luxurious editorial layout using cream colors, serif headers, and spacious product grids. High-resolution zoom views and sticky Add to Cart actions were optimized for mobile shoppers.",
+    "developmentText": "Built a headless Shopify experience using React on the frontend and Node.js middleware to handle cart sync and customer accounts. Combined with MongoDB caching, server response times were reduced to 120ms.",
+    "lighthouse": {
+      "performance": 98,
+      "accessibility": 100,
+      "bestPractices": 98,
+      "seo": 100
+    },
+    "timeline": [
+      {
+        "phase": "Discovery",
+        "duration": "Week 1"
+      },
+      {
+        "phase": "UX Architecture",
+        "duration": "Week 2"
+      },
+      {
+        "phase": "Headless API",
+        "duration": "Week 3-4"
+      },
+      {
+        "phase": "Frontend Storefront",
+        "duration": "Week 5-7"
+      },
+      {
+        "phase": "Launch",
+        "duration": "Week 8"
+      }
+    ],
+    "growthData": {
+      "months": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr"
+      ],
+      "values": [
+        50,
+        120,
+        200,
+        280
+      ]
+    },
+    "healthBadge": {
+      "status": "Online",
+      "loadTime": "0.8s",
+      "ssl": true,
+      "lastChecked": "3 minutes ago"
+    },
+    "relatedProjects": [
+      4,
+      5
+    ],
+    "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screens-39904-large.mp4"
+  },
+  {
+    "id": 7,
+    "name": "Panchabhuta Co. Eco-Portal",
+    "category": "Websites",
+    "client": "Panchabhuta Co.",
+    "industry": "Sustainability & Organic Lifestyle",
+    "domain": "https://panchabhutaco.com/",
+    "description": "A comprehensive digital portal and interactive marketplace for Panchabhuta Co., highlighting sustainable living, organic farming, and ecological conservation programs.",
+    "challenge": "Struggled to convey complex ecological impacts and scientific initiatives in a way that resonated with average consumers.",
+    "solution": "Created an interactive storytelling website with custom maps, ecological calculators, and an integrated organic product storefront.",
+    "desktopScreenshot": "screenshots/project_7_desktop.png",
+    "tabletScreenshot": "screenshots/project_7_tablet.png",
+    "mobileScreenshot": "screenshots/project_7_mobile.png",
+    "techStack": [
+      "HTML5",
+      "Vanilla JS",
+      "CSS3",
+      "PHP",
+      "MySQL",
+      "Apache"
+    ],
+    "trafficGrowth": "190%",
+    "conversionGrowth": "140%",
+    "leadGrowth": "170%",
+    "revenueGrowth": "0%",
+    "testimonial": {
+      "quote": "Our brand narrative and ecological conservation impact are now beautifully presented and understood by our community.",
+      "author": "A. K. Sharma",
+      "role": "Director of Conservation",
+      "company": "Panchabhuta Co.",
+      "outcome": "Organic community engagement increased by 190%"
+    },
+    "launchDate": "2025-01-10",
+    "iframeAllowed": false,
+    "researchText": "Conducted usability testing for environmental educational portals. Found that users are 3x more engaged when narrative content is paired with interactive visual elements rather than static PDFs.",
+    "designText": "Designed an organic, clean interface with earthy green palettes and elegant sans-serif typography. Used immersive parallax sections, custom maps, and clean icons to tell the ecological story.",
+    "developmentText": "Built a lightweight, responsive vanilla JS site for maximum performance. Implemented custom canvas maps and ecological footprint calculators, maintaining load times under 1.0s.",
+    "lighthouse": {
+      "performance": 99,
+      "accessibility": 100,
+      "bestPractices": 98,
+      "seo": 100
+    },
+    "timeline": [
+      {
+        "phase": "Discovery",
+        "duration": "Week 1"
+      },
+      {
+        "phase": "Design Language",
+        "duration": "Week 2"
+      },
+      {
+        "phase": "Custom Maps JS",
+        "duration": "Week 3-4"
+      },
+      {
+        "phase": "Launch",
+        "duration": "Week 5"
+      }
+    ],
+    "growthData": {
+      "months": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr"
+      ],
+      "values": [
+        60,
+        100,
+        150,
+        190
+      ]
+    },
+    "healthBadge": {
+      "status": "Online",
+      "loadTime": "0.9s",
+      "ssl": true,
+      "lastChecked": "2 minutes ago"
+    },
+    "relatedProjects": [
+      1,
+      3
+    ],
+    "videoWalkthrough": "https://assets.mixkit.co/videos/preview/mixkit-hands-of-developer-typing-on-keyboard-with-backlight-40142-large.mp4"
   }
 ]
