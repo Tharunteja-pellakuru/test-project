@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Sticky Card Stack</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  color: #0f172a;
+  overflow-x: hidden;
+}
+
+.header {
+  text-align: center;
+  padding: 120px 20px 80px;
+}
+
+.header h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #0f172a;
+}
+
+.header p {
+  max-width: 650px;
+  margin: 20px auto 0;
+  color: #475569;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.stack-container {
+  width: min(1100px, 90%);
+  margin: auto;
+  padding-bottom: 60vh;
+}
+
+.card {
+  position: sticky;
+  height: 520px;
+  border-radius: 32px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+
+  padding: 50px;
+
+  transform-origin: top left;
+  will-change: transform, filter;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+
+  /* Transparent White Glassmorphic Design on White Background */
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-top: 1px solid rgba(15, 23, 42, 0.18);
+  box-shadow: 
+    0 30px 60px rgba(15, 23, 42, 0.05),
+    0 -8px 25px rgba(15, 23, 42, 0.05),
+    0 1px 3px rgba(15, 23, 42, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/*
+  FIX: z-index must INCREASE for each subsequent card
+  so later cards stack ON TOP of earlier ones.
+  Previously card-1 had z-index:4 (highest) which made
+  cards 2,3,4 appear behind card-1.
+*/
+
+.card-1 {
+  top: 100px;
+  z-index: 1;   /* lowest — gets covered first */
+}
+
+.card-2 {
+  top: 150px;
+  z-index: 2;
+}
+
+.card-3 {
+  top: 200px;
+  z-index: 3;
+}
+
+.card-4 {
+  top: 250px;
+  z-index: 4;   /* highest — sits on top of all */
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-tag {
+  display: inline-block;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.card-number {
+  position: absolute;
+  top: 15px;
+  left: 50px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #4f46e5;
+}
+
+.card h2 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -0.04em;
+  color: #0f172a;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.9;
+  max-width: 520px;
+  color: #475569;
+}
+
+.card-image {
+  width: 400px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 24px;
+  flex-shrink: 0;
+}
+
+.footer-space {
+  height: 100vh;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+
+  .card {
+    flex-direction: column-reverse;
+    height: auto;
+    min-height: 650px;
+    padding: 30px;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 250px;
+  }
+
+  .card h2 {
+    font-size: 2rem;
+  }
+
+  .card-1 { top: 60px; }
+  .card-2 { top: 90px; }
+  .card-3 { top: 120px; }
+  .card-4 { top: 150px; }
+
+  .card-number {
+    top: 12px;
+    left: 30px;
+    font-size: 0.95rem;
+  }
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="header">
+  <h1>Sticky Card Stack</h1>
+  <p>
+    Scroll down and watch each card elegantly stack over the previous one
+    with smooth scaling, depth, blur and brightness transitions.
+  </p>
+</div>
+
+<div class="stack-container">
+
+  <section class="card card-1">
+    <div class="card-number">01</div>
+    <div class="card-content">
+      <span class="card-tag">Color</span>
+      <h2>Chromatic Harmony</h2>
+      <p>
+        Vibrant gradients combined with depth and scaling effects create a
+        visual hierarchy that feels modern and immersive.
+      </p>
+    </div>
+    <img
+      class="card-image"
+      src="cards/Gemini_Generated_Image_pe30gppe30gppe30.png"
+      alt="Chromatic Harmony Color"
+    >
+  </section>
+
+  <section class="card card-2">
+    <div class="card-number">02</div>
+    <div class="card-content">
+      <span class="card-tag">Concept</span>
+      <h2>Spatial Rhythm</h2>
+      <p>
+        Sticky positioning allows cards to lock into place while newer
+        cards continue moving upward, creating a premium layered narrative.
+      </p>
+    </div>
+    <img
+      class="card-image"
+      src="cards/Gemini_Generated_Image_p6f0cap6f0cap6f0.png"
+      alt="Spatial Rhythm Concept"
+    >
+  </section>
+
+  <section class="card card-3">
+    <div class="card-number">03</div>
+    <div class="card-content">
+      <span class="card-tag">Structure</span>
+      <h2>Responsive Canvas</h2>
+      <p>
+        Every card adapts gracefully across screen sizes while preserving
+        the sticky stacking interaction.
+      </p>
+    </div>
+    <img
+      class="card-image"
+      src="cards/Gemini_Generated_Image_vp6trkvp6trkvp6t.png"
+      alt="Responsive Canvas Structure"
+    >
+  </section>
+
+  <section class="card card-4">
+    <div class="card-number">04</div>
+    <div class="card-content">
+      <span class="card-tag">Motion</span>
+      <h2>Kinetic Motion</h2>
+      <p>
+        Subtle blur, scaling and brightness adjustments reinforce the
+        illusion of depth as cards move through the viewport.
+      </p>
+    </div>
+    <img
+      class="card-image"
+      src="cards/Gemini_Generated_Image_remmv9remmv9remm.png"
+      alt="Kinetic Motion"
+    >
+  </section>
+
+  <!-- Spacer inside containing block so Card 4 can remain sticky -->
+  <div style="height: 60vh;"></div>
+
+</div>
+
+<div class="footer-space"></div>
+
+<script>
+
+const cards = document.querySelectorAll(".card");
+let stickyTops = [];
+
+function updateStickyTops() {
+  const isMobile = window.innerWidth <= 900;
+  stickyTops = Array.from(cards).map((card, index) => {
+    const computedTop = parseFloat(window.getComputedStyle(card).top);
+    if (!isNaN(computedTop)) {
+      return computedTop;
+    }
+    return isMobile ? (60 + index * 30) : (100 + index * 50);
+  });
+}
+
+// Initial calculation
+updateStickyTops();
+
+// Update on resize/load to adapt to mobile layouts
+window.addEventListener("resize", updateStickyTops);
+window.addEventListener("load", updateStickyTops);
+
+function animateCards() {
+  // Calculate displacement of the last card if it is being pushed up by container bottom
+  const lastCard = cards[cards.length - 1];
+  const lastRect = lastCard ? lastCard.getBoundingClientRect() : null;
+  const lastStickyTop = stickyTops[cards.length - 1] || (window.innerWidth <= 900 ? 150 : 250);
+  const d = lastRect ? Math.max(0, lastStickyTop - lastRect.top) : 0;
+
+  cards.forEach((card, index) => {
+    const rect = card.getBoundingClientRect();
+    const stickyTop = stickyTops[index] || (100 + (index * 50));
+
+    // Adding 1px tolerance for subpixel render scaling
+    if (rect.top <= stickyTop + 1) {
+      let progress = 0;
+
+      if (index < cards.length - 1) {
+        const nextCard = cards[index + 1];
+        const nextRect = nextCard.getBoundingClientRect();
+
+        const overlap =
+          stickyTop +
+          rect.height -
+          nextRect.top;
+
+        progress = Math.max(0, Math.min(overlap / rect.height, 1));
+      }
+
+      const scale      = 1 - (progress * 0.06);
+      const brightness = 1 - (progress * 0.06); // Softer brightness reduction
+
+      // Shift cards up together as the stack scrolls off screen to keep edges visible
+      const shift = (index < cards.length - 1) ? -d : 0;
+
+      card.style.transform = `scale(${scale}) translateY(${shift}px)`;
+      card.style.filter    = `brightness(${brightness})`;
+
+    } else {
+      card.style.transform = "scale(1)";
+      card.style.filter    = "brightness(1)";
+    }
+  });
+
+  requestAnimationFrame(animateCards);
+}
+
+// Start animation
+animateCards();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Testimonials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --card-bg:      #ffffff;
+  --card-border:  rgba(15, 23, 42, 0.08);
+  --accent-color: #2d9e52;
+  --accent-soft:  rgba(45, 158, 82, 0.08);
+  --accent-line:  rgba(45, 158, 82, 0.2);
+  --gold:         #f5c842;
+  --gold-bg:      rgba(245,200,66,.12);
+  --gold-bdr:     rgba(245,200,66,.3);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted:   #64748b;
+  --border-light: rgba(15, 23, 42, 0.06);
+  --page-bg:      #ffffff;
+  --ease:         cubic-bezier(0.22,1,0.36,1);
+  --spring:       cubic-bezier(0.34,1.15,0.64,1);
+
+  --CARD_W: 340px;
+  --CARD_H: 480px;
+  --AV:     72px;   /* avatar size */
+}
+
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Inter',-apple-system,sans-serif;
+  background:var(--page-bg);
+  color:var(--text-primary);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+.testi-section { padding:90px 0 110px; }
+
+/* ── Header ── */
+.testi-header {
+  text-align:center; padding:0 40px; margin-bottom:60px;
+  opacity:0; transform:translateY(24px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+}
+.testi-header.visible { opacity:1; transform:translateY(0); }
+.eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--accent-soft); border:1px solid var(--accent-line);
+  color:var(--accent-color); font-size:.7rem; font-weight:600;
+  letter-spacing:.12em; text-transform:uppercase;
+  padding:6px 16px; border-radius:100px; margin-bottom:22px;
+}
+.eyebrow-dot {
+  width:6px;height:6px;border-radius:50%;
+  background:var(--accent-color);box-shadow:0 0 7px var(--accent-color);
+}
+.testi-header h2 {
+  font-size:clamp(1.9rem,4vw,3rem); font-weight:800;
+  letter-spacing:-.04em; line-height:1.1; margin-bottom:14px;
+  color:var(--text-primary);
+}
+.testi-header h2 em { font-style:italic; font-weight:300; color:var(--text-secondary); }
+.testi-header p { font-size:.98rem; color:var(--text-secondary); max-width:460px; margin:0 auto; line-height:1.75; }
+
+/* ── Stage: where the active card + peek strips live ── */
+.testi-outer {
+  width:100%;
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 24px;
+  overflow:visible;
+}
+
+.testi-stage {
+  position:relative;
+  width:100%;
+  height:calc(var(--CARD_H) + var(--AV));
+  margin-top:calc(var(--AV) / 2);
+  overflow:visible;
+  perspective: 2000px;
+  perspective-origin: center center;
+}
+
+/* ── The card that drops in (the "incoming" card) ── */
+.drop-card {
+  position:absolute;
+  /* Centered by default horizontally in the stage */
+  left:calc(50% - var(--CARD_W) / 2);
+  top:0;
+  width:var(--CARD_W);
+  height:var(--CARD_H);
+  border-radius:22px;
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  box-shadow:0 20px 50px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  overflow:visible;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  /* Smooth transition for Coverflow transformations */
+  transition: transform .6s var(--ease), opacity .6s var(--ease), border-color .3s, box-shadow .3s;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+.drop-card:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 25px 60px rgba(45, 158, 82, 0.12), 0 0 0 1px var(--accent-line);
+}
+
+/* ── Avatar bubble on card ── */
+.card-avatar-wrap {
+  position:absolute;
+  top:calc(-1 * var(--AV) / 2);
+  left:24px;
+  width:var(--AV); height:var(--AV);
+  border-radius:50%;
+  border:3px solid var(--card-bg);
+  box-shadow:0 0 0 3px var(--card-border),0 8px 24px rgba(15, 23, 42, 0.1);
+  overflow:hidden;
+  background:#e2e8f0;
+  z-index:3;
+}
+.card-avatar { width:100%;height:100%;object-fit:cover;display:block; }
+
+/* ── Stars pill ── */
+.card-stars-pill {
+  position:absolute;
+  top:16px; right:16px;
+  background:var(--gold-bg);
+  border:1.5px solid var(--gold-bdr);
+  border-radius:100px;
+  padding:6px 12px;
+  display:flex; align-items:center; gap:4px;
+  white-space:nowrap;
+}
+.star { font-size:.85rem; color:var(--gold); }
+
+/* ── Card text content ── */
+.card-content {
+  position:absolute;
+  inset:0;
+  padding:52px 24px 26px;
+  display:flex; flex-direction:column;
+  overflow:hidden;
+}
+.card-name-row {
+  padding-left:104px;
+  min-height:36px;
+  display:flex; flex-direction:column; justify-content:center;
+  margin-bottom:16px;
+}
+.card-name { font-size:.85rem;font-weight:700;color:var(--text-primary);letter-spacing:.01em;text-transform:uppercase;margin-bottom:2px; }
+.card-role { font-size:.75rem;color:var(--text-secondary); }
+.card-title { font-size:1.25rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--text-primary);text-transform:uppercase;margin-bottom:12px; }
+.card-body {
+  font-size:.8rem;color:var(--text-secondary);line-height:1.8;
+  display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;
+  overflow:hidden;flex:1;margin-bottom:16px;
+}
+.card-reviewer {
+  font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent-color);padding-top:14px;border-top:1px solid var(--border-light);
+  display:flex;align-items:center;gap:8px;margin-top:auto;
+}
+.card-reviewer::before { content:'';display:block;width:14px;height:1.5px;background:var(--accent-color);opacity:.7;flex-shrink:0; }
+
+/* ── Nav dots ── */
+.testi-nav { display:flex;justify-content:center;gap:8px;margin-top:28px; }
+.nav-dot {
+  width:6px;height:6px;border-radius:50%;background:rgba(15, 23, 42, 0.15);
+  border:none;cursor:pointer;padding:0;
+  transition:background .25s,width .3s var(--spring),border-radius .3s;
+}
+.nav-dot.active { background:var(--accent-color);width:22px;border-radius:3px;box-shadow:0 0 10px rgba(45, 158, 82, 0.4); }
+.nav-dot:hover:not(.active) { background:rgba(15, 23, 42, 0.4); }
+
+@media (prefers-reduced-motion:reduce) {
+  .drop-card,.testi-header { transition:none !important; }
+}
+@media (max-width:600px) {
+  :root { --CARD_W:290px; --CARD_H:440px; --AV:60px; }
+  .testi-outer { padding:0 16px; }
+}
+</style>
+</head>
+<body>
+
+<section class="testi-section" aria-label="Client testimonials">
+
+  <div class="testi-header" id="testi-header">
+    <div class="eyebrow"><span class="eyebrow-dot"></span>Client Stories</div>
+    <h2>Trusted by people who <em>value</em><br>great experiences</h2>
+    <p>Real results, real clients. Every project is a partnership — here's what our clients have to say.</p>
+  </div>
+
+  <div class="testi-outer">
+    <div class="testi-stage" id="testi-stage"></div>
+    <div class="testi-nav" id="testi-nav"></div>
+  </div>
+
+</section>
+
+<script>
+const TESTIMONIALS = [
+  {
+    name:"Jyoti Chaudhary", role:"Real Estate Agent", reviewer:"Syed Basheer Gaffar", rating:5,
+    title:"Awesome Work!",
+    body:"I had an excellent experience working with eParivartan. They made the entire process transparent, simple, and stress-free from start to finish. Their knowledge, clear communication, and honest guidance really stood out — no unnecessary promises, just straightforward advice backed by expertise.",
+    photo:"https://i.pravatar.cc/150?img=47"
+  },
+  {
+    name:"Arjun Mehta", role:"CTO, FinEdge Solutions", reviewer:"Priya Nambiar", rating:5,
+    title:"Technically Brilliant!",
+    body:"As a CTO I evaluate vendors rigorously. eParivartan passed every test. Their architecture decisions were sound, the code was clean and well-documented, and they flagged risks proactively. We brought them in for a complex fintech dashboard and they delivered something our own team would have been proud of.",
+    photo:"https://i.pravatar.cc/150?img=67"
+  },
+  {
+    name:"Meera Nair", role:"Head of Marketing", reviewer:"Rohit Deshmukh", rating:5,
+    title:"Revenue Doubled!",
+    body:"The e-commerce rebuild eParivartan delivered transformed how we sell online. The checkout experience is frictionless, pages are beautiful, and site speed improved dramatically. Our conversion rate jumped from 1.2% to 2.8%. They also trained our team independently — the handover was done thoughtfully.",
+    photo:"https://i.pravatar.cc/150?img=32"
+  },
+  {
+    name:"Ravi Kishore", role:"Director of Operations", reviewer:"Sandhya Reddy", rating:5,
+    title:"Complex Made Simple.",
+    body:"We needed a custom project management portal for our construction teams — workflows, document uploads, progress tracking, and a client dashboard. eParivartan scoped it correctly, built it in phases, and delivered something our 200+ field staff actually use daily.",
+    photo:"https://i.pravatar.cc/150?img=51"
+  },
+  {
+    name:"Priya Sharma", role:"Founder, Wellspring Clinics", reviewer:"Dr. Anand Kumar", rating:5,
+    title:"Enquiries Up 40%!",
+    body:"Healthcare websites need to convey trust instantly — eParivartan understood this without being told. The new site is clean, accessible, and loads fast even on low-bandwidth connections. Appointment bookings through the site increased by 40% in the very first quarter after launch.",
+    photo:"https://i.pravatar.cc/150?img=25"
+  },
+  {
+    name:"Syed Basheer", role:"CEO & Founder", reviewer:"Fatima Al-Hassan", rating:5,
+    title:"Right First Time.",
+    body:"We had worked with two agencies before eParivartan, and neither understood what we actually needed. These folks asked the right questions from day one, delivered a clean scope, and built exactly what was agreed — on time, on budget. The website has been live for two years with zero issues.",
+    photo:"https://i.pravatar.cc/150?img=12"
+  },
+  {
+    name:"Ananya Iyer", role:"E-commerce Founder", reviewer:"Karthik Rajan", rating:5,
+    title:"Scale Made Easy.",
+    body:"eParivartan took our local brand national. Their serverless setup handled a 10x traffic spike during our Diwali sale with zero downtime. Outstanding engineering and communication.",
+    photo:"https://i.pravatar.cc/150?img=35"
+  },
+  {
+    name:"Kabir Malhotra", role:"Product Manager", reviewer:"Simran Kaur", rating:5,
+    title:"Agile & Reliable.",
+    body:"Working with eParivartan was like having an extension of our own team. They delivered high-fidelity UI components sprint after sprint. Their technical agility is unmatched in the industry.",
+    photo:"https://i.pravatar.cc/150?img=11"
+  },
+  {
+    name:"Sneha Patel", role:"COO, HealthTech Corp", reviewer:"Dr. Ritesh Shah", rating:5,
+    title:"Remarkable Quality.",
+    body:"We migrated our patient portal under strict compliance guidelines. The eParivartan team was methodical, securing every endpoint and creating a beautiful, accessible front-end for seniors.",
+    photo:"https://i.pravatar.cc/150?img=43"
+  },
+  {
+    name:"Aditya Verma", role:"SaaS Marketing Director", reviewer:"Neha Gupta", rating:5,
+    title:"Exceptional UI/UX.",
+    body:"A stunning website is one thing, but a site that converts is another. eParivartan blended marketing psychology with state-of-the-art animations to double our lead generation pipeline.",
+    photo:"https://i.pravatar.cc/150?img=18"
+  },
+  {
+    name:"Vikram Malhotra", role:"VP of Product, Finly", reviewer:"Abhishek Sen", rating:5,
+    title:"Seamless Migration.",
+    body:"Migrating our legacy codebase was a daunting task. eParivartan did it flawlessly within 3 months, maintaining complete data integrity and improving performance metrics by 60%.",
+    photo:"https://i.pravatar.cc/150?img=53"
+  },
+  {
+    name:"Riya Sen", role:"Design Lead, Studio X", reviewer:"Ishaan Bannerjee", rating:5,
+    title:"Pixel Perfect UI.",
+    body:"As a designer, I am extremely picky about front-end implementation. eParivartan translated our design tokens and responsive layouts with absolute fidelity. Their attention to micro-interactions is outstanding.",
+    photo:"https://i.pravatar.cc/150?img=49"
+  },
+  {
+    name:"Devendra Singh", role:"Founder, AgriGrow", reviewer:"Rajesh Pilot", rating:5,
+    title:"Empowered Our Business.",
+    body:"The custom supply chain system eParivartan built allowed us to scale from 10 to 150 partner farms in one season. Their team is dedicated, communicative, and technically brilliant.",
+    photo:"https://i.pravatar.cc/150?img=8"
+  },
+  {
+    name:"Meenakshi Rao", role:"Head of Talent, SkillUp", reviewer:"Kiran Mazumdar", rating:5,
+    title:"Flawless Execution.",
+    body:"We hired eParivartan to build our internal training portal. The user experience is incredibly intuitive, leading to a 90% completion rate among employees. A truly top-tier agency.",
+    photo:"https://i.pravatar.cc/150?img=28"
+  },
+  {
+    name:"Karan Johar", role:"Creative Director", reviewer:"Ayan Mukerji", rating:5,
+    title:"Stunning Aesthetics.",
+    body:"Our portfolio needed to stand out in a crowded market. eParivartan delivered a website that feels like a premium digital museum. The page-turn animations and typography choices are sublime.",
+    photo:"https://i.pravatar.cc/150?img=69"
+  },
+  {
+    name:"Tanvi Hegde", role:"Marketing Manager, Zenith", reviewer:"Suhasini Mulay", rating:5,
+    title:"Conversion Boost.",
+    body:"Our landing page conversion rate went from 3.5% to 8.2% after the eParivartan redesign. They didn't just rebuild the site; they optimized the entire user journey.",
+    photo:"https://i.pravatar.cc/150?img=21"
+  }
+];
+const N = TESTIMONIALS.length;
+
+/* ── Read CSS px vars (set on :root) ── */
+function cssVar(name) {
+  return parseInt(getComputedStyle(document.documentElement).getPropertyValue(name));
+}
+
+const stage = document.getElementById('testi-stage');
+const navEl = document.getElementById('testi-nav');
+const hdr   = document.getElementById('testi-header');
+
+const GAP = 12;
+
+/* card dimensions from CSS vars (reactive to breakpoint) */
+function dims() {
+  return {
+    W: cssVar('--CARD_W') || 340,
+    H: cssVar('--CARD_H') || 480,
+    AV: cssVar('--AV')    || 72,
+  };
+}
+
+/* ── Build a card DOM element ── */
+function buildCard(t) {
+  const stars = '★'.repeat(t.rating).split('').map(s=>`<span class="star">${s}</span>`).join('');
+  const d = document.createElement('div');
+  d.className = 'drop-card';
+  d.innerHTML = `
+    <div class="card-avatar-wrap">
+      <img class="card-avatar" src="${t.photo}" alt="${t.name}" loading="lazy">
+    </div>
+    <div class="card-stars-pill">${stars}</div>
+    <div class="card-content">
+      <div class="card-name-row">
+        <div class="card-name">${t.name}</div>
+        <div class="card-role">${t.role}</div>
+      </div>
+      <h3 class="card-title">${t.title}</h3>
+      <p class="card-body">${t.body}</p>
+      <div class="card-reviewer">${t.name}</div>
+    </div>`;
+  return d;
+}
+
+/* ── Nav dots ── */
+TESTIMONIALS.forEach((_,i) => {
+  const d = document.createElement('button');
+  d.className = 'nav-dot' + (i===0?' active':'');
+  d.setAttribute('aria-label',`Testimonial ${i+1}`);
+  d.addEventListener('click', () => goTo(i));
+  navEl.appendChild(d);
+});
+
+function setActiveDot(i) {
+  navEl.querySelectorAll('.nav-dot').forEach((d,j) => d.classList.toggle('active', j===i));
+}
+
+/* ════════════════════════════════════════════
+   STATE & CAROUSEL LOGIC
+════════════════════════════════════════════ */
+let activeIdx = 0;
+let timer     = null;
+const cardElements = [];
+
+function getCarouselParams() {
+  const isMobile = window.innerWidth <= 600;
+  return {
+    spacing: isMobile ? 35 : 70,
+    offset: isMobile ? 80 : 180
+  };
+}
+
+/* ── Create all cards in DOM ── */
+function initCarousel() {
+  stage.innerHTML = '';
+  cardElements.length = 0;
+  TESTIMONIALS.forEach((t, i) => {
+    const card = buildCard(t);
+    card.addEventListener('click', () => {
+      if (i !== activeIdx) {
+        goTo(i);
+      }
+    });
+    stage.appendChild(card);
+    cardElements.push(card);
+  });
+}
+
+/* ── Update Coverflow Styles ── */
+function updateCarousel() {
+  const { spacing, offset } = getCarouselParams();
+  
+  cardElements.forEach((card, i) => {
+    let diff = i - activeIdx;
+    if (diff > N / 2) diff -= N;
+    else if (diff < -N / 2) diff += N;
+    
+    const absDiff = Math.abs(diff);
+    let X = 0;
+    let rotateY = 0;
+    let zIndex = 10 - absDiff;
+    let opacity = 1 - absDiff * 0.22;
+    if (opacity < 0) opacity = 0;
+    
+    let scale = 1;
+    let translateZ = 0;
+
+    if (diff < 0) {
+      // Left cards
+      X = diff * spacing - offset;
+      rotateY = 35;
+      scale = 0.85;
+      translateZ = -150 - absDiff * 30;
+    } else if (diff > 0) {
+      // Right cards
+      X = diff * spacing + offset;
+      rotateY = -35;
+      scale = 0.85;
+      translateZ = -150 - absDiff * 30;
+    } else {
+      // Center (active) card
+      X = 0;
+      rotateY = 0;
+      scale = 1.0;
+      translateZ = 0;
+    }
+
+    card.style.transform = `translateX(${X}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+    card.style.zIndex = zIndex;
+    card.style.opacity = opacity;
+    card.style.pointerEvents = opacity > 0.15 ? 'auto' : 'none';
+  });
+}
+
+function goTo(nextIdx) {
+  if (nextIdx === activeIdx) return;
+  activeIdx = (nextIdx + N) % N;
+  setActiveDot(activeIdx);
+  updateCarousel();
+}
+
+/* ── Size the stage ── */
+function sizeStage() {
+  const { H, AV } = dims();
+  stage.style.width  = '100%';
+  stage.style.height = (H + AV/2) + 'px';
+  stage.style.marginTop = (AV/2) + 'px';
+}
+
+/* ── Auto-cycle ── */
+function startTimer() {
+  stopTimer();
+  timer = setInterval(() => goTo(activeIdx + 1), 4000);
+}
+function stopTimer() {
+  if (timer) { clearInterval(timer); timer = null; }
+}
+
+stage.addEventListener('mouseenter', stopTimer);
+stage.addEventListener('mouseleave', startTimer);
+stage.addEventListener('touchstart', stopTimer, {passive:true});
+stage.addEventListener('touchend',   startTimer, {passive:true});
+
+/* ── Header reveal ── */
+new IntersectionObserver(([e]) => {
+  if (e.isIntersecting) e.target.classList.add('visible');
+},{threshold:0.15}).observe(hdr);
+
+window.addEventListener('resize', () => {
+  sizeStage();
+  updateCarousel();
+});
+
+/* ── INIT ── */
+initCarousel();
+sizeStage();
+updateCarousel();
+startTimer();
+</script>
+</body>
+</html>

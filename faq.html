@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — eParivartan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ─── Reset & Tokens ─────────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --green-deep:   #0d3d1f;
+  --green-mid:    #1a6632;
+  --green-bright: #2d9e52;
+  --green-soft:   #e8f5ec;
+  --green-line:   #c8e6d0;
+
+  --ink:          #0f1711;
+  --ink-2:        #2e4035;
+  --ink-3:        #5a7263;
+  --ink-4:        #8fa89a;
+
+  --surface:      #ffffff;
+  --surface-2:    #f7faf8;
+  --surface-3:    #f0f5f2;
+  --border:       #e2ece6;
+
+  --radius-lg:    20px;
+  --radius-md:    12px;
+  --radius-sm:    8px;
+
+  --shadow-sm:    0 1px 3px rgba(13,61,31,.06), 0 1px 2px rgba(13,61,31,.04);
+  --shadow-md:    0 4px 16px rgba(13,61,31,.08), 0 1px 4px rgba(13,61,31,.05);
+  --shadow-lg:    0 12px 40px rgba(13,61,31,.10), 0 2px 8px rgba(13,61,31,.06);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--surface-2);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ─── Background mesh ────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(45,158,82,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(26,102,50,.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Page wrapper ───────────────────────────────────────── */
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 24px 120px;
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.page-header {
+  text-align: center;
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp .6s var(--ease-out) .1s forwards;
+}
+
+.page-header .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--green-soft);
+  border: 1px solid var(--green-line);
+  color: var(--green-mid);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 22px;
+}
+
+.page-header .eyebrow span {
+  width: 6px; height: 6px;
+  background: var(--green-bright);
+  border-radius: 50%;
+  display: block;
+}
+
+.page-header h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: 1.08;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.page-header h1 em {
+  font-style: normal;
+  color: var(--green-mid);
+}
+
+.page-header p {
+  font-size: 1.05rem;
+  color: var(--ink-3);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* ─── Search ─────────────────────────────────────────────── */
+.search-wrap {
+  position: relative;
+  margin-bottom: 48px;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp .55s var(--ease-out) .22s forwards;
+}
+
+.search-wrap svg.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-4);
+  pointer-events: none;
+  transition: color .2s;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 48px 15px 50px;
+  font-family: inherit;
+  font-size: .95rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  outline: none;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.search-input::placeholder { color: var(--ink-4); }
+
+.search-input:focus {
+  border-color: var(--green-bright);
+  box-shadow: 0 0 0 3px rgba(45,158,82,.12), var(--shadow-sm);
+}
+
+.search-input:focus + .search-icon,
+.search-wrap:focus-within svg.search-icon { color: var(--green-mid); }
+
+.clear-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--surface-3);
+  border: none;
+  cursor: pointer;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s, background .2s;
+}
+
+.clear-btn.visible { opacity: 1; pointer-events: auto; }
+.clear-btn:hover { background: var(--border); color: var(--ink); }
+
+/* ─── Category list ──────────────────────────────────────── */
+.categories { display: flex; flex-direction: column; gap: 12px; }
+
+/* ─── Category card ──────────────────────────────────────── */
+.category {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow .25s var(--ease-out), border-color .25s;
+
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.category.visible {
+  animation: fadeUp .5s var(--ease-out) forwards;
+}
+
+.category:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--green-line);
+}
+
+.category.active {
+  border-color: var(--green-bright);
+  box-shadow: var(--shadow-md), 0 0 0 3px rgba(45,158,82,.06);
+}
+
+/* ─── Category trigger ───────────────────────────────────── */
+.cat-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background .18s;
+}
+
+.cat-trigger:hover { background: var(--surface-2); }
+.category.active .cat-trigger { background: var(--green-soft); }
+
+.cat-icon-wrap {
+  flex-shrink: 0;
+  width: 42px; height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-3);
+  transition: background .2s, border-color .2s, color .2s;
+}
+
+.category.active .cat-icon-wrap {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+  color: #fff;
+}
+
+.cat-meta { flex: 1; }
+
+.cat-label {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 2px;
+  display: block;
+  transition: color .2s;
+}
+
+.category.active .cat-label { color: var(--green-mid); }
+
+.cat-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  display: block;
+}
+
+.cat-count {
+  flex-shrink: 0;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--ink-4);
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  padding: 2px 9px;
+  border-radius: 100px;
+  margin-right: 8px;
+  transition: background .2s, color .2s, border-color .2s;
+}
+
+.category.active .cat-count {
+  background: var(--green-soft);
+  border-color: var(--green-line);
+  color: var(--green-mid);
+}
+
+.cat-chevron {
+  flex-shrink: 0;
+  color: var(--ink-4);
+  transition: transform .35s var(--ease-spring), color .2s;
+}
+
+.category.active .cat-chevron {
+  transform: rotate(180deg);
+  color: var(--green-mid);
+}
+
+/* ─── Category body (questions) ──────────────────────────── */
+.cat-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s var(--ease-out);
+}
+
+.cat-body-inner {
+  padding: 0 24px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.category.active .cat-body-inner { border-color: var(--green-line); }
+
+/* ─── FAQ item ───────────────────────────────────────────── */
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.category.active .faq-item { border-color: rgba(200,230,208,.6); }
+.faq-item:last-child { border-bottom: none; }
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color .15s;
+}
+
+.faq-trigger:hover .faq-q { color: var(--green-mid); }
+
+.faq-q {
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+  transition: color .15s;
+  flex: 1;
+}
+
+.faq-item.active .faq-q { color: var(--green-mid); font-weight: 600; }
+
+.faq-chevron {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--ink-4);
+  transition: transform .3s var(--ease-spring), color .2s;
+}
+
+.faq-item.active .faq-chevron {
+  transform: rotate(180deg);
+  color: var(--green-mid);
+}
+
+/* ─── FAQ answer ─────────────────────────────────────────── */
+.faq-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s var(--ease-out);
+}
+
+.faq-answer {
+  padding: 0 0 18px 0;
+  font-size: .9rem;
+  color: var(--ink-3);
+  line-height: 1.8;
+}
+
+/* ─── Search highlight ───────────────────────────────────── */
+mark {
+  background: rgba(45,158,82,.18);
+  color: var(--green-deep);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+/* ─── Empty state ────────────────────────────────────────── */
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  text-align: center;
+  gap: 16px;
+}
+
+.empty-state.show { display: flex; }
+
+.empty-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-4);
+}
+
+.empty-state h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.empty-state p {
+  font-size: .875rem;
+  color: var(--ink-3);
+  max-width: 280px;
+}
+
+/* ─── CTA strip ──────────────────────────────────────────── */
+.cta-strip {
+  margin-top: 56px;
+  background: var(--green-deep);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  opacity: 0;
+  animation: fadeUp .5s var(--ease-out) 1.1s forwards;
+}
+
+.cta-strip-text h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.cta-strip-text p {
+  font-size: .875rem;
+  color: rgba(255,255,255,.55);
+}
+
+.cta-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: var(--green-bright);
+  color: #fff;
+  font-family: inherit;
+  font-size: .875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+  white-space: nowrap;
+}
+
+.cta-btn:hover { background: #38b860; transform: translateY(-1px); }
+.cta-btn:active { transform: translateY(0); }
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Hidden (search filter) ─────────────────────────────── */
+.cat-hidden { display: none !important; }
+.faq-hidden { display: none; }
+
+/* ─── Focus visible ──────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--green-bright);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* ─── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page { padding: 48px 16px 80px; }
+  .cat-trigger { padding: 18px 16px; gap: 12px; }
+  .cat-icon-wrap { width: 36px; height: 36px; }
+  .cat-body-inner { padding: 0 16px 16px; }
+  .cta-strip { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="eyebrow"><span></span>Help Center</div>
+    <h1>Everything you need to <em>know</em></h1>
+    <p>Quick answers to the questions we hear most. Can't find what you're looking for? Our team replies within one business day.</p>
+  </header>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input
+      id="faq-search"
+      class="search-input"
+      type="search"
+      placeholder="Search questions…"
+      aria-label="Search frequently asked questions"
+      autocomplete="off"
+    >
+    <button class="clear-btn" id="clear-btn" aria-label="Clear search" tabindex="-1">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories" id="categories" role="list">
+    <!-- Injected by JS -->
+  </div>
+
+  <!-- Empty state -->
+  <div class="empty-state" id="empty-state" aria-live="polite">
+    <div class="empty-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+    <h3>No results found</h3>
+    <p>Try a different keyword or browse the categories below.</p>
+  </div>
+
+  <!-- CTA strip -->
+  <div class="cta-strip" role="complementary" aria-label="Contact support">
+    <div class="cta-strip-text">
+      <h3>Still have questions?</h3>
+      <p>Our team is ready to help you find the right solution for your project.</p>
+    </div>
+    <a href="mailto:hello@eparivartan.com" class="cta-btn">
+      Talk to us
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+</div>
+
+<script>
+/* ─── FAQ Data ───────────────────────────────────────────── */
+const FAQ_DATA = [
+  {
+    id: "general",
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-width="2.5"/></svg>`,
+    label: "General",
+    title: "General Questions",
+    questions: [
+      {
+        q: "What does eParivartan do?",
+        a: "eParivartan is a full-service digital agency based in Hyderabad. We design, build, and grow digital products — websites, mobile apps, e-commerce platforms, and custom software — for businesses across India and globally. We've been doing this since 2002."
+      },
+      {
+        q: "How long have you been in business?",
+        a: "Over 24 years. Since 2002, we've delivered 1,000+ projects across 20+ industries. That longevity means we've seen what works, what doesn't, and how to navigate complex digital challenges efficiently."
+      },
+      {
+        q: "Do you work with startups or only established companies?",
+        a: "Both. We work with early-stage startups who need an MVP built fast, and with established enterprises managing complex digital ecosystems. Our process adapts to your stage — we'll be honest if we're not the right fit."
+      },
+      {
+        q: "Where are you based? Do you work with international clients?",
+        a: "Our studio is in Hyderabad, India. We work with clients across India, the Middle East, UK, US, and Southeast Asia. Remote collaboration is second nature to us — timezone differences have never been a blocker."
+      }
+    ]
+  },
+  {
+    id: "projects",
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`,
+    label: "Projects",
+    title: "Starting a Project",
+    questions: [
+      {
+        q: "How do I get started with a project?",
+        a: "Hit 'Get a Quote' on our website and share a brief about what you need. We'll schedule a discovery call, understand your goals and constraints, then send a detailed proposal within 3–5 business days. No obligations at that stage."
+      },
+      {
+        q: "What information do you need to give me a quote?",
+        a: "A rough description of what you want to build, your timeline, and your budget range. Even approximate numbers help us scope correctly. We'd rather have an honest early conversation than over-promise in a proposal."
+      },
+      {
+        q: "How long does a typical website project take?",
+        a: "A standard marketing website takes 4–6 weeks. A custom web app or e-commerce platform typically runs 8–16 weeks depending on complexity. We'll give you a detailed timeline before any work begins — and we stick to it."
+      },
+      {
+        q: "Can I see examples of your previous work?",
+        a: "Yes. Our Work page showcases case studies with context — what the client needed, what we built, and the results. If you're in a specific industry, ask us directly and we'll share relevant references."
+      },
+      {
+        q: "Do you handle projects end-to-end?",
+        a: "Yes. From discovery and strategy through design, development, testing, and launch — and post-launch support. You can engage us for the full lifecycle or for specific phases where you need expertise."
+      }
+    ]
+  },
+  {
+    id: "billing",
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>`,
+    label: "Billing",
+    title: "Billing & Payments",
+    questions: [
+      {
+        q: "What payment methods do you accept?",
+        a: "We accept bank transfers (NEFT/RTGS/IMPS), UPI, and international wire transfers. For ongoing retainers, we set up automated payment cycles. We'll agree on the method that works for your finance team."
+      },
+      {
+        q: "What is your payment structure?",
+        a: "For project work: typically 40% upfront, 30% at design approval, and 30% at launch. For ongoing retainer engagements, we invoice monthly in advance. We're open to discussing structures that fit your budget cycle."
+      },
+      {
+        q: "Do you offer refunds?",
+        a: "We don't offer blanket refunds since work begins after the deposit. However, if we fail to deliver what was agreed in the project scope, we work to make it right — either by fixing it or crediting future work. We've never had to go that route."
+      },
+      {
+        q: "Are there any hidden costs?",
+        a: "No. Every proposal line-items what's included and what's out of scope. We flag third-party costs (hosting, licenses, stock assets) upfront. If scope changes during a project, we discuss and agree before any additional billing."
+      }
+    ]
+  },
+  {
+    id: "tech",
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+    label: "Technical",
+    title: "Technical & Technology",
+    questions: [
+      {
+        q: "What technologies do you build with?",
+        a: "Our stack spans React, Next.js, Node.js, Python, Django, Laravel, Flutter, and React Native on the front end and mobile side. For databases: PostgreSQL, MySQL, MongoDB. For cloud: AWS, Google Cloud, and Vercel. We choose the right tool for your specific problem — not whatever's trending."
+      },
+      {
+        q: "Will I own the code after the project?",
+        a: "Yes, fully. On final payment, all source code, assets, and credentials transfer to you. We don't hold anything hostage or lock you into proprietary systems. You can take the code to any developer after working with us."
+      },
+      {
+        q: "Do you build on WordPress or Webflow?",
+        a: "Yes, when it's the right fit. WordPress works well for content-heavy sites where the client manages their own updates. Webflow suits marketing sites needing design flexibility without heavy maintenance. We'll recommend the right CMS for your workflow."
+      },
+      {
+        q: "How do you handle website security?",
+        a: "Security is baked into our development process — not bolted on at the end. This means HTTPS everywhere, input validation, secure auth flows, regular dependency audits, and environment variable management. For sensitive platforms we also include penetration test scoping in our proposals."
+      }
+    ]
+  },
+  {
+    id: "support",
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+    label: "Support",
+    title: "Support & After Launch",
+    questions: [
+      {
+        q: "What support do you provide after launch?",
+        a: "Every project includes a 30-day post-launch support window at no charge — we fix any bugs that surface from the delivered scope. After that, we offer monthly maintenance retainers covering updates, monitoring, backups, and minor changes."
+      },
+      {
+        q: "How quickly do you respond to support requests?",
+        a: "For retainer clients: critical issues get a 4-hour response during business hours. Non-critical requests are addressed within 1 business day. For non-retainer clients, we do our best but can't guarantee SLAs — a retainer is the right fit if uptime is critical to your business."
+      },
+      {
+        q: "Can I make changes to my website after it launches?",
+        a: "Absolutely. If you're on a CMS like WordPress or Webflow, you can make many changes yourself with no technical knowledge. For code-level changes, you can come back to us on a time-and-materials basis or opt into a retainer for ongoing flexibility."
+      },
+      {
+        q: "Do you offer SEO and digital marketing services?",
+        a: "Yes. Our SEO offering covers technical SEO (site structure, speed, schema), on-page optimisation, and content strategy. We also do Google Ads and Meta Ads management. These work best as ongoing engagements — SEO results compound over time, not overnight."
+      },
+      {
+        q: "How do I reach you if something breaks on my site?",
+        a: "Retainer clients have a dedicated contact and a priority support channel. For everyone else, email hello@eparivartan.com with 'URGENT' in the subject line and we'll get back to you as fast as we can. We also have a contact form on our site for non-urgent queries."
+      }
+    ]
+  }
+];
+
+/* ─── Chevron SVG helper ─────────────────────────────────── */
+const chevronSVG = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+/* ─── Build DOM ──────────────────────────────────────────── */
+const container = document.getElementById("categories");
+
+FAQ_DATA.forEach((cat, ci) => {
+  const catEl = document.createElement("div");
+  catEl.className = "category";
+  catEl.setAttribute("role", "listitem");
+  catEl.dataset.catId = cat.id;
+
+  const bodyId  = `cat-body-${cat.id}`;
+  const triggerId = `cat-trigger-${cat.id}`;
+
+  catEl.innerHTML = `
+    <button
+      class="cat-trigger"
+      id="${triggerId}"
+      aria-expanded="false"
+      aria-controls="${bodyId}"
+    >
+      <div class="cat-icon-wrap" aria-hidden="true">${cat.icon}</div>
+      <div class="cat-meta">
+        <span class="cat-label">${cat.label}</span>
+        <span class="cat-title">${cat.title}</span>
+      </div>
+      <span class="cat-count" aria-hidden="true">${cat.questions.length}</span>
+      <span class="cat-chevron">${chevronSVG}</span>
+    </button>
+
+    <div class="cat-body" id="${bodyId}" role="region" aria-labelledby="${triggerId}">
+      <div class="cat-body-inner">
+        ${cat.questions.map((faq, fi) => {
+          const faqId   = `faq-${cat.id}-${fi}`;
+          const answerId = `ans-${cat.id}-${fi}`;
+          return `
+          <div class="faq-item" data-q="${escapeHTML(faq.q).toLowerCase()}" data-a="${escapeHTML(faq.a).toLowerCase()}" data-q-orig="${escapeHTML(faq.q)}" data-a-orig="${escapeHTML(faq.a)}">
+            <button
+              class="faq-trigger"
+              id="${faqId}"
+              aria-expanded="false"
+              aria-controls="${answerId}"
+            >
+              <span class="faq-q">${escapeHTML(faq.q)}</span>
+              <span class="faq-chevron">${chevronSVG}</span>
+            </button>
+            <div class="faq-body" id="${answerId}" role="region" aria-labelledby="${faqId}">
+              <p class="faq-answer">${escapeHTML(faq.a)}</p>
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>
+  `;
+
+  container.appendChild(catEl);
+
+  /* Stagger entrance */
+  setTimeout(() => {
+    catEl.classList.add("visible");
+  }, 300 + ci * 90);
+});
+
+/* ─── State ──────────────────────────────────────────────── */
+let openCat   = null;
+let openFaq   = null;
+let catCloseTimer = null;
+let faqCloseTimer = null;
+
+/* ─── Category: open / close ─────────────────────────────── */
+function openCategory(cat) {
+  if (openCat && openCat !== cat) closeCategory(openCat);
+  cat.classList.add("active");
+  const body    = cat.querySelector(".cat-body");
+  const trigger = cat.querySelector(".cat-trigger");
+  body.style.maxHeight = body.scrollHeight + "px";
+  trigger.setAttribute("aria-expanded", "true");
+  openCat = cat;
+}
+
+function closeCategory(cat) {
+  cat.classList.remove("active");
+  const body    = cat.querySelector(".cat-body");
+  const trigger = cat.querySelector(".cat-trigger");
+  body.style.maxHeight = "0";
+  trigger.setAttribute("aria-expanded", "false");
+  cat.querySelectorAll(".faq-item.active").forEach(closeFaq);
+  if (openCat === cat) openCat = null;
+}
+
+function toggleCategory(cat) {
+  cat.classList.contains("active") ? closeCategory(cat) : openCategory(cat);
+}
+
+/* ─── FAQ: open / close ──────────────────────────────────── */
+function openFaqItem(item) {
+  if (openFaq && openFaq !== item) closeFaq(openFaq);
+  item.classList.add("active");
+  const body    = item.querySelector(".faq-body");
+  const trigger = item.querySelector(".faq-trigger");
+  body.style.maxHeight = body.scrollHeight + "px";
+  trigger.setAttribute("aria-expanded", "true");
+  openFaq = item;
+  /* Expand parent cat-body to fit */
+  const catBody = item.closest(".cat-body");
+  if (catBody) catBody.style.maxHeight = catBody.scrollHeight + "px";
+}
+
+function closeFaq(item) {
+  item.classList.remove("active");
+  const body    = item.querySelector(".faq-body");
+  const trigger = item.querySelector(".faq-trigger");
+  body.style.maxHeight = "0";
+  trigger.setAttribute("aria-expanded", "false");
+  if (openFaq === item) openFaq = null;
+}
+
+function toggleFaq(item) {
+  item.classList.contains("active") ? closeFaq(item) : openFaqItem(item);
+  /* Recalc cat-body height after toggle */
+  const catBody = item.closest(".cat-body");
+  if (catBody) setTimeout(() => { catBody.style.maxHeight = catBody.scrollHeight + "px"; }, 0);
+}
+
+/* ─── Category: hover + click ────────────────────────────── */
+document.querySelectorAll(".category").forEach(cat => {
+
+  /* HOVER — open on enter, close on leave (with delay) */
+  cat.addEventListener("mouseenter", () => {
+    clearTimeout(catCloseTimer);
+    openCategory(cat);
+  });
+
+  cat.addEventListener("mouseleave", () => {
+    catCloseTimer = setTimeout(() => {
+      closeCategory(cat);
+    }, 200);
+  });
+
+  /* CLICK — toggle the category (works on touch too) */
+  cat.querySelector(".cat-trigger").addEventListener("click", () => {
+    clearTimeout(catCloseTimer); /* prevent hover-close fighting click */
+    toggleCategory(cat);
+  });
+});
+
+/* ─── FAQ items: hover + click ───────────────────────────── */
+container.addEventListener("click", e => {
+  const faqTrigger = e.target.closest(".faq-trigger");
+  if (faqTrigger) {
+    const item = faqTrigger.closest(".faq-item");
+    clearTimeout(faqCloseTimer);
+    toggleFaq(item);
+  }
+});
+
+container.addEventListener("mouseover", e => {
+  const faqTrigger = e.target.closest(".faq-trigger");
+  if (!faqTrigger) return;
+  const item = faqTrigger.closest(".faq-item");
+  if (!item || item.classList.contains("faq-hidden")) return;
+  clearTimeout(faqCloseTimer);
+  openFaqItem(item);
+});
+
+container.addEventListener("mouseout", e => {
+  const faqItem = e.target.closest(".faq-item");
+  if (!faqItem) return;
+  /* Only close if leaving the item entirely */
+  if (!faqItem.contains(e.relatedTarget)) {
+    faqCloseTimer = setTimeout(() => {
+      closeFaq(faqItem);
+    }, 200);
+  }
+});
+
+/* ─── Open first category + first FAQ on load ────────────── */
+setTimeout(() => {
+  const firstCat = document.querySelector(".category");
+  if (firstCat) {
+    openCategory(firstCat);
+    const firstFaq = firstCat.querySelector(".faq-item");
+    if (firstFaq) {
+      setTimeout(() => openFaqItem(firstFaq), 120);
+    }
+  }
+}, 500);
+
+/* ─── Search ─────────────────────────────────────────────── */
+const searchInput = document.getElementById("faq-search");
+const clearBtn    = document.getElementById("clear-btn");
+const emptyState  = document.getElementById("empty-state");
+
+searchInput.addEventListener("input", handleSearch);
+clearBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  handleSearch();
+  searchInput.focus();
+});
+
+function handleSearch() {
+  const q = searchInput.value.trim().toLowerCase();
+
+  clearBtn.classList.toggle("visible", q.length > 0);
+
+  if (!q) {
+    resetSearch();
+    return;
+  }
+
+  /* Close everything first */
+  if (openCat) closeCategory(openCat);
+  openCat = null;
+  openFaq = null;
+
+  let anyVisible = false;
+
+  document.querySelectorAll(".category").forEach(cat => {
+    const items    = cat.querySelectorAll(".faq-item");
+    let catHit     = false;
+
+    items.forEach(item => {
+      const qText = item.dataset.q;
+      const aText = item.dataset.a;
+      const match = qText.includes(q) || aText.includes(q);
+
+      item.classList.toggle("faq-hidden", !match);
+
+      if (match) {
+        catHit = true;
+        /* Highlight */
+        const qOrig = item.dataset.qOrig;
+        const aOrig = item.dataset.aOrig;
+        item.querySelector(".faq-q").innerHTML      = highlight(qOrig, q);
+        item.querySelector(".faq-answer").innerHTML = highlight(aOrig, q);
+      } else {
+        item.querySelector(".faq-q").innerHTML      = item.dataset.qOrig;
+        item.querySelector(".faq-answer").innerHTML = item.dataset.aOrig;
+      }
+    });
+
+    if (catHit) {
+      anyVisible = true;
+      cat.classList.remove("cat-hidden");
+      /* Auto-open matching category */
+      openCategory(cat);
+    } else {
+      cat.classList.add("cat-hidden");
+    }
+  });
+
+  emptyState.classList.toggle("show", !anyVisible);
+}
+
+function resetSearch() {
+  emptyState.classList.remove("show");
+
+  document.querySelectorAll(".category").forEach(cat => {
+    cat.classList.remove("cat-hidden");
+    cat.querySelectorAll(".faq-item").forEach(item => {
+      item.classList.remove("faq-hidden");
+      item.querySelector(".faq-q").innerHTML      = item.dataset.qOrig;
+      item.querySelector(".faq-answer").innerHTML = item.dataset.aOrig;
+    });
+    closeCategory(cat);
+  });
+
+  /* Re-open first cat + faq after reset */
+  setTimeout(() => {
+    const firstCat = document.querySelector(".category");
+    if (firstCat) {
+      openCategory(firstCat);
+      const firstFaq = firstCat.querySelector(".faq-item");
+      if (firstFaq) setTimeout(() => openFaqItem(firstFaq), 120);
+    }
+  }, 100);
+}
+
+function highlight(text, q) {
+  const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`(${escaped})`, "gi");
+  return escapeHTML(text).replace(re, "<mark>$1</mark>");
+}
+
+function escapeHTML(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/* ─── Keyboard nav ───────────────────────────────────────── */
+container.addEventListener("keydown", e => {
+  if (e.key === "Enter" || e.key === " ") {
+    const trigger = e.target.closest(".cat-trigger, .faq-trigger");
+    if (trigger) { e.preventDefault(); trigger.click(); }
+  }
+});
+</script>
+</body>
+</html>

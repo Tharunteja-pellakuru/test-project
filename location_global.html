@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Reach — eParivartan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- GSAP for scroll animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --bg:           #ffffff;
+  --green:        #2d9e52;
+  --green-dark:   #1f7a3f;
+  --green-glow:   rgba(45, 158, 82, 0.3);
+  --green-light:  rgba(45, 158, 82, 0.08);
+  
+  --ink:          #0f172a;
+  --ink-2:        #334155;
+  --ink-3:        #64748b;
+  --ink-4:        #94a3b8;
+  
+  --glass-bg:     rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(45, 158, 82, 0.15);
+  --shadow:       0 12px 40px -12px rgba(15, 23, 42, 0.08);
+  
+  --font-sans:    'Inter', -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --ease-spring:  cubic-bezier(0.34, 1.15, 0.64, 1);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION LAYOUT
+═══════════════════════════════════════════ */
+.global-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 100px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: radial-gradient(circle at 50% -20%, var(--green-light) 0%, var(--bg) 60%);
+}
+
+.header-text {
+  text-align: center;
+  max-width: 800px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 10;
+}
+.header-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.header-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.header-sub {
+  font-size: 1.15rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   MAP CONTAINER
+═══════════════════════════════════════════ */
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto 80px auto;
+}
+
+/* Map Silhouette */
+.world-map-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  fill: #f1f5f9; /* Subtle gray */
+  stroke: #e2e8f0;
+  stroke-width: 0.5;
+  z-index: 1;
+}
+
+/* Connections SVG Layer */
+#connections-layer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.route-line {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 2;
+  stroke-dasharray: 8 8;
+  opacity: 0.6;
+  /* GSAP will animate stroke-dashoffset */
+}
+
+/* ═══════════════════════════════════════════
+   PINS
+═══════════════════════════════════════════ */
+.pin {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pin-dot {
+  width: 12px; height: 12px;
+  background: #fff;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--green-glow);
+  position: relative;
+  transition: transform 0.3s var(--ease-spring);
+}
+.pin:hover .pin-dot { transform: scale(1.5); }
+
+/* HQ Pulse */
+.pin.hq .pin-dot {
+  width: 16px; height: 16px;
+  background: var(--green);
+  border: 2px solid #fff;
+}
+.pin.hq::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 16px; height: 16px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid var(--green);
+  animation: pulseHQ 2s infinite;
+}
+@keyframes pulseHQ {
+  0% { width: 16px; height: 16px; opacity: 1; border-width: 2px; }
+  100% { width: 60px; height: 60px; opacity: 0; border-width: 0; }
+}
+
+.pin-label {
+  margin-top: 8px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s var(--ease-spring);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.pin.hq .pin-label { opacity: 1; transform: translateY(0); border-color: var(--green); color: var(--green-dark); }
+.pin:hover .pin-label { opacity: 1; transform: translateY(0); }
+
+/* Coordinates for Pins */
+.pin.hq { left: 69%; top: 48%; }
+.pin.usa { left: 22%; top: 35%; }
+.pin.uk { left: 47%; top: 25%; }
+.pin.germany { left: 51%; top: 28%; }
+.pin.dubai { left: 64%; top: 43%; }
+.pin.singapore { left: 77%; top: 56%; }
+.pin.australia { left: 86%; top: 76%; }
+
+/* ═══════════════════════════════════════════
+   STATS & CTA
+═══════════════════════════════════════════ */
+.stats-container {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1000px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+.stat-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 24px 32px;
+  min-width: 240px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  flex: 1;
+  transition: transform 0.3s var(--ease-spring);
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.sc-num {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.sc-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--ink);
+  color: #fff;
+  padding: 18px 36px;
+  border-radius: 100px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s var(--ease-spring);
+  position: relative;
+  z-index: 10;
+}
+.cta-btn:hover {
+  background: var(--green);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px var(--green-glow);
+}
+.cta-btn svg {
+  transition: transform 0.3s var(--ease-spring);
+}
+.cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .header-title { font-size: 2.8rem; }
+  .map-container { aspect-ratio: 4 / 3; }
+  .stat-card { min-width: 180px; }
+}
+@media (max-width: 600px) {
+  .global-section { padding: 60px 20px; }
+  .header-title { font-size: 2.2rem; }
+  .pin-label { display: none; } /* Hide labels on mobile to avoid clutter */
+  .pin.hq .pin-label { display: block; }
+}
+</style>
+</head>
+<body>
+
+<section class="global-section">
+  
+  <div class="header-text gs-reveal">
+    <span class="header-eyebrow">Global Reach</span>
+    <h2 class="header-title">Building Digital Products Worldwide From Hyderabad</h2>
+    <p class="header-sub">Connecting cutting-edge solutions from our headquarters to innovative clients across the globe.</p>
+  </div>
+  
+  <div class="map-container gs-reveal delay-1" id="map-container">
+    
+    <!-- Simplified SVG World Map Silhouette -->
+    <svg class="world-map-svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
+      <!-- A heavily simplified set of paths to represent landmasses for decorative purposes -->
+      <path d="M180,100 Q150,80 120,120 T140,200 T200,280 T260,350 Q280,300 240,200 T300,120 Z" /> <!-- Americas -->
+      <path d="M450,80 Q480,50 550,60 T600,120 T520,180 T460,130 Z" /> <!-- Europe -->
+      <path d="M460,130 Q450,200 480,280 T560,320 T600,220 Z" /> <!-- Africa -->
+      <path d="M600,120 Q700,50 850,80 T880,180 T750,250 T600,220 Z" /> <!-- Asia -->
+      <path d="M820,320 Q800,350 850,400 T920,380 T900,320 Z" /> <!-- Australia -->
+      <!-- Added abstract islands -->
+      <circle cx="750" cy="280" r="10" />
+      <circle cx="220" cy="220" r="6" />
+    </svg>
+    
+    <!-- Connecting SVG Lines -->
+    <svg id="connections-layer"></svg>
+    
+    <!-- Pins -->
+    <div class="pin hq" id="pin-hq">
+      <div class="pin-dot"></div>
+      <div class="pin-label">HQ — Hyderabad</div>
+    </div>
+    
+    <div class="pin usa loc-node">
+      <div class="pin-dot"></div>
+      <div class="pin-label">USA</div>
+    </div>
+    <div class="pin uk loc-node">
+      <div class="pin-dot"></div>
+      <div class="pin-label">UK</div>
+    </div>
+    <div class="pin germany loc-node">
+      <div class="pin-dot"></div>
+      <div class="pin-label">Germany</div>
+    </div>
+    <div class="pin dubai loc-node">
+      <div class="pin-dot"></div>
+      <div class="pin-label">Dubai</div>
+    </div>
+    <div class="pin singapore loc-node">
+      <div class="pin-dot"></div>
+      <div class="pin-label">Singapore</div>
+    </div>
+    <div class="pin australia loc-node">
+      <div class="pin-dot"></div>
+      <div class="pin-label">Australia</div>
+    </div>
+  </div>
+  
+  <div class="stats-container gs-reveal delay-2">
+    <div class="stat-card">
+      <div class="sc-num"><span class="counter" data-target="25">0</span>+</div>
+      <div class="sc-label">Countries Reached</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-num"><span class="counter" data-target="150">0</span>+</div>
+      <div class="sc-label">Global Clients</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-num"><span class="counter" data-target="6">0</span></div>
+      <div class="sc-label">Timezones Covered</div>
+    </div>
+  </div>
+  
+  <div class="gs-reveal delay-3">
+    <a href="#" class="cta-btn">
+      Explore Our Reach
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </a>
+  </div>
+  
+</section>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ═══════════════════════════════════════════
+     DRAW SVG CONNECTIONS DYNAMICALLY
+  ═══════════════════════════════════════════ */
+  function drawConnections() {
+    const layer = document.getElementById('connections-layer');
+    const hq = document.getElementById('pin-hq');
+    const nodes = document.querySelectorAll('.loc-node');
+    const container = document.getElementById('map-container');
+    
+    // Clear old lines
+    layer.innerHTML = '';
+    
+    const contRect = container.getBoundingClientRect();
+    const hqRect = hq.getBoundingClientRect();
+    
+    // HQ Center relative to container
+    const x1 = hqRect.left - contRect.left + hqRect.width / 2;
+    const y1 = hqRect.top - contRect.top + hqRect.height / 2;
+    
+    nodes.forEach(node => {
+      const nodeRect = node.getBoundingClientRect();
+      const x2 = nodeRect.left - contRect.left + nodeRect.width / 2;
+      const y2 = nodeRect.top - contRect.top + nodeRect.height / 2;
+      
+      // Calculate a curve (quadratic bezier) to make lines arch nicely
+      const midX = (x1 + x2) / 2;
+      const midY = (y1 + y2) / 2;
+      // Arc height relative to distance
+      const offset = (x2 - x1) * 0.15; 
+      
+      const cx = midX;
+      const cy = Math.min(y1, y2) - Math.abs(offset) - 20; // Arc upwards
+      
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`);
+      path.setAttribute("class", "route-line");
+      
+      // Setup for animation
+      const length = Math.ceil(path.getTotalLength?.() || 1000);
+      path.style.strokeDasharray = `8 8`;
+      
+      layer.appendChild(path);
+      
+      // Animate line
+      gsap.fromTo(path, 
+        { strokeDashoffset: 100 }, 
+        { strokeDashoffset: 0, duration: 2, ease: "linear", repeat: -1 }
+      );
+    });
+  }
+
+  // Draw once mounted and on resize
+  window.addEventListener('load', () => {
+    drawConnections();
+    
+    /* ═══════════════════════════════════════════
+       SCROLL ANIMATIONS
+    ═══════════════════════════════════════════ */
+    gsap.from('.gs-reveal', {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".global-section",
+        start: "top 80%"
+      }
+    });
+
+    /* Counters */
+    ScrollTrigger.create({
+      trigger: ".stats-container",
+      start: "top 85%",
+      onEnter: () => {
+        document.querySelectorAll('.counter').forEach(el => {
+          const target = parseInt(el.getAttribute('data-target'));
+          gsap.to(el, {
+            innerHTML: target,
+            duration: 2,
+            ease: "power2.out",
+            snap: { innerHTML: 1 },
+            onUpdate: function() {
+              el.innerHTML = Math.round(this.targets()[0].innerHTML);
+            }
+          });
+        });
+      },
+      once: true
+    });
+  });
+  
+  window.addEventListener('resize', () => {
+    // Debounce resize
+    clearTimeout(window.resizeTimer);
+    window.resizeTimer = setTimeout(drawConnections, 200);
+  });
+</script>
+</body>
+</html>

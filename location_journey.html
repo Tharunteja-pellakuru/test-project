@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journey — eParivartan Location</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- GSAP for scroll animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --bg:           #fafcfa;
+  --surface:      #ffffff;
+  --green:        #2d9e52;
+  --green-dark:   #1f7a3f;
+  --green-glow:   rgba(45, 158, 82, 0.25);
+  --green-light:  rgba(45, 158, 82, 0.08);
+  
+  --ink:          #0f172a;
+  --ink-2:        #334155;
+  --ink-3:        #64748b;
+  --ink-4:        #94a3b8;
+  
+  --glass:        rgba(255, 255, 255, 0.85);
+  --border:       rgba(45, 158, 82, 0.15);
+  --shadow-lg:    0 24px 60px -12px rgba(15, 23, 42, 0.08);
+  --shadow-sm:    0 8px 24px -8px rgba(15, 23, 42, 0.06);
+  
+  --font-sans:    'Inter', -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --ease-spring:  cubic-bezier(0.34, 1.15, 0.64, 1);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT & HEADER
+═══════════════════════════════════════════ */
+.journey-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Background gradient orb */
+.bg-orb {
+  position: absolute;
+  top: 10%; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, var(--green-light) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.header-text {
+  text-align: center;
+  max-width: 800px;
+  margin-bottom: 120px;
+  position: relative;
+  z-index: 10;
+}
+.header-title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.header-sub {
+  font-size: 1.25rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   TIMELINE STRUCTURE
+═══════════════════════════════════════════ */
+.timeline-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  z-index: 10;
+  padding-bottom: 80px;
+}
+
+/* The vertical line in the middle */
+.tl-line-wrap {
+  position: absolute;
+  top: 0; bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  background: rgba(15, 23, 42, 0.05);
+  border-radius: 4px;
+  z-index: 1;
+}
+.tl-line-fill {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 0%; /* Animated via GSAP */
+  background: linear-gradient(to bottom, var(--green), #10b981);
+  border-radius: 4px;
+  box-shadow: 0 0 16px var(--green-glow);
+}
+
+/* Timeline Item (Row) */
+.tl-item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; /* Default right */
+  margin-bottom: 80px;
+  padding-right: 50%;
+  z-index: 2;
+}
+/* Alternate sides */
+.tl-item:nth-child(even) {
+  justify-content: flex-start;
+  padding-right: 0;
+  padding-left: 50%;
+}
+.tl-item.center-final {
+  justify-content: center;
+  padding: 0;
+  margin-top: 120px;
+  margin-bottom: 0;
+}
+
+/* Timeline Node/Dot */
+.tl-node {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px; height: 24px;
+  background: var(--surface);
+  border: 4px solid var(--border);
+  border-radius: 50%;
+  z-index: 3;
+  transition: all 0.5s var(--ease-spring);
+}
+.tl-node.active {
+  border-color: var(--green);
+  background: var(--green);
+  box-shadow: 0 0 20px var(--green-glow);
+}
+.tl-node.active::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px; height: 8px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* Final HQ Node */
+.tl-item.center-final .tl-node {
+  top: -40px; /* Position above the HQ card */
+  width: 32px; height: 32px;
+  border: 4px solid var(--green);
+  background: var(--surface);
+}
+.tl-item.center-final .tl-node.active {
+  background: var(--green);
+}
+.tl-item.center-final .tl-node.active::after {
+  width: 12px; height: 12px;
+}
+
+/* ═══════════════════════════════════════════
+   GLASSMORPHISM CARDS
+═══════════════════════════════════════════ */
+.tl-card {
+  width: 85%;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--surface);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm), inset 0 0 0 1px rgba(255,255,255,0.6);
+  position: relative;
+  /* GSAP initial state */
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+}
+/* Push right-side cards away from center line */
+.tl-item:nth-child(even) .tl-card { margin-left: 40px; }
+/* Push left-side cards away from center line */
+.tl-item:nth-child(odd):not(.center-final) .tl-card { margin-right: 40px; }
+
+/* Final Card */
+.tl-item.center-final .tl-card {
+  width: 100%;
+  max-width: 600px;
+  margin: 0;
+  text-align: center;
+  padding: 48px;
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(255,255,255,0.8);
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 12px;
+  display: block;
+}
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.card-desc {
+  font-size: 0.95rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+/* Final HQ Text */
+.center-final .card-title {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+.center-final .card-desc {
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+/* ═══════════════════════════════════════════
+   CTA BUTTON
+═══════════════════════════════════════════ */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--ink);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: transform 0.6s ease;
+}
+.btn-cta:hover {
+  background: var(--green);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px var(--green-glow);
+}
+.btn-cta:hover::before { transform: translateX(200%); }
+.btn-cta svg { transition: transform 0.3s var(--ease-spring); }
+.btn-cta:hover svg { transform: translateX(4px); }
+
+/* ═══════════════════════════════════════════
+   FLOATING PARTICLES
+═══════════════════════════════════════════ */
+.particle-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.particle {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE OVERRIDES
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .header-title { font-size: 3rem; }
+}
+@media (max-width: 768px) {
+  /* Stack timeline to the left on mobile */
+  .tl-line-wrap { left: 30px; transform: none; }
+  .tl-item { justify-content: flex-start; padding-right: 0 !important; padding-left: 80px !important; margin-bottom: 60px; }
+  .tl-item:nth-child(even) .tl-card, .tl-item:nth-child(odd):not(.center-final) .tl-card { margin: 0; width: 100%; }
+  .tl-node { left: 32px !important; }
+  .tl-item.center-final { padding-left: 80px !important; margin-top: 80px; text-align: left; }
+  .tl-item.center-final .tl-node { top: 50%; left: 32px !important; transform: translate(-50%, -50%); }
+  .center-final .tl-card { text-align: left; padding: 32px; }
+  .header-title { font-size: 2.2rem; }
+  .journey-section { padding-top: 80px; }
+}
+</style>
+</head>
+<body>
+
+<section class="journey-section">
+  <div class="bg-orb"></div>
+  
+  <div class="particle-layer" id="particles"></div>
+
+  <div class="header-text gs-reveal">
+    <h2 class="header-title">Every Great Product Starts With A Conversation</h2>
+    <p class="header-sub">Trace the path from your initial spark of an idea, all the way to a successfully launched product built at our headquarters.</p>
+  </div>
+
+  <div class="timeline-container">
+    <!-- Center Line -->
+    <div class="tl-line-wrap">
+      <div class="tl-line-fill" id="tl-line"></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="tl-item tl-step">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="step-num">Step 01</span>
+        <h3 class="card-title">Your Idea</h3>
+        <p class="card-desc">It all begins with a vision. You bring the spark, the problem you want to solve, and the ambition to build something extraordinary.</p>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="tl-item tl-step">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="step-num">Step 02</span>
+        <h3 class="card-title">Discovery Call</h3>
+        <p class="card-desc">We listen. In our initial meeting, we align on goals, explore technical feasibility, and map out the preliminary landscape of your product.</p>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="tl-item tl-step">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="step-num">Step 03</span>
+        <h3 class="card-title">Strategy Workshop</h3>
+        <p class="card-desc">Our architects and strategists dive deep into requirements. We define the tech stack, user personas, and a concrete roadmap to success.</p>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="tl-item tl-step">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="step-num">Step 04</span>
+        <h3 class="card-title">UI/UX Design</h3>
+        <p class="card-desc">Our design team crafts intuitive, pixel-perfect interfaces that ensure your users experience seamless and engaging interactions.</p>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="tl-item tl-step">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="step-num">Step 05</span>
+        <h3 class="card-title">Development</h3>
+        <p class="card-desc">Clean, scalable code. Our engineers bring the designs to life using modern frameworks, ensuring robust backend and fluid frontend performance.</p>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="tl-item tl-step">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="step-num">Step 06</span>
+        <h3 class="card-title">Launch</h3>
+        <p class="card-desc">Extensive QA testing ensures zero bugs. We handle the deployment, scaling infrastructure, and the final push to go live globally.</p>
+      </div>
+    </div>
+
+    <!-- Final Destination -->
+    <div class="tl-item center-final tl-step">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="step-num">Destination</span>
+        <h3 class="card-title">eParivartan HQ</h3>
+        <p class="card-desc">This entire journey is orchestrated from our headquarters in Hyderabad. Ready to turn your idea into our next successful launch?</p>
+        
+        <a href="https://maps.google.com/?q=eParivartan+Hyderabad" target="_blank" rel="noopener" class="btn-cta">
+          Visit Our Office
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* 1. Header Reveal */
+  gsap.from('.gs-reveal', {
+    y: 40, opacity: 0, duration: 1, ease: "power3.out",
+    scrollTrigger: { trigger: ".journey-section", start: "top 80%" }
+  });
+
+  /* 2. Timeline Line Draw */
+  // The green line fills down as you scroll through the timeline container
+  gsap.to('#tl-line', {
+    height: '100%',
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".timeline-container",
+      start: "top 50%", // Start drawing when container is halfway up screen
+      end: "bottom 80%", // Finish drawing when container reaches near bottom
+      scrub: 0.5
+    }
+  });
+
+  /* 3. Timeline Item Reveal (Cards & Nodes) */
+  const steps = document.querySelectorAll('.tl-step');
+  
+  steps.forEach((step, index) => {
+    const card = step.querySelector('.tl-card');
+    const node = step.querySelector('.tl-node');
+    
+    // Create a timeline for each step
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: step,
+        start: "top 65%", // Trigger when the item hits 65% of viewport
+        toggleActions: "play none none reverse"
+      }
+    });
+    
+    // Activate Node
+    tl.add(() => { node.classList.add('active'); })
+      // Pop Card
+      .to(card, {
+        y: 0, scale: 1, opacity: 1,
+        duration: 0.6,
+        ease: "back.out(1.5)"
+      });
+      
+    // Reverse action when scrolling back up
+    ScrollTrigger.create({
+      trigger: step,
+      start: "top 65%",
+      onLeaveBack: () => { node.classList.remove('active'); }
+    });
+  });
+
+  /* 4. Floating Particles Ambiance */
+  const pContainer = document.getElementById('particles');
+  const numParticles = 20;
+  
+  for (let i = 0; i < numParticles; i++) {
+    const p = document.createElement('div');
+    p.classList.add('particle');
+    pContainer.appendChild(p);
+    
+    // Random position across viewport
+    const startX = Math.random() * window.innerWidth;
+    const startY = Math.random() * document.body.scrollHeight;
+    
+    gsap.set(p, { x: startX, y: startY });
+    
+    gsap.to(p, {
+      y: startY - (100 + Math.random() * 200),
+      x: startX + (Math.random() * 60 - 30),
+      opacity: Math.random() * 0.5 + 0.1,
+      duration: 5 + Math.random() * 10,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+  }
+</script>
+</body>
+</html>
