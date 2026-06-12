@@ -108,7 +108,7 @@
        ════════════════════════════════ */
     .cursor-dot {
       width: 24px; height: 24px;
-      background: url("Parivartan Leaf.png") no-repeat center center;
+      background: url("Parivartan-Leaf.png") no-repeat center center;
       background-size: contain;
       position: fixed; top: 0; left: 0;
       pointer-events: none; z-index: 9999;
@@ -276,7 +276,7 @@
        SECTION HERO — WORK
        ════════════════════════════════ */
     .hero-work {
-      padding: 180px 40px 100px;
+      padding: 120px 40px 100px;
       position: relative; overflow: hidden;
       background: var(--card);
       border-bottom: 1px solid var(--border);
@@ -1765,7 +1765,7 @@
     }
 
     @media (max-width: 768px) {
-      .hero-work { padding: 140px 24px 60px; }
+      .hero-work { padding: 100px 24px 60px; }
       .hero-stats-row {
         grid-template-columns: repeat(2, 1fr);
         padding: 20px 0;
@@ -2084,6 +2084,7 @@
       }
     }
   </style>
+  <link rel="icon" type="image/png" href="Parivartan-Leaf.png">
 </head>
 <body>
 
@@ -2132,7 +2133,7 @@
       <div class="hero-aurora"></div>
       <div class="hero-grid"></div>
       <div class="hero-work-inner wrap">
-        <div class="hero-label">✦ Selected Work</div>
+        <div class="hero-label"><img src="Parivartan-Leaf.png" alt="Leaf" style="height: 18px; margin-right: 6px; vertical-align: middle; position: relative; top: -2px;"> Selected Work</div>
         <h1 class="hero-h1">Projects That Deliver<br>Real Business <em>Results</em></h1>
         <p class="hero-desc">Real websites, web applications, mobile apps and ecommerce experiences built to increase traffic, conversions and growth.</p>
         
@@ -3523,12 +3524,6 @@
                       </svg>
                       Mobile
                     </button>
-                  </div>
-                  <div class="color-selectors">
-                    <span style="font-size: 9px; font-weight: 700; text-transform: uppercase; color: var(--ink-4); margin-right: 4px;">Finish</span>
-                    <button class="color-btn color-spaceblack active" onclick="storySwitchColor(${proj.id}, 'spaceblack')"></button>
-                    <button class="color-btn color-silver" onclick="storySwitchColor(${proj.id}, 'silver')"></button>
-                    <button class="color-btn color-titanium" onclick="storySwitchColor(${proj.id}, 'titanium')"></button>
                   </div>
                 </div>
 

@@ -91,7 +91,7 @@
     /* ── CUSTOM CURSOR (Matching index.html) ── */
     .cursor-dot {
       width: 24px; height: 24px;
-      background: url("Parivartan Leaf.png") no-repeat center center;
+      background: url("Parivartan-Leaf.png") no-repeat center center;
       background-size: contain;
       position: fixed; top: 0; left: 0;
       pointer-events: none; z-index: 9999;
@@ -215,10 +215,9 @@
       font-size: 28px; cursor: pointer; color: var(--ink-3);
     }
 
-    /* ── HERO WORK ── */
     .hero-work {
-      position: relative; padding-top: 170px; padding-bottom: 80px;
-      background: var(--off); overflow: hidden;
+      position: relative; padding-top: 120px; padding-bottom: 80px;
+      background: var(--card); overflow: hidden;
     }
     .hero-aurora {
       position: absolute; width: 600px; height: 600px;
@@ -270,6 +269,8 @@
       grid-template-columns: repeat(4, 1fr);
       padding: 30px 40px;
       position: relative;
+      width: 100%;
+      max-width: 900px;
     }
     .hero-stat-card {
       text-align: center;
@@ -300,7 +301,7 @@
     /* ── INFINITE MARQUEE SHOWCASE ── */
     .marquee-showcase-section {
       padding: 100px 0;
-      background: var(--card);
+      background: var(--off);
       border-bottom: 1px solid var(--border);
       overflow: hidden;
       position: relative;
@@ -501,6 +502,7 @@
       .footer-bottom-links { justify-content: center; }
     }
   </style>
+  <link rel="icon" type="image/png" href="Parivartan-Leaf.png">
 </head>
 <body>
 
@@ -546,8 +548,8 @@
     <section class="hero-work" style="padding-bottom: 60px;">
       <div class="hero-aurora"></div>
       <div class="hero-grid"></div>
-      <div class="hero-work-inner wrap">
-        <div class="hero-label">✦ Our Partners</div>
+      <div class="hero-work-inner wrap" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <div class="hero-label" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px;"><img src="Parivartan-Leaf.png" alt="Leaf" style="height: 18px; margin-right: 0px; vertical-align: middle; position: relative; top: -2px;"> Our Partners</div>
         <h1 class="hero-h1">Trusted by Brands<br>That Shape the <em>Future</em></h1>
         <p class="hero-desc">Since 2002, eParivartan has collaborated with startups, institutions, and enterprise leaders to create impactful web and mobile experiences.</p>
         
@@ -608,7 +610,7 @@
     </section>
 
     <!-- SECTION 3 — INTERACTIVE LOGO DIRECTORY GRID -->
-    <section class="case-studies" style="background: var(--off); border-top: 1px solid var(--border); padding-top: 100px; padding-bottom: 100px;">
+    <section class="case-studies" style="background: var(--card); border-top: 1px solid var(--border); padding-top: 100px; padding-bottom: 100px;">
       <div class="wrap">
         <div style="text-align: center; margin-bottom: 60px;">
           <div class="section-label" style="justify-content: center;">Partners Directory</div>
