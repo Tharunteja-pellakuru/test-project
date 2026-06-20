@@ -165,86 +165,93 @@
        NAVBAR
        ════════════════════════════════ */
     .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      position: fixed; top: 20px; left: 0; right: 0; z-index: 900;
       padding: 0 40px;
-      transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
-      border-bottom: 1px solid transparent;
+      transition: top 0.4s var(--transition);
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      pointer-events: none;
     }
     .nav.scrolled {
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(20px) saturate(1.8);
-      border-color: var(--border);
-      box-shadow: var(--shadow-sm);
+      top: 12px;
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      height: 80px; max-width: 1240px; margin: 0 auto;
+      height: 64px; max-width: 1240px; margin: 0 auto;
+      pointer-events: none;
     }
     .nav-logo {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800; font-size: 22px;
-      letter-spacing: -0.04em;
-      display: flex; align-items: center; gap: 2px;
-    }
-    .nav-logo img {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px) saturate(1.8);
+      -webkit-backdrop-filter: blur(20px) saturate(1.8);
+      border: 1px solid rgba(117,191,70,0.15);
+      padding: 0 20px;
+      border-radius: 100px;
+      box-shadow: 0 8px 30px rgba(8,14,10,0.05), inset 0 1px 0 rgba(255,255,255,0.6);
+      pointer-events: auto;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.4s var(--transition);
       height: 52px;
+    }
+    .nav-logo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(117,191,70,0.12);
+      border-color: rgba(117,191,70,0.4);
+    }
+    .nav-logo-img {
+      height: 28px;
       width: auto;
-      object-fit: contain;
       display: block;
+      object-fit: contain;
+      transition: transform 0.4s var(--transition);
     }
-    .nav-logo-dot {
-      width: 8px; height: 8px; background: var(--g);
-      border-radius: 50%; margin-left: 2px; margin-bottom: 10px;
-      display: inline-block;
-      animation: pulse-dot 2.5s ease-in-out infinite;
+    .nav-logo:hover .nav-logo-img {
+      transform: scale(1.03);
     }
-    @keyframes pulse-dot {
-      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
-      50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+    .nav-right-capsule {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px) saturate(1.8);
+      -webkit-backdrop-filter: blur(20px) saturate(1.8);
+      border: 1px solid rgba(117,191,70,0.15);
+      padding: 6px 8px 6px 20px;
+      border-radius: 100px;
+      box-shadow: 0 8px 30px rgba(8,14,10,0.05), inset 0 1px 0 rgba(255,255,255,0.6);
+      pointer-events: auto;
+      display: flex; align-items: center; gap: 16px;
+      height: 52px;
+      transition: all 0.4s var(--transition);
     }
-    
+    .nav-right-capsule:hover {
+      box-shadow: 0 12px 36px rgba(117,191,70,0.12);
+      border-color: rgba(117,191,70,0.3);
+    }
     .nav-links {
-      display: flex; align-items: center; gap: 6px; list-style: none;
+      display: flex; align-items: center; gap: 4px; list-style: none;
     }
     .nav-links a {
       font-size: 14px; font-weight: 500; color: var(--ink-3);
       padding: 8px 16px; border-radius: 100px;
-      transition: color 0.3s, background 0.3s;
+      transition: all 0.25s var(--transition);
       letter-spacing: -0.01em;
     }
-    .nav-links a:hover { color: var(--ink); background: var(--border); }
-    .nav-links a.active { color: var(--g-dark); font-weight: 600; background: var(--g-soft); }
+    .nav-links a:hover { color: var(--ink); background: var(--off); }
+    .nav-links a.active { color: var(--g-dark); background: var(--g-soft); font-weight: 600; }
     
-    .nav-actions {
-      display: flex; align-items: center; gap: 12px;
-    }
-    
-    .theme-toggle-btn {
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--ink);
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      font-size: 18px;
-      transition: background 0.3s, transform 0.3s, border-color 0.3s;
-      box-shadow: var(--shadow-sm);
-    }
-    .theme-toggle-btn:hover {
-      background: var(--g-soft);
-      border-color: var(--g-accent);
-      transform: rotate(15deg);
-    }
-
     .nav-btn {
-      background: var(--g) !important; color: #fff !important;
-      padding: 10px 22px !important; border-radius: 100px !important;
+      background: linear-gradient(180deg, var(--g-mid) 0%, var(--g) 100%) !important;
+      color: #fff !important;
+      padding: 10px 20px !important; border-radius: 100px !important;
       font-weight: 600 !important; font-size: 13.5px !important;
       letter-spacing: -0.01em;
-      border: none; cursor: pointer; display: flex; align-items: center; gap: 6px;
-      transition: background 0.25s, transform 0.25s !important;
+      border: 1px solid rgba(255,255,255,0.15) !important;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      transition: all 0.3s var(--transition) !important;
       font-family: 'DM Sans', sans-serif;
+      height: 40px;
+      box-shadow: 0 4px 12px var(--g-glow), inset 0 1px 0 rgba(255,255,255,0.2);
       position: relative; overflow: hidden;
     }
     .nav-btn::before {
@@ -254,13 +261,25 @@
       transform: translateX(-100%);
       transition: transform 0s;
     }
-    .nav-btn:hover { background: var(--g-dark) !important; transform: translateY(-1px); }
+    .nav-btn:hover {
+      background: linear-gradient(180deg, var(--g) 0%, var(--g-dark) 100%) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(117,191,70,0.3), 0 0 12px var(--g-glow);
+      border-color: rgba(255,255,255,0.25) !important;
+    }
     .nav-btn:hover::before { transform: translateX(100%); transition: transform 0.8s; }
-    .nav-btn .arr { transition: transform 0.2s; }
-    .nav-btn:hover .arr { transform: translateX(3px); }
+    .nav-btn .arr { color: var(--g); font-weight: 700; transition: transform 0.25s var(--transition); }
+    .nav-btn:hover .arr { transform: translateX(4px); }
 
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.3s; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 12px;
+      background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(117,191,70,0.15); border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(8,14,10,0.05); pointer-events: auto;
+      width: 44px; height: 44px; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .hamburger span { display: block; width: 18px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.3s; }
     
     .mobile-menu {
       display: none; position: fixed; inset: 0; z-index: 850;
@@ -1765,6 +1784,10 @@
     }
 
     @media (max-width: 768px) {
+      .nav { top: 10px; padding: 0 16px; }
+      .nav-inner { height: 52px; }
+      .nav-right-capsule { display: none; }
+      .hamburger { display: flex; }
       .hero-work { padding: 100px 24px 60px; }
       .hero-stats-row {
         grid-template-columns: repeat(2, 1fr);
@@ -1808,8 +1831,6 @@
         border-bottom: 1px solid var(--border);
         padding-bottom: 16px;
       }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
       .case-studies { padding: 60px 20px; }
       .results-band-inner { grid-template-columns: 1fr; gap: 16px; }
       .cta-band { padding: 60px 20px; }
@@ -2082,6 +2103,141 @@
       .mobile-app-details li {
         text-align: left;
       }
+
+    /* Mobile Bottom Navigation Bar styling */
+    .mobile-nav-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 450px;
+      height: 66px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px) saturate(1.8);
+      -webkit-backdrop-filter: blur(20px) saturate(1.8);
+      border: 1px solid rgba(117,191,70,0.18);
+      border-radius: 24px;
+      box-shadow: 0 12px 36px rgba(8,14,10,0.1), inset 0 1px 0 rgba(255,255,255,0.6);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 8px;
+    }
+    .mobile-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 10px;
+      text-decoration: none;
+      color: var(--ink-3);
+      font-size: 11px;
+      font-weight: 500;
+      width: 20%;
+      height: 100%;
+      position: relative;
+      transition: all 0.3s var(--transition);
+      font-family: 'DM Sans', sans-serif;
+    }
+    .mobile-nav-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 14px;
+      transition: all 0.3s var(--transition);
+    }
+    .mobile-nav-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: var(--ink-3);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: all 0.3s var(--transition);
+    }
+    .mobile-nav-item span {
+      transition: all 0.3s var(--transition);
+      line-height: 1;
+    }
+    .mobile-nav-item.active {
+      color: var(--g-dark);
+      font-weight: 700;
+    }
+    /* Active Item Concentric Outer Ring */
+    .mobile-nav-item.active::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(117,191,70,0.1);
+      border-radius: 50%;
+      z-index: 1;
+      border: 1px solid rgba(117,191,70,0.12);
+      box-shadow: 0 -2px 6px rgba(8,14,10,0.02);
+    }
+    /* Active Item Inner White Circle */
+    .mobile-nav-item.active .mobile-nav-icon {
+      background: #fff;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      top: -23px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 4px 12px rgba(117,191,70,0.22);
+      border: 1px solid rgba(117,191,70,0.25);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* SVG Styling for Solid Icons when active */
+    .mobile-nav-item.active .mobile-nav-icon svg {
+      stroke: var(--g);
+      width: 22px;
+      height: 22px;
+    }
+    .mobile-nav-item.active .mobile-nav-icon svg path {
+      fill: var(--g);
+      stroke: var(--g);
+    }
+    .mobile-nav-item.active .mobile-nav-icon svg rect {
+      fill: var(--g);
+      stroke: var(--g);
+    }
+    .mobile-nav-item.active .mobile-nav-icon svg circle {
+      fill: var(--g);
+      stroke: var(--g);
+    }
+    .mobile-nav-item.active .mobile-nav-icon svg polyline {
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+    }
+    /* Keep briefcase handle outline-only */
+    .mobile-nav-item.active .mobile-nav-icon svg path[d^="M16"] {
+      fill: none !important;
+      stroke: var(--g) !important;
+    }
+    @media (max-width: 768px) {
+      .mobile-nav-bar {
+        display: flex;
+      }
+      .hamburger {
+        display: none !important;
+      }
+      body {
+        padding-bottom: 80px !important;
+      }
     }
   </style>
   <link rel="icon" type="image/png" href="Parivartan-Leaf.png">
@@ -2109,21 +2265,56 @@
   <nav class="nav" id="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
-        <img src="Parivartan_Logo.png" alt="eParivartan Logo">
+        <img src="Parivartan_Logo.png" alt="eParivartan Logo" class="nav-logo-img">
       </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="story.html">Our Story</a></li>
-        <li><a href="work.html" class="active">Our Work</a></li>
-        <li><a href="clients.html">Our Clients</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <a href="contact.html" class="nav-btn">Get a Quote <span class="arr">→</span></a>
+      <div class="nav-right-capsule">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="story.html">Our Story</a></li>
+          <li><a href="work.html" class="active">Our Work</a></li>
+          <li><a href="clients.html">Our Clients</a></li>
+        </ul>
+        <a href="contact.html" class="nav-btn">Contact <span class="arr">→</span></a>
+      </div>
       <div class="hamburger" id="hamburger">
         <span></span><span></span><span></span>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <div class="mobile-nav-bar">
+    <a href="index.html" class="mobile-nav-item">
+      <div class="mobile-nav-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </div>
+      <span>Home</span>
+    </a>
+    <a href="story.html" class="mobile-nav-item">
+      <div class="mobile-nav-icon">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+      </div>
+      <span>Story</span>
+    </a>
+    <a href="work.html" class="mobile-nav-item active">
+      <div class="mobile-nav-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      </div>
+      <span>Work</span>
+    </a>
+    <a href="clients.html" class="mobile-nav-item">
+      <div class="mobile-nav-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      </div>
+      <span>Clients</span>
+    </a>
+    <a href="contact.html" class="mobile-nav-item">
+      <div class="mobile-nav-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </div>
+      <span>Contact</span>
+    </a>
+  </div>
 
   <div class="page-wrapper" id="pageWrapper">
     <!-- MAIN PAGE WRAPPER (HIDDEN WHEN CASE STUDY IS OPEN) -->
